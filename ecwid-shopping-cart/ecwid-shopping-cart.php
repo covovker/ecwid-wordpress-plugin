@@ -95,25 +95,36 @@ function add_ecwid_admin_bar_node() {
     );
 }
 
+function ecwid_page_has_productbrowser()
+{
+    static $result = null;
+
+    if (is_null($result)) {
+        $post_content = get_post(get_the_ID())->post_content;
+        $result = has_shortcode($post_content, 'ecwid_productbrowser');
+    }
+
+    return $result;
+}
+
 function ecwid_ajax_crawling_fragment() {
     $ecwid_page_id = get_option("ecwid_store_page_id");
-    if (ecwid_is_api_enabled() && !isset($_GET['_escaped_fragment_']) && get_the_ID() == $ecwid_page_id)
+    if (ecwid_is_api_enabled() && !isset($_GET['_escaped_fragment_']) && ecwid_page_has_productbrowser())
         echo '<meta name="fragment" content="!">' . PHP_EOL; 
 }
 
 function ecwid_meta() {
+
     echo '<link rel="dns-prefetch" href="//images-cdn.ecwid.com/">' . PHP_EOL;
     echo '<link rel="dns-prefetch" href="//images.ecwid.com/">' . PHP_EOL;
     echo '<link rel="dns-prefetch" href="//app.ecwid.com/">' . PHP_EOL;
 
-    $ecwid_page_id = get_option("ecwid_store_page_id");
-
-    if (get_the_ID() != $ecwid_page_id) {
-        $page_url = get_page_link($ecwid_page_id);    
+    if (ecwid_page_has_productbrowser()) {
+        $ecwid_page_id = get_option("ecwid_store_page_id");
+        $page_url = get_page_link($ecwid_page_id);
         echo '<link rel="prefetch" href="' . $page_url . '" />' . PHP_EOL;
         echo '<link rel="prerender" href="' . $page_url . '" />' . PHP_EOL;
     }
-        
 }
 
 function ecwid_get_product_and_category($category_id, $product_id) {
