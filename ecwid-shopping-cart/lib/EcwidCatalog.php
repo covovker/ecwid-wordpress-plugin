@@ -126,6 +126,7 @@ class EcwidCatalog
     {
         $params = array
         (
+            array("alias" => "category", "action" => "category", "params" => array("id" => $id)),
             array("alias" => "c", "action" => "categories", "params" => array("parent" => $id)),
             array("alias" => "p", "action" => "products", "params" => array("category" => $id)),
             array("alias" => "pf", "action" => "profile")
@@ -136,8 +137,10 @@ class EcwidCatalog
         $categories = $batch_result["c"];
         $products   = $batch_result["p"];
         $profile    = $batch_result["pf"];
+        $category   = $batch_result["category"];
 
-        $return = '';
+        $return = '<div class="ecwid_catalog_category_name">' . $category["name"] . '</div>';
+        $return .= '<div class="ecwid_catalog_category_description">' . $category["description"] . '</div>';
 
         if (is_array($categories)) 
         {
