@@ -31,6 +31,7 @@ if ( is_admin() ){
   add_filter('wp_title', 'ecwid_seo_title', 20);
   add_action('wp_head', 'ecwid_ajax_crawling_fragment');
   add_action('wp_head', 'ecwid_meta');
+  add_action('wp_head', 'ecwid_meta_description');
   $ecwid_seo_title = '';
 }
 add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
@@ -125,6 +126,39 @@ function ecwid_meta() {
         echo '<link rel="prefetch" href="' . $page_url . '" />' . PHP_EOL;
         echo '<link rel="prerender" href="' . $page_url . '" />' . PHP_EOL;
     }
+}
+
+function ecwid_meta_description() {
+
+    $allowed = ecwid_is_api_enabled() && isset($_GET['_escaped_fragment_']);
+    if (!$allowed) return;
+
+    $params = ecwid_parse_escaped_fragment($_GET['_escaped_fragment_']);
+    if (!$params) return;
+
+    if (!in_array($params['mode'], array('category', 'product')) || !isset($params['id'])) return;
+
+    $api = ecwid_new_product_api();
+    if ($params['mode'] == 'product') {
+        $product = $api->get_product($params['id']);
+        $description = $product['description'];
+    } elseif ($params['mode'] == 'category') {
+        $category = $api->get_category($params['id']);
+        $description = $category['description'];
+    } else return;
+
+    $description = strip_tags($description);
+    $description = html_entity_decode($description, ENT_NOQUOTES, 'UTF-8');
+
+    $whitespaces = " \t\xA0\n\r";// Space, tab, non-breaking space, newline, carriage return
+
+    $description = trim($description, $whitespaces);
+    $description = preg_replace("![$whitespaces]+!", " ", $description);
+    $description = mb_substr($description, 0, 160);
+
+    echo <<<HTML
+<meta name="description" content="$description" />
+HTML;
 }
 
 function ecwid_get_product_and_category($category_id, $product_id) {
