@@ -11,9 +11,6 @@ Author URI: http://www.ecwid.com/
 register_activation_hook( __FILE__, 'ecwid_store_activate' );
 register_deactivation_hook( __FILE__, 'ecwid_store_deactivate' );
 
-if (!empty($_GET['_escaped_fragment_'])) {
-    remove_action( 'wp_head','rel_canonical');
-}
 define("APP_ECWID_COM","app.ecwid.com");
 
 if ( is_admin() ){ 
@@ -32,6 +29,8 @@ if ( is_admin() ){
   add_action('wp_head', 'ecwid_ajax_crawling_fragment');
   add_action('wp_head', 'ecwid_meta');
   add_action('wp_head', 'ecwid_meta_description');
+  add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
+  add_action('wp_head', 'ecwid_seo_compatibility_restore', 1000);
   $ecwid_seo_title = '';
 }
 add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
@@ -52,6 +51,56 @@ function ecwid_backward_compatibility() {
         wp_redirect($redirect, 301);
         exit();
     }
+}
+
+function ecwid_override_option($name, $new_value = null)
+{
+    static $overridden = array();
+
+    if (!array_key_exists($name, $overridden)) {
+        $overridden[$name] = get_option($name);
+    }
+
+    if (!is_null($new_value)) {
+        update_option($name, $new_value);
+    } else {
+        update_option($name, $overridden[$name]);
+    }
+}
+
+function ecwid_seo_compatibility_init()
+{
+    if (!array_key_exists('_escaped_fragment_', $_GET) || !ecwid_page_has_productbrowser()) {
+        return;
+    }
+
+    // Default wordpress canonical
+    remove_action( 'wp_head','rel_canonical');
+
+    // Canonical for Yoast Wordpress SEO
+    global $wpseo_front;
+    remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20);
+
+    // Canonical for Platinum SEO Pack
+    ecwid_override_option('psp_canonical', false);
+    // Title for Platinum SEO Pack
+    ecwid_override_option('aiosp_rewrite_titles', false);
+
+    global $aioseop_options, $aiosp;
+    // Canonical for All in One SEO Pack
+    $aioseop_options['aiosp_can'] = false;
+    // Title for All in One SEO Pack
+    remove_filter('wp_title', array($aiosp, 'wp_title'), 20);
+}
+
+function ecwid_seo_compatibility_restore()
+{
+    if (!array_key_exists('_escaped_fragment_', $_GET) || !ecwid_page_has_productbrowser()) {
+        return;
+    }
+
+    ecwid_override_option('psp_canonical');
+    ecwid_override_option('aiosp_rewrite_titles');
 }
 
 function add_ecwid_admin_bar_node() {
