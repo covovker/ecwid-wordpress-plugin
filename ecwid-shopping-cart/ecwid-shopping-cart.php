@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Ecwid Shopping Cart
-Plugin URI: http://www.ecwid.com/ 
+Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
 Author: Ecwid Team
 Version: 1.7 
-Author URI: http://www.ecwid.com/
+Author URI: http://www.ecwid.com?source=wporg
 */
 
 register_activation_hook( __FILE__, 'ecwid_store_activate' );
@@ -117,7 +117,7 @@ function add_ecwid_admin_bar_node() {
             "id" => "ecwid_home",
             "title" => "Ecwid Site",
             "parent" => "ecwid_main",
-            'href' => 'http://www.ecwid.com/'
+            'href' => 'http://www.ecwid.com?source=wporg'
         )
     );
     //add store page link
@@ -761,7 +761,7 @@ if ($store_id == '1003') {
     <div id="ecwid-instruction" >
 <h4>Instruction on how to get your free Store ID</h4>
 <ul style="padding-left:30px;list-style-type:disc;" id="ecwid-instruction-ul">
-    <li>Go to the <a target="_blank" href="https://my.ecwid.com/cp/#register">Ecwid control panel</a>. Open this URL: <a target="_blank" href="https://my.ecwid.com/cp/#register">https://my.ecwid.com/cp/#register</a>. You will get to 'Sign In or Register' form.</li>
+    <li>Go to the <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register">Ecwid control panel</a>. Open this URL: <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register">https://my.ecwid.com/cp?source=wporg#register</a>. You will get to 'Sign In or Register' form.</li>
     <li>Register an account at Ecwid. Use section &quot;Using Ecwid account&quot; for that. The registration is free.
     <p>Or you can log in using your account at Gmail, Facebook, Twitter, Yahoo, or another provider. Choose one from the list of the providers (click on 'More providers' if you don't see your provider there). Click on the provider logo, you will be redirected to the account login page. Submit your username/password there to login to your Ecwid.</p>
     <p>Note: the login might take several seconds. Please, be patient.</p>
@@ -772,7 +772,7 @@ if ($store_id == '1003') {
     You will also get your Store ID by email.
     </li>
 </ul>
-<p>If you have any questions, feel free to ask them on <a href="http://www.ecwid.com/forums/">Ecwid forums</a> or <a href="http://www.ecwid.com/contact-us.html">contact Ecwid team</a>.</p>
+<p>If you have any questions, feel free to ask them on <a href="http://www.ecwid.com/forums/?source=wporg">Ecwid forums</a> or <a href="http://www.ecwid.com/contact-us.html?source=wporg">contact Ecwid team</a>.</p>
  </div>
  <?php 
  }
