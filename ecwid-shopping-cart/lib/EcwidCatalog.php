@@ -67,6 +67,21 @@ class EcwidCatalog
 
         $return .= "<div class='ecwid_catalog_product_description' itemprop=\"description\">" . $product["description"] . "</div>";
 
+        if (is_array($product["options"]))
+        {
+            foreach($product["options"] as $product_options)
+            {
+                $return .= "<div> $product_options[name]";
+                if (isset($product_options['choices'])) {
+                    foreach ($product_options['choices'] as $choice) {
+                        $return .= $choice['text'];
+                    }
+                }
+                $return .= "</div>";
+            }
+        }
+
+
         if (is_array($product["galleryImages"]))
         {
             foreach ($product["galleryImages"] as $galleryimage)
