@@ -281,14 +281,15 @@ function ecwid_seo_title($content) {
 
 function ecwid_wrap_shortcode_content($content)
 {
-    return "<!-- Ecwid shopping cart plugin v 1.7 --><div>$content</div><!-- END Ecwid Shopping Cart v 1.7 -->";
+    $scriptjs = ecwid_get_scriptjs_code();
+
+    return "<!-- Ecwid shopping cart plugin v 1.7 --><div>$scriptjs $content</div><!-- END Ecwid Shopping Cart v 1.7 -->";
 }
 
 function ecwid_get_scriptjs_code() {
     if (!defined('ECWID_SCRIPTJS')) {
-      $ecwid_protocol = get_ecwid_protocol();
       $store_id = get_ecwid_store_id();
-      $s =  "<script type=\"text/javascript\" src=\"$ecwid_protocol://" . APP_ECWID_COM . "/script.js?$store_id\"></script>";
+      $s =  "<script type=\"text/javascript\" src=\"//" . APP_ECWID_COM . "/script.js?$store_id\"></script>";
       define('ECWID_SCRIPTJS','Yep');
       $s = $s . ecwid_sso(); 
       return $s;
