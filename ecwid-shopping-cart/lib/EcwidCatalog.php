@@ -73,9 +73,12 @@ class EcwidCatalog
             {
                 $return .= "<div> $product_options[name]";
                 if (isset($product_options['choices'])) {
+                    $return .= ': ';
+                    $choices = array();
                     foreach ($product_options['choices'] as $choice) {
-                        $return .= $choice['text'];
+                        $choices[] = $choice['text'];
                     }
+                    $return .= implode(', ', $choices);
                 }
                 $return .= "</div>";
             }
@@ -92,9 +95,12 @@ class EcwidCatalog
         }
         if (is_array($product['attributes'])) {
             foreach ($product['attributes'] as $attribute) {
+                $value = $attribute['value'];
+
                 if ($attribute['internalName'] == 'Brand') {
-                    $return .= "<div itemprop=\"brand\">$attribute[value]</div>";
+                    $value = "<span itemprop=\"brand\">$value</span>";
                 }
+                $return .= "<div>$attribute[name]: $value</div>";
             }
         }
 
