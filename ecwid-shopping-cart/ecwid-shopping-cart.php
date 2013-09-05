@@ -169,7 +169,7 @@ function ecwid_meta() {
     echo '<link rel="dns-prefetch" href="//images.ecwid.com/">' . PHP_EOL;
     echo '<link rel="dns-prefetch" href="//app.ecwid.com/">' . PHP_EOL;
 
-    if (ecwid_page_has_productbrowser()) {
+    if (!ecwid_page_has_productbrowser()) {
         $ecwid_page_id = get_option("ecwid_store_page_id");
         $page_url = get_page_link($ecwid_page_id);
         echo '<link rel="prefetch" href="' . $page_url . '" />' . PHP_EOL;
