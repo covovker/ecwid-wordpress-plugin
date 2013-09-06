@@ -28,7 +28,6 @@ if ( is_admin() ){
   add_filter('wp_title', 'ecwid_seo_title', 20);
   add_action('wp_head', 'ecwid_ajax_crawling_fragment');
   add_action('wp_head', 'ecwid_meta');
-  add_action('wp_head', 'ecwid_meta_description');
   add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
   add_action('wp_head', 'ecwid_seo_compatibility_restore', 1000);
   $ecwid_seo_title = '';
