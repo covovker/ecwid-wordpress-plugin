@@ -1,30 +1,30 @@
 <?php
 
-class EcwidCatalog
-{
+class EcwidCatalog {
     var $store_id = 0;
     var $store_base_url = '';
     var $ecwid_api = null;
 
-    function __construct($store_id, $store_base_url)
-    {
+    function __construct($store_id, $store_base_url) {
         $this->store_id = intval($store_id);
-        $this->store_base_url = $store_base_url;    
+        $this->store_base_url = $store_base_url;
         $this->ecwid_api = new EcwidProductApi($this->store_id);
     }
 
-    function EcwidCatalog($store_id)
-    {
+    function EcwidCatalog($store_id) {
         if(version_compare(PHP_VERSION,"5.0.0","<"))
             $this->__construct($store_id);
     }
 
-    function get_product($id)
-    {
-        $params = array 
-        (
-            array("alias" => "p", "action" => "product", "params" => array("id" => $id)),
-            array("alias" => "pf", "action" => "profile")
+    function get_product($id) {
+        $params = array (
+            array("alias" => "p",
+                  "action" => "product",
+                  "params" => array("id" => $id)
+            ),
+            array("alias" => "pf",
+                  "action" => "profile"
+            )
         );
 
         $batch_result = $this->ecwid_api->get_batch_request($params);
