@@ -9,13 +9,16 @@ class EcwidProductApi {
 
     var $ECWID_PRODUCT_API_ENDPOINT = "http://app.ecwid.com/api/v1";
 
-    function __construct($store_id) {
+    function __construct($store_id, $api_endpoint) {
         $this->store_id = intval($store_id);
+        if (!is_null($api_endpoint)) {
+            $this->ECWID_PRODUCT_API_ENDPOINT = $api_endpoint;
+        }
     }
 
-    function EcwidProductApi($store_id) {
+    function EcwidProductApi($store_id, $api_endpoint) {
         if(version_compare(PHP_VERSION,"5.0.0","<")) {
-            $this->__construct($store_id);
+            $this->__construct($store_id, $api_endpoint);
         }
     }
 

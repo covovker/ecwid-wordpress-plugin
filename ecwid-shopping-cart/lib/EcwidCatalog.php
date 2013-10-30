@@ -5,15 +5,15 @@ class EcwidCatalog {
     var $store_base_url = '';
     var $ecwid_api = null;
 
-    function __construct($store_id, $store_base_url) {
+    function __construct($store_id, $store_base_url, $api_url) {
         $this->store_id = intval($store_id);
         $this->store_base_url = $store_base_url;
-        $this->ecwid_api = new EcwidProductApi($this->store_id);
+        $this->ecwid_api = new EcwidProductApi($this->store_id, $api_url);
     }
 
-    function EcwidCatalog($store_id) {
+    function EcwidCatalog($store_id, $api_url) {
         if(version_compare(PHP_VERSION,"5.0.0","<"))
-            $this->__construct($store_id);
+            $this->__construct($store_id, $api_url);
     }
 
     function get_product($id) {
