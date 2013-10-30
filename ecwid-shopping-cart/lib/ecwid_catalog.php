@@ -67,18 +67,17 @@ function show_ecwid($params) {
 
   $html_catalog = '';
     if ($ecwid_show_seo_catalog) {
-    if (!empty($_GET['ecwid_product_id'])) {
-      $ecwid_open_product = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "ecwid:category=0&mode=product&product='. intval($_GET['ecwid_product_id']) .'";</script>';
-     } elseif (!empty($_GET['ecwid_category_id'])) {
-       $ecwid_default_category_id = intval($_GET['ecwid_category_id']);
-     }
+        if (!empty($_GET['ecwid_product_id'])) {
+            $ecwid_open_product = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "ecwid:category=0&mode=product&product='. intval($_GET['ecwid_product_id']) .'";</script>';
+        } elseif (!empty($_GET['ecwid_category_id'])) {
+            $ecwid_default_category_id = intval($_GET['ecwid_category_id']);
+        }
         $html_catalog = show_ecwid_catalog($store_id);
     }
     
     if (empty($html_catalog)) {
         $html_catalog = "Your browser does not support JavaScript.<a href=\"{$ecwid_mobile_catalog_link}\">HTML version of this store</a>";
     }
-
 
     if (empty($ecwid_default_category_id)) {
         $ecwid_default_category_str = '';
@@ -119,7 +118,7 @@ EOT;
 }
 
 function show_ecwid_catalog($ecwid_store_id) {
-  include_once "ecwid_product_api.php";
+    include_once "ecwid_product_api.php";
     $ecwid_store_id = intval($ecwid_store_id);
     $api = new EcwidProductApi($ecwid_store_id);
 
@@ -248,7 +247,7 @@ function ecwid_internal_construct_url($url_with_anchor, $additional_get_params) 
     unset ($get_params["ecwid_product_id"]);
     $get_params = array_merge($get_params, $additional_get_params);
 
-        // add GET parameters
+    // add GET parameters
     if (count($get_params) > 0) {
         $base_url .= "?";
         $is_first = true;
@@ -265,8 +264,6 @@ function ecwid_internal_construct_url($url_with_anchor, $additional_get_params) 
     if ($anchor != "") {
         $base_url .= "#" . $anchor;
     }
-
     return $base_url;
 }
-
 ?>
