@@ -8,6 +8,8 @@ Version: 0.1
 Author URI: http://www.ecwid.com?source=wporg
 */
 
+if ($_SERVER['HTTP_HOST'] != 'localhost' && strpos($_SERVER['HTTP_HOST'], '.ecwid.com') === false) return;
+
 if ( is_admin() ){
 	add_action('admin_enqueue_scripts', 'edev_admin_script');
 	add_action('admin_footer', 'edev_footer');
