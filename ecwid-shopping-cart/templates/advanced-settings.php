@@ -42,7 +42,7 @@
 				/>
 			<?php endif; ?>
 			<div class="note">
-				<?php _e('By default, the storefront shows a list of root categories. You can override this behaviour and show a different category when customers open your store for the first time. It is useful if you have one category only or want to display a specific set of items (e.g. "Featured products") to all new visitors.', 'ecwid-shopping-cart'); ?>
+				<?php _e('By default, the storefront shows a list of root categories. You can override this behavior and show a different category when customers open your store for the first time. This is useful if you only have one category or want to display a specific set of items (e.g. "Featured Products") to new visitors.', 'ecwid-shopping-cart'); ?>
 			</div>
 			<div class="note">
 			<?php if (!ecwid_is_paid_account()): ?>
@@ -59,22 +59,22 @@
 
 		<div class="pure-control-group last">
 			<label for="ecwid_sso_secret_key">
-				<?php _e('Single Sign-on Secret Key', 'ecwid-shopping-cart'); ?>
+				<?php _e('Single Sign-On Secret Key', 'ecwid-shopping-cart'); ?>
 			</label>
 
 			<input
 				id="ecwid_sso_secret_key"
 				type="text"
 				name="ecwid_sso_secret_key"
-				placeholder="<?php _e('Single Sign-on Secret Key', 'ecwid-shopping-cart'); ?>"
+				placeholder="<?php _e('Single Sign-On Secret Key', 'ecwid-shopping-cart'); ?>"
 				value="<?php echo esc_attr(get_option('ecwid_sso_secret_key')); ?>"
 				/>
 
 			<div class="note">
-				<?php _e("This optional feature allows enabling Single Sign-On : when customers are logged in to your site, they are automatically logged in to your Ecwid store as well, even if they didn't have an account in the store before. It makes sense to enable this feature, if your visitors actually create accounts in your WordPress website.", 'ecwid-shopping-cart'); ?>
+				<?php _e('Single Sign-On Secret Key is an option that allows your customers access to your WordPress site as well as the Ecwid shopping cart. When customers log in to your site, they will automatically be logged in to your Ecwid store as well. It makes sense to enable this feature if your visitors actually create accounts in your WordPress website.', 'ecwid-shopping-cart'); ?>
 			</div>
 			<div class="note grayed-links">
-				<?php _e('In order to enable this feature you should submit a secret key. You will find this key in your Ecwid control panel,  at "System Settings > API > Single Sign-on API" page . This feature is available for <a href="http://www.ecwid.com/compare-plans.html" target="_blank">paid users</a> only.', 'ecwid-shopping-cart'); ?>
+				<?php _e('In order to enable this feature, opt to use a secret key. You will find this key in your Ecwid control panel,  at "System Settings > API > Single Sign-On API" page. This feature is available for <a href="http://www.ecwid.com/compare-plans.html" target="_blank">paid users</a> only.', 'ecwid-shopping-cart'); ?>
 			</div>
 		</div>
 
