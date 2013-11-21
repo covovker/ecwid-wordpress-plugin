@@ -48,6 +48,7 @@ if ( is_admin() ){
   add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
   add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
   add_filter('wp_title', 'ecwid_seo_title', 20);
+  add_action('plugins_loaded', 'ecwid_minifier_compatibility', 0);
   add_action('wp_head', 'ecwid_meta_description', 0);
   add_action('wp_head', 'ecwid_ajax_crawling_fragment');
   add_action('wp_head', 'ecwid_meta');
@@ -155,6 +156,21 @@ function ecwid_backward_compatibility() {
         wp_redirect($redirect, 301);
         exit();
     }
+}
+
+function ecwid_minifier_compatibility()
+{
+	if ( !function_exists( 'get_plugins' ) ) { require_once ( ABSPATH . 'wp-admin/includes/plugin.php' ); }
+
+	$plugins = get_plugins();
+	$wp_minify_plugin = 'wp-minify/wp-minify.php';
+	if (array_key_exists($wp_minify_plugin, $plugins) && is_plugin_active($wp_minify_plugin)) {
+		global $wp_minify;
+
+		if (array_key_exists('default_exclude', get_object_vars($wp_minify))) {
+			$wp_minify->default_exclude[] = 'ecwid.com/script.js';
+		}
+	}
 }
 
 function ecwid_override_option($name, $new_value = null)
