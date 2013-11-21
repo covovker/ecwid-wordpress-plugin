@@ -2,7 +2,7 @@ jQuery(document).ready(function() {
 	jQuery('#hide-vote-message').click(function() {
 		jQuery('#hide-vote-message').addClass('hiding');
 		jQuery.getJSON(
-			'/wordpress36/wp-admin/admin-ajax.php', 
+			'admin-ajax.php',
 			{ action:'ecwid_hide_vote_message' }, 
 			function(data) {
 				jQuery('#hide-vote-message').removeClass('hiding')
