@@ -425,16 +425,21 @@ function ecwid_seo_title($content) {
     }
 }
 
-function ecwid_add_credits($old_powered_by)
+function ecwid_add_credits($powered_by)
 {
 	if (!ecwid_is_paid_account()) {
-		return $old_powered_by
-			. sprintf(
-				'<li><a href="http://www.ecwid.com/?source=wporg" title="%s">%s</a></li>',
-				__('Our online store is powered by Ecwid', 'ecwid-shopping-cart'),
-				'Ecwid.com'
-			);
+
+		$new_powered_by = '<li>';
+		$new_powered_by .= sprintf(
+			__('Our online store is powered by <a %s>Ecwid</a>', 'ecwid-shopping-cart'),
+			'target="_blank" href="//www.ecwid.com?source=wporg"'
+		);
+		$new_powered_by .= '</li>';
+
+		$powered_by .= $new_powered_by;
 	}
+
+	return $powered_by;
 }
 
 function ecwid_wrap_shortcode_content($content)
