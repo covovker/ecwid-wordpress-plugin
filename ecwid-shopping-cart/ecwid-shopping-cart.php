@@ -15,8 +15,6 @@ register_deactivation_hook( __FILE__, 'ecwid_store_deactivate' );
 define("APP_ECWID_COM", "app.ecwid.com");
 define("ECWID_DEMO_STORE_ID", 1003);
 
-define('IS_DEV_MODE', $_SERVER['HTTP_HOST'] == 'localhost' || strpos($_SERVER['HTTP_HOST']) !== false);
-
 if ( ! defined( 'ECWID_PLUGIN_DIR' ) ) {
 	define( 'ECWID_PLUGIN_DIR', plugin_dir_path( realpath(__FILE__) ) );
 }
@@ -806,17 +804,6 @@ function ecwid_settings_api_init() {
 	if (isset($_POST['ecwid_store_id'])) {
 		update_option('ecwid_is_api_enabled', 'off');
 		update_option('ecwid_api_check_time', 0);
-	}
-
-
-	if (IS_DEV_MODE) {
-		if ($_GET['install_time']) {
-			echo strftime("%c", get_option('ecwid_installation_date'));
-			update_option('ecwid_installation_date', get_option('ecwid_installation_date') + intval($_GET['install_time']));
-		}
-		if ($_GET['reset_vote']) {
-			update_option('ecwid_show_vote_message', true);
-		}
 	}
 }
 
