@@ -35,7 +35,7 @@ if ( is_admin() ){
   add_action('admin_enqueue_scripts', 'ecwid_register_settings_styles');
   add_action('wp_ajax_ecwid_hide_vote_message', 'ecwid_hide_vote_message');
   add_filter('plugins_loaded', 'ecwid_load_textdomain');
-  add_filter('plugin_action_links', 'ecwid_plugin_actions');
+  add_filter('plugin_action_links_ecwid-shopping-cart/ecwid-shopping-cart.php', 'ecwid_plugin_actions');
 
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
