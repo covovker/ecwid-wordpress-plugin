@@ -674,7 +674,7 @@ function ecwid_show_admin_messages() {
 		add_option('ecwid_installation_date', time());
 	} else if (ecwid_is_paid_account() && $install_date + 60*60*24*30 < time() && get_option('ecwid_show_vote_message')) {
 		$message = sprintf(
-			__('If you like Ecwid plugin, please, <a %s>vote for it</a> at WordPress site. <br /><a id="hide-vote-message">Click here</a> to disable this reminder.', 'ecwid-shopping-cart'),
+			__('Do you like your Ecwid online store? We\'d appreciate it if you <a %s>add your review and vote for the plugin on Wordpress site</a>. <br /><a id="hide-vote-message">Close and do not show this message anymore</a>', 'ecwid-shopping-cart'),
 			'target="_blank" href="http://wordpress.org/support/view/plugin-reviews/ecwid-shopping-cart"'
 		);
 
