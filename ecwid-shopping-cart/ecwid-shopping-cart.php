@@ -430,8 +430,8 @@ function ecwid_add_credits($old_powered_by)
 	if (!ecwid_is_paid_account()) {
 		return $old_powered_by
 			. sprintf(
-				'<li><a href="http://ecwid.com/?source=wporg" title="%s">%s</a></li>',
-				__('Store powered by Ecwid', 'ecwid-shopping-cart'),
+				'<li><a href="http://www.ecwid.com/?source=wporg" title="%s">%s</a></li>',
+				__('Our online store is powered by Ecwid', 'ecwid-shopping-cart'),
 				'Ecwid.com'
 			);
 	}
