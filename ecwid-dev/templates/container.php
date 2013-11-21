@@ -1,11 +1,11 @@
 <div id="edev-container" style="display: none; position: absolute; right: 10px; top: 40px; border: 1px solid red; padding: 3px">
 	Voting message:
-	<?php if (!get_option('ecwid_show_vote_message')): ?>
-		<b>Disabled</b>
-		<a href="javascript: edev_submit({new_vote:'Y'})">Enable</a>
-	<?php else: ?>
+	<?php if (get_option('ecwid_show_vote_message')): ?>
 		<b>Enabled</b>
-	<a href="javascript: edev_submit({new_vote:'N'})">Disable</a>
+		<a href="javascript: edev_submit({new_vote:'N'})">Disable</a>
+	<?php else: ?>
+		<a href="javascript: edev_submit({new_vote:'Y'})">Enable</a>
+		<b>Disabled</b>
 	<?php endif; ?>
 	<br />
 
