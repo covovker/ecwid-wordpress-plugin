@@ -3,8 +3,9 @@
 Plugin Name: Ecwid Shopping Cart
 Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
+Text Domain: ecwid-shopping-cart
 Author: Ecwid Team
-Version: 2.0
+Version: 2.1
 Author URI: http://www.ecwid.com?source=wporg
 */
 
@@ -13,6 +14,8 @@ register_deactivation_hook( __FILE__, 'ecwid_store_deactivate' );
 
 define("APP_ECWID_COM", "app.ecwid.com");
 define("ECWID_DEMO_STORE_ID", 1003);
+
+define('IS_DEV_MODE', $_SERVER['HTTP_HOST'] == 'localhost' || strpos($_SERVER['HTTP_HOST']) !== false);
 
 if ( ! defined( 'ECWID_PLUGIN_DIR' ) ) {
 	define( 'ECWID_PLUGIN_DIR', plugin_dir_path( realpath(__FILE__) ) );
@@ -32,6 +35,7 @@ if ( is_admin() ){
   add_action('admin_enqueue_scripts', 'ecwid_register_settings_styles');
   add_action('wp_ajax_ecwid_hide_vote_message', 'ecwid_hide_vote_message');
   add_filter('plugins_loaded', 'ecwid_load_textdomain');
+  add_filter('plugin_action_links', 'ecwid_plugin_actions');
 
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
@@ -419,10 +423,9 @@ function ecwid_add_credits($old_powered_by)
 	}
 }
 
-
 function ecwid_wrap_shortcode_content($content)
 {
-    return "<!-- Ecwid shopping cart plugin v 2.0 --><div>$content</div><!-- END Ecwid Shopping Cart v 2.0 -->";
+    return "<!-- Ecwid shopping cart plugin v 2.1 --><div>$content</div><!-- END Ecwid Shopping Cart v 2.1 -->";
 }
 
 function ecwid_get_scriptjs_code() {
@@ -610,7 +613,9 @@ EOT;
 	add_option('ecwid_show_vote_message', true);
 
     add_option("ecwid_sso_secret_key", '', '', 'yes'); 
-    
+
+	add_option("ecwid_installation_date", time());
+
     $id = get_option("ecwid_store_page_id");	
 	$_tmp_page = null;
 	if (!empty($id) and ($id > 0)) { 
@@ -648,10 +653,9 @@ function ecwid_show_admin_messages() {
 		ecwid_show_admin_message($message);
 	}
 	$install_date = get_option('ecwid_installation_date');
-//	die("" . ($install_date + 60*60*24*30) . " " . time());
 	if (!$install_date) {
 		add_option('ecwid_installation_date', time());
-	} else if ($install_date + 60*60*24*30 > time() && get_option('ecwid_show_vote_message')) {
+	} else if ($install_date + 60*60*24*30 < time() && get_option('ecwid_show_vote_message')) {
 		$message = sprintf(
 			__('If you like Ecwid plugin, please, <a %s>vote for it</a> at WordPress site. <br /><a id="hide-vote-message">Click here</a> to disable this reminder.', 'ecwid-shopping-cart'),
 			'target="_blank" href="http://wordpress.org/plugins/ecwid-shopping-cart"'
@@ -742,6 +746,15 @@ function ecwid_register_settings_styles() {
 	wp_enqueue_style('ecwid-settings-css');
 }
 
+function ecwid_plugin_actions($links) {
+	$settings_link = "<a href='admin.php?page=ecwid'>"
+		. (get_ecwid_store_id() == ECWID_DEMO_STORE_ID ? __('Setup', 'ecwid-shopping-cart') : __('Settings') )
+		. "</a>";
+	array_unshift( $links, $settings_link );
+
+	return $links;
+}
+
 
 function ecwid_settings_api_init() {
 
@@ -775,6 +788,17 @@ function ecwid_settings_api_init() {
 		update_option('ecwid_is_api_enabled', 'off');
 		update_option('ecwid_api_check_time', 0);
 	}
+
+
+	if (IS_DEV_MODE) {
+		if ($_GET['install_time']) {
+			echo strftime("%c", get_option('ecwid_installation_date'));
+			update_option('ecwid_installation_date', get_option('ecwid_installation_date') + intval($_GET['install_time']));
+		}
+		if ($_GET['reset_vote']) {
+			update_option('ecwid_show_vote_message', true);
+		}
+	}
 }
 
 function ecwid_common_admin_scripts() {
@@ -796,8 +820,6 @@ function ecwid_general_settings_do_page() {
 function ecwid_advanced_settings_do_page() {
 	wp_register_script('ecwid-advanced-js', plugins_url('ecwid-shopping-cart/js/advanced.js'), array(), '', '');
 	wp_enqueue_script('ecwid-advanced-js');
-
-	update_option('ecwid_show_vote_message', true);
 
 	wp_register_script('select2-js', plugins_url('ecwid-shopping-cart/lib/select2/select2.js'), array(), '', '');
 	wp_enqueue_script('select2-js');
