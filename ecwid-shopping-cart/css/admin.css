@@ -30,6 +30,7 @@
 }
 
 #hide-vote-message {
+	text-decoration: underline;
 	cursor: pointer;
 }
 
