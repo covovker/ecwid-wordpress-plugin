@@ -610,7 +610,6 @@ EOT;
     add_option("ecwid_show_categories", 'Y', '', 'yes');
     add_option("ecwid_show_search_box", '', '', 'yes');
 
-
     add_option("ecwid_pb_categoriesperrow", '3', '', 'yes');
 
     add_option("ecwid_pb_productspercolumn_grid", '3', '', 'yes');
@@ -826,12 +825,6 @@ function ecwid_general_settings_do_page() {
 function ecwid_advanced_settings_do_page() {
 	wp_register_script('ecwid-advanced-js', plugins_url('ecwid-shopping-cart/js/advanced.js'), array(), '', '');
 	wp_enqueue_script('ecwid-advanced-js');
-
-	wp_register_script('select2-js', plugins_url('ecwid-shopping-cart/lib/select2/select2.js'), array(), '', '');
-	wp_enqueue_script('select2-js');
-
-	wp_register_style('select2-css', plugins_url('ecwid-shopping-cart/lib/select2/select2.css'), array(), '', 'all');
-	wp_enqueue_style('select2-css');
 
 	$categories = false;
 	if (ecwid_is_paid_account()) {
