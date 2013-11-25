@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Ecwid Shopping Cart 2.0\n"
-"PO-Revision-Date: 2013-10-28 11:58:11\n"
+"Project-Id-Version: Ecwid Shopping Cart\n"
+"PO-Revision-Date: 2013-11-25 17:38:21\n"
 "Last-Translator:   <test@example.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,10 +25,16 @@ msgstr ""
 msgid "→ Sell on Facebook"
 msgstr ""
 
+msgid "Online store powered by <a %s>Ecwid</a>"
+msgstr ""
+
 msgid "Store"
 msgstr ""
 
 msgid "<strong>Ecwid shopping cart is almost ready</strong>. Please visit <a target=\"_blank\" href=\"%s\">the created page</a> to see your store with demo products. In order to finish the installation, please go to the <a href=\"admin.php?page=ecwid\"><strong>Ecwid settings</strong></a> and configure the plugin."
+msgstr ""
+
+msgid "Do you like your Ecwid online store? We'd appreciate it if you <a %s>add your review and vote</a> for the plugin on Wordpress site. (<a id=\"hide-vote-message\">Close</a> and do not show this message anymore)"
 msgstr ""
 
 msgid "Ecwid shopping cart settings"
@@ -55,6 +61,9 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
+msgid "Setup"
+msgstr ""
+
 msgid "Your store's minicart"
 msgstr ""
 
@@ -76,6 +85,9 @@ msgstr ""
 msgid "Ecwid Vertical Categories"
 msgstr ""
 
+msgid "Price"
+msgstr ""
+
 msgid "Ecwid Shopping Cart - Advanced settings"
 msgstr ""
 
@@ -88,19 +100,19 @@ msgstr ""
 msgid "Default category ID"
 msgstr ""
 
-msgid "By default, the storefront shows a list of root categories. You can override this behaviour and show a different category when customers open your store for the first time. It is useful if you have one category only or want to display a specific set of items (e.g. \"Featured products\") to all new visitors."
+msgid "By default, the storefront shows a list of root categories. You can override this behavior and show a different category when customers open your store for the first time. This is useful if you only have one category or want to display a specific set of items (e.g. \"Featured Products\") to new visitors."
 msgstr ""
 
 msgid "In order to set this option, <a %s>find an ID of the necessary category</a> and save it here."
 msgstr ""
 
-msgid "Single Sign-on Secret Key"
+msgid "Single Sign-On Secret Key"
 msgstr ""
 
-msgid "This optional feature allows enabling Single Sign-On : when customers are logged in to your site, they are automatically logged in to your Ecwid store as well, even if they didn't have an account in the store before. It makes sense to enable this feature, if your visitors actually create accounts in your WordPress website."
+msgid "Single Sign-On Secret Key is an option that allows your customers access to your WordPress site as well as the Ecwid shopping cart. When customers log in to your site, they will automatically be logged in to your Ecwid store as well. It makes sense to enable this feature if your visitors actually create accounts in your WordPress website."
 msgstr ""
 
-msgid "In order to enable this feature you should submit a secret key. You will find this key in your Ecwid control panel,  at \"System Settings > API > Single Sign-on API\" page . This feature is available for <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">paid users</a> only."
+msgid "In order to enable this feature, opt to use a secret key. You will find this key in your Ecwid control panel,  at \"System Settings > API > Single Sign-On API\" page. This feature is available for <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">paid users</a> only."
 msgstr ""
 
 msgid "Save changes"
@@ -158,6 +170,9 @@ msgid "Table"
 msgstr ""
 
 msgid "Default view mode on search results"
+msgstr ""
+
+msgid "Store powered by Ecwid"
 msgstr ""
 
 msgid "Ecwid Shopping Cart - General settings"
