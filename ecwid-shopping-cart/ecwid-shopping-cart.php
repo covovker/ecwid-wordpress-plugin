@@ -165,7 +165,7 @@ function ecwid_minifier_compatibility()
 	if (array_key_exists($wp_minify_plugin, $plugins) && is_plugin_active($wp_minify_plugin)) {
 		global $wp_minify;
 
-		if (array_key_exists('default_exclude', get_object_vars($wp_minify))) {
+		if (is_object($wp_minify) && array_key_exists('default_exclude', get_object_vars($wp_minify)) && is_array($wp_minify->default_exclude)) {
 			$wp_minify->default_exclude[] = 'ecwid.com/script.js';
 		}
 	}
@@ -429,7 +429,7 @@ function ecwid_add_credits($powered_by)
 
 		$new_powered_by = '<li>';
 		$new_powered_by .= sprintf(
-			__('Our online store is powered by <a %s>Ecwid</a>', 'ecwid-shopping-cart'),
+			__('Online store powered by <a %s>Ecwid</a>', 'ecwid-shopping-cart'),
 			'target="_blank" href="//www.ecwid.com?source=wporg"'
 		);
 		$new_powered_by .= '</li>';
