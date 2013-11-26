@@ -80,6 +80,16 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 - Knowledge Base: [http://kb.ecwid.com](http://kb.ecwid.com)
 
 == Changelog ==
+= 2.1 =
+- Our plugin backend is now available in Italian, Russian and English. Thanks to Luciano Del Fico for the great help with the Italian translation.
+
+- Improvements and bug fixes, including
+  - Better SEO for store pages: search engines will now index product options list and category descriptions
+  - Compatibility with WP Minify (Wordpress sites optimization plugin)
+  - Improved compatibility with Yoast WP SEO plugin: Ecwid SEO page titles are shown properly with enabled Yoast's "Force Rewrite Titles" option
+  - Minor text and design tweaks of the plugin settings pages
+
+
 = 2.0 =
 - **New revamped plugin settings**: the new settings layout makes the plugin easy and intuitive for starters, yet powerful and advanced for experienced merchants.
 
