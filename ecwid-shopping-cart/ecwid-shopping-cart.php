@@ -241,48 +241,49 @@ function add_ecwid_admin_bar_node() {
         return;
 
     $wp_admin_bar->add_menu( array(
-        'id' => 'ecwid_main',
-        'title' => '<div class="ecwid-top-menu-item"></div>',
+        'id' => 'ecwid-main',
+        'title' => '<span class="ab-icon ecwid-top-menu-item"></span>',
+		'href' => 'admin.php?page=ecwid',
     ));
 	$wp_admin_bar->add_menu(array(
-			"id" => "ecwid_help",
+			"id" => "ecwid-help",
 			"title" => __("Get help", 'ecwid-shopping-cart'),
-			"parent" => "ecwid_main",
+			"parent" => "ecwid-main",
 			'href' =>  'http://help.ecwid.com'
 		)
 	);
     $wp_admin_bar->add_menu(array(
-            "id" => "ecwid_home",
+            "id" => "ecwid-home",
             "title" => __("Go to Ecwid site", 'ecwid-shopping-cart'),
-            "parent" => "ecwid_main",
+            "parent" => "ecwid-main",
             'href' => 'http://www.ecwid.com?source=wporg'
         )
     );
     $wp_admin_bar->add_menu(array(
-            "id" => "ecwid_go_to_page",
+            "id" => "ecwid-go-to-page",
             "title" => __("Visit storefront", 'ecwid-shopping-cart'),
-            "parent" => "ecwid_main",
+            "parent" => "ecwid-main",
             'href' =>  get_page_link(get_option("ecwid_store_page_id"))
         )
     );
     $wp_admin_bar->add_menu(array(
-            "id" => "ecwid_control_panel",
+            "id" => "ecwid-control-panel",
             "title" => __("Manage my store", 'ecwid-shopping-cart'),
-            "parent" => "ecwid_main",
+            "parent" => "ecwid-main",
             'href' =>  'https://my.ecwid.com/cp/?source=wporg#t1=&t2=Dashboard'
         )
     );
 	$wp_admin_bar->add_menu(array(
-			"id" => "ecwid_settings",
+			"id" => "ecwid-settings",
 			"title" => __("Manage plugin settings", 'ecwid-shopping-cart'),
-			"parent" => "ecwid_main",
+			"parent" => "ecwid-main",
 			'href' =>  admin_url('admin.php?page=ecwid')
 		)
 	);
 	$wp_admin_bar->add_menu(array(
-            "id" => "ecwid_fb_app",
+            "id" => "ecwid-fb-app",
             "title" => __("→ Sell on Facebook", 'ecwid-shopping-cart'),
-            "parent" => "ecwid_main",
+            "parent" => "ecwid-main",
             'href' =>  'http://apps.facebook.com/ecwid-shop/?fb_source=wp'
         )
     );

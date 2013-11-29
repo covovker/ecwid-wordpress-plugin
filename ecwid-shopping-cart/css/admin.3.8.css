@@ -15,11 +15,26 @@
 	content: 'W';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
 }
 
 #adminmenu #toplevel_page_ecwid div.wp-menu-image {
 	margin: 0px;
 	width: 34px;
 	height: 30px;
+}
+
+#wpadminbar>#wp-toolbar>#wp-admin-bar-root-default .ab-icon.ecwid-top-menu-item {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-image: none;
+	color: white;
+	width: auto;
+	margin-right: 0px;
+}
+
+#wpadminbar #wp-admin-bar-ecwid-main .ab-icon.ecwid-top-menu-item:before {
+	font: 400 20px 'ecwid-logo' !important;
+	content: 'W';
+	width: auto;
+	margin-right: 0px;
 }
