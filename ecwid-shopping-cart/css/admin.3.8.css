@@ -24,17 +24,27 @@
 }
 
 #wpadminbar>#wp-toolbar>#wp-admin-bar-root-default .ab-icon.ecwid-top-menu-item {
+	font: 400 20px/1 'ecwid-logo' !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-image: none;
 	color: white;
 	width: auto;
 	margin-right: 0px;
+	margin-top: 2px;
 }
 
 #wpadminbar #wp-admin-bar-ecwid-main .ab-icon.ecwid-top-menu-item:before {
-	font: 400 20px 'ecwid-logo' !important;
 	content: 'W';
 	width: auto;
 	margin-right: 0px;
+}
+
+@media screen and (max-width: 782px) {
+	#wpadminbar>#wp-toolbar>#wp-admin-bar-root-default .ab-icon.ecwid-top-menu-item {
+		font: 400 32px/46px 'ecwid-logo' !important;
+		width: 46px;
+		text-align: center;
+		margin-top: 0px;
+	}
 }
