@@ -751,8 +751,15 @@ function ecwid_options_add_page() {
 }
 
 function ecwid_register_admin_styles() {
+	global $version;
+
 	wp_register_style('ecwid-admin-css', plugins_url('ecwid-shopping-cart/css/admin.css'), array(), '', 'all');
 	wp_enqueue_style('ecwid-admin-css');
+
+	if (version_compare($version, '3.8-beta') > 0) {
+		wp_register_style('ecwid-admin38-css', plugins_url('ecwid-shopping-cart/css/admin.3.8.css'), array('ecwid-admin-css'), '', 'all');
+		wp_enqueue_style('ecwid-admin38-css');
+	}
 }
 
 function ecwid_register_settings_styles() {
