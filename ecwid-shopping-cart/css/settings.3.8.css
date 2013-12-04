@@ -1,0 +1,52 @@
+.ecwid-pb-view-size .main-area {
+	border-color: rgba(30, 140, 190, 0.5);
+}
+
+.ecwid-pb-view-size .main-area path,
+.ecwid-pb-view-size .main-area rect {
+	fill: rgb(30, 140, 190);
+}
+
+.ecwid-settings h2 {
+	background: none;
+	padding-left: 12px;
+}
+
+.ecwid-settings hr {
+	background: #cacaca;
+}
+
+.ecwid-settings .pure-control-group {
+	margin-bottom: 22px;
+}
+
+.pure-form.ecwid-settings .pure-control-group label {
+	font-size: 14px;
+	width: 265px;
+}
+
+.ecwid-settings.advanced-settings input,
+.ecwid-settings.advanced-settings select {
+	width: 200px;
+	height: 30px;
+	margin-right: 15px;
+	font-size: 13px;
+	border-color: #cacaca;
+}
+
+.pure-form.ecwid-settings.general-settings .pure-button-secondary {
+	color: #0074a2;
+}
+
+.pure-form.ecwid-settings.general-settings .pure-button-secondary:hover {
+	border-color: #0074a2;
+}
+
+.ecwid-settings.general-settings button {
+	top: 1px;
+	padding: 0px 10px 1px;
+}
+
+.ecwid-pb-view-size .ruler {
+	background: #cacaca;
+}

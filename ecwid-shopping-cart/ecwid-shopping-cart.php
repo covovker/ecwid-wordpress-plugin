@@ -764,11 +764,17 @@ function ecwid_register_admin_styles() {
 }
 
 function ecwid_register_settings_styles() {
+	global $version;
+
 	wp_register_style('ecwid-settings-pure-css', plugins_url('ecwid-shopping-cart/css/pure-min.css'), array(), '', 'all');
 	wp_enqueue_style('ecwid-settings-pure-css');
 	wp_register_style('ecwid-settings-css', plugins_url('ecwid-shopping-cart/css/settings.css'), array(), '', 'all');
 	wp_enqueue_style('ecwid-settings-css');
-}
+
+	if (version_compare($version, '3.8-beta') > 0) {
+		wp_register_style('ecwid-settings38-css', plugins_url('ecwid-shopping-cart/css/settings.3.8.css'), array('ecwid-settings-css'), '', 'all');
+		wp_enqueue_style('ecwid-settings38-css');
+	}}
 
 function ecwid_plugin_actions($links) {
 	$settings_link = "<a href='admin.php?page=ecwid'>"
@@ -819,6 +825,8 @@ function ecwid_common_admin_scripts() {
 	wp_register_script('ecwid-admin-js', plugins_url('ecwid-shopping-cart/js/admin.js'), array(), '', '');
 	wp_enqueue_script('ecwid-admin-js');
 
+	wp_register_script('ecwid-modernizr-js', plugins_url('ecwid-shopping-cart/js/modernizr.js'), array(), '', '');
+	wp_enqueue_script('ecwid-modernizr-js');
 }
 
 function ecwid_general_settings_do_page() {

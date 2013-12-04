@@ -8,13 +8,16 @@
 
 			<input type="hidden" name="settings_section" value="general" />
 
-			<div class="greeting-box">
+			<div class="greeting-box" style="position: relative">
 				<div class="main-message">
+
 					<?php _e('Thank you for choosing Ecwid to build your online store.', 'ecwid-shopping-cart'); ?>
 				</div>
 				<div class="secondary-message">
 					<?php _e('The first step towards opening your online business: <br />Let’s get started and add a store to your WordPress website in <strong>3</strong> simple steps.', 'ecwid-shopping-cart'); ?>
 				</div>
+
+				<img class="greeting-image" src="<?php echo(esc_attr(ECWID_PLUGIN_URL)); ?>/images/store_inprogress.png" width="142" />
 			</div>
 			<hr />
 
@@ -55,7 +58,7 @@
 							placeholder="<?php _e('Store ID', 'ecwid-shopping-cart'); ?>"
 							value="<?php if (get_ecwid_store_id() != 1003) echo esc_attr(get_ecwid_store_id()); ?>"
 							/>
-						<button type="submit" class="pure-button pure-button-primary"><?php _e('Save and connect your Ecwid store to the site', 'ecwid-shopping-cart'); ?></button>
+						<button type="submit" class="button-primary"><?php _e('Save and connect your Ecwid store to the site', 'ecwid-shopping-cart'); ?></button>
 					</div>
 
 				</li>

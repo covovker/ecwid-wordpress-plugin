@@ -1,3 +1,12 @@
+<?php
+function ecwid_embed_svg($name) {
+	$code = file_get_contents(ECWID_PLUGIN_DIR . '/images/' . $name . '.svg');
+
+	echo $code;
+}
+
+?>
+
 <form class="wrap pure-form pure-form-aligned ecwid-settings appearance-settings" method="POST" action="options.php">
 
 	<h2><?php _e('Ecwid Shopping Cart - Appearance settings', 'ecwid-shopping-cart'); ?></h2>
@@ -86,7 +95,9 @@
 			<label class="products-per-page-label"><?php _e('Number of products per page', 'ecwid-shopping-cart'); ?></label>
 			<div class="ecwid-pb-view-size grid active" tabindex="1">
 				<div class="title"><?php _e('Grid view', 'ecwid-shopping-cart'); ?></div>
-				<div class="main-area"></div>
+				<div class="main-area">
+					<?php ecwid_embed_svg('grid'); ?>
+				</div>
 				<div class="right">
 					<div class="ruler"></div>
 					<input
@@ -111,7 +122,9 @@
 
 			<div class="ecwid-pb-view-size list" tabindex="1">
 				<div class="title"><?php _e('List view', 'ecwid-shopping-cart'); ?></div>
-				<div class="main-area"></div>
+				<div class="main-area">
+					<?php ecwid_embed_svg('list'); ?>
+				</div>
 				<div class="right">
 					<div class="ruler"></div>
 					<input
@@ -126,7 +139,9 @@
 
 			<div class="ecwid-pb-view-size table" tabindex="1">
 				<div class="title"><?php _e('Table view', 'ecwid-shopping-cart'); ?></div>
-				<div class="main-area"></div>
+				<div class="main-area">
+					<?php ecwid_embed_svg('table'); ?>
+				</div>
 				<div class="right">
 					<div class="ruler"></div>
 					<input
@@ -184,7 +199,7 @@
 	<fieldset>
 		<hr />
 		<div class="pure-control-group">
-			<button type="submit" class="pure-button pure-button-primary"><?php _e('Save changes', 'ecwid-shopping-cart'); ?></button>
+			<button type="submit" class="button-primary"><?php _e('Save changes', 'ecwid-shopping-cart'); ?></button>
 		</div>
 	</fieldset>
 </form>

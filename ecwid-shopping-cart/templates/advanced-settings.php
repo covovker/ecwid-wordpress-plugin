@@ -84,7 +84,7 @@
 		<hr />
 
 		<div class="pure-control-group">
-			<button type="submit" class="pure-button pure-button-primary">
+			<button type="submit" class="button-primary">
 				<?php _e('Save changes', 'ecwid-shopping-cart'); ?>
 			</button>
 		</div>

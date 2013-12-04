@@ -105,7 +105,6 @@ display: none;
 .ecwid-settings.appearance-settings input[type=text] {
 	font-size: 13px;
 	padding: 5px 3px 4px 3px;
-	outline: 1px solid white;
 	outline-offset: 0px;
 }
 
@@ -157,26 +156,46 @@ display: none;
 	transition: background-image .3s, border-color .3s, font-weight .3s;
 }
 
-.ecwid-pb-view-size.grid .main-area {
-	background-image: url(../images/grid-default.png);
-}
-
-.ecwid-pb-view-size.list .main-area {
-	background-image: url(../images/list-default.png);
-}
-
-.ecwid-pb-view-size.table .main-area {
-	background-image: url(../images/table-default.png);
-}
 
 .ecwid-pb-view-size .main-area {
 	width: 116px;
 	height: 82px;
-	border: 2px solid #d1eef6;
+	border: 2px solid rgb(125, 209, 227);
+  border-color: rgba(125, 209, 227, .5);
 	border-radius: 2px;
 	float: left;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
+	text-align: center;
+}
+
+.ecwid-pb-view-size .main-area svg {
+	margin-top: 7px;
+}
+
+.ecwid-pb-view-size .main-area path,
+.ecwid-pb-view-size .main-area rect {
+	fill: rgb(125, 209, 227);
+}
+
+.ecwid-pb-view-size .fallback-image {
+	width: 100px;
+	height: 66px;
+	background-repeat: no-repeat;
+	margin-top:7px;
+	margin-left:8px;
+}
+
+.ecwid-pb-view-size .grid-image {
+	background-image: url(../images/grid.png);
+}
+
+.ecwid-pb-view-size .list-image {
+	background-image: url(../images/list.png);
+}
+
+.ecwid-pb-view-size .table-image {
+	background-image: url(../images/table.png);
 }
 
 .ecwid-pb-view-size .right {
@@ -252,19 +271,18 @@ display: none;
 }
 
 .general-settings .greeting-box {
-	background: url(../images/store_inprogress.png);
-	background-repeat: no-repeat;
-	background-position: 18px 3px;
 	height: 141px;
 	padding-left: 190px;
 	padding-bottom: 12px;
 	display: table-cell;
 	vertical-align: middle;
+	position: relative;
 }
 
-.general-settings .greeting-box.complete {
-	background-image: url(../images/store_ready.png);
-	height: 141px;
+.general-settings .greeting-image {
+	position: absolute;
+	left: 14px;
+	top: 0px;
 }
 
 .general-settings .greeting-box .main-message {
