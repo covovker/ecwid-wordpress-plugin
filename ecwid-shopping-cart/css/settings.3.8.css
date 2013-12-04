@@ -7,6 +7,10 @@
 	fill: rgb(30, 140, 190);
 }
 
+.ecwid-pb-view-size .bottom {
+	margin-top: 11px;
+}
+
 .ecwid-settings h2 {
 	background: none;
 	padding-left: 12px;
@@ -34,17 +38,22 @@
 	border-color: #cacaca;
 }
 
-.pure-form.ecwid-settings.general-settings .pure-button-secondary {
+.pure-form.ecwid-settings.general-settings .pure-button-secondary,
+.pure-form.ecwid-settings a.pure-button:not(.pure-button-primary):hover
+{
 	color: #0074a2;
 }
 
-.pure-form.ecwid-settings.general-settings .pure-button-secondary:hover {
+.pure-form.ecwid-settings.general-settings .pure-button-secondary:hover,
+.pure-form.ecwid-settings a.pure-button:not(.pure-button-primary):hover
+{
 	border-color: #0074a2;
 }
 
 .ecwid-settings.general-settings button {
 	top: 1px;
-	padding: 0px 10px 1px;
+	padding: 2px 10px 1px;
+	height: 32px;
 }
 
 .ecwid-pb-view-size .ruler {
