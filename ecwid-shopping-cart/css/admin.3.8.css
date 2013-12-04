@@ -44,6 +44,7 @@
 	#wpadminbar>#wp-toolbar>#wp-admin-bar-root-default .ab-icon.ecwid-top-menu-item {
 		font: 400 32px/46px 'ecwid-logo' !important;
 		width: 46px;
+		padding: 0px 2px;
 		text-align: center;
 		margin-top: 0px;
 	}
