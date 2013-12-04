@@ -440,8 +440,8 @@ function ecwid_add_credits($powered_by)
 
 		$new_powered_by = '<li>';
 		$new_powered_by .= sprintf(
-			__('Online store powered by <a %s>Ecwid</a>', 'ecwid-shopping-cart'),
-			'target="_blank" href="//www.ecwid.com?source=wporg"'
+			__('<a %s>Online store powered by Ecwid</a>', 'ecwid-shopping-cart'),
+			'target="_blank" href="//www.ecwid.com?source=wporg-metalink"'
 		);
 		$new_powered_by .= '</li>';
 
