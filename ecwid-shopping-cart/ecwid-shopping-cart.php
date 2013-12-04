@@ -88,9 +88,14 @@ if (version_compare($version, '3.6') < 0) {
 		}
 	}
 }
-
-$theme = wp_get_theme();
-if ($theme->get('Name') == 'Twenty Fourteen') {
+$theme_name = '';
+if (version_compare($version, '3.4') < 0) {
+	$theme_name = get_current_theme();
+} else {
+	$theme = wp_get_theme();
+	$theme_name = $theme->get('Name');
+}
+if ($theme_name == 'Twenty Fourteen') {
 	add_action('wp_enqueue_scripts', 'ecwid_adjust_theme2014');
 
 	function ecwid_adjust_theme2014() {
