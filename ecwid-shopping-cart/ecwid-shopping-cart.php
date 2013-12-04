@@ -104,6 +104,17 @@ if ($theme_name == 'Twenty Fourteen') {
 	}
 }
 
+if (is_admin()) {
+	$main_button_class = "";
+	if (version_compare($version, '3.8-beta') > 0) {
+		$main_button_class = "button-primary";
+	} else {
+		$main_button_class = "pure-button pure-button-primary";
+	}
+
+	define('ECWID_MAIN_BUTTON_CLASS', $main_button_class);
+}
+
 function ecwid_load_textdomain() {
 	load_plugin_textdomain( 'ecwid-shopping-cart', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 

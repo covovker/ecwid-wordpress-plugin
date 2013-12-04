@@ -58,7 +58,7 @@
 							placeholder="<?php _e('Store ID', 'ecwid-shopping-cart'); ?>"
 							value="<?php if (get_ecwid_store_id() != 1003) echo esc_attr(get_ecwid_store_id()); ?>"
 							/>
-						<button type="submit" class="button-primary"><?php _e('Save and connect your Ecwid store to the site', 'ecwid-shopping-cart'); ?></button>
+						<button type="submit" class="<?php echo ECWID_MAIN_BUTTON_CLASS; ?>"><?php _e('Save and connect your Ecwid store to the site', 'ecwid-shopping-cart'); ?></button>
 					</div>
 
 				</li>

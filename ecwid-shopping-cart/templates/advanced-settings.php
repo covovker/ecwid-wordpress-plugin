@@ -84,7 +84,7 @@
 		<hr />
 
 		<div class="pure-control-group">
-			<button type="submit" class="button-primary">
+			<button type="submit" class="<?php echo ECWID_MAIN_BUTTON_CLASS; ?>">
 				<?php _e('Save changes', 'ecwid-shopping-cart'); ?>
 			</button>
 		</div>
