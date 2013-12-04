@@ -89,6 +89,16 @@ if (version_compare($version, '3.6') < 0) {
 	}
 }
 
+$theme = wp_get_theme();
+if ($theme->get('Name') == 'Twenty Fourteen') {
+	add_action('wp_enqueue_scripts', 'ecwid_adjust_theme2014');
+
+	function ecwid_adjust_theme2014() {
+		wp_register_style('ecwid_theme2014', plugins_url('ecwid-shopping-cart/css/2014adjustments.css'), array('twentyfourteen-style'), '', 'all');
+		wp_enqueue_style('ecwid_theme2014');
+	}
+}
+
 function ecwid_load_textdomain() {
 	load_plugin_textdomain( 'ecwid-shopping-cart', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
