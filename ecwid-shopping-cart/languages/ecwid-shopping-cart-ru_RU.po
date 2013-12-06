@@ -19,7 +19,7 @@ msgid "Ecwid Shopping Cart"
 msgstr "Интернет-магазин Ecwid"
 
 msgid "Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up."
-msgstr "Ecwid - это бесплатный полнофункциональный интернет магазин. Его можно добавить к любому сайту, построенному на WordPress, и требует не более 5 минут на настройку."
+msgstr "Ecwid - это бесплатный полнофункциональный интернет магазин. Его можно добавить к любому сайту, построенному на WordPress, и он требует не более 5 минут на настройку."
 
 msgid "Ecwid Team"
 msgstr "Команда Ecwid"
