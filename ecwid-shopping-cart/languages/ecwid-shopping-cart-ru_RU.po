@@ -52,7 +52,7 @@ msgid "<strong>Ecwid shopping cart is almost ready</strong>. Please visit <a tar
 msgstr "<strong>Магазин Ecwid почти готов к использованию</strong>. Пройдите по <a target=\"_blank\" href=\"%s\">ссылке</a>, чтобы посмотреть ваш магазин с демонстрационными продуктами. Чтобы закончить установку, пожалуйста, откройте страницу <a href=\"admin.php?page=ecwid\"><strong>настроек Ecwid</strong></a> и настройте плагин."
 
 msgid "Do you like your Ecwid online store? We'd appreciate it if you <a %s>add your review and vote</a> for the plugin on Wordpress site. (<a id=\"hide-vote-message\">Close</a> and do not show this message anymore)"
-msgstr "Вам нравится ваш магазин Ecwid? Будем благодарны, если вы <a %s>оставите отзыв и проголосуете</a>  за этот плагин на сайте WordPress. (<a id=\"hide-vote-message\"> Закрыть</a> и больше не показывать это сообщение)"
+msgstr "Вам нравится ваш магазин Ecwid? Будем благодарны, если вы <a %s>оставите отзыв и проголосуете</a>  за этот плагин на сайте WordPress. (<a id=\"hide-vote-message\">Закрыть</a> и больше не показывать это сообщение)"
 
 msgid "Ecwid shopping cart settings"
 msgstr "Настройки Ecwid"
