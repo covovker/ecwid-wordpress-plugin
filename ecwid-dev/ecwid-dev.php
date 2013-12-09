@@ -8,12 +8,23 @@ Version: 0.1
 Author URI: http://www.ecwid.com?source=wporg
 */
 
-if ($_SERVER['HTTP_HOST'] != 'localhost' && strpos($_SERVER['HTTP_HOST'], '.ecwid.com') === false) return;
-
 if ( is_admin() ){
 	add_action('admin_enqueue_scripts', 'edev_admin_script');
 	add_action('admin_footer', 'edev_footer');
 	add_action('admin_init', 'edev_process_request');
+}
+
+function get_locales()
+{
+	return array(
+		'en_US',
+		'ru_RU',
+		'it_IT',
+		'de_DE',
+		'fr_FR',
+		'es_ES',
+		'pt_BR'
+	);
 }
 
 function edev_process_request() {
@@ -25,7 +36,7 @@ function edev_process_request() {
 		if ($new_date = @$R['new_date']) {
 			update_option('ecwid_installation_date', strtotime($new_date));
 		}
-		if (isset($R['new_lang']) && in_array($R['new_lang'], array('en_US', 'ru_RU', 'it_IT'))) {
+		if (isset($R['new_lang']) && in_array($R['new_lang'], get_locales())) {
 			$config = file_get_contents(ABSPATH . '/wp-config.php');
 			$config = str_replace(
 				"define('WPLANG', '" . WPLANG . "');",
