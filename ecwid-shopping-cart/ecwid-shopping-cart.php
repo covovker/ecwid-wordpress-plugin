@@ -471,7 +471,10 @@ function ecwid_add_credits($powered_by)
 
 function ecwid_wrap_shortcode_content($content)
 {
-    return "<!-- Ecwid shopping cart plugin v 2.2 --><div>$content</div><!-- END Ecwid Shopping Cart v 2.2 -->";
+    return "<!-- Ecwid shopping cart plugin v 2.2 -->"
+		   . ecwid_get_scriptjs_code()
+	       . "<div>$content</div>"
+		   . "<!-- END Ecwid Shopping Cart v 2.2 -->";
 }
 
 function ecwid_get_scriptjs_code() {
@@ -488,7 +491,7 @@ function ecwid_get_scriptjs_code() {
 }
 
 function ecwid_script_shortcode() {
-    return ecwid_wrap_shortcode_content(ecwid_get_scriptjs_code());
+    return ecwid_wrap_shortcode_content("");
 }
 
 function ecwid_minicart_shortcode() {
@@ -631,7 +634,7 @@ EOT;
 function ecwid_store_activate() {
 	$my_post = array();
 	$content = <<<EOT
-<!-- Ecwid code. Please do not remove this line  otherwise your Ecwid shopping cart will not work properly. --> [ecwid_script] [ecwid_minicart] [ecwid_searchbox] [ecwid_categories] [ecwid_productbrowser] <!-- Ecwid code end -->
+<!-- Ecwid code. Please do not remove this line  otherwise your Ecwid shopping cart will not work properly. --> [ecwid_minicart] [ecwid_searchbox] [ecwid_categories] [ecwid_productbrowser] <!-- Ecwid code end -->
 EOT;
   	add_option("ecwid_store_page_id", '', '', 'yes');	
   	add_option("ecwid_store_id", ECWID_DEMO_STORE_ID, '', 'yes');
