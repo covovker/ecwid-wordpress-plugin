@@ -495,10 +495,11 @@ function ecwid_wrap_shortcode_content($content)
 		   . "<!-- END Ecwid Shopping Cart v 2.2 -->";
 }
 
-function ecwid_get_scriptjs_code() {
+function ecwid_get_scriptjs_code($force_lang = null) {
     if (!defined('ECWID_SCRIPTJS')) {
       $store_id = get_ecwid_store_id();
-      $s =  '<script type="text/javascript" data-cfasync="false" src="//' . APP_ECWID_COM . '/script.js?' . $store_id . '"></script>';
+	  $force_lang_str = !is_null($force_lang) ? "&lang=$force_lang" : '';
+      $s =  '<script type="text/javascript" data-cfasync="false" src="//' . APP_ECWID_COM . '/script.js?' . $store_id . $force_lang_str . '"></script>';
 
 	  define('ECWID_SCRIPTJS','Yep');
       $s = $s . ecwid_sso(); 
@@ -508,8 +509,19 @@ function ecwid_get_scriptjs_code() {
     }
 }
 
-function ecwid_script_shortcode() {
-    return ecwid_wrap_shortcode_content("");
+function ecwid_script_shortcode($params) {
+	$attributes = shortcode_atts(
+		array(
+			'lang' => null
+		), $params
+	);
+
+	$content = "";
+	if (!is_null($attributes['lang'])) {
+		$content = ecwid_get_scriptjs_code($attributes['lang']);
+	}
+
+    return ecwid_wrap_shortcode_content($content);
 }
 
 function ecwid_minicart_shortcode() {
