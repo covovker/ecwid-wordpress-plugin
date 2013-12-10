@@ -637,7 +637,7 @@ EOT;
   	add_option("ecwid_store_id", ECWID_DEMO_STORE_ID, '', 'yes');
     
     add_option("ecwid_enable_minicart", 'Y', '', 'yes');
-    add_option("ecwid_show_categories", 'Y', '', 'yes');
+    add_option("ecwid_show_categories", '', '', 'yes');
     add_option("ecwid_show_search_box", '', '', 'yes');
 
     add_option("ecwid_pb_categoriesperrow", '3', '', 'yes');
