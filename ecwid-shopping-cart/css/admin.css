@@ -38,3 +38,7 @@
 #hide-vote-message.hiding {
 	cursor: wait;
 }
+
+#wp-toolbar > ul > li#wp-admin-bar-ecwid-main {
+	display: block;
+}
