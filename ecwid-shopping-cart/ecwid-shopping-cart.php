@@ -34,7 +34,7 @@ if ( is_admin() ){
   add_action('wp_ajax_ecwid_hide_vote_message', 'ecwid_hide_vote_message');
   add_filter('plugins_loaded', 'ecwid_load_textdomain');
   add_filter('plugin_action_links_ecwid-shopping-cart/ecwid-shopping-cart.php', 'ecwid_plugin_actions');
-
+  add_action('admin_head', 'ecwid_ie8_fonts_inclusion');
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
   add_shortcode('ecwid_minicart', 'ecwid_minicart_shortcode');
@@ -115,6 +115,24 @@ if (is_admin()) {
 	}
 
 	define('ECWID_MAIN_BUTTON_CLASS', $main_button_class);
+}
+
+function ecwid_ie8_fonts_inclusion()
+{
+	if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') === false) return;
+
+	$url = ECWID_PLUGIN_URL . '/fonts/ecwid-logo.eot';
+	echo <<<HTML
+<style>
+@font-face {
+	font-family: 'ecwid-logo';
+	src:url($url);
+}
+</style>
+<script type="text/javascript">
+</script>
+HTML;
+
 }
 
 function ecwid_load_textdomain() {
