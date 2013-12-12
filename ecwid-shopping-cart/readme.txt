@@ -3,7 +3,7 @@ Contributors: Ecwid Team
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 3.7
-Stable tag: 2.0
+Stable tag: 2.1
 
 Ecwid is a free full-featured shopping cart that can easily be added to any blog
 and takes less than 5 minutes to set up.
@@ -32,8 +32,7 @@ Links
 
 == Installation ==
 
-Automatic installation (the easiest way)
-----------------------------------------
+= Automatic installation (the easiest way) =
 
 1. Go to your WP admin panel → Plugins → Add New
 2. Under Search, type in 'Ecwid', click Search
@@ -44,8 +43,7 @@ Automatic installation (the easiest way)
 **IMPORTANT**: when the plugin is installed, you will need to activate it on the Plugins page (click 'Activate' link) and configure it on the 'Ecwid Store → General' page (at least, you will need to set your store ID there).
 
 
-Alternative ways
-----------------
+= Alternative ways =
 
 **Uploading the plugin zip archive in your admin panel**
 
