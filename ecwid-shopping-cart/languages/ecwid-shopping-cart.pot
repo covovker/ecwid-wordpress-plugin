@@ -1,11 +1,11 @@
-msgid ""
+msgid "Ecwid Shopping Cart"
 msgstr ""
-"Project-Id-Version: Ecwid Shopping Cart\n"
-"PO-Revision-Date: 2013-11-25 17:38:21\n"
-"Last-Translator:   <test@example.com>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up."
+msgstr ""
+
+msgid "Ecwid Team"
+msgstr ""
 
 msgid "Get help"
 msgstr ""
@@ -112,7 +112,7 @@ msgstr ""
 msgid "Single Sign-On Secret Key is an option that allows your customers access to your WordPress site as well as the Ecwid shopping cart. When customers log in to your site, they will automatically be logged in to your Ecwid store as well. It makes sense to enable this feature if your visitors actually create accounts in your WordPress website."
 msgstr ""
 
-msgid "In order to enable this feature, opt to use a secret key. You will find this key in your Ecwid control panel,  at \"System Settings > API > Single Sign-On API\" page. This feature is available for <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">paid users</a> only."
+msgid "In order to enable this feature, opt to use a secret key. You will find this key in your Ecwid control panel, at \"System Settings > API > Single Sign-On API\" page. This feature is available for <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">paid users</a> only."
 msgstr ""
 
 msgid "Save changes"
