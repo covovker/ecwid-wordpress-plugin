@@ -9,17 +9,22 @@
 			<input type="hidden" name="settings_section" value="general" />
 
 			<div class="greeting-box complete">
-				<?php if ($_GET['settings-updated']): ?>
+				<div class="image-container">
+					<img class="greeting-image" src="<?php echo(esc_attr(ECWID_PLUGIN_URL)); ?>/images/store_ready.png" width="142" />
+				</div>
 
-				<div class="main-message"><?php _e('Congratulations!', 'ecwid-shopping-cart'); ?></div>
-				<div class="secondary-message"?><?php _e('Your Ecwid store is now connected to your WordPress website.', 'ecwid-shopping-cart'); ?></div>
+				<div class="messages-container">
+					<?php if ($_GET['settings-updated']): ?>
 
-				<?php else: ?>
+					<div class="main-message"><?php _e('Congratulations!', 'ecwid-shopping-cart'); ?></div>
+					<div class="secondary-message"?><?php _e('Your Ecwid store is now connected to your WordPress website.', 'ecwid-shopping-cart'); ?></div>
 
-				<div class="main-message"><?php _e('Greetings!', 'ecwid-shopping-cart'); ?></div>
-				<div class="secondary-message"?><?php _e('Your Ecwid store is connected to your WordPress website.', 'ecwid-shopping-cart'); ?></div>
-				<?php endif; ?>
-				<img class="greeting-image" src="<?php echo(esc_attr(ECWID_PLUGIN_URL)); ?>/images/store_ready.png" width="142" />
+					<?php else: ?>
+
+					<div class="main-message"><?php _e('Greetings!', 'ecwid-shopping-cart'); ?></div>
+					<div class="secondary-message"?><?php _e('Your Ecwid store is connected to your WordPress website.', 'ecwid-shopping-cart'); ?></div>
+					<?php endif; ?>
+				</div>
 			</div>
 			<hr />
 			<div class="section">

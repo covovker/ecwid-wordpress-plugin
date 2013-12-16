@@ -272,17 +272,16 @@ display: none;
 
 .general-settings .greeting-box {
 	height: 141px;
-	padding-left: 190px;
 	padding-bottom: 12px;
-	display: table-cell;
-	vertical-align: middle;
-	position: relative;
 }
 
-.general-settings .greeting-image {
-	position: absolute;
-	left: 14px;
-	top: 0px;
+.general-settings .greeting-box .image-container {
+	padding-right: 20px;
+}
+
+.general-settings .greeting-box > div {
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .general-settings .greeting-box .main-message {
@@ -292,9 +291,9 @@ display: none;
 }
 
 .general-settings .greeting-box .secondary-message {
-	font-size: 18px;
-	padding-top: 6px;
-	line-height: 20px;
+	font-size: 17px;
+	padding-top: 13px;
+	line-height: 23px;
 }
 
 .general-settings ol {

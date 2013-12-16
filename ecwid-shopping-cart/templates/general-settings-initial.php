@@ -8,16 +8,22 @@
 
 			<input type="hidden" name="settings_section" value="general" />
 
-			<div class="greeting-box" style="position: relative">
-				<div class="main-message">
+			<div class="greeting-box">
 
-					<?php _e('Thank you for choosing Ecwid to build your online store.', 'ecwid-shopping-cart'); ?>
-				</div>
-				<div class="secondary-message">
-					<?php _e('The first step towards opening your online business: <br />Let’s get started and add a store to your WordPress website in <strong>3</strong> simple steps.', 'ecwid-shopping-cart'); ?>
+				<div class="image-container">
+					<img class="greeting-image" src="<?php echo(esc_attr(ECWID_PLUGIN_URL)); ?>/images/store_inprogress.png" width="142" />
 				</div>
 
-				<img class="greeting-image" src="<?php echo(esc_attr(ECWID_PLUGIN_URL)); ?>/images/store_inprogress.png" width="142" />
+				<div class="messages-container">
+					<div class="main-message">
+
+						<?php _e('Thank you for choosing Ecwid to build your online store.', 'ecwid-shopping-cart'); ?>
+					</div>
+					<div class="secondary-message">
+						<?php _e('The first step towards opening your online business: <br />Let’s get started and add a store to your WordPress website in <strong>3</strong> simple steps.', 'ecwid-shopping-cart'); ?>
+					</div>
+				</div>
+
 			</div>
 			<hr />
 
