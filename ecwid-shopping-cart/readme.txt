@@ -78,6 +78,11 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 - Knowledge Base: [http://kb.ecwid.com](http://kb.ecwid.com)
 
 == Changelog ==
+= 2.2 =
+- Improved compatibility with the new Wordpress version 3.8 which brings great features like brand new responsive theme, revamped admin backend and other improvements. Ecwid plugin is now ready for that, so your store will work perfectly with the new Wordpress version
+- The plugin settings pages are now available in seven languages: English, Italian, Russian, French, German, Spanish, Brazilian Portuguese. Ecwid itself is available in 45 languages, so customers from all over the world can purchase from your store
+- Design improvements of the plugin settings pages including Retina-ready icons
+
 = 2.1 =
 - Our plugin backend is now available in Italian, Russian and English. Thanks to Luciano Del Fico for the great help with the Italian translation.
 
