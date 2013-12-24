@@ -2,8 +2,8 @@
 Contributors: Ecwid Team
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
-Tested up to: 3.7
-Stable tag: 2.1
+Tested up to: 3.8
+Stable tag: 2.2.1
 
 Ecwid is a free full-featured shopping cart that can easily be added to any blog
 and takes less than 5 minutes to set up.
@@ -78,6 +78,9 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 - Knowledge Base: [http://kb.ecwid.com](http://kb.ecwid.com)
 
 == Changelog ==
+= 2.2.1 =
+- Fixed layout error on General Settings page in Firefox
+
 = 2.2 =
 - Improved compatibility with the new Wordpress version 3.8 which brings great features like brand new responsive theme, revamped admin backend and other improvements. Ecwid plugin is now ready for that, so your store will work perfectly with the new Wordpress version
 - The plugin settings pages are now available in seven languages: English, Italian, Russian, French, German, Spanish, Brazilian Portuguese. Ecwid itself is available in 45 languages, so customers from all over the world can purchase from your store
