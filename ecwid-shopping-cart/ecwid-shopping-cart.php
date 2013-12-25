@@ -44,6 +44,7 @@ if ( is_admin() ){
   add_action('init', 'ecwid_backward_compatibility');
   add_action('send_headers', 'ecwid_503_on_store_closed');
   add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
+  add_action('wp_loaded', 'ecwid_seo_ultimate_compatibility', 0);
   add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
   add_filter('wp_title', 'ecwid_seo_title', 20);
   add_action('plugins_loaded', 'ecwid_minifier_compatibility', 0);
@@ -230,6 +231,17 @@ function ecwid_override_option($name, $new_value = null)
     } else {
         update_option($name, $overridden[$name]);
     }
+}
+
+function ecwid_seo_ultimate_compatibility()
+{
+	global $seo_ultimate;
+
+	remove_action('template_redirect', array($seo_ultimate->modules['titles'], 'before_header'), 0);
+	remove_action('wp_head', array($seo_ultimate->modules['titles'], 'after_header'), 1000);
+	remove_action('su_head', array($seo_ultimate->modules['meta-descriptions'], 'head_tag_output'));
+	remove_action('su_head', array($seo_ultimate->modules['canonical'], 'link_rel_canonical_tag'));
+	remove_action('su_head', array($seo_ultimate->modules['canonical'], 'http_link_rel_canonical'));
 }
 
 function ecwid_seo_compatibility_init($title)
