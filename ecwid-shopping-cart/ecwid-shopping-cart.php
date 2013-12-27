@@ -35,6 +35,7 @@ if ( is_admin() ){
   add_filter('plugins_loaded', 'ecwid_load_textdomain');
   add_filter('plugin_action_links_ecwid-shopping-cart/ecwid-shopping-cart.php', 'ecwid_plugin_actions');
   add_action('admin_head', 'ecwid_ie8_fonts_inclusion');
+  add_action('sm_buildmap', 'ecwid_build_sitemap_pages');
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
   add_shortcode('ecwid_minicart', 'ecwid_minicart_shortcode');
@@ -89,6 +90,7 @@ if (version_compare($version, '3.6') < 0) {
 		}
 	}
 }
+
 $theme_name = '';
 if (version_compare($version, '3.4') < 0) {
 	$theme_name = get_current_theme();
@@ -203,6 +205,33 @@ function ecwid_backward_compatibility() {
     }
 }
 
+
+function ecwid_build_sitemap_pages()
+{
+	$page_url = get_page_link(get_option("ecwid_store_page_id"));
+
+	include ECWID_PLUGIN_DIR . '/lib/EcwidSitemapBuilder.php';
+
+	$sitemap = new EcwidSitemapBuilder($page_url, 'build_sitemap_callback', ecwid_new_product_api());
+
+	$sitemap->generate();
+}
+
+function build_sitemap_callback($url, $priority, $frequency)
+{
+	echo $url . '<br />';
+
+	static $generatorObject = null;
+	if (is_null($generatorObject)) {
+		$generatorObject = &GoogleSitemapGenerator::GetInstance(); //Please note the "&" sign!
+	}
+
+	if($generatorObject != null) {
+		$page = new GoogleSitemapGeneratorPage($url, $priority, $frequency);
+		$generatorObject->AddElement($page);
+	}
+}
+
 function ecwid_minifier_compatibility()
 {
 	if ( !function_exists( 'get_plugins' ) ) { require_once ( ABSPATH . 'wp-admin/includes/plugin.php' ); }
@@ -237,11 +266,13 @@ function ecwid_seo_ultimate_compatibility()
 {
 	global $seo_ultimate;
 
-	remove_action('template_redirect', array($seo_ultimate->modules['titles'], 'before_header'), 0);
-	remove_action('wp_head', array($seo_ultimate->modules['titles'], 'after_header'), 1000);
-	remove_action('su_head', array($seo_ultimate->modules['meta-descriptions'], 'head_tag_output'));
-	remove_action('su_head', array($seo_ultimate->modules['canonical'], 'link_rel_canonical_tag'));
-	remove_action('su_head', array($seo_ultimate->modules['canonical'], 'http_link_rel_canonical'));
+	if ($seo_ultimate) {
+		remove_action('template_redirect', array($seo_ultimate->modules['titles'], 'before_header'), 0);
+		remove_action('wp_head', array($seo_ultimate->modules['titles'], 'after_header'), 1000);
+		remove_action('su_head', array($seo_ultimate->modules['meta-descriptions'], 'head_tag_output'));
+		remove_action('su_head', array($seo_ultimate->modules['canonical'], 'link_rel_canonical_tag'));
+		remove_action('su_head', array($seo_ultimate->modules['canonical'], 'http_link_rel_canonical'));
+	}
 }
 
 function ecwid_seo_compatibility_init($title)
