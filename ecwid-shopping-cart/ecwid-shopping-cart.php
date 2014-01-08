@@ -457,8 +457,14 @@ function ecwid_get_product_and_category($category_id, $product_id) {
     $api = ecwid_new_product_api();
     $batch_result = $api->get_batch_request($params);
 
-    $category = $batch_result["c"];
-    $product = $batch_result["p"];
+	if (false == $batch_result) {
+		$product = $api->get_product($product_id);
+		$category = false;
+	} else {
+		$category = $batch_result["c"];
+		$product = $batch_result["p"];
+	}
+
     $return = "";
 
     if (is_array($product)) {
