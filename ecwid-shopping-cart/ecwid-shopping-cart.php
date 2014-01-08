@@ -305,9 +305,9 @@ function ecwid_seo_compatibility_init($title)
     // Canonical
     $aioseop_options['aiosp_can'] = false;
     // Title
-	add_filter('aioseop_title', __return_null);
+	add_filter('aioseop_title', '__return_null');
 	// Description
-	add_filter('aioseop_description', __return_null);
+	add_filter('aioseop_description', '__return_null');
 
 
 	return $title;
