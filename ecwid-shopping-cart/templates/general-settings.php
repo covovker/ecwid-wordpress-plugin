@@ -14,7 +14,7 @@
 				</div>
 
 				<div class="messages-container">
-					<?php if ($_GET['settings-updated']): ?>
+					<?php if (array_key_exists('settings-updated', $_GET)): ?>
 
 					<div class="main-message"><?php _e('Congratulations!', 'ecwid-shopping-cart'); ?></div>
 					<div class="secondary-message"?><?php _e('Your Ecwid store is now connected to your WordPress website.', 'ecwid-shopping-cart'); ?></div>
