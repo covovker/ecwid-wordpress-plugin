@@ -1,4 +1,5 @@
-<form class="wrap pure-form pure-form-aligned ecwid-settings advanced-settings" method="POST" action="options.php">
+<div class="wrap">
+<form class="pure-form pure-form-aligned ecwid-settings advanced-settings" method="POST" action="options.php">
 
 	<h2><?php _e('Ecwid Shopping Cart - Advanced settings', 'ecwid-shopping-cart'); ?></h2>
 
@@ -7,7 +8,7 @@
 
 	<fieldset>
 
-		<div class="pure-control-group">
+		<div class="pure-control-group bottom-border">
 
 			<?php if (ecwid_is_paid_account()): ?>
 			<label for="ecwid_default_category_id">
@@ -90,3 +91,4 @@
 		</div>
 	</fieldset>
 </form>
+</div>

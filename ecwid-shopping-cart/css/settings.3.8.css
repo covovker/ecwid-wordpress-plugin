@@ -59,3 +59,75 @@
 .ecwid-pb-view-size .ruler {
 	background: #cacaca;
 }
+
+@media screen and (max-width: 782px) {
+	.ecwid-settings.general-settings,
+	.ecwid-settings.appearance-settings,
+	.ecwid-settings.advanced-settings 
+	{
+		max-width: inherit;
+		width: inherit;
+	}
+
+	.ecwid-pb-view-size {
+		display: block;
+	}
+
+	.pure-form.ecwid-settings fieldset > :not(legend) {
+		margin-left: 0px;
+	}
+	.ecwid-pb-view-size input {
+		position: relative;
+		z-index: 2;
+	}
+
+	.ecwid-settings .pure-control-group input[type="checkbox"] {
+		position: absolute;
+		top: -0px;
+	}
+
+	.ecwid-settings .pure-control-group {
+		position: relative;
+	}
+
+	.ecwid-settings .pure-control-group.checkbox label {
+		padding-left: 40px;
+	}
+
+	.ecwid-pb-view-size .ruler {
+		z-index: 1;
+		position: absolute;
+	}
+	.ecwid-settings .note.pb-note,
+	.ecwid-settings .ecwid-pb-view-size {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+
+	.general-settings .greeting-box {
+		height: inherit;
+	}
+
+	.general-settings .greeting-box > div {
+		display: block;
+	}
+	.general-settings ol {
+		padding-left: 0px;
+	}	
+
+	.ecwid-settings fieldset {
+		min-width: 0px !important;	
+	}
+	
+	.ecwid-pb-view-size .bottom .ruler {
+		bottom: 15px;
+	}
+
+	.general-settings .section .left,
+	.general-settings .section .right {
+		text-align: left;
+		display: block;
+	}
+}
+

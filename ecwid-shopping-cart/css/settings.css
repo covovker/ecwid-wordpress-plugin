@@ -52,6 +52,12 @@
 display: none;
 }
 
+@media screen and (max-width: 782px) {
+	.ecwid-settings {
+		width: 100%;
+	}
+}
+
 .ecwid-settings {
 	width: 650px;
 }
