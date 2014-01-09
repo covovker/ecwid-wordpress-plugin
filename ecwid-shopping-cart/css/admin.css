@@ -42,3 +42,17 @@
 #wp-toolbar > ul > li#wp-admin-bar-ecwid-main {
 	display: block;
 }
+
+.ecwid-badge {
+	display: block;
+	padding: 3px;
+}
+
+.ecwid-badge > div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.ecwid-badge img {
+	display: block;
+}
