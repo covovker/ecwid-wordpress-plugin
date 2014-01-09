@@ -768,7 +768,7 @@ EOT;
 }
 
 function ecwid_show_admin_messages() {
-	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID && $_GET['page'] != 'ecwid') {
+	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID && isset($_GET['page']) && $_GET['page'] != 'ecwid') {
 
 		$ecwid_page_id = get_option("ecwid_store_page_id");
 		$page_url = get_page_link($ecwid_page_id);
@@ -1026,14 +1026,14 @@ function ecwid_add_dashboard_widgets() {
 }
 
 
-class EcwidBadgeWidget extends WP_Widget {
+class EcwidLogoWidget extends WP_Widget {
 
 	var $url_template = "http://static.ecwid.com/badges/%s.png";
 	var $available_badges;
 	
-	function EcwidBadgeWidget() {
-		$widget_ops = array('classname' => 'widget_ecwid_badge', 'description' => __("Ecwid Badge", 'ecwid-shopping-cart') );
-		$this->WP_Widget('ecwidbadge', __('Ecwid Badge', 'ecwid-shopping-cart'), $widget_ops);
+	function EcwidLogoWidget() {
+		$widget_ops = array('classname' => 'widget_ecwid_logo', 'description' => __("Ecwid Logo", 'ecwid-shopping-cart') );
+		$this->WP_Widget('ecwidlogo', __('Ecwid Logo', 'ecwid-shopping-cart'), $widget_ops);
 
 		$this->available_badges = array(
 			'ecwid-shopping-cart-widget-1' => array (
@@ -1161,7 +1161,7 @@ class EcwidBadgeWidget extends WP_Widget {
 
 		echo <<<HTML
 <div>
-	<a target="_blank" href="http://www.ecwid.com?source=wporg-badge">
+	<a target="_blank" rel="nofollow" href="http://www.ecwid.com?source=wporg-badge">
 		<img src="$url" width="$badge[width]" height="$badge[height]" alt="$badge[alt]" />
 	</a>
 </div>
@@ -1192,7 +1192,7 @@ HTML;
 			}
 			$url = sprintf($this->url_template, $id);
 			$content = <<<HTML
-				<label class="ecwid-badge">
+				<label class="ecwid-logo">
 					<div>
 					<input name="$name" type="radio" value="$widget[name]"$checked/>
 					</div>
@@ -1409,7 +1409,7 @@ function ecwid_sidebar_widgets_init() {
 	register_widget('EcwidSearchWidget');
 	register_widget('EcwidVCategoriesWidget');
 	register_widget('EcwidMinicartMiniViewWidget');
-	register_widget('EcwidBadgeWidget');
+	register_widget('EcwidLogoWidget');
 }
 
 add_action('widgets_init', 'ecwid_sidebar_widgets_init');

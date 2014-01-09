@@ -43,16 +43,16 @@
 	display: block;
 }
 
-.ecwid-badge {
+.ecwid-logo {
 	display: block;
 	padding: 3px;
 }
 
-.ecwid-badge > div {
+.ecwid-logo > div {
 	display: table-cell;
 	vertical-align: middle;
 }
 
-.ecwid-badge img {
+.ecwid-logo img {
 	display: block;
 }
