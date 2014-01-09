@@ -6,8 +6,8 @@ function ecwid_embed_svg($name) {
 }
 
 ?>
-
-<form class="wrap pure-form pure-form-aligned ecwid-settings appearance-settings" method="POST" action="options.php">
+<div class="wrap">
+<form class="pure-form pure-form-aligned ecwid-settings appearance-settings" method="POST" action="options.php">
 
 	<h2><?php _e('Ecwid Shopping Cart - Appearance settings', 'ecwid-shopping-cart'); ?></h2>
 
@@ -16,7 +16,7 @@ function ecwid_embed_svg($name) {
 
 	<fieldset>
 
-		<div class="pure-control-group">
+		<div class="pure-control-group checkbox">
 			<label for="ecwid_show_search_box">
 				<?php _e('Display search box above products', 'ecwid-shopping-cart'); ?>
 			</label>
@@ -35,7 +35,7 @@ function ecwid_embed_svg($name) {
 			</span>
 		</div>
 
-		<div class="pure-control-group">
+		<div class="pure-control-group checkbox">
 			<label for="ecwid_show_categories">
 				<?php _e('Display horizontal categories above products', 'ecwid-shopping-cart'); ?>
 			</label>
@@ -54,7 +54,7 @@ function ecwid_embed_svg($name) {
 			</span>
 		</div>
 
-		<div class="pure-control-group">
+		<div class="pure-control-group checkbox">
 			<label for="ecwid_enable_minicart">
 				<?php _e('Enable minicart attached to horizontal categories', 'ecwid-shopping-cart'); ?>
 			</label>
@@ -203,3 +203,5 @@ function ecwid_embed_svg($name) {
 		</div>
 	</fieldset>
 </form>
+
+</div>
