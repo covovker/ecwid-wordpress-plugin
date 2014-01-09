@@ -60,8 +60,8 @@ class EcwidSitemapBuilder implements JsonStreamingParser_Listener {
 			$callback = $this->callback;
 			$callback(
 				$this->base_url . '#!/~/' . ($this->type == 'products' ? 'product' : 'category') . '/id=' . $obj['id'],
-				0.5,
-				'monthly'
+				$this->type == 'products' ? 0.6 : 0.5,
+				'weekly'
 			);
 		}
 	}
