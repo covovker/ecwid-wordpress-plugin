@@ -32,7 +32,7 @@
 						<?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <strong><? echo esc_attr(get_ecwid_store_id()); ?></strong>
 					</span>
 				</div>
-				<div class="right"">
+				<div class="right two-buttons">
 					<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#t1=&t2=Dashboard">
 						<?php _e('Control panel', 'ecwid-shopping-cart'); ?>
 					</a>
