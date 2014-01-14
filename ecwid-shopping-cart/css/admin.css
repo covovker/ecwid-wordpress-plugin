@@ -44,15 +44,20 @@
 }
 
 .ecwid-logo {
-	display: block;
+	display: table;
+	width: 70%;
 	padding: 3px;
 }
 
 .ecwid-logo > div {
 	display: table-cell;
 	vertical-align: middle;
+	height: 55px;
 }
 
-.ecwid-logo img {
-	display: block;
+.ecwid-logo .checkbox {
+	width: 15px;
+}
+.ecwid-logo .image {
+	text-align: center;
 }

@@ -1193,11 +1193,11 @@ HTML;
 			$url = sprintf($this->url_template, $id);
 			$content = <<<HTML
 				<label class="ecwid-logo">
-					<div>
-					<input name="$name" type="radio" value="$widget[name]"$checked/>
+					<div class="checkbox">
+						<input name="$name" type="radio" value="$widget[name]"$checked/>
 					</div>
-					<div>
-					<img src="$url" width="$widget[width]" height="$widget[height]" alt="$widget[alt]" />
+					<div class="image">
+						<img src="$url" width="$widget[width]" height="$widget[height]" alt="$widget[alt]" />
 					</div>
 				</label>
 HTML;
