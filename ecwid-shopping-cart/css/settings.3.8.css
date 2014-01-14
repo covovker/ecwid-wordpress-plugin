@@ -189,6 +189,7 @@
 	.pure-control-group.small-input .label,
 	.pure-control-group.small-input .label label {
 		width: auto;
+		margin-bottom: 0px;
 	}
 
 	.pure-control-group.small-input .note {
