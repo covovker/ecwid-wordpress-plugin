@@ -18,17 +18,6 @@ function ecwid_embed_svg($name) {
 
 		<div class="pure-control-group small-input">
 			<div class="input">
-				<div><input id="abc" type="checkbox"></div>
-			</div>
-			<div class="label"><label for="abc">Это лейбл. Его чекбокс всегда должен быть по центру относительно него, какая бы не была длина/высота лейбла. В мобильной версии занимает всё место справа от чекбокса.</label>
-			</div>
-			<div class="note">
-				А это описание лейбла. Оно должно быть также выровнено по середине лейбла, а в мобильной версии должно упасть под лейбл с чекбоксом, отступать слева на ширину чекбокса и занимать всю оставшуюся ширину
-			</div>
-		</div>
-
-		<div class="pure-control-group small-input">
-			<div class="input">
 				<div>
 					<input
 						id="ecwid_show_search_box"
