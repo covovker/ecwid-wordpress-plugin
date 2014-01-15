@@ -69,6 +69,10 @@
 		width: inherit;
 	}
 
+	.ecwid-settings h2 {
+		margin-bottom: 0px;
+	}
+
 	.ecwid-settings.pure-form fieldset > :not(legend) {
 		margin-left: 0px;
 	}
@@ -114,9 +118,23 @@
 		width: 100%;
 	}
 
+	.general-settings.ecwid-settings .button-primary {
+		width: 100%;
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	.general-settings.ecwid-settings .two-buttons {
+		position: relative;
+	}
+
+	.general-settings.ecwid-settings .two-buttons .pure-button:last-child {
+		position: absolute;
+		right: 0px;
+	}
 	.general-settings.ecwid-settings .two-buttons .pure-button {
 		display: inline-block;
-		min-width: 40%;
+		min-width: 44%;
 		width: inherit;
 	}
 
@@ -125,17 +143,17 @@
 		width: 100%;
 	}
 
-	.ecwid-pb-view-size {
+	.ecwid-settings .pure-control-group {
+		position: relative;
+	}
+
+	.appearance-settings.ecwid-settings .ecwid-pb-view-size {
 		display: block;
 	}
 
-	.ecwid-pb-view-size input {
+	.appearance-settings.ecwid-settings .ecwid-pb-view-size input {
 		position: relative;
 		z-index: 2;
-	}
-
-	.ecwid-settings .pure-control-group {
-		position: relative;
 	}
 
 	.appearance-settings.ecwid-settings .pure-control-group.small-input input {
@@ -143,7 +161,7 @@
 	}
 
 	.appearance-settings.ecwid-settings .ecwid-pb-view-size {
-		margin: 0px auto;
+		margin: 0px auto 33px;
 		padding: 0px;
 	}
 
@@ -152,12 +170,25 @@
 		position: absolute;
 	}
 
+	.appearance-settings.ecwid-settings .ecwid-pb-view-size .bottom {
+		margin-top: 5px;
+	}
+
+	.appearance-settings.ecwid-settings .ecwid-pb-view-size.list,
+	.appearance-settings.ecwid-settings .ecwid-pb-view-size.table {
+		margin-bottom: 0px;
+	}
+
 	.appearance-settings.ecwid-settings .note.pb-note {
 		margin: 0px;
 	}
 
 	.appearance-settings.ecwid-settings select {
 		width: 100%;
+	}
+
+	.advanced-settings.ecwid-settings label {
+		margin-top:35px;
 	}
 
 	.advanced-settings.ecwid-settings input,
