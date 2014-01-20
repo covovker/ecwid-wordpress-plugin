@@ -78,6 +78,15 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 - Knowledge Base: [http://kb.ecwid.com](http://kb.ecwid.com)
 
 == Changelog ==
+= 2.3 =
+- Added compatibility with Google XML Sitemaps plugin. Now you can submit your store items links along with the other site pages to search engines.  To use this feature, please install the "Google XML Sitemaps" plugin (http://wordpress.org/plugins/google-sitemap-generator/), generate a sitemap (it will include your products and categories links) and submit it to the search engines to help them better crawl and categorize your site.
+
+- Improved compatibility with SEO Ultimate plugin. Ecwid plugin always displays your store pages in a proper SEO-friendly format to make the store indexable by search engines. Moreover, we constantly adjust the plugin to make it work fine with popular third party SEO modules. So Ecwid is perfectly compatible with "Wordpress SEO by Yoast", "All in one SEO Pack", "Platinum SEO Pack" and now with "SEO Ultimate" plugin.
+
+- Minor design improvements of the plugin settings pages to make them mobile-friendly for better compatibility with the backend layout of new Wordpress versions. Now you can manage Ecwid plugin settings in your Wordpress administrator panel using your mobile device.
+
+- New "Ecwid badges" widget is available. If you like Ecwid and want to help it grow and become the most popular e-commerce solution, you can now add a fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid. Please find the new widget under 'Appearance → Widgets' section in your Wordpress backend. 
+
 = 2.2.1 =
 - Fixed layout error on General Settings page in Firefox
 
