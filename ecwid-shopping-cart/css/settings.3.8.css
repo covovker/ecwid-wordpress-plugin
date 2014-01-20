@@ -96,7 +96,7 @@
 
 	.general-settings.ecwid-settings .section .left,
 	.general-settings.ecwid-settings .note {
-		margin-top: 28px;
+		margin-top: 0px;
 	}
 
 	.general-settings.ecwid-settings .section .left,
@@ -211,7 +211,7 @@
 	.ecwid-pb-view-size .bottom .ruler {
 		bottom: 15px;
 	}
-	.pure-control-group.small-input .input,
+	.pure-control-group.small-input .input > div,
 	.pure-control-group.small-input .input input,
 	.pure-control-group.small-input .label > label {
 		position: static;

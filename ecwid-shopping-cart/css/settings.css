@@ -58,7 +58,7 @@
 	font-weight: bold;
 }
 
-.pure-control-group.small-input .input {
+.pure-control-group.small-input .input > div {
 	width: 45px;
 	text-align: center;
 	vertical-align: middle;
@@ -358,7 +358,12 @@ display: none;
 }
 
 .general-settings .ecwid-account-buttons .pure-button {
-	margin: 20px 17px 20px 0px;
+	margin: 5px 17px 5px 0px;
+}
+
+.general-settings .ecwid-account-buttons {
+	padding: 20px 0px;
+	margin-bottom: -5px;
 }
 
 .general-settings p.note {
