@@ -1,12 +1,3 @@
-msgid "Ecwid Shopping Cart"
-msgstr ""
-
-msgid "Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up."
-msgstr ""
-
-msgid "Ecwid Team"
-msgstr ""
-
 msgid "Get help"
 msgstr ""
 
@@ -25,7 +16,7 @@ msgstr ""
 msgid "→ Sell on Facebook"
 msgstr ""
 
-msgid "Online store powered by <a %s>Ecwid</a>"
+msgid "<a %s>Online store powered by Ecwid</a>"
 msgstr ""
 
 msgid "Store"
@@ -83,6 +74,27 @@ msgid "Vertical menu of categories"
 msgstr ""
 
 msgid "Ecwid Vertical Categories"
+msgstr ""
+
+msgid "If you like Ecwid and want to help it grow and become the most popular e-commerce solution, you can now add a fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid."
+msgstr ""
+
+msgid "Ecwid Badge"
+msgstr ""
+
+msgid "Ecwid shopping cart widget"
+msgstr ""
+
+msgid "Ecwid shopping cart"
+msgstr ""
+
+msgid "Ecwid e-commerce widgets"
+msgstr ""
+
+msgid "Ecwid ecommerce solution"
+msgstr ""
+
+msgid "Ecwid free shopping cart"
 msgstr ""
 
 msgid "Price"
@@ -172,9 +184,6 @@ msgstr ""
 msgid "Default view mode on search results"
 msgstr ""
 
-msgid "Store powered by Ecwid"
-msgstr ""
-
 msgid "Ecwid Shopping Cart - General settings"
 msgstr ""
 
@@ -258,3 +267,4 @@ msgstr ""
 
 msgid "If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>."
 msgstr ""
+
