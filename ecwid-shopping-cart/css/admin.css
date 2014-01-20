@@ -43,21 +43,21 @@
 	display: block;
 }
 
-.ecwid-logo {
+.ecwid-badge {
 	display: table;
 	width: 70%;
 	padding: 3px;
 }
 
-.ecwid-logo > div {
+.ecwid-badge > div {
 	display: table-cell;
 	vertical-align: middle;
 	height: 55px;
 }
 
-.ecwid-logo .checkbox {
+.ecwid-badge .checkbox {
 	width: 15px;
 }
-.ecwid-logo .image {
+.ecwid-badge .image {
 	text-align: center;
 }

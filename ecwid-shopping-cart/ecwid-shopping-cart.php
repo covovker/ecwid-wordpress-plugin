@@ -1040,64 +1040,16 @@ function ecwid_add_dashboard_widgets() {
 }
 
 
-class EcwidLogoWidget extends WP_Widget {
+class EcwidBadgeWidget extends WP_Widget {
 
 	var $url_template = "http://static.ecwid.com/badges/%s.png";
 	var $available_badges;
 	
-	function EcwidLogoWidget() {
-		$widget_ops = array('classname' => 'widget_ecwid_logo', 'description' => __("Ecwid Logo", 'ecwid-shopping-cart') );
-		$this->WP_Widget('ecwidlogo', __('Ecwid Logo', 'ecwid-shopping-cart'), $widget_ops);
+	function EcwidBadgeWidget() {
+		$widget_ops = array('classname' => 'widget_ecwid_badge', 'description' => __("If you like Ecwid and want to help it grow and become the most popular e-commerce solution, you can now add a fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid.", 'ecwid-shopping-cart') );
+		$this->WP_Widget('ecwidbadge', __('Ecwid Badge', 'ecwid-shopping-cart'), $widget_ops);
 
 		$this->available_badges = array(
-			'ecwid-shopping-cart-widget-1' => array (
-				'name'   => 'ecwid-shopping-cart-widget-1',
-				'width'  => '54',
-				'height' => '54',
-				'alt'    => __('Ecwid shopping cart widget', 'ecwid-shopping-cart'),
-			),
-			'ecwid-shopping-cart-widget-2' => array (
-				'name'   => 'ecwid-shopping-cart-widget-2',
-				'width'  => '55',
-				'height' => '57',
-				'alt'    => __('Ecwid shopping cart widget', 'ecwid-shopping-cart'),
-			),
-			'ecwid-shopping-cart-1' => array (
-				'name'   => 'ecwid-shopping-cart-1',
-				'width'  => '150',
-				'height' => '49',
-				'alt'    => __('Ecwid shopping cart', 'ecwid-shopping-cart')
-			),
-			'ecwid-ecommerce-widgets-1' => array (
-				'name'   => 'ecwid-ecommerce-widgets-1',
-				'width'  => '150',
-				'height' => '49',
-				'alt'    => __('Ecwid e-commerce widgets', 'ecwid-shopping-cart')
-			),
-			'ecwid-shopping-cart-widget-3' => array (
-				'name'   => 'ecwid-shopping-cart-widget-3',
-				'width'  => '35',
-				'height' => '36',
-				'alt'    => __('Ecwid shopping cart widget', 'ecwid-shopping-cart'),
-			),
-			'ecwid-shopping-cart-widget-4' => array (
-				'name'   => 'ecwid-shopping-cart-widget-4',
-				'width'  => '37',
-				'height' => '38',
-				'alt'    => __('Ecwid shopping cart widget', 'ecwid-shopping-cart'),
-			),
-			'ecwid-shopping-cart-2' => array (
-				'name'   => 'ecwid-shopping-cart-2',
-				'width'  => '165',
-				'height' => '58',
-				'alt'    => __('Ecwid shopping cart', 'ecwid-shopping-cart')
-			),
-			'ecwid-ecommerce-widgets-2' => array (
-				'name'   => 'ecwid-ecommerce-widgets-2',
-				'width'  => '165',
-				'height' => '58',
-				'alt'    => __('Ecwid e-commerce widgets', 'ecwid-shopping-cart')
-			),
 			'ecwid-shopping-cart-widget-5' => array (
 				'name'   => 'ecwid-shopping-cart-widget-5',
 				'width'  => '73',
@@ -1110,16 +1062,16 @@ class EcwidLogoWidget extends WP_Widget {
 				'height' => '20',
 				'alt'    => __('Ecwid shopping cart widget', 'ecwid-shopping-cart')
 			),
-			'ecwid-shopping-cart-3' => array (
-				'name'   => 'ecwid-shopping-cart-3',
-				'width'  => '165',
-				'height' => '56',
+			'ecwid-shopping-cart-1' => array (
+				'name'   => 'ecwid-shopping-cart-1',
+				'width'  => '150',
+				'height' => '49',
 				'alt'    => __('Ecwid shopping cart', 'ecwid-shopping-cart')
 			),
-			'ecwid-ecommerce-widgets-3' => array (
-				'name'   => 'ecwid-ecommerce-widgets-3',
-				'width'  => '165',
-				'height' => '58',
+			'ecwid-ecommerce-widgets-1' => array (
+				'name'   => 'ecwid-ecommerce-widgets-1',
+				'width'  => '150',
+				'height' => '49',
 				'alt'    => __('Ecwid e-commerce widgets', 'ecwid-shopping-cart')
 			),
 			'ecwid-ecommerce-solution-1' => array (
@@ -1145,6 +1097,18 @@ class EcwidLogoWidget extends WP_Widget {
 				'width'  => '175',
 				'height' => '58',
 				'alt'    => __('Ecwid free shopping cart', 'ecwid-shopping-cart')
+			),
+			'ecwid-shopping-cart-3' => array (
+				'name'   => 'ecwid-shopping-cart-3',
+				'width'  => '165',
+				'height' => '56',
+				'alt'    => __('Ecwid shopping cart', 'ecwid-shopping-cart')
+			),
+			'ecwid-ecommerce-widgets-3' => array (
+				'name'   => 'ecwid-ecommerce-widgets-3',
+				'width'  => '165',
+				'height' => '58',
+				'alt'    => __('Ecwid e-commerce widgets', 'ecwid-shopping-cart')
 			),
 			'ecwid-ecommerce-solution-3' => array (
 				'name'   => 'ecwid-ecommerce-solution-3',
@@ -1195,7 +1159,7 @@ HTML;
 	}
 
 	function form($instance) {
-		$instance = wp_parse_args( (array) $instance, array('type'=>'') );
+		$instance = wp_parse_args( (array) $instance, array('badge_id' => 'ecwid-shopping-cart-widget-5') );
 
 		foreach ($this->available_badges as $id => $widget) {
 			$element_id = "badge-$id";
@@ -1206,7 +1170,7 @@ HTML;
 			}
 			$url = sprintf($this->url_template, $id);
 			$content = <<<HTML
-				<label class="ecwid-logo">
+				<label class="ecwid-badge">
 					<div class="checkbox">
 						<input name="$name" type="radio" value="$widget[name]"$checked/>
 					</div>
@@ -1423,7 +1387,7 @@ function ecwid_sidebar_widgets_init() {
 	register_widget('EcwidSearchWidget');
 	register_widget('EcwidVCategoriesWidget');
 	register_widget('EcwidMinicartMiniViewWidget');
-	register_widget('EcwidLogoWidget');
+	register_widget('EcwidBadgeWidget');
 }
 
 add_action('widgets_init', 'ecwid_sidebar_widgets_init');
