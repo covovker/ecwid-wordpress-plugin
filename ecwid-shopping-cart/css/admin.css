@@ -46,6 +46,7 @@
 .ecwid-badge {
 	display: table;
 	width: 70%;
+	min-width: 200px;
 	padding: 3px;
 }
 
