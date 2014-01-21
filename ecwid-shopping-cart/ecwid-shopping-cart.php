@@ -1074,6 +1074,18 @@ class EcwidBadgeWidget extends WP_Widget {
 				'height' => '58',
 				'alt'    => __('Ecwid free shopping cart', 'ecwid-shopping-cart')
 			),
+			'ecwid-shopping-cart-2' => array (
+				'name'   => 'ecwid-shopping-cart-3',
+				'width'  => '165',
+				'height' => '56',
+				'alt'    => __('Ecwid shopping cart', 'ecwid-shopping-cart')
+			),
+			'ecwid-ecommerce-widgets-2' => array (
+				'name'   => 'ecwid-ecommerce-widgets-3',
+				'width'  => '165',
+				'height' => '58',
+				'alt'    => __('Ecwid e-commerce widgets', 'ecwid-shopping-cart')
+			),
 			'ecwid-shopping-cart-3' => array (
 				'name'   => 'ecwid-shopping-cart-3',
 				'width'  => '165',
