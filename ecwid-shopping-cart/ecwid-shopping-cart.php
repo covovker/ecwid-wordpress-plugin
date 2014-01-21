@@ -1062,18 +1062,6 @@ class EcwidBadgeWidget extends WP_Widget {
 				'height' => '20',
 				'alt'    => __('Ecwid shopping cart widget', 'ecwid-shopping-cart')
 			),
-			'ecwid-ecommerce-solution-2' => array (
-				'name'   => 'ecwid-ecommerce-solution-2',
-				'width'  => '165',
-				'height' => '58',
-				'alt'    => __('Ecwid ecommerce solution', 'ecwid-shopping-cart')
-			),
-			'ecwid-free-shopping-cart-2' => array (
-				'name'   => 'ecwid-free-shopping-cart-2',
-				'width'  => '175',
-				'height' => '58',
-				'alt'    => __('Ecwid free shopping cart', 'ecwid-shopping-cart')
-			),
 			'ecwid-shopping-cart-2' => array (
 				'name'   => 'ecwid-shopping-cart-3',
 				'width'  => '165',
@@ -1085,6 +1073,18 @@ class EcwidBadgeWidget extends WP_Widget {
 				'width'  => '165',
 				'height' => '58',
 				'alt'    => __('Ecwid e-commerce widgets', 'ecwid-shopping-cart')
+			),
+			'ecwid-ecommerce-solution-2' => array (
+				'name'   => 'ecwid-ecommerce-solution-2',
+				'width'  => '165',
+				'height' => '58',
+				'alt'    => __('Ecwid ecommerce solution', 'ecwid-shopping-cart')
+			),
+			'ecwid-free-shopping-cart-2' => array (
+				'name'   => 'ecwid-free-shopping-cart-2',
+				'width'  => '175',
+				'height' => '58',
+				'alt'    => __('Ecwid free shopping cart', 'ecwid-shopping-cart')
 			),
 			'ecwid-shopping-cart-3' => array (
 				'name'   => 'ecwid-shopping-cart-3',
