@@ -78,6 +78,11 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 - Knowledge Base: [http://kb.ecwid.com](http://kb.ecwid.com)
 
 == Changelog ==
+= 2.3.1 =
+- Automatic generation of the rel="canonical" links for SEO. Canonical links are aimed to specify the preferred (canonical) URL of the web page for search engines to prevent possible duplicate content issues. Ecwid plugin now generates such links automatically for product and categories pages in your store to provide search crawlers with well-structured content and help them better index your store.
+- Improved compatibility with CloudFlare Rocket Loader. The merchants who use CloudFlare Rocket Loader extensions on their sites might previously experience issues with loading of their Ecwid stores. We've further improved the plugin code to prevent such issues in the future. Now Ecwid plugin should perfectly work with CloudFlare extensions.
+- Several minor fixes and enhancements
+
 = 2.3 =
 - Added compatibility with Google XML Sitemaps plugin. Now you can submit your store items links along with the other site pages to search engines.  To use this feature, please install the "Google XML Sitemaps" plugin (http://wordpress.org/plugins/google-sitemap-generator/), generate a sitemap (it will include your products and categories links) and submit it to the search engines to help them better crawl and categorize your site.
 
