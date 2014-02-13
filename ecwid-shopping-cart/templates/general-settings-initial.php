@@ -41,7 +41,7 @@
 						</a>
 					</div>
 					<div class="note">
-						<?php _e('You will be able to sign up through your exising Google, Facebook or PayPal profiles as well.', 'ecwid-shopping-cart'); ?>
+						<?php _e('You will be able to sign up through your existing Google, Facebook or PayPal profiles as well.', 'ecwid-shopping-cart'); ?>
 					</div>
 				</li>
 				<li>
