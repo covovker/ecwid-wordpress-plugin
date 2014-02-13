@@ -140,11 +140,6 @@ if (is_admin()) {
 	define('ECWID_MAIN_BUTTON_CLASS', $main_button_class);
 }
 
-if (!is_admin()) {
-	wp_register_script('ecwid_script_wrapper', ECWID_PLUGIN_URL . '/js/frontend.js');
-	wp_enqueue_script('ecwid_script_wrapper');
-}
-
 function ecwid_ie8_fonts_inclusion()
 {
 	if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') === false) return;
@@ -751,7 +746,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 
     $s = <<<EOT
     <div id="ecwid-store-$store_id"></div>
-<script type="text/javascript"> ecwid_wait(function(){xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str, "id=ecwid-store-$store_id");});</script>
+<script type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str, "id=ecwid-store-$store_id");</script>
 {$plain_content}
 EOT;
     return ecwid_wrap_shortcode_content($s);
