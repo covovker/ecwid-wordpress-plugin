@@ -3,7 +3,7 @@ Contributors: Ecwid Team
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 3.8
-Stable tag: 2.3
+Stable tag: 2.3.1
 
 Ecwid is a free full-featured shopping cart that can easily be added to any blog
 and takes less than 5 minutes to set up.
@@ -78,6 +78,9 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 - Knowledge Base: [http://kb.ecwid.com](http://kb.ecwid.com)
 
 == Changelog ==
+= 2.3.2 =
+- **Fixed an issue in sitemap functionality**. Ecwid uses third party plugin to generate an XML sitemap (Google XML Sitemaps) for store products and categories. The current integration had a bug which caused an error message in Wordpress admin backend for users on Free Ecwid plan. Now it's fixed and everything should work OK.
+
 = 2.3.1 =
 - Automatic generation of the rel="canonical" links for SEO. Canonical links are aimed to specify the preferred (canonical) URL of the web page for search engines to prevent possible duplicate content issues. Ecwid plugin now generates such links automatically for product and categories pages in your store to provide search crawlers with well-structured content and help them better index your store.
 - Improved compatibility with CloudFlare Rocket Loader. The merchants who use CloudFlare Rocket Loader extensions on their sites might previously experience issues with loading of their Ecwid stores. We've further improved the plugin code to prevent such issues in the future. Now Ecwid plugin should perfectly work with CloudFlare extensions.

@@ -201,24 +201,29 @@ class EcwidProductApi {
 		}
 
 		$stream = null;
-		if (ini_get('allow_url_fopen')) {
-			$stream = fopen($request_url, 'r');
-		} elseif (version_compare(PHP_VERSION, '5.1.0')) {
 
-			$body = '';
+		try {
+			if (ini_get('allow_url_fopen')) {
+				$stream = fopen($request_url, 'r');
+			} elseif (version_compare(PHP_VERSION, '5.1.0')) {
 
-			if (defined('WP_CONTENT_DIR') && function_exists('get_temp_dir') && function_exists('wp_remote_get')) {
-				// we are in wordpress
-				$response = wp_remote_get($request_url);
-				$body = $response['body'];
-			} else {
-				$response = internal_fetch_url_libcurl($request_url);
-				$body = $response['data'];
+				$body = '';
+
+				if (defined('WP_CONTENT_DIR') && function_exists('get_temp_dir') && function_exists('wp_remote_get')) {
+					// we are in wordpress
+					$response = wp_remote_get($request_url);
+					$body = $response['body'];
+				} else {
+					$response = internal_fetch_url_libcurl($request_url);
+					$body = $response['data'];
+				}
+
+				$stream = fopen('php://temp', 'rw');
+				fwrite($stream, $body);
+				rewind($stream);
 			}
-
-			$stream = fopen('php://temp', 'rw');
-			fwrite($stream, $body);
-			rewind($stream);
+		} catch (Exception $e) {
+			$stream = null;
 		}
 
 		return $stream;

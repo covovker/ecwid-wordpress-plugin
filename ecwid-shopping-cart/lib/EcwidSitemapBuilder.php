@@ -29,7 +29,6 @@ class EcwidSitemapBuilder implements JsonStreamingParser_Listener {
 					$parser->parse();
 				} catch (Exception $e) {
 					fclose($stream);
-					throw $e;
 				}
 			}
 		}
