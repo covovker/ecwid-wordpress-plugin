@@ -72,6 +72,21 @@ class EcwidCatalog
 				. $product['description']
 				. '</div>';
 
+			if (is_array($product['attributes']) && !empty($product['attributes'])) {
+
+				foreach ($product['attributes'] as $attribute) {
+					if (trim($attribute['value']) != '') {
+						$return .= '<div class="ecwid_catalog_product_attributes">' . $attribute['name'] . ':';
+						if (isset($attribute['internalName']) && $attribute['internalName'] == 'Brand') {
+							$return .= '<span itemprop="brand">' . $attribute['value'] . '</span>';
+						} else {
+							$return .= $attribute['value'];
+						}
+						$return .= '</div>';
+					}
+				}
+			}
+
 			if (is_array($product["options"]))
 			{
 				$allowed_types = array('TEXTFIELD', 'DATE', 'TEXTAREA', 'SELECT', 'RADIO', 'CHECKBOX');
