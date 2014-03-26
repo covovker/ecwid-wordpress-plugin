@@ -46,6 +46,7 @@ if ( is_admin() ){
   add_action('init', 'ecwid_backward_compatibility');
   add_action('send_headers', 'ecwid_503_on_store_closed');
   add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
+  add_action('wp_enqueue_scripts', 'ecwid_add_frontend_styles');
   add_action('wp', 'ecwid_seo_ultimate_compatibility', 0);
   add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
   add_filter('wp_title', 'ecwid_seo_title', 20);
@@ -157,6 +158,10 @@ function ecwid_ie8_fonts_inclusion()
 </script>
 HTML;
 
+}
+
+function ecwid_add_frontend_styles() {
+	wp_enqueue_style('ecwid-css', plugins_url('ecwid-shopping-cart/css/frontend.css'));
 }
 
 function ecwid_load_textdomain() {
