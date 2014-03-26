@@ -76,7 +76,7 @@ class EcwidCatalog
 
 				foreach ($product['attributes'] as $attribute) {
 					if (trim($attribute['value']) != '') {
-						$return .= '<div class="ecwid_catalog_product_attributes">' . $attribute['name'] . ':';
+						$return .= '<div class="ecwid_catalog_product_attribute">' . $attribute['name'] . ':';
 						if (isset($attribute['internalName']) && $attribute['internalName'] == 'Brand') {
 							$return .= '<span itemprop="brand">' . $attribute['value'] . '</span>';
 						} else {
