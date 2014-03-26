@@ -973,25 +973,20 @@ function ecwid_options_add_page() {
 
 function ecwid_register_admin_styles() {
 
-	wp_register_style('ecwid-admin-css', plugins_url('ecwid-shopping-cart/css/admin.css'), array(), '', 'all');
-	wp_enqueue_style('ecwid-admin-css');
+	wp_enqueue_style('ecwid-admin-css', plugins_url('ecwid-shopping-cart/css/admin.css'));
 
 	if (version_compare(get_bloginfo('version'), '3.8-beta') > 0) {
-		wp_register_style('ecwid-admin38-css', plugins_url('ecwid-shopping-cart/css/admin.3.8.css'), array('ecwid-admin-css'), '', 'all');
-		wp_enqueue_style('ecwid-admin38-css');
+		wp_enqueue_style('ecwid-admin38-css', plugins_url('ecwid-shopping-cart/css/admin.3.8.css'), array('ecwid-admin-css'), '', 'all');
 	}
 }
 
 function ecwid_register_settings_styles() {
 
-	wp_register_style('ecwid-settings-pure-css', plugins_url('ecwid-shopping-cart/css/pure-min.css'), array(), '', 'all');
-	wp_enqueue_style('ecwid-settings-pure-css');
-	wp_register_style('ecwid-settings-css', plugins_url('ecwid-shopping-cart/css/settings.css'), array(), '', 'all');
-	wp_enqueue_style('ecwid-settings-css');
+	wp_enqueue_style('ecwid-settings-pure-css', plugins_url('ecwid-shopping-cart/css/pure-min.css'), array(), '', 'all');
+	wp_enqueue_style('ecwid-settings-css', plugins_url('ecwid-shopping-cart/css/settings.css'), array(), '', 'all');
 
 	if (version_compare(get_bloginfo('version'), '3.8-beta') > 0) {
-		wp_register_style('ecwid-settings38-css', plugins_url('ecwid-shopping-cart/css/settings.3.8.css'), array('ecwid-settings-css'), '', 'all');
-		wp_enqueue_style('ecwid-settings38-css');
+		wp_enqueue_style('ecwid-settings38-css', plugins_url('ecwid-shopping-cart/css/settings.3.8.css'), array('ecwid-settings-css'), '', 'all');
 	}}
 
 function ecwid_plugin_actions($links) {
