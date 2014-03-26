@@ -42,6 +42,7 @@ if ( is_admin() ){
   add_shortcode('ecwid_searchbox', 'ecwid_searchbox_shortcode');
   add_shortcode('ecwid_categories', 'ecwid_categories_shortcode');
   add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
+  add_shortcode('ecwid_product', 'ecwid_product_shortcode');
   add_action('init', 'ecwid_backward_compatibility');
   add_action('send_headers', 'ecwid_503_on_store_closed');
   add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
@@ -655,6 +656,61 @@ EOT;
     }
 }
 
+function ecwid_product_shortcode($shortcode_attributes) {
+	$attributes = shortcode_atts(
+		array(
+			'id' => null,
+			'display' => 'picture title price options qty addtobag',
+			'link' => 'yes'
+		),
+		$shortcode_attributes
+	);
+
+	$id = $attributes['id'];
+
+	if (is_null($id) || !is_numeric($id) || $id <= 0) return;
+
+	if ($attributes['link'] == 'yes' && !ecwid_store_page_available()) {
+		$attributes['link'] = 'no';
+	}
+
+	$display_items = array(
+		'picture'  => '<div itemprop="picture"></div>',
+		'title'    => '<div class="ecwid-title" itemprop="title"></div>',
+		'price'    => '<div itemtype="http://schema.org/Offer" itemscope itemprop="offers">'
+					    . '<div class="ecwid-productBrowser-price ecwid-price" itemprop="price"></div>'
+				 	    . '</div>',
+		'options'  => '<div itemprop="options"></div>',
+		'qty' 	   => '<div itemprop="qty"></div>',
+		'addtobag' => '<div itemprop="addtobag"></div>'
+ 	);
+
+	$result = sprintf(
+		'<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-%d"'
+		. 'itemscope itemtype="http://schema.org/Product"'
+		. 'data-single-product-id="%d">',
+		$id, $id
+	);
+
+	$items = preg_split('![^0-9^a-z^A-Z^\-^_]!', $attributes['display']);
+
+	if (is_array($items) && count($items) > 0) foreach ($items as $item) {
+		if (array_key_exists($item, $display_items)) {
+			if ($attributes['link'] == 'yes' && in_array($item, array('title', 'picture'))) {
+				$page_url = get_page_link(get_option("ecwid_store_page_id"));
+				$product_link = $page_url . '#!/~/product/id=' . $id;
+				$result .= '<a href="' . esc_url($product_link) . '">' . $display_items[$item] . '</a>';
+			} else {
+				$result .= $display_items[$item];
+			}
+		}
+	}
+
+	$result .= '<script type="text/javascript">xSingleProduct()</script>';
+
+	return ecwid_wrap_shortcode_content($result);
+}
+
 function ecwid_parse_escaped_fragment($escaped_fragment) {
     $fragment = urldecode($escaped_fragment);
     $return = array();
@@ -754,7 +810,13 @@ EOT;
     return ecwid_wrap_shortcode_content($s);
 }
 
+function ecwid_store_page_available()
+{
+	$status = get_post_status(get_option('ecwid_store_page_id'));
 
+	return $status == 'publish';
+
+}
 
 function ecwid_store_activate() {
 	$my_post = array();
