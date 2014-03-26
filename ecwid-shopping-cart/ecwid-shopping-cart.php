@@ -869,6 +869,7 @@ EOT;
 		$my_post['post_status'] = 'publish';
 		$my_post['post_author'] = 1;
 		$my_post['post_type'] = 'page';
+		$my_post['comment_status'] = 'closed';
 		$id =  wp_insert_post( $my_post );
 		update_option('ecwid_store_page_id', $id);
 	}
