@@ -226,7 +226,7 @@ function ecwid_backward_compatibility() {
 
 function ecwid_build_sitemap_pages()
 {
-	if (!ecwid_is_paid_account()) return;
+	if (!ecwid_is_paid_account() || !ecwid_store_page_available()) return;
 
 	$page_url = get_page_link(get_option("ecwid_store_page_id"));
 
