@@ -65,6 +65,7 @@ add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
 
 $ecwid_script_rendered = false; // controls single script.js on page
 
+
 $version = get_bloginfo('version');
 
 function ecwid_add_breadcrumbs_navxt($trail)
@@ -82,7 +83,6 @@ function ecwid_add_breadcrumb_links_wpseo($links)
 		)
 	));
 }
-
 if (version_compare($version, '3.6') < 0) {
     /**
      * A copy of has_shortcode functionality from wordpress 3.6
@@ -127,9 +127,11 @@ if (is_admin()) {
 
 function ecwid_apply_theme_adjustments()
 {
-	require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-theme-manager.php';
-	$ecwid_theme_manager = new Ecwid_Theme_Manager();
-	$ecwid_theme_manager->add_hooks();
+	if (ecwid_page_has_productbrowser()) {
+		require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-theme-manager.php';
+		$ecwid_theme_manager = new Ecwid_Theme_Manager();
+		$ecwid_theme_manager->add_hooks();
+	}
 }
 
 function ecwid_ie8_fonts_inclusion()
