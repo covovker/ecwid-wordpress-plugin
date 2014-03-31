@@ -1074,6 +1074,7 @@ function ecwid_advanced_settings_do_page() {
 					$name = __('Hidden category', 'ecwid-shopping-cart');
 				}
 				$name_path[] = $name;
+				$category = $by_id[$category['parentId']];
 			}
 
 			$by_id[$id]['path'] = array_reverse($name_path);
