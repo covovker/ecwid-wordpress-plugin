@@ -1021,7 +1021,7 @@ function ecwid_settings_api_init() {
 			break;
 
 		case 'advanced':
-			register_setting('ecwid_options_page', 'ecwid_default_category_id');
+			register_setting('ecwid_options_page', 'ecwid_default_category_id', 'ecwid_abs_intval');
 			register_setting('ecwid_options_page', 'ecwid_sso_secret_key');
 			break;
 
