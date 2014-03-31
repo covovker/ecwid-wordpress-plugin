@@ -1065,8 +1065,12 @@ function ecwid_advanced_settings_do_page() {
 		foreach ($by_id as $id => $category) {
 			$name_path = array($category['name']);
 			while (isset($category['parentId'])) {
-				$category = $by_id[$category['parentId']];
-				$name_path[] = $category['name'];
+				if (isset($by_id[$category['parentId']])) {
+ 					$category = $by_id[$category['parentId']]['name'];
+				} else {
+					$category = __('Hidden category', 'ecwid-shopping-cart');
+				}
+				$name_path[] = $category;
 			}
 
 			$by_id[$id]['path'] = array_reverse($name_path);
