@@ -669,10 +669,11 @@ EOT;
 }
 
 function ecwid_product_shortcode($shortcode_attributes) {
+
 	$attributes = shortcode_atts(
 		array(
 			'id' => null,
-			'display' => 'picture title price options qty addtobag',
+			'display' => 'picture title price options addtobag',
 			'link' => 'yes'
 		),
 		$shortcode_attributes
@@ -698,8 +699,8 @@ function ecwid_product_shortcode($shortcode_attributes) {
  	);
 
 	$result = sprintf(
-		'<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-%d"'
-		. 'itemscope itemtype="http://schema.org/Product"'
+		'<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-%d" '
+		. 'itemscope itemtype="http://schema.org/Product" '
 		. 'data-single-product-id="%d">',
 		$id, $id
 	);
