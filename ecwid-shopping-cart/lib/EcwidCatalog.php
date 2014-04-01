@@ -189,8 +189,10 @@ class EcwidCatalog
 		$products   = $batch_result["p"];
 		$profile	= $batch_result["pf"];
 
-		$return = '<h2>' . esc_html($category['name']) . '</h2>';
-		$return .= '<div>' . $category['description'] . '</div';
+		if (!is_null($category)) {
+			$return = '<h2>' . esc_html($category['name']) . '</h2>';
+			$return .= '<div>' . $category['description'] . '</div>';
+		}
 
 		if (is_array($categories)) 
 		{
