@@ -65,6 +65,7 @@ add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
 
 $ecwid_script_rendered = false; // controls single script.js on page
 
+require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-theme-manager.php';
 
 $version = get_bloginfo('version');
 
@@ -128,8 +129,7 @@ if (is_admin()) {
 function ecwid_apply_theme_adjustments()
 {
 	if (ecwid_page_has_productbrowser()) {
-		require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-theme-manager.php';
-		$ecwid_theme_manager = new Ecwid_Theme_Manager();
+		$ecwid_theme_manager = Ecwid_Theme_Manager::get_instance();
 		$ecwid_theme_manager->add_hooks();
 	}
 }
@@ -406,6 +406,21 @@ function ecwid_page_has_productbrowser()
         $post_content = get_post(get_the_ID())->post_content;
         $result = has_shortcode($post_content, 'ecwid_productbrowser');
     }
+
+	if (!$result) {
+		$theme = Ecwid_Theme_Manager::get_instance();
+		if ($theme->get_theme_name() == 'Bretheon') {
+			$meta = get_post_meta(get_the_ID(), 'mfn-page-items');
+			if (is_array($meta)) {
+				$meta = base64_decode($meta[0]);
+
+				// not exactly the intended usage, but quite simple and still works
+				// $meta is a serialized array that has the actual content
+				// a right way is to walk through the structure and run has_shortcode against all fields
+				$result = has_shortcode($meta, 'ecwid_productbrowser');
+			}
+		}
+	}
 
     return $result;
 }

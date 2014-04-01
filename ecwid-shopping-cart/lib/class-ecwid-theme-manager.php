@@ -14,9 +14,20 @@ class Ecwid_Theme_Manager
 		$this->detect_current_theme();
 	}
 
+	public static function get_instance()
+	{
+		static $instance = null;
+
+		if (is_null($instance)) {
+			$instance = new Ecwid_Theme_Manager();
+		}
+
+		return $instance;
+	}
+
 	public function get_theme_name()
 	{
-		return $this->current_theme;
+		return $this->theme_name;
 	}
 
 	public function add_hooks()
