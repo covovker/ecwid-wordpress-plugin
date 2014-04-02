@@ -36,11 +36,13 @@ class Ecwid_Theme_Manager
 			return;
 		}
 
-		wp_enqueue_script(
-			'ecwid-scroller',
-			plugins_url( 'ecwid-shopping-cart/js/create_scroller.js' ),
-			array( 'jquery' )
-		);
+		if ($this->theme_requires_scrolling_adjustment()) {
+			wp_enqueue_script(
+				'ecwid-scroller',
+				plugins_url( 'ecwid-shopping-cart/js/create_scroller.js' ),
+				array( 'jquery' )
+			);
+		}
 
 		if ( !array_key_exists( $this->current_theme, $this->themes ) ) {
 			return;
@@ -99,5 +101,9 @@ class Ecwid_Theme_Manager
 				'js'       => true,
 			)
 		);
+	}
+
+	protected function theme_needs_scrolling_adjustment() {
+		return in_array( $this->current_theme, array( '2014', 'pagelines' ) );
 	}
 }
