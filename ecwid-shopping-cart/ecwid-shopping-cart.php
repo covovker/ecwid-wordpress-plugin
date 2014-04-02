@@ -1495,7 +1495,7 @@ function ecwid_send_stats()
 		return;
 	}
 
-	update_option('ecwid_stats_sent', time());
+	update_option('ecwid_stats_sent_date', time());
 
 	$stats = ecwid_gather_stats();
 
