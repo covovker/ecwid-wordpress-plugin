@@ -720,6 +720,8 @@ function ecwid_product_shortcode($shortcode_attributes) {
 		}
 	}
 
+	$result .= '</div>';
+
 	$result .= '<script type="text/javascript">xSingleProduct()</script>';
 
 	return ecwid_wrap_shortcode_content($result);
