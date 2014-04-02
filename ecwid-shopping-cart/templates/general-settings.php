@@ -29,7 +29,7 @@
 			<div class="section">
 				<div class="left">
 					<span class="main-info">
-						<?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <strong><? echo esc_attr(get_ecwid_store_id()); ?></strong>
+						<?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <strong><?php echo esc_attr(get_ecwid_store_id()); ?></strong>
 					</span>
 				</div>
 				<div class="right two-buttons">
