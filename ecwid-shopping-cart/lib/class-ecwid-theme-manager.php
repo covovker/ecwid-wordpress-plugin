@@ -36,7 +36,7 @@ class Ecwid_Theme_Manager
 			return;
 		}
 
-		if ($this->theme_requires_scrolling_adjustment()) {
+		if ($this->theme_needs_scrolling_adjustment()) {
 			wp_enqueue_script(
 				'ecwid-scroller',
 				plugins_url( 'ecwid-shopping-cart/js/create_scroller.js' ),
