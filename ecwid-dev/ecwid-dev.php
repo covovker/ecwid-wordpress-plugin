@@ -36,6 +36,10 @@ function edev_process_request() {
 		if ($new_date = @$R['new_date']) {
 			update_option('ecwid_installation_date', strtotime($new_date));
 		}
+
+		if ($new_stats_date = @$R['new_stats_date']) {
+			update_option('ecwid_stats_sent_date', strtotime($new_stats_date));
+		}
 		if (isset($R['new_lang']) && in_array($R['new_lang'], get_locales())) {
 			$config = file_get_contents(ABSPATH . '/wp-config.php');
 			$config = str_replace(

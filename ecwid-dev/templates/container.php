@@ -9,7 +9,7 @@
 	<?php endif; ?>
 	<br />
 
-	Install date:
+	<span style="width:150px">Install date:</span>
 		<input
 			type="text"
 			name="new_date"
@@ -17,6 +17,16 @@
 			value="<?php echo strftime("%d %b %G %H:%M:%S", get_option('ecwid_installation_date')); ?>"
 		/>
 		<a href="javascript: edev_submit({new_date: jQuery('#edev_new_date').val()})">Update</a>
+	<br />
+
+	<span style="width:150px">Stats sent date:</span>
+	<input
+		type="text"
+		name="new_stats_date"
+		id="edev_stats_date"
+		value="<?php echo strftime("%d %b %G %H:%M:%S", get_option('ecwid_stats_sent_date')); ?>"
+		/>
+	<a href="javascript: edev_submit({new_stats_date: jQuery('#edev_stats_date').val()})">Update</a>
 	<br />
 
 	<?php if (!is_writable(ABSPATH . '/wp-config.php')): ?>
