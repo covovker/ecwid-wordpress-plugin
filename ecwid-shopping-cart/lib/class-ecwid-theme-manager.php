@@ -30,11 +30,17 @@ class Ecwid_Theme_Manager
 		return $this->theme_name;
 	}
 
-	public function add_hooks()
+	public function apply_adjustments()
 	{
 		if ( empty( $this->themes ) ) {
 			return;
 		}
+
+		wp_enqueue_script(
+			'ecwid-scroller',
+			plugins_url( 'ecwid-shopping-cart/js/create_scroller.js' ),
+			array( 'jquery' )
+		);
 
 		if ( !array_key_exists( $this->current_theme, $this->themes ) ) {
 			return;

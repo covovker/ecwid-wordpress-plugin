@@ -131,7 +131,7 @@ function ecwid_apply_theme_adjustments()
 {
 	if (ecwid_page_has_productbrowser()) {
 		$ecwid_theme_manager = Ecwid_Theme_Manager::get_instance();
-		$ecwid_theme_manager->add_hooks();
+		$ecwid_theme_manager->apply_adjustments();
 	}
 }
 
@@ -816,8 +816,9 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
         $plain_content = '<noscript>Your browser does not support JavaScript.<a href="' . $ecwid_mobile_catalog_link .'">HTML version of this store</a></noscript>';
     }
 
-    $s = <<<EOT
-    <div id="ecwid_product_browser_scroller"></div>
+	$s = '';
+
+	$s = <<<EOT
     <div id="ecwid-store-$store_id">
 		{$plain_content}
 	</div>

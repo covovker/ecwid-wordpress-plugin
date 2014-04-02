@@ -2,7 +2,7 @@
 	max-width: none;
 }
 
-#ecwid_product_browser_scroller {
+#ecwid_product_browser_scroller.ecwid-scroller-adjustment {
 	position: relative;
 	top: -48px;
 }
