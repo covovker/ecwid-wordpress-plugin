@@ -55,19 +55,21 @@ class EcwidCatalog
 				{
 					if($ecwid_category["defaultCategory"] == true)
 					{
-						$return .= '<div class="ecwid_catalog_product_category" itemprop="category">' . esc_html($ecwid_category['name']) . '</div>';
+						$return .= '<div class="ecwid_catalog_product_category">' . esc_html($ecwid_category['name']) . '</div>';
 					}
 				}
 			}
 			
 			$return .= '<div class="ecwid_catalog_product_price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">';
 			$return .=  __('Price', 'ecwid-shopping-cart') . ': <span itemprop="price">' . esc_html($product["price"]) . '</span>&nbsp;';
-			$return .= '<span itemprop="priceCurrency">' . esc_html($profile['currency']) . '</span></div>';
-			
+
 			if (!isset($product['quantity']) || (isset($product['quantity']) && $product['quantity'] > 0))
 			{
 				$return .= '<div class="ecwid_catalog_quantity" itemprop="availability" itemscope itemtype="http://schema.org/InStock"><span>In Stock</span></div>';
 			}
+
+			$return .= '<span itemprop="priceCurrency">' . esc_html($profile['currency']) . '</span></div>';
+
 			$return .= '<div class="ecwid_catalog_product_description" itemprop="description">'
 				. $product['description']
 				. '</div>';
@@ -93,7 +95,7 @@ class EcwidCatalog
 				foreach($product["options"] as $product_options)
 				{
 					if (in_array($product_options['type'], $allowed_types)) {
-						$return .= '<div class="ecwid_catalog_product_options" itemprop="offers"><span itemprop="condition">'
+						$return .= '<div class="ecwid_catalog_product_options"><span>'
 							. esc_html($product_options["name"])
 							. '</span></div>';
 					} else {
