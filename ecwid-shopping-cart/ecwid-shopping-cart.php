@@ -1517,8 +1517,8 @@ function ecwid_gather_stats()
 
 	$stats = array();
 
-	$stats['wp_version'] = get_bloginfo('version');
-	$stats['wp_theme'] = Ecwid_Theme_Manager::get_instance()->get_theme_name();
+	$stats['version'] = get_bloginfo('version');
+	$stats['theme'] = Ecwid_Theme_Manager::get_instance()->get_theme_name();
 
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
