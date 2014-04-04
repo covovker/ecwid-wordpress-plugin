@@ -1505,7 +1505,7 @@ function ecwid_send_stats()
 	$url = 'http://' . APP_ECWID_COM . '/script.js?' . $storeid . '&data_platform=wporg';
 
 	foreach($stats as $name => $value) {
-		$url .= '&data_' . $name . '=' . urlencode($value);
+		$url .= '&data_wporg_' . $name . '=' . urlencode($value);
 	}
 
 	wp_remote_get($url, array('headers' => array('Referer' => get_bloginfo('url'))));
