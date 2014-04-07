@@ -186,13 +186,15 @@ class EcwidCatalog
 
 		$batch_result = $this->ecwid_api->get_batch_request($params);
 
-		$category 	= $batch_result["category"];
+		$category 	= $id > 0 ? $batch_result['category'] : null;
 		$categories = $batch_result["c"];
 		$products   = $batch_result["p"];
 		$profile	= $batch_result["pf"];
 
+		$return = '';
+
 		if (!is_null($category)) {
-			$return = '<h2>' . esc_html($category['name']) . '</h2>';
+			$return .= '<h2>' . esc_html($category['name']) . '</h2>';
 			$return .= '<div>' . $category['description'] . '</div>';
 		}
 
