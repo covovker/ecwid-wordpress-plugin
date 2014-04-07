@@ -483,7 +483,7 @@ function ecwid_meta_description() {
 	$description = preg_replace("![\\s]+!", " ", $description);
 	$description = trim($description, " \t\xA0\n\r"); // Space, tab, non-breaking space, newline, carriage return
 	$description = mb_substr($description, 0, 160);
-	$description = htmlspecialchars($description, ENT_COMPAT | ENT_HTML401, 'UTF-8');
+	$description = htmlspecialchars($description, ENT_COMPAT, 'UTF-8');
 
     echo <<<HTML
 <meta name="description" content="$description" />
