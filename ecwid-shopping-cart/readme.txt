@@ -2,61 +2,94 @@
 Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
-Tested up to: 3.8.1
-Stable tag: 2.4
+Tested up to: 3.9
+Stable tag: 2.4.1
 
 Ecwid is a free full-featured shopping cart that can easily be added to any blog
 and takes less than 5 minutes to set up.
 
 == Description ==
-Ecwid is a full-featured shopping cart and an e-commerce solution that can easily be added to any blog or Facebook profile. It offers the performance and flexibility you need, with none of the hassles you don't.  
-"Ecwid" stands for "ecommerce widgets".
+**Wordpress.com officially recommends Ecwid as a e-commerce solution to millions of its users!**
 
-There are eight key advantages to Ecwid:
+[Ecwid](http://www.ecwid.com?wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that seamlessly integrates with your Wordpress website. Join over *450,000* sellers in *175* countries and sell globally with over *30* international payment options, real-time shipping integrations and support of *45* languages. 
 
-- Free plan is always available.
-- It has AJAX everywhere and supports drag-and-drop.
-- It can be easily integrated to any existing site or Facebook profile in minutes.
-- It can be mirrored on many sites at the same time. Add your store to many sites, manage it from one place.
-- Integrates with social networks. Run your own store on Facebook, mySpace and many others, or let your customers share the links to your products and their purchases.
-- Simple to use and maintain. For both store owner and customer.
-- Lightning fast. New-gen technologies make Ecwid much faster than usual
-  shopping carts regardless the hosting service you use.
-- Seamless upgrades. You just wake up one day and enjoy new features.
 
-Links
+= Full-featured Shopping Cart =
 
-- You can see the demo there: [www.ecwid.com/demo-frontend.html](http://www.ecwid.com/demo-frontend.html)
-- More features:
-[www.ecwid.com/key-features.html](http://www.ecwid.com/key-features.html)
+Ecwid is a free shopping cart solution that is designed to fit any existing site. Simply set up this plugin and your products, categories and checkout pages will automatically embed on your Wordpress site and adjust themselves to the given page size and layout. 
+
+
+= Data Security and Seamless Upgrades =
+
+With Ecwid, your store data is fully hosted on our secure servers. So, regardless of the hosting you use, you get free of cost:
+
+* unlimited storage and regular backups 
+* seamless upgrades and security updates
+* secure checkout via encrypted HTTPS connection
+
+So, you don't need to worry about software updates, security patches and server maintenance - we do that for you. Your store gets all the new features and bug fixes automatically.
+
+
+= Mobile Responsive Design =
+
+Ecwid works fine on any Wordpress site, especially on those running mobile-optimized themes. Your store looks perfect on any smartphone and automatically adapts to your customer’s screen size: laptops, tablets, smart TVs or smart watches. Check out this [demo](http://www.ecwid.com/demo-frontend.html?wporg-plugin-site)
+
+
+= Social Commerce =
+
+Unlock power of social commerce with Ecwid -- add your existing store to Facebook in a few clicks and sell to millions of Facebook users. Ecwid will automatically synchronize your products, customers, orders and inventory between your Wordpress and Facebook store fronts. Ecwid is the **#1 e-commerce app on Facebook**. Join! 
+
+
+= Sell Everywhere =
+
+With Ecwid, you can mirror your shop on many websites, blogs, social sites and marketplaces like *Google Shopping*, *Yahoo* and *Shopping.com* and sell simultaneously everywhere. Add your store to as many sites as you want, manage it from one place.
+
+
+= Lighting Fast =
+
+New-gen technologies make Ecwid much faster than usual shopping carts regardless the hosting service you use. 
+
+
+= Free =
+
+Although Ecwid is packed with high-value features, [Free plan](http://www.ecwid.com/plans-and-pricing.html?wporg-plugin-site "Ecwid plans and pricing") is always available with no setup charges and no transaction fees. Get your store up and running without paying anything.
+
+
+= See In Action =
+
+* [Demo](http://www.ecwid.com/demo-frontend.html?source=wporg-plugin-site "Ecwid demo")
+* [Backend](https://my.ecwid.com/?source=wporg-plugin-site "Ecwid Control Panel")
+
+
+= Ecwid Site =
+
+* [www.ecwid.com](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid site")
 
 == Installation ==
 
 = Automatic installation (the easiest way) =
 
-1. Go to your WP admin panel → Plugins → Add New
-2. Under Search, type in 'Ecwid', click Search
-3. In the search results find the 'Ecwid Shopping Cart' plugin and click 'Install now' to install it
-4. When plugin is installed click 'Activate Plugin' link
-5. Log in into Ecwid control panel at https://my.ecwid.com and copy your numeric Store ID. Go to 'Ecwid Store → General' page in WP admin panel and paste Store ID in the corresponding field.
-
-**IMPORTANT**: when the plugin is installed, you will need to activate it on the Plugins page (click 'Activate' link) and configure it on the 'Ecwid Store → General' page (at least, you will need to set your store ID there).
+1. In your Wordpress admin backend, navigate to *Plugins → Add New*
+1. Under Search, type in `Ecwid` and click *Search*
+1. In the search results find the *Ecwid Shopping Cart* plugin and click *Install now* to install it
+1. When plugin is installed click *Activate Plugin* link
+1. Navigate to *Ecwid Store → General* page in your Wordpress admin backend and follow the instruction provided there
 
 
 = Alternative ways =
 
-**Uploading the plugin zip archive in your admin panel**
+**Uploading the plugin zip archive in Wordpress admin backend**
 
-1. Download the Ecwid plugin from this page (click 'Download' button)
-2. Go to WP admin panel → Plugins → Add new
-3. Click 'Upload' link and choose the saved zip file in the appeared dialog window.
-4. Click 'Install'
+1. Download Ecwid plugin from this page (click *Download* button)
+1. In your Wordpress admin backend, navigate to *Plugins → Add new*
+1. Click *Upload* link and choose the saved zip file in the appeared dialog window.
+1. Click *Install*
 
-**Uploading plugin folder to the WP directory on your server**
+**Uploading plugin folder to Wordpress directory on your server**
 
-1. Download the Ecwid plugin from this page (click 'Download' button)
-2. Unpack the downloaded zip archive
-3. Upload ecwid-shopping-cart directory from the archive to the /wp-content/plugins/ directory on your server
+1. Download Ecwid plugin from this page (click *Download* button)
+1. Unpack the downloaded zip archive
+1. Upload ecwid-shopping-cart directory from the archive to the `/wp-content/plugins/` directory on your server
 
 Please refer to this article for the details and troubleshooting on plugin installation in Wordpress:
 http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
@@ -74,10 +107,14 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 
 == Frequently Asked Questions ==
 
-- FAQ: [http://www.ecwid.com/faq.html](http://www.ecwid.com/faq.html)
-- Knowledge Base: [http://kb.ecwid.com](http://kb.ecwid.com)
+* [FAQ](http://help.ecwid.com/customer/portal/articles/1085017-wordpress-downloadable- "Install Ecwid on Wordpress")
+* [Help Center](http://help.ecwid.com/?source=wporg-plugin-site "Ecwid Help")
+* [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.4.1 =
+- Added compatibility with the new versions of "Google XML Sitemaps" plugin (v4.0 and higher)
+
 = 2.4 =
 - **Ability to add a single product to a page or post on your site using new [ecwid\_product] shortcode.** In addition to embedding a whole product catalog on your Wordpress site, you can also feature a single product on a separate page or blog post of your site and allow your customers to purchase the product right from that page. To embed a product on a page or post, add [ecwid\_product id="12345"] shortcode to the page/post in your Wordpress backend. Do not forget to replace 12345 in this example with the actual product ID.
 
@@ -129,7 +166,7 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 
 - **SEO improvements**
   - Auto generated meta description tags for the product and category pages. Now, Google should properly index product/category descriptions and display them in the search results.
-  - &lt;title&gt; tags for categories. The SEO category pages in your store now include both title and description tags so they will appear in Google search results properly.
+  - <title> tags for categories. The SEO category pages in your store now include both title and description tags so they will appear in Google search results properly.
 
 - **Smooth HTTP/HTTPS switch**: Ecwid always transfers all sensitive data using secure HTTPS connection and a special 'HTTPS' option in the Ecwid plugin settings is not necessary anymore. Now, the plugin detects connection type and adjust Ecwid integration codes automatically. No manual adjustments are needed regardless of whether you run your site under HTTP or HTTPS.
 
@@ -143,7 +180,7 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 - [+] Ability to display separate categories on separate pages with custom shortcodes. Now, the plugin allows setting different default categories for different store pages. So if you have multiple store pages and want to display specific categories on them, you can set up a default category for each of them in the [ecwid\_productbrowser] shortcode like this: [ecwid\_productbrowser default\_category\_id="12345"] . On the other hand, if you have one store page, you can set the default category on the plugin settings page as usual.
 - [+] A few more SEO improvements:
    - Product browser's default category ID setting is now taken into consideration by SEO part of the plugin. If you have multiple store pages displaying specific categories of your shop, search engines will index those pages starting from the proper category (not from the store's root)
-   - &lt;meta fragment="!"&gt; tag is now displayed on every page where [ecwid\_productbrowser] tag is added so search engines will better index each store page
+   - <meta fragment="!"> tag is now displayed on every page where [ecwid\_productbrowser] tag is added so search engines will better index each store page
 - [+] We also released a lot of new Ecwid features. You can read about them there: http://www.ecwid.com/blog/new-releases/
 
 = 1.7 =
