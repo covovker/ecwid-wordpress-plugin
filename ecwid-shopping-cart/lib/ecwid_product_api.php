@@ -7,9 +7,10 @@ class EcwidProductApi {
 
 	var $error_code = '';
 
-	var $ECWID_PRODUCT_API_ENDPOINT = "http://app.ecwid.com/api/v1";
-
+	var $ECWID_PRODUCT_API_ENDPOINT = '';
 	function __construct($store_id) {
+		$this->ECWID_PRODUCT_API_ENDPOINT = (get_current_theme() == 'Twenty Fourteen' && in_array($_SERVER['SERVER_NAME'], array('localhost', 'lamp.ecwid.com'))) ? "http://apptest-5092.ecwid.com/api/v1" : 'http://app.ecwid.com/api/v1';
+
 		$this->store_id = intval($store_id);
 	}
 
@@ -180,6 +181,7 @@ class EcwidProductApi {
  	function is_api_enabled() {
 		// quick and lightweight request
 		$api_url = $this->ECWID_PRODUCT_API_ENDPOINT . "/" . $this->store_id . "/profile";
+
 		$this->process_request($api_url);
 		if ($this->error_code === '') {
 			return true;

@@ -202,7 +202,7 @@ class EcwidCatalog
 		{
 			foreach ($categories as $category) 
 			{
-				$category_url = $this->build_url($this->store_base_url . "#!/~/category/id=" . $category["id"]);
+				$category_url = ecwid_get_category_url($category);
 
 				$category_name = $category["name"];
 				$return .= sprintf(
@@ -217,8 +217,9 @@ class EcwidCatalog
 		{
 			foreach ($products as $product) 
 			{
-				$product_url = $this->store_base_url . "#!/~/product/id=" . $product["id"];
-				$this->build_url($product["url"]);
+
+				$product_url = ecwid_get_product_url($product);
+
 				$product_name = $product["name"];
 				$product_price = $product["price"] . "&nbsp;" . $profile["currency"];
 				$return .= "<div>";

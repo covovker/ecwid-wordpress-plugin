@@ -12,8 +12,10 @@ Author URI: http://www.ecwid.com?source=wporg
 register_activation_hook( __FILE__, 'ecwid_store_activate' );
 register_deactivation_hook( __FILE__, 'ecwid_store_deactivate' );
 
-define("APP_ECWID_COM", "app.ecwid.com");
+$s = (get_current_theme() == 'Twenty Fourteen' && in_array($_SERVER['SERVER_NAME'], array('localhost', 'lamp.ecwid.com'))) ? "apptest-5092.ecwid.com" : 'app.ecwid.com';
+define("APP_ECWID_COM", $s);
 define("ECWID_DEMO_STORE_ID", 1003);
+
 
 if ( ! defined( 'ECWID_PLUGIN_DIR' ) ) {
 	define( 'ECWID_PLUGIN_DIR', plugin_dir_path( realpath(__FILE__) ) );
@@ -213,14 +215,11 @@ function ecwid_503_on_store_closed() {
 function ecwid_backward_compatibility() {
     // Backward compatibility with 1.1.2 and earlier
     if (isset($_GET['ecwid_product_id']) || isset($_GET['ecwid_category_id'])) {
-        $ecwid_page = get_option("ecwid_store_page_id");
-        $ecwid_page = get_page_link($ecwid_page);
-        $ecwid_page .= '#!/~/';
 
         if (isset($_GET['ecwid_product_id']))
-            $redirect = $ecwid_page . 'product/id=' . $_GET['ecwid_product_id'];
+            $redirect = ecwid_get_product_url(intval($_GET['ecwid_product_id']));
         elseif (isset($_GET['ecwid_category_id']))
-            $redirect = $ecwid_page . 'category/id=' . $_GET['ecwid_category_id'];
+            $redirect = ecwid_get_category_url(intval($_GET['ecwid_category_id']));
 
         wp_redirect($redirect, 301);
         exit();
@@ -232,7 +231,7 @@ function ecwid_build_sitemap_pages()
 {
 	if (!ecwid_is_paid_account() || !ecwid_store_page_available()) return;
 
-	$page_url = get_page_link(get_option("ecwid_store_page_id"));
+	$page_url = ecwid_get_store_page_url();
 
 	include ECWID_PLUGIN_DIR . '/lib/EcwidSitemapBuilder.php';
 
@@ -440,8 +439,7 @@ function ecwid_meta() {
     echo '<link rel="dns-prefetch" href="//app.ecwid.com/">' . PHP_EOL;
 
     if (!ecwid_page_has_productbrowser()) {
-        $ecwid_page_id = get_option("ecwid_store_page_id");
-        $page_url = get_page_link($ecwid_page_id);
+        $page_url = ecwid_get_store_page_url();
         echo '<link rel="prefetch" href="' . $page_url . '" />' . PHP_EOL;
         echo '<link rel="prerender" href="' . $page_url . '" />' . PHP_EOL;
     }
@@ -456,7 +454,17 @@ function ecwid_canonical() {
 
 	if (!in_array($params['mode'], array('category', 'product')) || !isset($params['id'])) return;
 
-	echo '<link rel="canonical" href="' . get_permalink() . '#!/~/' . $params['mode'] . '/id=' . $params['id'] . '" />' . PHP_EOL;
+	$api = ecwid_new_product_api();
+
+	if ($params['mode'] == 'product') {
+		$product = $api->get_product($params['id']);
+		$link = ecwid_get_product_url($product);
+	} else if ($params['mode'] == 'category') {
+		$category = $api->get_category($params['id']);
+		$link = ecwid_get_category_url($category);
+	}
+
+	echo '<link rel="canonical" href="' . esc_attr($link) . '" />' . PHP_EOL;
 }
 
 function ecwid_meta_description() {
@@ -712,8 +720,7 @@ function ecwid_product_shortcode($shortcode_attributes) {
 	if (is_array($items) && count($items) > 0) foreach ($items as $item) {
 		if (array_key_exists($item, $display_items)) {
 			if ($attributes['link'] == 'yes' && in_array($item, array('title', 'picture'))) {
-				$page_url = get_page_link(get_option("ecwid_store_page_id"));
-				$product_link = $page_url . '#!/~/product/id=' . $id;
+				$product_link = ecwid_get_product_url($id);
 				$result .= '<a href="' . esc_url($product_link) . '">' . $display_items[$item] . '</a>';
 			} else {
 				$result .= $display_items[$item];
@@ -735,8 +742,16 @@ function ecwid_parse_escaped_fragment($escaped_fragment) {
     if (preg_match('/^(\/~\/)([a-z]+)\/(.*)$/', $fragment, $matches)) {
         parse_str($matches[3], $return);
         $return['mode'] = $matches[2];
-    } 
-    return $return;
+    } elseif (preg_match('!.*/(p|c)/([0-9]*)!', $fragment, $matches)) {
+		if (count($matches) == 3 && in_array($matches[1], array('p', 'c'))) {
+			$return  = array(
+				'mode' => 'p' == $matches[1] ? 'product' : 'category',
+				'id' => $matches[2]
+			);
+		}
+	}
+
+	return $return;
 }
 
 function ecwid_productbrowser_shortcode($shortcode_params) {
@@ -806,7 +821,9 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 		if (isset($params['mode']) && !empty($params['mode'])) {
 			if ($params['mode'] == 'product') {
 				$plain_content = $catalog->get_product($params['id']);
-				$plain_content .= '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "!/~/product/id='. intval($params['id']) .'";</script>';
+				$product = ecwid_get_product_url(ecwid_new_product_api()->get_product($params['id']));
+				$parsed = parse_url($product);
+				$plain_content .= '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "'. $parsed['fragment'] . '";</script>';
 			} elseif ($params['mode'] == 'category') {
 				$plain_content = $catalog->get_category($params['id']);
 				$ecwid_default_category_str = ',"defaultCategoryId=' . $params['id'] . '"';
@@ -832,9 +849,12 @@ EOT;
 
 function ecwid_store_page_available()
 {
-	$status = get_post_status(get_option('ecwid_store_page_id'));
+	static $available = null;
 
-	return $status == 'publish';
+	if (is_null($available)) {
+		$available = 'publish' == get_post_status(get_option('ecwid_store_page_id'));
+	}
+	return $available;
 
 }
 
@@ -899,8 +919,7 @@ EOT;
 function ecwid_show_admin_messages() {
 	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID && isset($_GET['page']) && $_GET['page'] != 'ecwid') {
 
-		$ecwid_page_id = get_option("ecwid_store_page_id");
-		$page_url = get_page_link($ecwid_page_id);
+		$page_url = ecwid_get_store_page_url();
 
 		$message = sprintf(
 			__('<strong>Ecwid shopping cart is almost ready</strong>. Please visit <a target="_blank" href="%s">the created page</a> to see your store with demo products. In order to finish the installation, please go to the <a href="admin.php?page=ecwid"><strong>Ecwid settings</strong></a> and configure the plugin.', 'ecwid-shopping-cart'),
@@ -1156,6 +1175,40 @@ function ecwid_add_dashboard_widgets() {
   }
 }
 
+function ecwid_get_store_page_url()
+{
+	static $link = null;
+
+	if (is_null($link)) {
+		$link = get_page_link(get_option('ecwid_store_page_id'));
+	}
+
+	return $link;
+}
+
+function ecwid_get_product_url($product)
+{
+	return ecwid_get_entity_url($product, 'p');
+}
+
+function ecwid_get_category_url($category)
+{
+	return ecwid_get_entity_url($category, 'c');
+}
+
+function ecwid_get_entity_url($entity, $type) {
+
+	$link = ecwid_get_store_page_url();
+
+	if (is_int($entity)) {
+		return $link . '#!/' . $type . '/' . $entity;
+	} elseif (is_array($entity) && isset($entity['url'])) {
+		$link .= substr($entity['url'], strpos($entity['url'], '#'));
+	}
+
+	return $link;
+
+}
 
 class EcwidBadgeWidget extends WP_Widget {
 
@@ -1359,7 +1412,7 @@ class EcwidMinicartMiniViewWidget extends WP_Widget {
         echo ecwid_get_scriptjs_code();
 
         $ecwid_page_id = get_option("ecwid_store_page_id");
-        $page_url = get_page_link($ecwid_page_id);
+        $page_url = ecwid_get_store_page_url();
         $_tmp_page = get_page($ecwid_page_id);
         if (!empty($page_url) && $_tmp_page != null)
             echo "<script type=\"text/javascript\">var ecwid_ProductBrowserURL = \"$page_url\";</script>";
@@ -1509,7 +1562,7 @@ function ecwid_send_stats()
 
 	$link = '';
 	if (ecwid_store_page_available()) {
-		$link = get_page_link(get_option('ecwid_store_page_id'));
+		$link = ecwid_get_store_page_url();
 	} else {
 		$link = get_bloginfo('url');
 	}
@@ -1675,11 +1728,12 @@ function ecwid_is_api_enabled()
 {
     $ecwid_is_api_enabled = get_option('ecwid_is_api_enabled');
     $ecwid_api_check_time = get_option('ecwid_api_check_time');
-    $now = time();
+    $now = time() + 60*60*24;
 
     if ($now > ($ecwid_api_check_time + 60 * 60 * 3)) {
         // check whether API is available once in 3 hours
         $ecwid = ecwid_new_product_api();
+
         $ecwid_is_api_enabled = ($ecwid->is_api_enabled() ? 'on' : 'off');
         update_option('ecwid_is_api_enabled', $ecwid_is_api_enabled);
         update_option('ecwid_api_check_time', $now);
