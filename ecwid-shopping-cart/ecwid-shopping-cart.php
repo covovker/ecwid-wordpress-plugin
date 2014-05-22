@@ -65,6 +65,7 @@ if ( is_admin() ){
   add_action('wp_head', 'ecwid_seo_compatibility_restore', 1000);
   add_filter( 'widget_meta_poweredby', 'ecwid_add_credits');
   add_filter('the_content', 'ecwid_content_started', 0);
+  add_filter('body_class', 'ecwid_body_class');
   $ecwid_seo_title = '';
 }
 add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
@@ -138,6 +139,15 @@ function ecwid_apply_theme_adjustments()
 		$ecwid_theme_manager = Ecwid_Theme_Manager::get_instance();
 		$ecwid_theme_manager->apply_adjustments();
 	}
+}
+
+function ecwid_body_class($classes)
+{
+	if (ecwid_page_has_productbrowser()) {
+		$classes[] = 'ecwid-shopping-cart';
+	}
+
+	return $classes;
 }
 
 function ecwid_ie8_fonts_inclusion()
@@ -602,11 +612,11 @@ function ecwid_content_started($content)
 	return $content;
 }
 
-function ecwid_wrap_shortcode_content($content)
+function ecwid_wrap_shortcode_content($content, $name)
 {
     return "<!-- Ecwid shopping cart plugin v 2.4 -->"
 		   . ecwid_get_scriptjs_code()
-	       . "<div>$content</div>"
+	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
 		   . "<!-- END Ecwid Shopping Cart v 2.4 -->";
 }
 
@@ -638,44 +648,68 @@ function ecwid_script_shortcode($params) {
 		$content = ecwid_get_scriptjs_code($attributes['lang']);
 	}
 
-    return ecwid_wrap_shortcode_content($content);
+    return ecwid_wrap_shortcode_content($content, 'script');
 }
 
-function ecwid_minicart_shortcode() {
+function ecwid_minicart_shortcode($params) {
 
     $ecwid_enable_minicart = get_option('ecwid_enable_minicart');
     $ecwid_show_categories = get_option('ecwid_show_categories');
+
+	$result = '';
     if (!empty($ecwid_enable_minicart) && !empty($ecwid_show_categories)) {
-        $s = <<<EOT
+        $result = <<<EOT
 <script type="text/javascript"> xMinicart("style=","layout=attachToCategories"); </script>
 EOT;
-        return ecwid_wrap_shortcode_content($s);
-    } else {
-        return "";
     }
+
+	$result = apply_filters('ecwid_minicart_shortcode_content', $result);
+
+	if (!empty($result)) {
+		$result = ecwid_wrap_shortcode_content($result, 'minicart');
+	}
+
+	return $result;
 }
+
 function ecwid_searchbox_shortcode() {
-    $ecwid_show_search_box = get_option('ecwid_show_search_box');
+
+	$ecwid_show_search_box = get_option('ecwid_show_search_box');
     if (!empty($ecwid_show_search_box)) {
-        $s = <<<EOT
+        $result = <<<EOT
 <script type="text/javascript"> xSearchPanel("style="); </script>
 EOT;
-        return ecwid_wrap_shortcode_content($s);
-    } else {
-        return "";
     }
+
+	$result = apply_filters('ecwid_search_shortcode_content', $result);
+
+	if (!empty($result)) {
+		$result = ecwid_wrap_shortcode_content($result, 'search');
+	}
+
+	return $result;
 }
 
 function ecwid_categories_shortcode() {
+
+	if (Ecwid_Theme_Manager::get_instance()->hide_shortcode('categories')) return;
+
     $ecwid_show_categories = get_option('ecwid_show_categories');
+
+	$result = '';
     if (!empty($ecwid_show_categories)) {
-        $s = <<<EOT
+        $result = <<<EOT
 <script type="text/javascript"> xCategories("style="); </script>
 EOT;
-        return ecwid_wrap_shortcode_content($s);
-    } else {
-        return "";
     }
+
+	$result = apply_filters('ecwid_categories_shortcode_content', $result);
+
+	if (!empty($result)) {
+		$result = ecwid_wrap_shortcode_content($result, 'categories');
+	}
+
+	return $result;
 }
 
 function ecwid_product_shortcode($shortcode_attributes) {
@@ -732,7 +766,7 @@ function ecwid_product_shortcode($shortcode_attributes) {
 
 	$result .= '<script type="text/javascript">xSingleProduct()</script>';
 
-	return ecwid_wrap_shortcode_content($result);
+	return ecwid_wrap_shortcode_content($result, 'product');
 }
 
 function ecwid_parse_escaped_fragment($escaped_fragment) {
@@ -844,7 +878,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 	</div>
 	<script type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str, "id=ecwid-store-$store_id");</script>
 EOT;
-    return ecwid_wrap_shortcode_content($s);
+    return ecwid_wrap_shortcode_content($s, 'product-browser');
 }
 
 function ecwid_store_page_available()

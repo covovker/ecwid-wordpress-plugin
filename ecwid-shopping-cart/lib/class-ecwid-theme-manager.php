@@ -12,6 +12,9 @@ class Ecwid_Theme_Manager
 	{
 		$this->init_themes_map();
 		$this->detect_current_theme();
+
+		add_filter('ecwid_minicart_shortcode_content', array($this, 'minicart_shortcode_content'));
+		add_filter('ecwid_categories_shortcode_content', array($this, 'categories_shortcode_content'));
 	}
 
 	public static function get_instance()
@@ -50,10 +53,15 @@ class Ecwid_Theme_Manager
 
 		$theme_data = $this->themes[$this->current_theme];
 
+		if ( $theme_data['callback'] ) {
+			$method = 'apply_theme_' . $this->current_theme;
+			return $this->$method();
+		}
+
 		wp_enqueue_style(
 			'ecwid-theme-css',
 			plugins_url( 'ecwid-shopping-cart/css/themes/' . $this->current_theme . '.css' ),
-			array( $theme_data['base_css'] ),
+			isset( $theme_data['base_css'] ) ? array( $theme_data['base_css'] ) : array(),
 			false,
 			'all'
 		);
@@ -65,6 +73,29 @@ class Ecwid_Theme_Manager
 				array( 'jquery' )
 			);
 		}
+	}
+
+	public function minicart_shortcode_content($content)
+	{
+		if ($this->current_theme == 'responsive') {
+			$content = '<script type="text/javascript"> xMinicart("style=","layout=Mini"); </script>';
+		}
+
+		return $content;
+	}
+
+	public function categories_shortcode_content($content)
+	{
+		if ($this->current_theme == 'responsive') {
+			return '';
+		}
+
+		return $content;
+	}
+
+	public function hide_shortcode($shortcode)
+	{
+		return $this->current_theme == 'responsive' && $shortcode == 'categories';
 	}
 
 	protected function detect_current_theme()
@@ -99,11 +130,22 @@ class Ecwid_Theme_Manager
 				'name'     => 'PageLines',
 				'base_css' => '',
 				'js'       => true,
+			),
+			'responsive' => array(
+				'name'     => 'Responsive',
+				'callback' => true
 			)
 		);
 	}
 
 	protected function theme_needs_scrolling_adjustment() {
 		return in_array( $this->current_theme, array( '2014', 'pagelines' ) );
+	}
+
+	protected function apply_theme_responsive()
+	{
+		wp_enqueue_style( 'ecwid-open-sans-css' , 'http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic-ext,cyrillic,greek-ext,vietnamese,greek,latin-ext');
+		wp_enqueue_style( 'ecwid-theme-css' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive.css' ), array(), false, 'all' );
+		wp_enqueue_script( 'ecwid-theme-js', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ) );
 	}
 }
