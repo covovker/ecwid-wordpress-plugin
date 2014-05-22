@@ -855,16 +855,24 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 		if (isset($params['mode']) && !empty($params['mode'])) {
 			if ($params['mode'] == 'product') {
 				$plain_content = $catalog->get_product($params['id']);
-				$product = ecwid_get_product_url(ecwid_new_product_api()->get_product($params['id']));
-				$parsed = parse_url($product);
-				$plain_content .= '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "'. $parsed['fragment'] . '";</script>';
+				$url = ecwid_get_product_url(ecwid_new_product_api()->get_product($params['id']));
 			} elseif ($params['mode'] == 'category') {
 				$plain_content = $catalog->get_category($params['id']);
 				$ecwid_default_category_str = ',"defaultCategoryId=' . $params['id'] . '"';
+				$url = ecwid_get_category_url(ecwid_new_product_api()->get_category($params['id']));
 			}
 
 		} else {
 			$plain_content = $catalog->get_category(intval($ecwid_default_category_id));
+			if (empty($plain_content)) {
+				$plain_content = $catalog->get_category(0);
+			} else {
+				$url = ecwid_get_category_url(ecwid_new_product_api()->get_category($params['id']));
+			}
+		}
+		if ($url) {
+			$parsed = parse_url($url);
+			$plain_content .= '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "'. $parsed['fragment'] . '";</script>';
 		}
     } else {
         $plain_content = '<noscript>Your browser does not support JavaScript.<a href="' . $ecwid_mobile_catalog_link .'">HTML version of this store</a></noscript>';
