@@ -1,0 +1,928 @@
+diff --git a/ecwid-dev/ecwid-dev.php b/ecwid-dev/ecwid-dev.php
+index f4f280d..17f2f2e 100644
+--- a/ecwid-dev/ecwid-dev.php
++++ b/ecwid-dev/ecwid-dev.php
+@@ -43,6 +43,10 @@ function edev_show_translate_page()
+ {
+ 	$translations = edev_load_translations();
+ 
++	$dir = realpath(plugin_dir_path(__FILE__) . '../ecwid-shopping-cart');
++
++	$labels = get_labels_in_directory($dir, 'ecwid-shopping-cart');
++
+ 	require plugin_dir_path(__FILE__) . 'templates/translate.php';
+ }
+ 
+@@ -55,15 +59,16 @@ function edev_load_translations()
+ 	$result = explode("\n", shell_exec($cmd = "find $lang_dir -iregex '.*\\.mo'"));
+ 
+ 	$locales = array();
++	$translations = array();
+ 	foreach ($result as $filename) {
+ 		if (strlen(trim($filename)) == 0) continue;
+ 		$locale = substr($filename, strlen("$lang_dir/ecwid-shopping-cart-"), 5);
+ 		$locales[] = $locale;
++		$parser = new MOParser();
++		$translations = array_merge($translations, $parser->loadTranslationData($filename, $locale));
+ 	}
+ 
+-	$labels = get_labels_in_directory($dir, 'ecwid-shopping-cart');
+-
+-	die(var_dump($labels));
++	return $translations;
+ }
+ 
+ function get_labels_in_directory($directory, $domain)
+@@ -71,17 +76,23 @@ function get_labels_in_directory($directory, $domain)
+ 	$files = explode("\n", shell_exec('find ' . $directory . ' | grep ".php"'));
+ 
+ 	$labels = array();
+-	foreach ($files as $file) {
++	foreach ($files as $ind => $file) {
+ 		if (is_readable($file)) {
+-			$labels += get_translation_labels(file_get_contents($file));
++			$labels = array_merge($labels, get_translation_labels(file_get_contents($file)));
+ 		}
+ 	}
+ 
+-	die(var_dump($labels));
+ 	$result = array();
+ 	foreach ($labels as $label) {
+-		if ($label['domain'] == $domain) {
+-			$result[$label['label']] = $label['domain'];
++		if (in_array($label['domain'], array('"' . $domain . '"', "'" . $domain . "'"))) {
++			$l = $label['label'];
++			if ($l{0} == '"') {
++				$l = trim($l, '"');
++			} elseif ($l[0] == "'") {
++				$l = trim($l, "'");
++				$l = str_replace("\\'", "'", $l);
++			}
++			$result[$l] = trim($label['domain'], "'\"");
+ 		}
+ 	}
+ 
+@@ -124,29 +135,37 @@ function get_translation_labels($php_code)
+ 	$expect_ind = 0;
+ 	$results = array();
+ 	$result = array();
++
+ 	foreach ($tokens as $token) {
+ 		if (is_array($token) && $token[0] == 375) continue;
+ 
+ 		$current_expect = $expect[$expect_ind];
+ 
+-		$string_match = is_string($current_expect['token']) && $current_expect['token'] == $token;
++		$string_match = (is_string($current_expect['token']) && $current_expect['token'] == $token)
++		  || (is_array($current_expect['value']) && in_array($token[1], $current_expect['value']));
++
++
+ 		$type_match = is_int($current_expect['token']) && @$token[0] == $current_expect['token'];
++
+ 		if ($string_match) {
+ 			$expect_ind++;
+ 			$result['match'][] = $token;
+ 		} elseif ($type_match) {
+-			if ($expect[$expect_ind]['save_as']) {
+-				$result[$expect[$expect_ind]['save_as']] = $token[1];
++
++			$found = false;
++			if ($current_expect['save_as']) {
++				$result[$current_expect['save_as']] = $token[1];
+ 				$found = true;
+ 			}
+-			if (@$expect[$expect_ind]['value']) {
+-				foreach ($expect[$expect_ind]['value'] as $value) {
++			if (@$current_expect['value']) {
++				foreach ($current_expect['value'] as $value) {
+ 					if ($value == $token[1]) {
+ 						$found = true;
+ 						break;
+ 					}
+ 				}
+-				}
++			}
++
+ 			if ($found) {
+ 				$expect_ind++;
+ 				$result['match'][] = $token;
+@@ -154,6 +173,9 @@ function get_translation_labels($php_code)
+ 				$expect_ind = 0;
+ 				$result = array();
+ 			}
++		} elseif (!$string_match && !$type_match && $expect_ind > 0) {
++			$expect_ind = 0;
++			$result = array();
+ 		}
+ 
+ 		if ($expect_ind >= count($expect)) {
+diff --git a/ecwid-dev/js/admin.js b/ecwid-dev/js/admin.js
+index 40f1b38..f956011 100644
+--- a/ecwid-dev/js/admin.js
++++ b/ecwid-dev/js/admin.js
+@@ -1,7 +1,8 @@
+-if (location.href.indexOf("page=ecwid") == -1) return;
+ 
+ (function($) {
+ 
++	if (location.href.indexOf("page=ecwid") == -1) return;
++
+ edev_submit = function(submitted_params) {
+ 	var params = $.extend({
+ 		back_url: encodeURI(location.href),
+diff --git a/ecwid-shopping-cart/css/admin.3.8.css b/ecwid-shopping-cart/css/admin.3.8.css
+index 63972cb..88c29c2 100644
+--- a/ecwid-shopping-cart/css/admin.3.8.css
++++ b/ecwid-shopping-cart/css/admin.3.8.css
+@@ -1,9 +1,21 @@
+ @font-face {
+-	font-family: 'ecwid-logo';
+-	src: url('fonts/ecwid-logo.eot');
++	font-family: 'ecwid-icons';
++	src: url('fonts/font.eot');
+ }
+ @font-face {
+-	font-family: 'ecwid-logo';
++	font-family: 'ecwid-icons';
++	src: url(data:application/x-font-ttf;charset=utf-8;base64,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) format('truetype'),
++	url(data:application/font-woff;charset=utf-8;base64,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) format('woff');
++	font-weight: normal;
++	font-style: normal;
++}
++
++@font-face {
++	font-family: 'ecwid-icons';
++	src: url('fonts/ecwid-icons.eot');
++}
++@font-face {
++	font-family: 'ecwid-icons';
+ 	src: url(data:application/x-font-ttf;charset=utf-8;base64,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) format('truetype'),
+ 	url(data:application/font-woff;charset=utf-8;base64,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) format('woff');
+ 	font-weight: normal;
+@@ -11,8 +23,8 @@
+ }
+ 
+ #adminmenu #toplevel_page_ecwid div.wp-menu-image:before {
+-	font-family: 'ecwid-logo' !important;
+-	content: 'W';
++	font-family: 'ecwid-icons' !important;
++	content: 'E';
+ 	-webkit-font-smoothing: antialiased;
+ 	-moz-osx-font-smoothing: grayscale;
+ }
+@@ -35,14 +47,14 @@
+ }
+ 
+ #wpadminbar #wp-admin-bar-ecwid-main .ab-icon.ecwid-top-menu-item:before {
+-	content: 'W';
++	content: 'E';
+ 	width: auto;
+ 	margin-right: 0px;
+ }
+ 
+ @media screen and (max-width: 782px) {
+ 	#wpadminbar>#wp-toolbar>#wp-admin-bar-root-default .ab-icon.ecwid-top-menu-item {
+-		font: 400 32px/46px 'ecwid-logo' !important;
++		font: 400 32px/46px 'ecwid-icons' !important;
+ 		width: 46px;
+ 		padding: 0px 2px;
+ 		text-align: center;
+diff --git a/ecwid-shopping-cart/css/admin.css b/ecwid-shopping-cart/css/admin.css
+index 10b8cd0..e5b4ac1 100644
+--- a/ecwid-shopping-cart/css/admin.css
++++ b/ecwid-shopping-cart/css/admin.css
+@@ -61,4 +61,85 @@
+ }
+ .ecwid-badge .image {
+ 	text-align: center;
+-}
+\ No newline at end of file
++}
++
++div.ecwid-message {
++	padding: 27px 29px 20px 30px;
++}
++
++.ecwid-message a {
++	color: #0074A2;
++}
++
++.ecwid-message a:hover {
++	color: #2EA2CC;
++}
++
++.ecwid-message .ecwid-message-title {
++	font-size: 18px;
++	margin-bottom: 12px;
++	font-weight: bold;
++}
++
++.ecwid-message .ecwid-message-content {
++	line-height: 20px;
++}
++
++.ecwid-message .ecwid-message-buttons {
++	margin-top: 19px;
++	position: relative;
++	display: table;
++	width: 100%;
++}
++
++.ecwid-message .ecwid-message-buttons > div {
++	display: table-cell;
++	vertical-align: middle;
++}
++
++.ecwid-message .ecwid-message-buttons > div:not(:first-child) {
++	padding-left: 9px;
++}
++
++.ecwid-message .ecwid-message-buttons > div:last-child {
++	text-align: right;
++	width: 100%;
++}
++
++
++.ecwid-message .ecwid-message-hide:not(:hover) {
++	color: #bbb;
++}
++
++.ecwid-message .ecwid-message-hide {
++	font-size: 12px;
++	font-weight: 100;
++	cursor: pointer;
++	text-decoration: none;
++}
++
++.ecwid-message .ecwid-message-hide:before {
++	content: "X";
++	font-family: ecwid-icons;
++	font-size: 26px;
++	position: relative;
++	left: 1px;
++	top: 6px;
++}
++
++.ecwid-message.dev {
++	outline: 2px solid red;
++	width: 434px;
++}
++
++.ecwid-message.dev .ecwid-message-title {
++	letter-spacing: -0.4px;
++}
++
++.ecwid-message.dev .ecwid-message-content {
++	letter-spacing: -0.62px;
++}
++
++.ecwid-message.dev .ecwid-message-hide {
++  letter-spacing: -0.22px;
++}
+diff --git a/ecwid-shopping-cart/css/themes/responsive.css b/ecwid-shopping-cart/css/themes/responsive.css
+index 126e070..4104812 100644
+--- a/ecwid-shopping-cart/css/themes/responsive.css
++++ b/ecwid-shopping-cart/css/themes/responsive.css
+@@ -1,6 +1,6 @@
+ /* Page Adjustments */
+ body.ecwid-shopping-cart #wrapper {
+-	padding: 0px 47px 20px 47px;
++	padding: 0 47px 20px 47px;
+ }
+ 
+ body.ecwid-shopping-cart #content-full {
+@@ -25,7 +25,7 @@ body.ecwid-shopping-cart h1.entry-title {
+ 
+ .ecwid-shopping-cart-minicart {
+ 	position: absolute;
+-	right: 0px;
++	right: 0;
+ 	top: -49px;
+ }
+ 
+@@ -39,6 +39,10 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-minicart-mini-rollove
+ 	visibility: hidden;
+ }
+ 
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-minicart-mini-link {
++	text-decoration: none;
++}
++
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-minicart {
+ 	visibility: hidden;
+ 	margin-right: 5px;
+@@ -54,7 +58,7 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-minicar
+ }
+ 
+ .ecwid-shopping-cart-search .ecwid-SearchPanel-button {
+-	border: 0px none;
++	border: 0 none;
+ 	background: transparent;
+ 	line-height: normal;
+ 	vertical-align: top;
+@@ -81,13 +85,13 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-auth-m
+ }
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-auth {
+-	margin: 0px;
++	margin: 0;
+ }
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-ProductBrowser-auth-anonim,
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-ProductBrowser-auth-logged
+ {
+-	margin-right: 0px;
++	margin-right: 0;
+ }
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-auth a,
+@@ -100,57 +104,62 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-auth a
+ /* Product browser */
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart div.ecwid-productBrowser {
+-	padding: 0px;
++	padding: 0;
+ }
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart div.ecwid-productBrowser-head {
+-	font-size: 27px;
++	font-size: 26px;
++	margin-top: 2px;
+ }
+ 
+ body.ecwid-shopping-cart h1,
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-auth a,
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-head,
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser div.ecwid-productBrowser-productNameLink a,
+-html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-productBrowser-price
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-productBrowser-price,
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart div.ecwid-productBrowser-categoryPath a,
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser  .ecwid-results-topPanel div
+ {
+-	font-family: Open Sans;
++	font-family: Open Sans, tahoma, arial, sans-serif;
+ }
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-categoryPath a,
+-html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-categoryPath a:active,
+-html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-categoryPath-categoryLabel
+-{
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-categoryPath a:active {
+ 	text-decoration: none;
+ 	font-size: 14px;
+ }
+ 
+-html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-categoryPath {
+-	padding-top: 8px;
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-categoryPath-categoryLabel
++{
++	font-size: 13px;
+ }
+ 
+-html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser  .ecwid-results-topPanel {
+-	display: none;
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-categoryPath {
++	padding-top: 5px;
+ }
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-productBrowser-productsGrid-mainTable {
+ 	margin-top: 18px;
+ }
+ 
+-html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser div.ecwid-productBrowser-productNameLink {
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-productBrowser-productsGrid div.ecwid-productBrowser-productNameLink {
+ 	text-align: center;
+ }
+ 
+-html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser div.ecwid-productBrowser-productNameLink a {
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser div.ecwid-productBrowser-productNameLink a,
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser div.ecwid-productBrowser-productNameLink a:visited
++{
+ 	text-decoration: none;
+-	font-size: 19px;
++	font-size: 20px;
+ }
+ 
+-html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-productBrowser-CategoryPage div.ecwid-productBrowser-sku {
++html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-productBrowser-productsGrid div.ecwid-productBrowser-sku {
+ 	display: none;
+ }
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-productBrowser-price {
+-	margin-top: 0px;
++	margin-top: 0;
++	font-weight: 600;
+ }
+ 
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser td.ecwid-productBrowser-productsGrid-cellSpace {
+@@ -166,14 +175,14 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-fieldLabel,
+ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product-browser .ecwid-productBrowser-details-qtyLabel
+ {
+-	font-family: Open Sans;
++	font-family: Open Sans, tahoma, arial, sans-serif;
+ }
+ 
+ /* Mobile */
+ 
+-@media screen and (max-width: 600px) {
++@media screen and (max-width: 650px) {
+ 	body.ecwid-shopping-cart #wrapper {
+-		padding: 0px 27px 20px 27px;
++		padding: 0 27px 20px 27px;
+ 	}
+ 
+ 	body.ecwid-shopping-cart #content-full {
+@@ -184,7 +193,7 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product
+ 	}
+ 
+ 	html#ecwid_html body#ecwid_body.ecwid-shopping-cart div.ecwid-productBrowser	{
+-		padding: 0px 4px !important;
++		padding: 0 4px !important;
+ 	}
+ 
+ 	/* Search */
+@@ -198,7 +207,7 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product
+ 
+ 	/* Auth */
+ 	html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-auth-mini {
+-		top: -39px;
++		top: -15px;
+ 	}
+ 
+ 	/* Minicart */
+@@ -209,6 +218,11 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product
+ 		top: -204px;
+ 	}
+ 
++	html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-minicart,
++	html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-minicart-mini-rolloverContainer
++	{
++		display: none;
++	}
+ 
+ 	/* Product Browser */
+ 	.ecwid-shopping-cart-product-browser {
+@@ -216,7 +230,6 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product
+ 	}
+ 
+ 	html#ecwid_html body#ecwid_body.ecwid-shopping-cart div.ecwid-productBrowser-head {
+-		font-size: 26px;
+ 	}
+ 
+ 	html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-productBrowser-categoryPath {
+diff --git a/ecwid-shopping-cart/ecwid-shopping-cart.php b/ecwid-shopping-cart/ecwid-shopping-cart.php
+index 9b629a0..9642e38 100755
+--- a/ecwid-shopping-cart/ecwid-shopping-cart.php
++++ b/ecwid-shopping-cart/ecwid-shopping-cart.php
+@@ -38,6 +38,7 @@ if ( is_admin() ){
+   add_action('admin_enqueue_scripts', 'ecwid_register_admin_styles');
+   add_action('admin_enqueue_scripts', 'ecwid_register_settings_styles');
+   add_action('wp_ajax_ecwid_hide_vote_message', 'ecwid_hide_vote_message');
++  add_action('wp_ajax_ecwid_hide_message', 'ecwid_ajax_hide_message');
+   add_filter('plugins_loaded', 'ecwid_load_textdomain');
+   add_filter('plugin_action_links_ecwid-shopping-cart/ecwid-shopping-cart.php', 'ecwid_plugin_actions');
+   add_action('admin_head', 'ecwid_ie8_fonts_inclusion');
+@@ -73,6 +74,7 @@ add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
+ $ecwid_script_rendered = false; // controls single script.js on page
+ 
+ require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-theme-manager.php';
++require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-message-manager.php';
+ 
+ $version = get_bloginfo('version');
+ 
+@@ -509,6 +511,13 @@ function ecwid_meta_description() {
+ HTML;
+ }
+ 
++function ecwid_ajax_hide_message($params)
++{
++	if (Ecwid_Message_Manager::disable_message($_GET['message'])) {
++		wp_send_json(array('status' => 'success'));
++	}
++}
++
+ function ecwid_hide_vote_message()
+ {
+ 	update_option('ecwid_show_vote_message', false);
+@@ -956,9 +965,15 @@ EOT;
+ 		update_option('ecwid_store_page_id', $id);
+ 	}
+ 
++	Ecwid_Message_Manager::enable_message('on_activate');
++
+ }
+ 
+ function ecwid_show_admin_messages() {
++	if (is_admin()) {
++		Ecwid_Message_Manager::show_messages();
++	}
++
+ 	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID && isset($_GET['page']) && $_GET['page'] != 'ecwid') {
+ 
+ 		$page_url = ecwid_get_store_page_url();
+@@ -984,6 +999,7 @@ function ecwid_show_admin_messages() {
+ }
+ 
+ function ecwid_show_admin_message($message) {
++
+ 	$class = version_compare(get_bloginfo('version'), '3.0') < 0 ? "updated fade" : "update-nag";
+ 	echo sprintf('<div class="%s" style="margin-top: 5px">%s</div>', $class, $message);
+ }
+@@ -1003,6 +1019,7 @@ function ecwid_store_deactivate() {
+ 		}
+ 	}
+ 
++	Ecwid_Message_Manager::reset_hidden_messages();
+ }
+ 
+ function ecwid_abs_intval($value) {
+@@ -1100,6 +1117,9 @@ function ecwid_settings_api_init() {
+ 
+ 		case 'general':
+ 			register_setting('ecwid_options_page', 'ecwid_store_id','ecwid_abs_intval' );
++			if (intval($_POST['ecwid_store_id']) == 0) {
++				Ecwid_Message_Manager::reset_hidden_messages();
++			}
+ 			break;
+ 
+ 		case 'advanced':
+@@ -1108,6 +1128,7 @@ function ecwid_settings_api_init() {
+ 			break;
+ 
+ 	}
++
+ 	if (isset($_POST['ecwid_store_id'])) {
+ 		update_option('ecwid_is_api_enabled', 'off');
+ 		update_option('ecwid_api_check_time', 0);
+@@ -1195,7 +1216,7 @@ function ecwid_appearance_settings_do_page() {
+ 
+ 	require_once ECWID_PLUGIN_DIR . 'templates/appearance-settings.php';
+ }
+-  
++
+ function get_ecwid_store_id() {
+     static $store_id = null;
+     if (is_null($store_id)) {
+@@ -1692,10 +1713,12 @@ function ecwid_encode_json($data) {
+ 
+ function ecwid_sso() {
+     $key = get_option('ecwid_sso_secret_key');
+-    if (empty($key)) {
++    if (empty($key) || !ecwid_is_paid_account()) {
+         return "";
+     }
+ 
++	$return = '<script type="text/javascript">';
++
+     global $current_user;
+     get_currentuserinfo();
+ 
+@@ -1706,20 +1729,32 @@ function ecwid_sso() {
+             'profile' => array(
+             'email' => $current_user->user_email,
+             'billingPerson' => array(
+-                'name' => $current_user->display_name
+-            )
++                    'name' => $current_user->display_name
++                )
+             )
+         );
+-   $user_data = base64_encode(ecwid_encode_json($user_data));
+-    $time = time();
+-    $hmac = ecwid_hmacsha1("$user_data $time", $key);
+-    return "<script> var ecwid_sso_profile='$user_data $hmac $time' </script>";   
+-    }
+-    else {
+-        return "<script> var ecwid_sso_profile='' </script>";
++		$user_data = base64_encode(ecwid_encode_json($user_data));
++		$time = time();
++		$hmac = ecwid_hmacsha1("$user_data $time", $key);
++		$return .= "var ecwid_sso_profile='$user_data $hmac $time';";
++	} else {
++		$return .= "var ecwid_sso_profile = '';";
+     }
+ 
+- 
++	$signin = wp_login_url();
++	$signout = wp_logout_url();
++	$return .= <<<JS
++window.Ecwid.OnAPILoaded.add(function() {
++    window.Ecwid.setSignInUrls({
++        signInUrl: '$signin',
++        signOutUrl: '$signout'
++    });
++});
++JS;
++
++	$return .= '</script>';
++
++	return $return;
+ }
+ 
+ // from: http://www.php.net/manual/en/function.sha1.php#39492
+diff --git a/ecwid-shopping-cart/fonts/ecwid-logo.eot b/ecwid-shopping-cart/fonts/ecwid-logo.eot
+deleted file mode 100755
+index 5f10304..0000000
+Binary files a/ecwid-shopping-cart/fonts/ecwid-logo.eot and /dev/null differ
+diff --git a/ecwid-shopping-cart/js/admin.js b/ecwid-shopping-cart/js/admin.js
+index 81e731e..4bc1171 100644
+--- a/ecwid-shopping-cart/js/admin.js
++++ b/ecwid-shopping-cart/js/admin.js
+@@ -10,4 +10,20 @@ jQuery(document).ready(function() {
+ 			}
+ 		);
+ 	});
++
++	jQuery('a.ecwid-message-hide').click(function() {
++
++		var a = this;
++		jQuery(a).css('cursor', 'wait');
++		jQuery.getJSON(
++			'admin-ajax.php',
++			{
++				action: 'ecwid_hide_message',
++				message: a.name
++			},
++			function(data) {
++				jQuery(a).closest('.ecwid-message').fadeOut();
++			}
++		);
++	});
+ });
+diff --git a/ecwid-shopping-cart/js/themes/responsive.js b/ecwid-shopping-cart/js/themes/responsive.js
+index 1edee05..fda7715 100644
+--- a/ecwid-shopping-cart/js/themes/responsive.js
++++ b/ecwid-shopping-cart/js/themes/responsive.js
+@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
+ 		});
+ 
+ 		$('.ecwid-shopping-cart-minicart').css({
+-			'right': $('.ecwid-minicart-mini-rollover').width() - $('.ecwid-shopping-cart-minicart').width() + parseInt($('.ecwid-minicart-mini-rollover').css('padding-left')) + 2,
++			'right': $('.ecwid-minicart-mini-rollover').width() - $('.ecwid-shopping-cart-minicart').width() + parseInt($('.ecwid-minicart-mini-rollover').css('padding-left')) + 1,
+ 			'visibility': 'visible'
+ 		});
+ 
+@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
+ 		$('.ecwid-SearchPanel-button').text('');
+ 	  $('.ecwid-shopping-cart-search').show();
+ 		$('.ecwid-minicart-mini-rolloverContainer').css('visibility', 'hidden');
+-		$('.ecwid-shopping-cart-minicart').css('visibility', 'visible');
++		$('.ecwid-shopping-cart-minicart').css('visibility', 'hidden');
+ 	}
+ 
+ 	Ecwid.OnPageLoaded.add(function() {
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-de_DE.mo b/ecwid-shopping-cart/languages/ecwid-shopping-cart-de_DE.mo
+index a3ab0ed..be4d263 100644
+Binary files a/ecwid-shopping-cart/languages/ecwid-shopping-cart-de_DE.mo and b/ecwid-shopping-cart/languages/ecwid-shopping-cart-de_DE.mo differ
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-de_DE.po b/ecwid-shopping-cart/languages/ecwid-shopping-cart-de_DE.po
+index 14ad3cc..c84f783 100644
+--- a/ecwid-shopping-cart/languages/ecwid-shopping-cart-de_DE.po
++++ b/ecwid-shopping-cart/languages/ecwid-shopping-cart-de_DE.po
+@@ -82,12 +82,12 @@ msgid "Ecwid Shopping Cart - Appearance settings"
+ msgstr "Ecwid-Onlineshop ‒ Anzeigeneinstellungen"
+ msgid "Display search box above products"
+ msgstr "Suchfeld oberhalb der Artikel anzeigen"
+-msgid "Or you can add search box to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "Oder fügen Sie der Toolbar Ihrer Website mit den <a href=\"widgets.php\">vorhandenen WordPress-Widgets</a> ein Suchfeld hinzu."
++msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "Oder fügen Sie der Toolbar Ihrer Website mit den <a href=\"%s\">vorhandenen WordPress-Widgets</a> ein Suchfeld hinzu."
+ msgid "Display horizontal categories above products"
+ msgstr "horizontale Kategorien oberhalb der Artikel anzeigen"
+-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "Oder fügen Sie der Toolbar Ihrer Website mit den <a href=\"widgets.php\">vorhandenen WordPress-Widgets</a> vertikale Kategorien hinzu."
++msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "Oder fügen Sie der Toolbar Ihrer Website mit den <a href=\"%s\">vorhandenen WordPress-Widgets</a> vertikale Kategorien hinzu."
+ msgid "Enable minicart attached to horizontal categories"
+ msgstr "Miniwarenkorb Ihres Shops an horizontale Kategorien heften"
+ msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar."
+@@ -130,7 +130,7 @@ msgid "Create new Ecwid account"
+ msgstr "Neues Ecwid-Konto erstellen"
+ msgid "I already have Ecwid account, sign in"
+ msgstr "Ich habe bereits ein Ecwid-Konto, bitte einloggen"
+-msgid "You will be able to sign up through your exising Google, Facebook or PayPal profiles as well."
++msgid "You will be able to sign up through your existing Google, Facebook or PayPal profiles as well."
+ msgstr "Sie können sich auch über Ihre vorhandenen Google-, Facebook- oder PayPal-Konten anmelden."
+ msgid "Find your Store ID"
+ msgstr "Shop-ID suchen"
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-es_ES.mo b/ecwid-shopping-cart/languages/ecwid-shopping-cart-es_ES.mo
+index 13280e2..bd47890 100644
+Binary files a/ecwid-shopping-cart/languages/ecwid-shopping-cart-es_ES.mo and b/ecwid-shopping-cart/languages/ecwid-shopping-cart-es_ES.mo differ
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-es_ES.po b/ecwid-shopping-cart/languages/ecwid-shopping-cart-es_ES.po
+index 169d841..82ed415 100644
+--- a/ecwid-shopping-cart/languages/ecwid-shopping-cart-es_ES.po
++++ b/ecwid-shopping-cart/languages/ecwid-shopping-cart-es_ES.po
+@@ -82,12 +82,12 @@ msgid "Ecwid Shopping Cart - Appearance settings"
+ msgstr "Tarjeta de Compras Ecwid - Ajustes de apariencia"
+ msgid "Display search box above products"
+ msgstr "Mostrar caja de búsqueda de productos de arriba"
+-msgid "Or you can add search box to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "O puede añadir una caja de búsqueda a la barra de herramientas de su página web utilizando <a href=\"widgets.php\">WordPress native widgets</a>."
++msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "O puede añadir una caja de búsqueda a la barra de herramientas de su página web utilizando <a href=\"%s\">WordPress native widgets</a>."
+ msgid "Display horizontal categories above products"
+ msgstr "Mostrar categorías horizontales sobre los productos"
+-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "O puede añadir categorías verticales a la barra de herramientas de su página utilizando <a href=\"widgets.php\">WordPress native widgets</a>."
++msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "O puede añadir categorías verticales a la barra de herramientas de su página utilizando <a href=\"%s\">WordPress native widgets</a>."
+ msgid "Enable minicart attached to horizontal categories"
+ msgstr "Active minicarrito unido a las categorías horizontales "
+ msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar."
+@@ -130,7 +130,7 @@ msgid "Create new Ecwid account"
+ msgstr "Crear una nueva cuenta Ecwid"
+ msgid "I already have Ecwid account, sign in"
+ msgstr "Ya tengo una cuenta Ecwid, registrar"
+-msgid "You will be able to sign up through your exising Google, Facebook or PayPal profiles as well."
++msgid "You will be able to sign up through your existing Google, Facebook or PayPal profiles as well."
+ msgstr "Será además capaz de inscribirse a través de su perfil Google, Facebook o PayPal."
+ msgid "Find your Store ID"
+ msgstr "Encuentre la Identificación de su tienda"
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-fr_FR.mo b/ecwid-shopping-cart/languages/ecwid-shopping-cart-fr_FR.mo
+index a322260..fde3885 100644
+Binary files a/ecwid-shopping-cart/languages/ecwid-shopping-cart-fr_FR.mo and b/ecwid-shopping-cart/languages/ecwid-shopping-cart-fr_FR.mo differ
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-fr_FR.po b/ecwid-shopping-cart/languages/ecwid-shopping-cart-fr_FR.po
+index 6cc1e27..a6784b9 100644
+--- a/ecwid-shopping-cart/languages/ecwid-shopping-cart-fr_FR.po
++++ b/ecwid-shopping-cart/languages/ecwid-shopping-cart-fr_FR.po
+@@ -82,12 +82,12 @@ msgid "Ecwid Shopping Cart - Appearance settings"
+ msgstr "Panier Ecwid - Réglages d'apparence"
+ msgid "Display search box above products"
+ msgstr "Afficher la boîte de recherche au-dessus des produits"
+-msgid "Or you can add search box to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "Vous pouvez aussi ajouter une boîte de recherche à la barre d'outils de votre site via les <a href=\"widgets.php\">widgets natifs de WordPress</a>."
++msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "Vous pouvez aussi ajouter une boîte de recherche à la barre d'outils de votre site via les <a href=\"%s\">widgets natifs de WordPress</a>."
+ msgid "Display horizontal categories above products"
+ msgstr "Afficher les catégories horizontales au-dessus des produits"
+-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "Vous pouvez aussi ajouter des catégories verticales à la barre d'outils de votre site via les <a href=\"widgets.php\">widgets natifs de WordPress</a>."
++msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "Vous pouvez aussi ajouter des catégories verticales à la barre d'outils de votre site via les <a href=\"%s\">widgets natifs de WordPress</a>."
+ msgid "Enable minicart attached to horizontal categories"
+ msgstr "Activer le mini-panier attaché aux catégories horizontales"
+ msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar."
+@@ -130,7 +130,7 @@ msgid "Create new Ecwid account"
+ msgstr "Créer un nouveau compte Ecwid"
+ msgid "I already have Ecwid account, sign in"
+ msgstr "J'ai déjà un compte Ecwid, se connecter"
+-msgid "You will be able to sign up through your exising Google, Facebook or PayPal profiles as well."
++msgid "You will be able to sign up through your existing Google, Facebook or PayPal profiles as well."
+ msgstr "Vous pourrez aussi vous connecter avec vos comptes Google, Facebook ou PayPal existants."
+ msgid "Find your Store ID"
+ msgstr "Trouver votre Numéro de Boutique."
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-pt_BR.mo b/ecwid-shopping-cart/languages/ecwid-shopping-cart-pt_BR.mo
+index 10ae9e3..59f39cc 100644
+Binary files a/ecwid-shopping-cart/languages/ecwid-shopping-cart-pt_BR.mo and b/ecwid-shopping-cart/languages/ecwid-shopping-cart-pt_BR.mo differ
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-pt_BR.po b/ecwid-shopping-cart/languages/ecwid-shopping-cart-pt_BR.po
+index 06ab3d2..2fc91e8 100644
+--- a/ecwid-shopping-cart/languages/ecwid-shopping-cart-pt_BR.po
++++ b/ecwid-shopping-cart/languages/ecwid-shopping-cart-pt_BR.po
+@@ -90,12 +90,12 @@ msgid "Ecwid Shopping Cart - Appearance settings"
+ msgstr "Carrinho de compras Ecwid - Definições Aparência"
+ msgid "Display search box above products"
+ msgstr "Mostrar barra de pesquisa acima dos produtos"
+-msgid "Or you can add search box to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "Ou você pode adicionar uma barra de pesquisa no seu sítio usando <a href=\"widgets.php\">widgets nativos do WordPress</a>."
++msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "Ou você pode adicionar uma barra de pesquisa no seu sítio usando <a href=\"%s\">widgets nativos do WordPress</a>."
+ msgid "Display horizontal categories above products"
+ msgstr "Mostrar categorias horizontais acima dos produtos"
+-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "Ou você pode adicionar categorias verticais na barra de ferramentas do seu sítio através de <a href=\"widgets.php\">widgets nativos do WordPress</a>."
++msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "Ou você pode adicionar categorias verticais na barra de ferramentas do seu sítio através de <a href=\"%s\">widgets nativos do WordPress</a>."
+ msgid "Enable minicart attached to horizontal categories"
+ msgstr "Ativar minicart anexado às categorias horizontais"
+ msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar."
+@@ -138,7 +138,7 @@ msgid "Create new Ecwid account"
+ msgstr "Crie uma nova conta Ecwid"
+ msgid "I already have Ecwid account, sign in"
+ msgstr "Já tenho uma conta Ecwid, iniciar sessão"
+-msgid "You will be able to sign up through your exising Google, Facebook or PayPal profiles as well."
++msgid "You will be able to sign up through your existing Google, Facebook or PayPal profiles as well."
+ msgstr "Você conseguirá iniciar sessão atráves dos seus perfis existentes do Google, Facebook ou PayPal."
+ msgid "Find your Store ID"
+ msgstr "Obtenha a sua ID de loja"
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-ru_RU.mo b/ecwid-shopping-cart/languages/ecwid-shopping-cart-ru_RU.mo
+index 4b69d20..5fe19b3 100644
+Binary files a/ecwid-shopping-cart/languages/ecwid-shopping-cart-ru_RU.mo and b/ecwid-shopping-cart/languages/ecwid-shopping-cart-ru_RU.mo differ
+diff --git a/ecwid-shopping-cart/languages/ecwid-shopping-cart-ru_RU.po b/ecwid-shopping-cart/languages/ecwid-shopping-cart-ru_RU.po
+index a5691ab..f2b5188 100644
+--- a/ecwid-shopping-cart/languages/ecwid-shopping-cart-ru_RU.po
++++ b/ecwid-shopping-cart/languages/ecwid-shopping-cart-ru_RU.po
+@@ -72,6 +72,9 @@ msgstr "Дополнительные"
+ msgid "Setup"
+ msgstr "Настройки"
+ 
++msgid "Hidden category"
++msgstr "Скрытая категория"
++
+ msgid "Your store's minicart"
+ msgstr "Корзина вашего магазина"
+ 
+@@ -153,14 +156,14 @@ msgstr "Магазин Ecwid - Настройки внешнего вида"
+ msgid "Display search box above products"
+ msgstr "Показывать форму поиска над списком продуктов"
+ 
+-msgid "Or you can add search box to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "Или вы можете добавить форму поиска на ваш сайт с помощью <a href=\"widgets.php\">виджетов WordPress</a>."
++msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "Или вы можете добавить форму поиска на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>."
+ 
+ msgid "Display horizontal categories above products"
+ msgstr "Показывать горизонтальное меню категорий над списком продуктов"
+ 
+-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
+-msgstr "Или вы можете добавить вертикальное меню категорий на ваш сайт с помощью <a href=\"widgets.php\">виджетов WordPress</a>."
++msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
++msgstr "Или вы можете добавить вертикальное меню категорий на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>."
+ 
+ msgid "Enable minicart attached to horizontal categories"
+ msgstr "Показывать корзину у горизонтального меню категорий"
+@@ -222,7 +225,7 @@ msgstr "Создать новый аккаунт Ecwid"
+ msgid "I already have Ecwid account, sign in"
+ msgstr "У меня уже есть аккаунт Ecwid, войти"
+ 
+-msgid "You will be able to sign up through your exising Google, Facebook or PayPal profiles as well."
++msgid "You will be able to sign up through your existing Google, Facebook or PayPal profiles as well."
+ msgstr "Также вы сможете зарегистрироваться с помощью вашего существующего аккаунта Google, Facebook или PayPal."
+ 
+ msgid "Find your Store ID"
+@@ -285,3 +288,41 @@ msgstr "Апгрейд"
+ msgid "If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>."
+ msgstr "Если вы хотите подключить другой магазин Ecwid, вы можете <a %s>отключить этот и ввести другой ID Магазина</a>."
+ 
++msgid "Greetings! Your Ecwid store is now active."
++msgstr "Добро пожаловать в Эквид!"
++
++msgid "Take a few simple steps to complete store setup"
++msgstr "Магазин почти готов - осталось несколько простых шагов"
++
++msgid "Set up Ecwid Store"
++msgstr "Настроить магазин"
++
++msgid "Never show this message again"
++msgstr "Больше не показывать это сообщение"
++
++msgid "Good job! Your store is set up and you're ready to sell."
++msgstr "Отлично! Магазин установлен и готов к продажам."
++
++msgid "Now you can fine-tune your store's appearance"
++msgstr "Теперь вы можете настроить внешний вид витрины"
++
++msgid "Visit Storefront"
++msgstr "Открыть витрину"
++
++msgid "Configure Appearance"
++msgstr "Настроить внешний вид"
++
++msgid "Your store is almost ready!"
++msgstr "Магазин почти готов!"
++
++msgid "Connect your Ecwid account with this site to complete setup and start selling"
++msgstr "Привяжите Эквид-аккаунт к сайту, чтобы завершить установку и начать продавать"
++
++msgid "Connect Your Ecwid Store"
++msgstr "Привязать Эквид-аккаунт"
++
++msgid "To add extra functions to your store, drag and drop Ecwid store elements on your site. When you're done, you can get back to modifying your settings."
++msgstr "Добавьте дополнительные элементы магазина, перетащив виджеты Эквида в нужное место сайта. После установки виджетов можете вернуться к настройкам магазина."
++
++msgid "Back to Store Settings"
++msgstr "Вернуться к настройкам"
+\ No newline at end of file
+diff --git a/ecwid-shopping-cart/lib/class-ecwid-theme-manager.php b/ecwid-shopping-cart/lib/class-ecwid-theme-manager.php
+index f91c348..9618ce1 100644
+--- a/ecwid-shopping-cart/lib/class-ecwid-theme-manager.php
++++ b/ecwid-shopping-cart/lib/class-ecwid-theme-manager.php
+@@ -145,6 +145,7 @@ class Ecwid_Theme_Manager
+ 	protected function apply_theme_responsive()
+ 	{
+ 		wp_enqueue_style( 'ecwid-open-sans-css' , 'http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic-ext,cyrillic,greek-ext,vietnamese,greek,latin-ext');
++		wp_enqueue_style( 'dashicons' );
+ 		wp_enqueue_style( 'ecwid-theme-css' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive.css' ), array(), false, 'all' );
+ 		wp_enqueue_script( 'ecwid-theme-js', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ), array( 'jquery' ) );
+ 	}
+diff --git a/ecwid-shopping-cart/templates/appearance-settings.php b/ecwid-shopping-cart/templates/appearance-settings.php
+index 3e343ec..eab42f3 100644
+--- a/ecwid-shopping-cart/templates/appearance-settings.php
++++ b/ecwid-shopping-cart/templates/appearance-settings.php
+@@ -36,7 +36,7 @@ function ecwid_embed_svg($name) {
+ 				</label>
+ 			</div>
+ 			<div class="note">
+-				<?php _e('Or you can add search box to your website\'s toolbar using <a href="widgets.php">WordPress native widgets</a>.', 'ecwid-shopping-cart'); ?>
++				<?php echo sprintf(__('Or you can add search box to your website\'s toolbar using <a href="%s">WordPress native widgets</a>.', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
+ 			</div>
+ 		</div>
+ 
+@@ -60,7 +60,7 @@ function ecwid_embed_svg($name) {
+ 				</label>
+ 			</div>
+ 			<div class="note">
+-				<?php _e('Or you can add vertical categories to your website\'s toolbar using <a href="widgets.php">WordPress native widgets</a>.', 'ecwid-shopping-cart'); ?>
++				<?php echo sprintf(__('Or you can add vertical categories to your website\'s toolbar using <a href="%s">WordPress native widgets</a>.', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
+ 			</div>
+ 		</div>
+ 

@@ -36,7 +36,7 @@ function ecwid_embed_svg($name) {
 				</label>
 			</div>
 			<div class="note">
-				<?php _e('Or you can add search box to your website\'s toolbar using <a href="widgets.php">WordPress native widgets</a>.', 'ecwid-shopping-cart'); ?>
+				<?php echo sprintf(__('Or you can add search box to your website\'s toolbar using <a href="%s">WordPress native widgets</a>.', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
 			</div>
 		</div>
 
@@ -60,7 +60,7 @@ function ecwid_embed_svg($name) {
 				</label>
 			</div>
 			<div class="note">
-				<?php _e('Or you can add vertical categories to your website\'s toolbar using <a href="widgets.php">WordPress native widgets</a>.', 'ecwid-shopping-cart'); ?>
+				<?php echo sprintf(__('Or you can add vertical categories to your website\'s toolbar using <a href="%s">WordPress native widgets</a>.', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
 			</div>
 		</div>
 

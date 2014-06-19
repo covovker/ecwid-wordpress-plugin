@@ -72,6 +72,9 @@ msgstr "Дополнительные"
 msgid "Setup"
 msgstr "Настройки"
 
+msgid "Hidden category"
+msgstr "Скрытая категория"
+
 msgid "Your store's minicart"
 msgstr "Корзина вашего магазина"
 
@@ -153,14 +156,14 @@ msgstr "Магазин Ecwid - Настройки внешнего вида"
 msgid "Display search box above products"
 msgstr "Показывать форму поиска над списком продуктов"
 
-msgid "Or you can add search box to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
-msgstr "Или вы можете добавить форму поиска на ваш сайт с помощью <a href=\"widgets.php\">виджетов WordPress</a>."
+msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
+msgstr "Или вы можете добавить форму поиска на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>."
 
 msgid "Display horizontal categories above products"
 msgstr "Показывать горизонтальное меню категорий над списком продуктов"
 
-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"widgets.php\">WordPress native widgets</a>."
-msgstr "Или вы можете добавить вертикальное меню категорий на ваш сайт с помощью <a href=\"widgets.php\">виджетов WordPress</a>."
+msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
+msgstr "Или вы можете добавить вертикальное меню категорий на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>."
 
 msgid "Enable minicart attached to horizontal categories"
 msgstr "Показывать корзину у горизонтального меню категорий"
@@ -222,7 +225,7 @@ msgstr "Создать новый аккаунт Ecwid"
 msgid "I already have Ecwid account, sign in"
 msgstr "У меня уже есть аккаунт Ecwid, войти"
 
-msgid "You will be able to sign up through your exising Google, Facebook or PayPal profiles as well."
+msgid "You will be able to sign up through your existing Google, Facebook or PayPal profiles as well."
 msgstr "Также вы сможете зарегистрироваться с помощью вашего существующего аккаунта Google, Facebook или PayPal."
 
 msgid "Find your Store ID"
@@ -285,3 +288,41 @@ msgstr "Апгрейд"
 msgid "If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>."
 msgstr "Если вы хотите подключить другой магазин Ecwid, вы можете <a %s>отключить этот и ввести другой ID Магазина</a>."
 
+msgid "Greetings! Your Ecwid store is now active."
+msgstr "Добро пожаловать в Эквид!"
+
+msgid "Take a few simple steps to complete store setup"
+msgstr "Магазин почти готов - осталось несколько простых шагов"
+
+msgid "Set up Ecwid Store"
+msgstr "Настроить магазин"
+
+msgid "Never show this message again"
+msgstr "Больше не показывать это сообщение"
+
+msgid "Good job! Your store is set up and you're ready to sell."
+msgstr "Отлично! Магазин установлен и готов к продажам."
+
+msgid "Now you can fine-tune your store's appearance"
+msgstr "Теперь вы можете настроить внешний вид витрины"
+
+msgid "Visit Storefront"
+msgstr "Открыть витрину"
+
+msgid "Configure Appearance"
+msgstr "Настроить внешний вид"
+
+msgid "Your store is almost ready!"
+msgstr "Магазин почти готов!"
+
+msgid "Connect your Ecwid account with this site to complete setup and start selling"
+msgstr "Привяжите Эквид-аккаунт к сайту, чтобы завершить установку и начать продавать"
+
+msgid "Connect Your Ecwid Store"
+msgstr "Привязать Эквид-аккаунт"
+
+msgid "To add extra functions to your store, drag and drop Ecwid store elements on your site. When you're done, you can get back to modifying your settings."
+msgstr "Добавьте дополнительные элементы магазина, перетащив виджеты Эквида в нужное место сайта. После установки виджетов можете вернуться к настройкам магазина."
+
+msgid "Back to Store Settings"
+msgstr "Вернуться к настройкам"
