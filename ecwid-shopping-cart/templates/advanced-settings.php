@@ -89,7 +89,7 @@
 
 			<select name="ecwid_enable_advanced_theme_layout">
 				<option value="Y"<?php if (get_option('ecwid_enable_advanced_theme_layout') == 'Y'): ?> selected="selected"<?php endif; ?>><?php _e('Yes'); ?></option>
-				<option value="N"<?php if (get_option('ecwid_enable_advanced_theme_layout') == 'N'): ?> selected="selected"<?php endif; ?>><?php _e('No'); ?></option>
+				<option value="N"<?php if (get_option('ecwid_enable_advanced_theme_layout') != 'Y'): ?> selected="selected"<?php endif; ?>><?php _e('No'); ?></option>
 			</select>
 
 			<div class="note">
