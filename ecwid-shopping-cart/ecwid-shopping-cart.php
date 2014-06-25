@@ -52,6 +52,7 @@ if ( is_admin() ){
   add_shortcode('ecwid_product', 'ecwid_product_shortcode');
   add_action('init', 'ecwid_backward_compatibility');
   add_action('send_headers', 'ecwid_503_on_store_closed');
+  add_action('template_redirect', 'ecwid_seo_compatibility_template_redirect');
   add_action('template_redirect', 'ecwid_apply_theme_adjustments');
   add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
   add_action('wp_enqueue_scripts', 'ecwid_add_frontend_styles');
@@ -308,6 +309,14 @@ function ecwid_seo_ultimate_compatibility()
 	}
 }
 
+function ecwid_seo_compatibility_template_redirect()
+{
+	global $wpseo_front;
+
+	// Newer versions of Wordpress SEO assign their rewrite on this stage
+	remove_action( 'template_redirect', array( $wpseo_front, 'force_rewrite_output_buffer' ), 99999 );
+}
+
 function ecwid_seo_compatibility_init($title)
 {
     if (!array_key_exists('_escaped_fragment_', $_GET) || !ecwid_page_has_productbrowser()) {
@@ -322,7 +331,7 @@ function ecwid_seo_compatibility_init($title)
 	// Canonical
     remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20);
 	// Title
-	remove_action( 'get_header', array( $wpseo_front, 'force_rewrite_output_buffer' ) );
+	remove_action( 'get_header', array( $wpseo_front, 'force_rewrite_output_buffer' ) ); // Older versions of plugin
 	remove_action( 'wp_footer', array( $wpseo_front, 'flush_cache'));
 	// Description
 	remove_action( 'wpseo_head', array( $wpseo_front, 'metadesc' ), 10 );
