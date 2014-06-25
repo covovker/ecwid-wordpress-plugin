@@ -784,6 +784,8 @@ function ecwid_product_shortcode($shortcode_attributes) {
 
 	$result .= '<script type="text/javascript">xSingleProduct()</script>';
 
+	update_option('ecwid_single_product_used', time());
+
 	return ecwid_wrap_shortcode_content($result, 'product');
 }
 
@@ -1666,7 +1668,8 @@ function ecwid_gather_stats()
 		'sso_enabled',
 		'default_category',
 		'google_xml_sitemaps_used',
-		'ecwid_product_advisor_used'
+		'ecwid_product_advisor_used',
+		'ecwid_single_product_used'
 	);
 
 	$usage_stats = array();
@@ -1683,6 +1686,7 @@ function ecwid_gather_stats()
 	$usage_stats['default_category'] = (bool) get_option('ecwid_default_category_id');
 	$usage_stats['google_xml_sitemaps_used'] = (bool) is_plugin_active('google-sitemap-generator/sitemap.php');
 	$usage_stats['ecwid_product_advisor_used'] = (bool) is_plugin_active('ecwid-useful-tools/ecwid-product-advisor.php');
+	$usage_stats['ecwid_single_product_used'] = (bool) (get_option('ecwid_single_product_used') + 60*60*24*14 > time());
 
 	$stats['usage'] = '';
 
