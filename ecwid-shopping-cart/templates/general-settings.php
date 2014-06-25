@@ -1,7 +1,7 @@
 <div class="wrap">
 
 	<form method="POST" action="options.php" class="pure-form ecwid-settings general-settings" name="settings">
-		<h2><?php _e('Ecwid Shopping Cart - General settings', 'ecwid-shopping-cart'); ?></h2>
+		<h2><?php _e('Ecwid Shopping Cart — General settings', 'ecwid-shopping-cart'); ?></h2>
 		<?php settings_fields('ecwid_options_page'); ?>
 		<fieldset>
 
@@ -16,12 +16,12 @@
 					<?php if (array_key_exists('settings-updated', $_GET)): ?>
 
 					<div class="main-message"><?php _e('Congratulations!', 'ecwid-shopping-cart'); ?></div>
-					<div class="secondary-message"?><?php _e('Your Ecwid store is now connected to your WordPress website.', 'ecwid-shopping-cart'); ?></div>
+					<div class="secondary-message"?><?php _e('Your Ecwid store is now connected to your WordPress website', 'ecwid-shopping-cart'); ?></div>
 
 					<?php else: ?>
 
 					<div class="main-message"><?php _e('Greetings!', 'ecwid-shopping-cart'); ?></div>
-					<div class="secondary-message"?><?php _e('Your Ecwid store is connected to your WordPress website.', 'ecwid-shopping-cart'); ?></div>
+					<div class="secondary-message"?><?php _e('Your Ecwid store is connected to your WordPress website', 'ecwid-shopping-cart'); ?></div>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -90,7 +90,7 @@
 			</div>
 
 			<hr />
-			<p><?php _e('Questions? Visit <a href="http://help.ecwid.com/?source=wporg">Ecwid support center</a>.', 'ecwid-shopping-cart'); ?></p>
+			<p><?php _e('Questions? Visit <a href="http://help.ecwid.com/?source=wporg">Ecwid support center</a>', 'ecwid-shopping-cart'); ?></p>
 		</fieldset>
 	</form>
 </div>

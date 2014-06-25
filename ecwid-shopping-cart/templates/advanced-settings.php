@@ -1,7 +1,7 @@
 <div class="wrap">
 <form class="pure-form pure-form-aligned ecwid-settings advanced-settings" method="POST" action="options.php">
 
-	<h2><?php _e('Ecwid Shopping Cart - Advanced settings', 'ecwid-shopping-cart'); ?></h2>
+	<h2><?php _e('Ecwid Shopping Cart — Advanced settings', 'ecwid-shopping-cart'); ?></h2>
 
 	<?php settings_fields('ecwid_options_page'); ?>
 	<input type="hidden" name="settings_section" value="advanced" />
@@ -78,6 +78,25 @@
 				<?php _e('In order to enable this feature, opt to use a secret key. You will find this key in your Ecwid control panel, at "System Settings > API > Single Sign-On API" page. This feature is available for <a href="http://www.ecwid.com/compare-plans.html" target="_blank">paid users</a> only.', 'ecwid-shopping-cart'); ?>
 			</div>
 		</div>
+
+		<?php if (Ecwid_Theme_Manager::get_instance()->has_advanced_layout()): ?>
+		<hr />
+
+		<div class="pure-control-group last">
+			<label for="ecwid_enable_advanced_theme_layout">
+				<?php _e('Improve layout for your theme', 'ecwid-shopping-cart'); ?>
+			</label>
+
+			<select name="ecwid_enable_advanced_theme_layout">
+				<option value="Y"<?php if (get_option('ecwid_enable_advanced_theme_layout') == 'Y'): ?> selected="selected"<?php endif; ?>><?php _e('Yes'); ?></option>
+				<option value="N"<?php if (get_option('ecwid_enable_advanced_theme_layout') == 'N'): ?> selected="selected"<?php endif; ?>><?php _e('No'); ?></option>
+			</select>
+
+			<div class="note">
+				<?php _e('Ecwid Shopping Cart plugin supports and advanced layout scheme for your "%s" theme. It can be enabled using this option.', 'ecwid-shopping-cart'); ?>
+			</div>
+		</div>
+		<?php endif; ?>
 
 	</fieldset>
 

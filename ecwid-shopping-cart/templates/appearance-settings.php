@@ -9,7 +9,7 @@ function ecwid_embed_svg($name) {
 <div class="wrap">
 <form class="pure-form pure-form-aligned ecwid-settings appearance-settings" method="POST" action="options.php">
 
-	<h2><?php _e('Ecwid Shopping Cart - Appearance settings', 'ecwid-shopping-cart'); ?></h2>
+	<h2><?php _e('Ecwid Shopping Cart — Appearance settings', 'ecwid-shopping-cart'); ?></h2>
 
 	<?php settings_fields('ecwid_options_page'); ?>
 	<input type="hidden" name="settings_section" value="appearance" />
@@ -36,7 +36,7 @@ function ecwid_embed_svg($name) {
 				</label>
 			</div>
 			<div class="note">
-				<?php echo sprintf(__('Or you can add search box to your website\'s toolbar using <a href="%s">WordPress native widgets</a>.', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
+				<?php echo sprintf(__('Or you can add search box to your website\'s toolbar using <a href="%s">WordPress native widgets</a>', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
 			</div>
 		</div>
 
@@ -60,7 +60,7 @@ function ecwid_embed_svg($name) {
 				</label>
 			</div>
 			<div class="note">
-				<?php echo sprintf(__('Or you can add vertical categories to your website\'s toolbar using <a href="%s">WordPress native widgets</a>.', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
+				<?php echo sprintf(__('Or you can add vertical categories to your website\'s toolbar using <a href="%s">WordPress native widgets</a>', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
 			</div>
 		</div>
 
@@ -85,7 +85,7 @@ function ecwid_embed_svg($name) {
 				</label>
 			</div>
 			<div class="note">
-				<?php _e("You should disable this option, if you added minicart to your website's&nbsp;sidebar.", 'ecwid-shopping-cart'); ?>
+				<?php _e("You should disable this option, if you added minicart to your website's&nbsp;sidebar", 'ecwid-shopping-cart'); ?>
 			</div>
 		</div>
 
