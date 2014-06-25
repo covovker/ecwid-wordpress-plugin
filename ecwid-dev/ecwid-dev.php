@@ -43,6 +43,10 @@ function edev_show_translate_page()
 {
 	$translations = edev_load_translations();
 
+	$dir = realpath(plugin_dir_path(__FILE__) . '../ecwid-shopping-cart');
+
+	$labels = get_labels_in_directory($dir, 'ecwid-shopping-cart');
+
 	require plugin_dir_path(__FILE__) . 'templates/translate.php';
 }
 
@@ -55,15 +59,16 @@ function edev_load_translations()
 	$result = explode("\n", shell_exec($cmd = "find $lang_dir -iregex '.*\\.mo'"));
 
 	$locales = array();
+	$translations = array();
 	foreach ($result as $filename) {
 		if (strlen(trim($filename)) == 0) continue;
 		$locale = substr($filename, strlen("$lang_dir/ecwid-shopping-cart-"), 5);
 		$locales[] = $locale;
+		$parser = new MOParser();
+		$translations = array_merge($translations, $parser->loadTranslationData($filename, $locale));
 	}
 
-	$labels = get_labels_in_directory($dir, 'ecwid-shopping-cart');
-
-	die(var_dump($labels));
+	return $translations;
 }
 
 function get_labels_in_directory($directory, $domain)
@@ -71,17 +76,23 @@ function get_labels_in_directory($directory, $domain)
 	$files = explode("\n", shell_exec('find ' . $directory . ' | grep ".php"'));
 
 	$labels = array();
-	foreach ($files as $file) {
+	foreach ($files as $ind => $file) {
 		if (is_readable($file)) {
-			$labels += get_translation_labels(file_get_contents($file));
+			$labels = array_merge($labels, get_translation_labels(file_get_contents($file)));
 		}
 	}
 
-	die(var_dump($labels));
 	$result = array();
 	foreach ($labels as $label) {
-		if ($label['domain'] == $domain) {
-			$result[$label['label']] = $label['domain'];
+		if (in_array($label['domain'], array('"' . $domain . '"', "'" . $domain . "'"))) {
+			$l = $label['label'];
+			if ($l{0} == '"') {
+				$l = trim($l, '"');
+			} elseif ($l[0] == "'") {
+				$l = trim($l, "'");
+				$l = str_replace("\\'", "'", $l);
+			}
+			$result[$l] = trim($label['domain'], "'\"");
 		}
 	}
 
@@ -124,29 +135,37 @@ function get_translation_labels($php_code)
 	$expect_ind = 0;
 	$results = array();
 	$result = array();
+
 	foreach ($tokens as $token) {
 		if (is_array($token) && $token[0] == 375) continue;
 
 		$current_expect = $expect[$expect_ind];
 
-		$string_match = is_string($current_expect['token']) && $current_expect['token'] == $token;
+		$string_match = (is_string($current_expect['token']) && $current_expect['token'] == $token)
+		  || (is_array($current_expect['value']) && in_array($token[1], $current_expect['value']));
+
+
 		$type_match = is_int($current_expect['token']) && @$token[0] == $current_expect['token'];
+
 		if ($string_match) {
 			$expect_ind++;
 			$result['match'][] = $token;
 		} elseif ($type_match) {
-			if ($expect[$expect_ind]['save_as']) {
-				$result[$expect[$expect_ind]['save_as']] = $token[1];
+
+			$found = false;
+			if ($current_expect['save_as']) {
+				$result[$current_expect['save_as']] = $token[1];
 				$found = true;
 			}
-			if (@$expect[$expect_ind]['value']) {
-				foreach ($expect[$expect_ind]['value'] as $value) {
+			if (@$current_expect['value']) {
+				foreach ($current_expect['value'] as $value) {
 					if ($value == $token[1]) {
 						$found = true;
 						break;
 					}
 				}
-				}
+			}
+
 			if ($found) {
 				$expect_ind++;
 				$result['match'][] = $token;
@@ -154,6 +173,9 @@ function get_translation_labels($php_code)
 				$expect_ind = 0;
 				$result = array();
 			}
+		} elseif (!$string_match && !$type_match && $expect_ind > 0) {
+			$expect_ind = 0;
+			$result = array();
 		}
 
 		if ($expect_ind >= count($expect)) {

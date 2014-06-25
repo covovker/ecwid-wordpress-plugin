@@ -1,6 +1,7 @@
-if (location.href.indexOf("page=ecwid") == -1) return;
 
 (function($) {
+
+	if (location.href.indexOf("page=ecwid") == -1) return;
 
 edev_submit = function(submitted_params) {
 	var params = $.extend({
