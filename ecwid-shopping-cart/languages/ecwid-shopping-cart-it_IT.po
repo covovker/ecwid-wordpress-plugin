@@ -75,14 +75,14 @@ msgstr "Carrello Ecwid Shopping (Mini)"
 msgid "Ecwid Shopping Bag (Normal)"
 msgstr "Carrello Ecwid Shopping Bag (Normale)"
 
-msgid "Ecwid Shopping Cart - Advanced settings"
-msgstr "Ecwid Shopping Cart - Impostazioni Avanzate"
+msgid "Ecwid Shopping Cart — Advanced settings"
+msgstr "Ecwid Shopping Cart — Impostazioni Avanzate"
 
-msgid "Ecwid Shopping Cart - Appearance settings"
-msgstr "Ecwid Shopping Cart - Impostazioni di visualizzazione"
+msgid "Ecwid Shopping Cart — Appearance settings"
+msgstr "Ecwid Shopping Cart — Impostazioni di visualizzazione"
 
-msgid "Ecwid Shopping Cart - General settings"
-msgstr "Ecwid Shopping Cart - Impostazioni Generali"
+msgid "Ecwid Shopping Cart — General settings"
+msgstr "Ecwid Shopping Cart — Impostazioni Generali"
 
 msgid "Ecwid Store"
 msgstr "Negozio Ecwid"
@@ -162,17 +162,17 @@ msgstr "Numero di categorie per riga"
 msgid "Number of products per page"
 msgstr "Numero di prodotti per pagina"
 
-msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
-msgstr "Puoi anche aggiungere alla barra degli strumenti la casella di ricerca del tuo sito web utilizzando i <a href=\"%s\">widgets nativi di WordPress</a>."
+msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
+msgstr "Puoi anche aggiungere alla barra degli strumenti la casella di ricerca del tuo sito web utilizzando i <a href=\"%s\">widgets nativi di WordPress</a>"
 
-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
-msgstr "Puoi anche aggiungere alla barra degli strumenti le categorie verticali utilizzando i <a href=\"%s\">widgets nativi di WordPress</a>."
+msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
+msgstr "Puoi anche aggiungere alla barra degli strumenti le categorie verticali utilizzando i <a href=\"%s\">widgets nativi di WordPress</a>"
 
 msgid "Paid"
 msgstr "Pagante"
 
-msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>."
-msgstr "Domande? Visita il <a href=\"http://help.ecwid.com/?source=wporg\">Centro di Supporto Ecwid</a>."
+msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>"
+msgstr "Domande? Visita il <a href=\"http://help.ecwid.com/?source=wporg\">Centro di Supporto Ecwid</a>"
 
 msgid "Register at Ecwid"
 msgstr "Registrati a Ecwid"
@@ -204,8 +204,8 @@ msgstr "Tabella"
 msgid "Table view"
 msgstr "Visualizza come tabella"
 
-msgid "Thank you for choosing Ecwid to build your online store."
-msgstr "Grazie per aver scelto Ecwid per costruire il tuo negozio online."
+msgid "Thank you for choosing Ecwid to build your online store"
+msgstr "Grazie per aver scelto Ecwid per costruire il tuo negozio online"
 
 msgid "Thank you for supporting Ecwid!"
 msgstr "Grazie per il supporto Ecwid!"
@@ -228,17 +228,17 @@ msgstr "Menu verticale categorie"
 msgid "Visit storefront"
 msgstr "Visita la vetrina del negozio"
 
-msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar."
-msgstr "È necessario disattivare questa opzione, se hai aggiunto il carrello al tuo sito web&nbsp;sidebar."
+msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar"
+msgstr "È necessario disattivare questa opzione, se hai aggiunto il carrello al tuo sito web&nbsp;sidebar"
 
 msgid "You will be able to sign up through your existing Google, Facebook or PayPal profiles as well."
 msgstr "Sarai in grado di iscriverti tramite il tuo accont esistente di Google, Facebook e PayPal."
 
-msgid "Your Ecwid store is connected to your WordPress website."
-msgstr "Il tuo Negozio Ecwid è ora connesso al tuo sito web WordPress."
+msgid "Your Ecwid store is connected to your WordPress website"
+msgstr "Il tuo Negozio Ecwid è ora connesso al tuo sito web WordPress"
 
-msgid "Your Ecwid store is now connected to your WordPress website."
-msgstr "Il tuo Negozio Ecwid è ora connesso al tuo sito web WordPress."
+msgid "Your Ecwid store is now connected to your WordPress website"
+msgstr "Il tuo Negozio Ecwid è ora connesso al tuo sito web WordPress"
 
 msgid "Your store's minicart"
 msgstr "Carrello del tuo negozio"

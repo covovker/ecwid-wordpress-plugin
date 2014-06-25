@@ -120,8 +120,8 @@ msgstr "Беспланный конструктов интернет-магаз�
 msgid "Price"
 msgstr "Цена"
 
-msgid "Ecwid Shopping Cart - Advanced settings"
-msgstr "Магазин Ecwid - Дополнительные настройки"
+msgid "Ecwid Shopping Cart — Advanced settings"
+msgstr "Магазин Ecwid — Дополнительные настройки"
 
 msgid "Category shown by default"
 msgstr "Категория, показываемая по умолчанию"
@@ -150,26 +150,26 @@ msgstr "Чтобы включить эту функцию, вам необход
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
-msgid "Ecwid Shopping Cart - Appearance settings"
-msgstr "Магазин Ecwid - Настройки внешнего вида"
+msgid "Ecwid Shopping Cart — Appearance settings"
+msgstr "Магазин Ecwid — Настройки внешнего вида"
 
 msgid "Display search box above products"
 msgstr "Показывать форму поиска над списком продуктов"
 
-msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
-msgstr "Или вы можете добавить форму поиска на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>."
+msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
+msgstr "Или вы можете добавить форму поиска на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>"
 
 msgid "Display horizontal categories above products"
 msgstr "Показывать горизонтальное меню категорий над списком продуктов"
 
-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>."
-msgstr "Или вы можете добавить вертикальное меню категорий на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>."
+msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
+msgstr "Или вы можете добавить вертикальное меню категорий на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>"
 
 msgid "Enable minicart attached to horizontal categories"
 msgstr "Показывать корзину у горизонтального меню категорий"
 
-msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar."
-msgstr "Если вы добавили виджет корзины в боковое меню, следует отключить эту настройку."
+msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar"
+msgstr "Если вы добавили виджет корзины в боковое меню, следует отключить эту настройку"
 
 msgid "Number of categories per row"
 msgstr "Количество категорий в ряд"
@@ -204,11 +204,11 @@ msgstr "Таблица"
 msgid "Default view mode on search results"
 msgstr "Вид страницы результатов поиска по умолчанию"
 
-msgid "Ecwid Shopping Cart - General settings"
-msgstr "Магазин Ecwid - Основные настройки"
+msgid "Ecwid Shopping Cart — General settings"
+msgstr "Магазин Ecwid — Основные настройки"
 
-msgid "Thank you for choosing Ecwid to build your online store."
-msgstr "Спасибо вам за то, что выбрали Ecwid для своего интернет-магазина."
+msgid "Thank you for choosing Ecwid to build your online store"
+msgstr "Спасибо вам за то, что выбрали Ecwid для своего интернет-магазина"
 
 msgid "The first step towards opening your online business: <br />Let’s get started and add a store to your WordPress website in <strong>3</strong> simple steps."
 msgstr "Чтобы начать продавать онлайн, добавим магазин на вам сайт WordPress за <strong>3</strong> простых шага."
@@ -232,7 +232,7 @@ msgid "Find your Store ID"
 msgstr "Найдите ваш ID Магазина"
 
 msgid "Store ID is a unique identifier of any Ecwid store, it consists of several digits. You can find it on the \"Dashboard\" page of Ecwid control panel. Also the Store ID will be sent in the Welcome email after the registration."
-msgstr "ID Магазина - это уникальный идентификатор, состоящий из нескольких цифр, который есть у любого магазина Ecwid. Вы можете найти его на странице \"Консоль\" панели управления Ecwid. Также ID Магазина будет выслан по электронной почте после регистрации."
+msgstr "ID Магазина — это уникальный идентификатор, состоящий из нескольких цифр, который есть у любого магазина Ecwid. Вы можете найти его на странице \"Консоль\" панели управления Ecwid. Также ID Магазина будет выслан по электронной почте после регистрации."
 
 msgid "Enter your Store ID"
 msgstr "Введите ваш ID Магазина"
@@ -246,20 +246,20 @@ msgstr "ID Магазина"
 msgid "Save and connect your Ecwid store to the site"
 msgstr "Сохранить и добавить магазин Ecwid на ваш сайт"
 
-msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>."
-msgstr "Есть вопросы? Посетите <a href=\"http://help.ecwid.com/?source=wporg\">Центр поддержки Ecwid (англ)</a> или <a href=\"http://www.ecwid.com/forums/forumdisplay.php?f=10\"> русскоязычный раздел форума</a>."
+msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>"
+msgstr "Есть вопросы? Посетите <a href=\"http://help.ecwid.com/?source=wporg\">Центр поддержки Ecwid (англ)</a> или <a href=\"http://www.ecwid.com/forums/forumdisplay.php?f=10\"> русскоязычный раздел форума</a>"
 
 msgid "Congratulations!"
 msgstr "Поздравляем!"
 
-msgid "Your Ecwid store is now connected to your WordPress website."
-msgstr "Теперь ваш магазин подключен к вашему сайту WordPress."
+msgid "Your Ecwid store is now connected to your WordPress website"
+msgstr "Теперь ваш магазин подключен к вашему сайту WordPress"
 
 msgid "Greetings!"
 msgstr "Приветствуем!"
 
-msgid "Your Ecwid store is connected to your WordPress website."
-msgstr "Ваш магазин подключен к вашему сайту WordPress."
+msgid "Your Ecwid store is connected to your WordPress website"
+msgstr "Ваш магазин подключен к вашему сайту WordPress"
 
 msgid "Control panel"
 msgstr "Панель управления"
@@ -292,7 +292,7 @@ msgid "Greetings! Your Ecwid store is now active."
 msgstr "Добро пожаловать в Эквид!"
 
 msgid "Take a few simple steps to complete store setup"
-msgstr "Магазин почти готов - осталось несколько простых шагов"
+msgstr "Магазин почти готов — осталось несколько простых шагов"
 
 msgid "Set up Ecwid Store"
 msgstr "Настроить магазин"
