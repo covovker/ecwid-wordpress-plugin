@@ -138,10 +138,8 @@ if (is_admin()) {
 
 function ecwid_apply_theme_adjustments()
 {
-	if (ecwid_page_has_productbrowser()) {
-		$ecwid_theme_manager = Ecwid_Theme_Manager::get_instance();
-		$ecwid_theme_manager->apply_adjustments();
-	}
+	$ecwid_theme_manager = Ecwid_Theme_Manager::get_instance();
+	$ecwid_theme_manager->apply_adjustments();
 }
 
 function ecwid_body_class($classes)
@@ -594,6 +592,7 @@ function ecwid_seo_title($content) {
          $ecwid_seo_title =  $ecwid_category['name'];
         }
     }
+
     if (!empty($ecwid_seo_title))
         return $ecwid_seo_title . " | " . $content;
     else
@@ -709,8 +708,6 @@ EOT;
 }
 
 function ecwid_categories_shortcode() {
-
-	if (Ecwid_Theme_Manager::get_instance()->hide_shortcode('categories')) return;
 
     $ecwid_show_categories = get_option('ecwid_show_categories');
 
@@ -894,7 +891,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 			$parsed = parse_url($url);
 			$plain_content .= '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "'. $parsed['fragment'] . '";</script>';
 		}
-    } 
+    }
 
 	$s = '';
 
@@ -952,6 +949,8 @@ EOT;
 
 	add_option("ecwid_installation_date", time());
 
+	add_option("ecwid_enable_advanced_theme_layout", get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', '', 'yes');
+
     $id = get_option("ecwid_store_page_id");	
 	$_tmp_page = null;
 	if (!empty($id) and ($id > 0)) { 
@@ -972,6 +971,11 @@ EOT;
 		$my_post['comment_status'] = 'closed';
 		$id =  wp_insert_post( $my_post );
 		update_option('ecwid_store_page_id', $id);
+
+		// TODO: rework theme management
+		if (Ecwid_Theme_Manager::get_instance()->get_theme_name() == 'Responsive') {
+			update_post_meta($id, '_wp_page_template', 'full-width-page.php');
+		}
 	}
 
 	Ecwid_Message_Manager::enable_message('on_activate');
@@ -1134,8 +1138,8 @@ function ecwid_settings_api_init() {
 		case 'advanced':
 			register_setting('ecwid_options_page', 'ecwid_default_category_id', 'ecwid_abs_intval');
 			register_setting('ecwid_options_page', 'ecwid_sso_secret_key');
+			register_setting('ecwid_options_page', 'ecwid_enable_advanced_theme_layout');
 			break;
-
 	}
 
 	if (isset($_POST['ecwid_store_id'])) {
@@ -1489,7 +1493,7 @@ class EcwidMinicartMiniViewWidget extends WP_Widget {
         if (!empty($page_url) && $_tmp_page != null)
             echo "<script type=\"text/javascript\">var ecwid_ProductBrowserURL = \"$page_url\";</script>";
         echo <<<EOT
-          <script type="text/javascript"> xMinicart("style=left:10px","layout=Mini"); </script>
+          <script type="text/javascript"> xMinicart(""); </script>
           </div>
 EOT;
 

@@ -77,7 +77,7 @@ class Ecwid_Theme_Manager
 
 	public function minicart_shortcode_content($content)
 	{
-		if ($this->current_theme == 'responsive') {
+		if ($this->current_theme == 'responsive' && get_option('ecwid_enable_advanced_theme_layout') == 'Y' && get_the_ID() == get_option('ecwid_store_page_id')) {
 			$content = '<script type="text/javascript"> xMinicart("style=","layout=Mini"); </script>';
 		}
 
@@ -86,16 +86,16 @@ class Ecwid_Theme_Manager
 
 	public function categories_shortcode_content($content)
 	{
-		if ($this->current_theme == 'responsive') {
+		if ($this->current_theme == 'responsive' && get_option('ecwid_enable_advanced_theme_layout') == 'Y' && get_the_ID() == get_option('ecwid_store_page_id')) {
 			return '';
 		}
 
 		return $content;
 	}
 
-	public function hide_shortcode($shortcode)
+	public function has_advanced_layout()
 	{
-		return $this->current_theme == 'responsive' && $shortcode == 'categories';
+		return $this->current_theme == 'responsive';
 	}
 
 	protected function detect_current_theme()
@@ -145,7 +145,11 @@ class Ecwid_Theme_Manager
 	protected function apply_theme_responsive()
 	{
 		wp_enqueue_style( 'ecwid-open-sans-css' , 'http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic-ext,cyrillic,greek-ext,vietnamese,greek,latin-ext');
-		wp_enqueue_style( 'ecwid-theme-css' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive.css' ), array(), false, 'all' );
-		wp_enqueue_script( 'ecwid-theme-js', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ), array( 'jquery' ) );
+		wp_enqueue_style( 'dashicons' );
+		wp_enqueue_style( 'ecwid-theme-fixes-css' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive-fixes.css' ), array(), false, 'all' );
+		if (get_option('ecwid_enable_advanced_theme_layout') == 'Y') {
+			wp_enqueue_style( 'ecwid-theme-adjustments-css' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive-adjustments.css' ), array(), false, 'all' );
+			wp_enqueue_script( 'ecwid-theme-js', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ), array( 'jquery' ) );
+		}
 	}
 }
