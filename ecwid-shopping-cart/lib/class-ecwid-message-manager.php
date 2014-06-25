@@ -190,7 +190,7 @@ class Ecwid_Message_Manager
 				return $screen->base == 'plugins' && get_ecwid_store_id() == ECWID_DEMO_STORE_ID;
 
 			case 'on_storeid_set':
-				return get_ecwid_store_id() != ECWID_DEMO_STORE_ID && $_GET['settings-updated'] == 'true';
+				return get_ecwid_store_id() != ECWID_DEMO_STORE_ID && $_GET['settings-updated'] == 'true' && $screen->base == 'toplevel_page_ecwid';
 
 			case 'no_storeid_on_setup_pages':
 				return get_ecwid_store_id() == ECWID_DEMO_STORE_ID
