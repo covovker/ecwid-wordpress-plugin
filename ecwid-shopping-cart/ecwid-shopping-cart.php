@@ -986,29 +986,6 @@ function ecwid_show_admin_messages() {
 	if (is_admin()) {
 		Ecwid_Message_Manager::show_messages();
 	}
-
-	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID && isset($_GET['page']) && $_GET['page'] != 'ecwid') {
-
-		$page_url = ecwid_get_store_page_url();
-
-		$message = sprintf(
-			__('<strong>Ecwid shopping cart is almost ready</strong>. Please visit <a target="_blank" href="%s">the created page</a> to see your store with demo products. In order to finish the installation, please go to the <a href="admin.php?page=ecwid"><strong>Ecwid settings</strong></a> and configure the plugin.', 'ecwid-shopping-cart'),
-			$page_url
-		);
-
-		ecwid_show_admin_message($message);
-	}
-	$install_date = get_option('ecwid_installation_date');
-	if (!$install_date) {
-		add_option('ecwid_installation_date', time());
-	} else if (ecwid_is_paid_account() && $install_date + 60*60*24*30 < time() && get_option('ecwid_show_vote_message')) {
-		$message = sprintf(
-			__('Do you like your Ecwid online store? We\'d appreciate it if you <a %s>add your review and vote</a> for the plugin on Wordpress site. (<a id="hide-vote-message">Close</a> and do not show this message anymore)', 'ecwid-shopping-cart'),
-			'target="_blank" href="http://wordpress.org/support/view/plugin-reviews/ecwid-shopping-cart"'
-		);
-
-		ecwid_show_admin_message($message);
-	}
 }
 
 function ecwid_show_admin_message($message) {

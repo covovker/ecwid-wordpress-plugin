@@ -6,7 +6,7 @@
 	<?php endif; ?>
 
 	<div class="ecwid-message-content">
-		<?php echo esc_html($message); ?>
+		<?php echo $message; ?>
 	</div>
 
 	<?php if ($primary_button || $secondary_button || $do_not_show_again): ?>

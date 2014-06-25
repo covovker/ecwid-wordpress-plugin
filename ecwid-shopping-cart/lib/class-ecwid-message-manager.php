@@ -177,6 +177,16 @@ class Ecwid_Message_Manager
 				'secondary_title' => __('Back to Store Settings', 'ecwid-shopping-cart'),
 				'secondary_url'   => 'admin.php?page=ecwid-appearance',
 				'hideable'  => true
+			),
+
+			'please_vote' => array(
+				'message' => sprintf(
+					__('Do you like your Ecwid online store? We\'d appreciate it if you <a %s>add your review and vote</a> for the plugin on Wordpress site.', 'ecwid-shopping-cart'),
+					'target="_blank" href="http://wordpress.org/support/view/plugin-reviews/ecwid-shopping-cart"'
+				),
+				'primary_title' => __('Add review', 'ecwid-shopping-cart'),
+				'primary_url' => 'http://wordpress.org/support/view/plugin-reviews/ecwid-shopping-cart',
+				'hideable' => true
 			)
 		);
 	}
@@ -198,6 +208,15 @@ class Ecwid_Message_Manager
 
 			case 'on_appearance_widgets':
 				return isset($_GET['from-ecwid-appearance']) && $screen->base == 'widgets';
+
+			case 'please_vote':
+				$install_date = get_option('ecwid_installation_date');
+				if (!$install_date) {
+					add_option('ecwid_installation_date', time());
+					return false;
+				} else {
+					return ecwid_is_paid_account() && $install_date + 60*60*24*30 < time();
+				}
 		}
 	}
 
