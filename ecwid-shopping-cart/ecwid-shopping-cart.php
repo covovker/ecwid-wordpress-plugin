@@ -883,9 +883,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 			$parsed = parse_url($url);
 			$plain_content .= '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "'. $parsed['fragment'] . '";</script>';
 		}
-    } else {
-        $plain_content = '<noscript>Your browser does not support JavaScript.<a href="' . $ecwid_mobile_catalog_link .'">HTML version of this store</a></noscript>';
-    }
+    } 
 
 	$s = '';
 
