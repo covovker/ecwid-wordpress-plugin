@@ -1470,7 +1470,7 @@ class EcwidMinicartMiniViewWidget extends WP_Widget {
         if (!empty($page_url) && $_tmp_page != null)
             echo "<script type=\"text/javascript\">var ecwid_ProductBrowserURL = \"$page_url\";</script>";
         echo <<<EOT
-          <script type="text/javascript"> xMinicart(""); </script>
+          <script type="text/javascript"> xMinicart("style=left:10px","layout=Mini"); </script>
           </div>
 EOT;
 
