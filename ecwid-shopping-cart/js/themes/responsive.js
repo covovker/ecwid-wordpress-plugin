@@ -5,20 +5,24 @@ jQuery(document).ready(function() {
 	{
 		$('.ecwid-SearchPanel-button').text('');
 
-		$('.ecwid-shopping-cart-search').css({
-			'margin-right': $('.ecwid-productBrowser-auth-mini').width() + 30,
-			'display': 'inherit'
-		});
+		if ($('.ecwid-shopping-cart-search').length > 0) {
+			$('.ecwid-shopping-cart-search').css({
+				'margin-right': $('.ecwid-productBrowser-auth-mini').width() + 30,
+				'display': 'inherit'
+			});
+		}
 
-		$('.ecwid-shopping-cart-minicart').css({
-			'right': $('.ecwid-minicart-mini-rollover').width() - $('.ecwid-shopping-cart-minicart').width() + parseInt($('.ecwid-minicart-mini-rollover').css('padding-left')) + 1,
-			'visibility': 'visible'
-		});
+		if ($('.ecwid-shopping-cart-minicart').length > 0) {
+			$('.ecwid-shopping-cart-minicart').css({
+				'right': $('.ecwid-minicart-mini-rollover').width() - $('.ecwid-shopping-cart-minicart').width() + parseInt($('.ecwid-minicart-mini-rollover').css('padding-left')) + 1,
+				'visibility': 'visible'
+			});
 
-		$('.ecwid-minicart-mini-rolloverContainer').css({
-			'left': $('.ecwid-shopping-cart-minicart').offset().left,
-			'top':  $('.ecwid-minicart-mini-rollover').offset().top + 5
-		}).css('visibility', 'visible');
+			$('.ecwid-minicart-mini-rolloverContainer').css({
+				'left': $('.ecwid-shopping-cart-minicart').offset().left,
+				'top':  $('.ecwid-minicart-mini-rollover').offset().top + 5
+			}).css('visibility', 'visible');
+		}
 	}
 
 	function doMobileLayout()
