@@ -78,11 +78,11 @@ class Ecwid_Theme_Manager
 
 	public function minicart_shortcode_content($content)
 	{
+		return $content;
+
 		if ($this->current_theme == 'responsive' && get_option('ecwid_enable_advanced_theme_layout') == 'Y' && get_the_ID() == get_option('ecwid_store_page_id')) {
 			$content = '<script type="text/javascript"> xMinicart("style=","layout=Mini"); </script>';
 		}
-
-		return $content;
 	}
 
 	public function categories_shortcode_content($content)
@@ -92,11 +92,13 @@ class Ecwid_Theme_Manager
 
 	public function search_shortcode_content($content)
 	{
-		return $content .' <div class="ecwid-search-placeholder"></div>';
+		return $content;
 	}
 
 	public function has_advanced_layout()
 	{
+		return false;
+
 		return $this->current_theme == 'responsive';
 	}
 
@@ -134,8 +136,7 @@ class Ecwid_Theme_Manager
 				'js'       => true,
 			),
 			'responsive' => array(
-				'name'     => 'Responsive',
-				'callback' => true
+				'name'	   => 'Responsive'
 			)
 		);
 	}
@@ -144,7 +145,7 @@ class Ecwid_Theme_Manager
 		return in_array( $this->current_theme, array( '2014', 'pagelines' ) );
 	}
 
-	protected function apply_theme_responsive()
+	protected function __apply_theme_responsive()
 	{
 		wp_enqueue_style( 'ecwid-open-sans-css' , 'http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic-ext,cyrillic,greek-ext,vietnamese,greek,latin-ext');
 		wp_enqueue_style( 'dashicons' );

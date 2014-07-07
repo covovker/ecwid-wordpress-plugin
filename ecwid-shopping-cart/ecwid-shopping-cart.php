@@ -972,10 +972,12 @@ EOT;
 		$id =  wp_insert_post( $my_post );
 		update_option('ecwid_store_page_id', $id);
 
+		/*
 		// TODO: rework theme management
 		if (Ecwid_Theme_Manager::get_instance()->get_theme_name() == 'Responsive') {
 			update_post_meta($id, '_wp_page_template', 'full-width-page.php');
 		}
+		*/
 	}
 
 	Ecwid_Message_Manager::enable_message('on_activate');
