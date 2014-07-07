@@ -15,6 +15,7 @@ class Ecwid_Theme_Manager
 
 		add_filter('ecwid_minicart_shortcode_content', array($this, 'minicart_shortcode_content'));
 		add_filter('ecwid_categories_shortcode_content', array($this, 'categories_shortcode_content'));
+		add_filter('ecwid_search_shortcode_content', array($this, 'search_shortcode_content'));
 	}
 
 	public static function get_instance()
@@ -86,11 +87,12 @@ class Ecwid_Theme_Manager
 
 	public function categories_shortcode_content($content)
 	{
-		if ($this->current_theme == 'responsive' && get_option('ecwid_enable_advanced_theme_layout') == 'Y' && get_the_ID() == get_option('ecwid_store_page_id')) {
-			return '';
-		}
-
 		return $content;
+	}
+
+	public function search_shortcode_content($content)
+	{
+		return $content .' <div class="ecwid-search-placeholder"></div>';
 	}
 
 	public function has_advanced_layout()
@@ -149,7 +151,22 @@ class Ecwid_Theme_Manager
 		wp_enqueue_style( 'ecwid-theme-fixes-css' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive-fixes.css' ), array(), false, 'all' );
 		if (get_option('ecwid_enable_advanced_theme_layout') == 'Y') {
 			wp_enqueue_style( 'ecwid-theme-adjustments-css' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive-adjustments.css' ), array(), false, 'all' );
-			wp_enqueue_script( 'ecwid-theme-js', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ), array( 'jquery' ) );
+			wp_enqueue_script( 'ecwid-theme-js', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ), array( 'jquery' ), false, true );
 		}
+
+		add_filter('body_class', array($this, 'body_class_responsive'));
+	}
+
+	public function body_class_responsive($classes)
+	{
+		if (get_option('ecwid_enable_minicart')) {
+			$classes[] = 'ecwid-with-minicart';
+		}
+
+		if (get_option('ecwid_show_search_box')) {
+			$classes[] = 'ecwid-with-search';
+		}
+
+		return $classes;
 	}
 }
