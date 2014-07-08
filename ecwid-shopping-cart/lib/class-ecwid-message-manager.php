@@ -181,10 +181,10 @@ class Ecwid_Message_Manager
 
 			'please_vote' => array(
 				'message' => sprintf(
-					__('Do you like your Ecwid online store? We\'d appreciate it if you <a %s>add your review and vote</a> for the plugin on Wordpress site.', 'ecwid-shopping-cart'),
+					__('Do you like your Ecwid online store? We\'d appreciate it if you add your review and vote for the plugin on Wordpress site.', 'ecwid-shopping-cart'),
 					'target="_blank" href="http://wordpress.org/support/view/plugin-reviews/ecwid-shopping-cart"'
 				),
-				'primary_title' => __('Add review', 'ecwid-shopping-cart'),
+				'primary_title' => __('Rate Ecwid at WordPress.org', 'ecwid-shopping-cart'),
 				'primary_url' => 'http://wordpress.org/support/view/plugin-reviews/ecwid-shopping-cart',
 				'hideable' => true
 			)
@@ -211,12 +211,23 @@ class Ecwid_Message_Manager
 
 			case 'please_vote':
 				$install_date = get_option('ecwid_installation_date');
+
+				$result = false;
 				if (!$install_date) {
 					add_option('ecwid_installation_date', time());
-					return false;
 				} else {
-					return ecwid_is_paid_account() && $install_date + 60*60*24*30 < time();
+					$result = ecwid_is_paid_account() && $install_date + 60*60*24*30 < time();
 				}
+
+				return $result;
+
+				foreach ($this->messages as $_name => $message) {
+					if ($_name != $name && $this->need_to_show_message($_name)) {
+						return false;
+					}
+				}
+
+				return $result;
 		}
 	}
 
