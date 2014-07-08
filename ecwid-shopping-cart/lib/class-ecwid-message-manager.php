@@ -219,8 +219,6 @@ class Ecwid_Message_Manager
 					$result = ecwid_is_paid_account() && $install_date + 60*60*24*30 < time();
 				}
 
-				return $result;
-
 				foreach ($this->messages as $_name => $message) {
 					if ($_name != $name && $this->need_to_show_message($_name)) {
 						return false;
