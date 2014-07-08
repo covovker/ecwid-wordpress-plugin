@@ -11,7 +11,7 @@ and takes less than 5 minutes to set up.
 == Description ==
 +**Wordpress.com officially recommends Ecwid as an e-commerce solution to millions of its users!**
 
-[Ecwid](http://www.ecwid.com?wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that seamlessly integrates with your Wordpress website. Join over *450,000* sellers in *175* countries and sell globally with over *30* international payment options, real-time shipping integrations and support of *45* languages. 
+[Ecwid](http://www.ecwid.com?wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that seamlessly integrates with your Wordpress website. Join over *500,000* sellers in *175* countries and sell globally with over *40* international payment options, real-time shipping integrations and support of *45* languages.
 
 
 = Full-featured Shopping Cart =
@@ -112,6 +112,12 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.4.3 =
+- **Onboarding for the new plugin users.** Ecwid plugin now displays new helpful messages when you set up your store and configure the setting. The messages guide the new users through the setup process and provide helpful tips and recommendations.
+- **Improvements in the plugin settings pages and messages.** We updated the texts and styles of the messages displayed on the settings pages. They became clearer and more user-friendly.
+- **Minor optimizations for search engines** including tidying up of the product pages 'meta' descriptions tags and fixing potential issues in compatibility with Yoast SEO plugin. This is to ensure better indexation and appearing of your products in the search results.
+- **Several minor fixes and enhancements**
+
 = 2.4.2 =
 - Minor issue is fixed on the plugin's "General settings" page
 
