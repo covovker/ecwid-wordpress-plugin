@@ -42,42 +42,21 @@
 				</div>
 			</div>
 
-			<div class="section">
-				<div class="left">
-					<span class="main-info">
-						<?php _e('Account status', 'ecwid-shopping-cart'); ?>:
-						<strong>
-							<?php
-							if (ecwid_is_paid_account()) {
-								_e('Paid', 'ecwid-shopping-cart');
-							} else {
-								_e('Free', 'ecwid-shopping-cart');
-							}
-							?>
-						</strong>
-					</span>
-					<div class="secondary-info">
-						<?php
-						if (ecwid_is_paid_account())
-							_e('Thank you for supporting Ecwid!', 'ecwid-shopping-cart');
-						else
-							_e('Upgrade to get access to cool premium features.', 'ecwid-shopping-cart');
-						?>
-					</div>
-				</div>
+			<?php if (!ecwid_is_paid_account()): ?>
+			<div class="section account-section">
+ 				<div class="left">
+ 					<div class="secondary-info">
+						<?php _e('Upgrade your account to get access to more Ecwid plugin features', 'ecwid-shopping-cart'); ?>
+ 					</div>
+ 				</div>
 
-				<div class="right">
-					<?php if (ecwid_is_api_enabled()): ?>
-						<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/CP.html#profile=Billing&t2=My_Profile">
-							<?php _e('Billing and plans', 'ecwid-shopping-cart'); ?>
-						</a>
-					<?php else: ?>
-						<a class="<?php echo ECWID_MAIN_BUTTON_CLASS; ?>" target="_blank" href="http://www.ecwid.com/plans-and-pricing.html">
-							<?php _e('Upgrade', 'ecwid-shopping-cart'); ?>
-						</a>
-					<?php endif; ?>
-				</div>
-			</div>
+ 				<div class="right">
+					<a class="<?php echo ECWID_MAIN_BUTTON_CLASS; ?>" target="_blank" href="http://www.ecwid.com/plans-and-pricing.html">
+						<?php _e('Upgrade', 'ecwid-shopping-cart'); ?>
+					</a>
+ 				</div>
+ 			</div>
+			<?php endif; ?>
 
 			<div class="note grayed-links">
 				<?php

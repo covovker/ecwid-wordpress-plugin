@@ -3,13 +3,13 @@ Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 3.9
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 
 Ecwid is a free full-featured shopping cart that can easily be added to any blog
 and takes less than 5 minutes to set up.
 
 == Description ==
-**Wordpress.com officially recommends Ecwid as a e-commerce solution to millions of its users!**
++**Wordpress.com officially recommends Ecwid as an e-commerce solution to millions of its users!**
 
 [Ecwid](http://www.ecwid.com?wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that seamlessly integrates with your Wordpress website. Join over *450,000* sellers in *175* countries and sell globally with over *30* international payment options, real-time shipping integrations and support of *45* languages. 
 
@@ -112,6 +112,9 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.4.2 =
+- Minor issue is fixed on the plugin's "General settings" page
+
 = 2.4.1 =
 - Added compatibility with the new versions of "Google XML Sitemaps" plugin (v4.0 and higher)
 

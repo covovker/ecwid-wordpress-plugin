@@ -276,8 +276,8 @@ msgstr "Бесплатный"
 msgid "Thank you for supporting Ecwid!"
 msgstr "Спасибо вам за поддержку Ecwid!"
 
-msgid "Upgrade to get access to cool premium features."
-msgstr "Перейдите на платный тарифный план, чтобы получить расширенные возможности."
+msgid "Upgrade your account to get access to more Ecwid plugin features"
+msgstr "Расширенные возможности Эквида доступны на более дорогом тарифном плане"
 
 msgid "Billing and plans"
 msgstr "Оплата и тарифы"
