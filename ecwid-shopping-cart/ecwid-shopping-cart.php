@@ -1190,7 +1190,7 @@ function ecwid_advanced_settings_do_page() {
 
 function ecwid_appearance_settings_do_page() {
 
-	wp_register_script('ecwid-appearance-js', plugins_url('ecwid-shopping-cart/js/appearance.js'), array(), '', '');
+	wp_register_script('ecwid-appearance-js', plugins_url('ecwid-shopping-cart/js/appearance.js'), array(), '', true);
 	wp_enqueue_script('ecwid-appearance-js');
 
 	$disabled = false;
