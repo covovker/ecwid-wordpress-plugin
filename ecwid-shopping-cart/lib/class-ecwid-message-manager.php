@@ -11,7 +11,7 @@ class Ecwid_Message_Manager
 
 	public static function show_messages()
 	{
-		$mm = static::get_instance();
+		$mm = self::get_instance();
 
 		foreach ($mm->messages as $name => $message) {
 			if ($mm->need_to_show_message($name)) {
@@ -22,7 +22,7 @@ class Ecwid_Message_Manager
 
 	public static function show_message($name, $params = array())
 	{
-		$mm = static::get_instance();
+		$mm = self::get_instance();
 
 		$mm->need_to_show_message($name);
 
@@ -77,7 +77,7 @@ class Ecwid_Message_Manager
 	{
 		$hidden_messages = array();
 
-		$messages = static::get_default_messages();
+		$messages = self::get_default_messages();
 		foreach ($messages as $name => $message) {
 			if (isset($message['default']) && $message['default'] == 'hidden') {
 				$hidden_messages[$name] = true;
