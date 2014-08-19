@@ -3,7 +3,7 @@ Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 3.9
-Stable tag: 2.4.2
+Stable tag: 2.4.3.2
 
 Ecwid is a free full-featured shopping cart that can easily be added to any blog
 and takes less than 5 minutes to set up.
@@ -11,7 +11,7 @@ and takes less than 5 minutes to set up.
 == Description ==
 +**Wordpress.com officially recommends Ecwid as an e-commerce solution to millions of its users!**
 
-[Ecwid](http://www.ecwid.com?wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that seamlessly integrates with your Wordpress website. Join over *500,000* sellers in *175* countries and sell globally with over *40* international payment options, real-time shipping integrations and support of *45* languages.
+[Ecwid](http://www.ecwid.com?source=wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that seamlessly integrates with your Wordpress website. Join over *500,000* sellers in *175* countries and sell globally with over *40* international payment options, real-time shipping integrations and support of *45* languages.
 
 
 = Full-featured Shopping Cart =
@@ -32,7 +32,7 @@ So, you don't need to worry about software updates, security patches and server 
 
 = Mobile Responsive Design =
 
-Ecwid works fine on any Wordpress site, especially on those running mobile-optimized themes. Your store looks perfect on any smartphone and automatically adapts to your customer’s screen size: laptops, tablets, smart TVs or smart watches. Check out this [demo](http://www.ecwid.com/demo-frontend.html?wporg-plugin-site)
+Ecwid works fine on any Wordpress site, especially on those running mobile-optimized themes. Your store looks perfect on any smartphone and automatically adapts to your customer’s screen size: laptops, tablets, smart TVs or smart watches. Check out this [demo](http://www.ecwid.com/demo?source=wporg-plugin-site)
 
 
 = Social Commerce =
@@ -52,12 +52,12 @@ New-gen technologies make Ecwid much faster than usual shopping carts regardless
 
 = Free =
 
-Although Ecwid is packed with high-value features, [Free plan](http://www.ecwid.com/plans-and-pricing.html?wporg-plugin-site "Ecwid plans and pricing") is always available with no setup charges and no transaction fees. Get your store up and running without paying anything.
+Although Ecwid is packed with high-value features, [Free plan](http://www.ecwid.com/pricing?source=wporg-plugin-site "Ecwid plans and pricing") is always available with no setup charges and no transaction fees. Get your store up and running without paying anything.
 
 
 = See In Action =
 
-* [Demo](http://www.ecwid.com/demo-frontend.html?source=wporg-plugin-site "Ecwid demo")
+* [Demo](http://www.ecwid.com/demo?source=wporg-plugin-site "Ecwid demo")
 * [Backend](https://my.ecwid.com/?source=wporg-plugin-site "Ecwid Control Panel")
 
 
@@ -112,11 +112,13 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
-= 2.4.3 =
+= 2.4.3.2 =
 - **Onboarding for the new plugin users.** Ecwid plugin now displays new helpful messages when you set up your store and configure the setting. The messages guide the new users through the setup process and provide helpful tips and recommendations.
 - **Improvements in the plugin settings pages and messages.** We updated the texts and styles of the messages displayed on the settings pages. They became clearer and more user-friendly.
 - **Minor optimizations for search engines** including tidying up of the product pages 'meta' descriptions tags and fixing potential issues in compatibility with Yoast SEO plugin. This is to ensure better indexation and appearing of your products in the search results.
 - **Several minor fixes and enhancements**
+- **Added in 2.4.3.1:** fixed incompatibility of the plugin v2.4.3 with the servers running PHP 5.2.x
+- **Added in 2.4.3.2:** additional fix for the outdated PHP versions (5.2.x)
 
 = 2.4.2 =
 - Minor issue is fixed on the plugin's "General settings" page
