@@ -79,25 +79,6 @@
 			</div>
 		</div>
 
-		<?php if (Ecwid_Theme_Manager::get_instance()->has_advanced_layout()): ?>
-		<hr />
-
-		<div class="pure-control-group last">
-			<label for="ecwid_enable_advanced_theme_layout">
-				<?php _e('Improve layout for your theme', 'ecwid-shopping-cart'); ?>
-			</label>
-
-			<select name="ecwid_enable_advanced_theme_layout">
-				<option value="Y"<?php if (get_option('ecwid_enable_advanced_theme_layout') == 'Y'): ?> selected="selected"<?php endif; ?>><?php _e('Yes'); ?></option>
-				<option value="N"<?php if (get_option('ecwid_enable_advanced_theme_layout') != 'Y'): ?> selected="selected"<?php endif; ?>><?php _e('No'); ?></option>
-			</select>
-
-			<div class="note">
-				<?php _e('Ecwid Shopping Cart plugin supports and advanced layout scheme for your "%s" theme. It can be enabled using this option.', 'ecwid-shopping-cart'); ?>
-			</div>
-		</div>
-		<?php endif; ?>
-
 	</fieldset>
 
 	<fieldset>

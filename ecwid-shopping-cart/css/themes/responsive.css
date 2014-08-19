@@ -1,8 +1,12 @@
 /* Mobile */
 @media screen and (max-width: 400px) {
 
+	body.ecwid-shopping-cart #container {
+		padding: 0 10px;
+	}
+
 	body.ecwid-shopping-cart #wrapper {
-		padding: 0 5px;
+		padding: 0 10px;
 	}
 }
 

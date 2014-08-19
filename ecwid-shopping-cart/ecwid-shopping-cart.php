@@ -53,7 +53,7 @@ if ( is_admin() ){
   add_action('init', 'ecwid_backward_compatibility');
   add_action('send_headers', 'ecwid_503_on_store_closed');
   add_action('template_redirect', 'ecwid_seo_compatibility_template_redirect');
-  add_action('template_redirect', 'ecwid_apply_theme_adjustments');
+  add_action('template_redirect', 'ecwid_apply_theme');
   add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
   add_action('wp_enqueue_scripts', 'ecwid_add_frontend_styles');
   add_action('wp', 'ecwid_seo_ultimate_compatibility', 0);
@@ -74,7 +74,7 @@ add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
 
 $ecwid_script_rendered = false; // controls single script.js on page
 
-require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-theme-manager.php';
+require_once plugin_dir_path(__FILE__) . '/lib/themes.php';
 require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-message-manager.php';
 
 $version = get_bloginfo('version');
@@ -134,12 +134,6 @@ if (is_admin()) {
 	}
 
 	define('ECWID_MAIN_BUTTON_CLASS', $main_button_class);
-}
-
-function ecwid_apply_theme_adjustments()
-{
-	$ecwid_theme_manager = Ecwid_Theme_Manager::get_instance();
-	$ecwid_theme_manager->apply_adjustments();
 }
 
 function ecwid_body_class($classes)
@@ -427,20 +421,7 @@ function ecwid_page_has_productbrowser()
         $result = has_shortcode($post_content, 'ecwid_productbrowser');
     }
 
-	if (!$result) {
-		$theme = Ecwid_Theme_Manager::get_instance();
-		if ($theme->get_theme_name() == 'Bretheon') {
-			$meta = get_post_meta(get_the_ID(), 'mfn-page-items');
-			if (is_array($meta)) {
-				$meta = base64_decode($meta[0]);
-
-				// not exactly the intended usage, but quite simple and still works
-				// $meta is a serialized array that has the actual content
-				// a right way is to walk through the structure and run has_shortcode against all fields
-				$result = has_shortcode($meta, 'ecwid_productbrowser');
-			}
-		}
-	}
+	$result = apply_filters( 'ecwid_page_has_productbrowser', $result );
 
     return $result;
 }
@@ -969,15 +950,10 @@ EOT;
 		$my_post['post_author'] = 1;
 		$my_post['post_type'] = 'page';
 		$my_post['comment_status'] = 'closed';
-		$id =  wp_insert_post( $my_post );
+		$id = wp_insert_post( $my_post );
 		update_option('ecwid_store_page_id', $id);
 
-		/*
-		// TODO: rework theme management
-		if (Ecwid_Theme_Manager::get_instance()->get_theme_name() == 'Responsive') {
-			update_post_meta($id, '_wp_page_template', 'full-width-page.php');
-		}
-		*/
+		do_action('ecwid_store_page_created', $id);
 	}
 
 	Ecwid_Message_Manager::enable_message('on_activate');
@@ -1634,7 +1610,7 @@ function ecwid_gather_stats()
 	$stats = array();
 
 	$stats['version'] = get_bloginfo('version');
-	$stats['theme'] = Ecwid_Theme_Manager::get_instance()->get_theme_name();
+	$stats['theme'] = ecwid_get_theme_name();
 
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
