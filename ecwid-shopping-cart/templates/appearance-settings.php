@@ -126,9 +126,9 @@ function ecwid_embed_svg($name) {
 					<input
 						type="text"
 						size="2"
-						name="ecwid_pb_productsperrow_grid"
+						name="ecwid_pb_productspercolumn_grid"
 						class="number"
-						value="<?php echo esc_attr(get_option('ecwid_pb_productsperrow_grid')); ?>"
+						value="<?php echo esc_attr(get_option('ecwid_pb_productspercolumn_grid')); ?>"
 						/>
 				</div>
 				<div class="bottom">
@@ -136,9 +136,9 @@ function ecwid_embed_svg($name) {
 					<input
 						type="text"
 						size="2"
-						name="ecwid_pb_productspercolumn_grid"
+						name="ecwid_pb_productsperrow_grid"
 						class="number"
-						value="<?php echo esc_attr(get_option('ecwid_pb_productspercolumn_grid')); ?>"
+						value="<?php echo esc_attr(get_option('ecwid_pb_productsperrow_grid')); ?>"
 						/>
 				</div>
 			</div>
