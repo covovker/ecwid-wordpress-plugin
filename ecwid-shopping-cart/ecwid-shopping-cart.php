@@ -5,15 +5,14 @@ Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
 Text Domain: ecwid-shopping-cart
 Author: Ecwid Team
-Version: 2.4.1
+Version: 2.4.3.2
 Author URI: http://www.ecwid.com?source=wporg
 */
 
 register_activation_hook( __FILE__, 'ecwid_store_activate' );
 register_deactivation_hook( __FILE__, 'ecwid_store_deactivate' );
 
-$s = (get_current_theme() == 'Twenty Fourteen' && in_array($_SERVER['SERVER_NAME'], array('localhost', 'lamp.ecwid.com'))) ? "apptest-5092.ecwid.com" : 'app.ecwid.com';
-define("APP_ECWID_COM", $s);
+define("APP_ECWID_COM", 'app.ecwid.com');
 define("ECWID_DEMO_STORE_ID", 1003);
 
 
@@ -612,10 +611,10 @@ function ecwid_content_started($content)
 
 function ecwid_wrap_shortcode_content($content, $name)
 {
-    return "<!-- Ecwid shopping cart plugin v 2.4 -->"
+    return "<!-- Ecwid shopping cart plugin v 2.4.3.2 -->"
 		   . ecwid_get_scriptjs_code()
 	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
-		   . "<!-- END Ecwid Shopping Cart v 2.4 -->";
+		   . "<!-- END Ecwid Shopping Cart v 2.4.3.2 -->";
 }
 
 function ecwid_get_scriptjs_code($force_lang = null) {
@@ -1232,7 +1231,7 @@ function ecwid_get_entity_url($entity, $type) {
 
 	$link = ecwid_get_store_page_url();
 
-	if (is_int($entity)) {
+	if (is_numeric($entity)) {
 		return $link . '#!/' . $type . '/' . $entity;
 	} elseif (is_array($entity) && isset($entity['url'])) {
 		$link .= substr($entity['url'], strpos($entity['url'], '#'));
