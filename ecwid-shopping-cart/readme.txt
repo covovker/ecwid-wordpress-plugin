@@ -5,8 +5,7 @@ Requires at least: 2.8
 Tested up to: 3.9
 Stable tag: 2.4.3.2
 
-Ecwid is a free full-featured shopping cart that can easily be added to any blog
-and takes less than 5 minutes to set up.
+Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
 
 == Description ==
 +**Wordpress.com officially recommends Ecwid as an e-commerce solution to millions of its users!**
@@ -52,13 +51,12 @@ New-gen technologies make Ecwid much faster than usual shopping carts regardless
 
 = Free =
 
-Although Ecwid is packed with high-value features, [Free plan](http://www.ecwid.com/pricing?source=wporg-plugin-site "Ecwid plans and pricing") is always available with no setup charges and no transaction fees. Get your store up and running without paying anything.
-
+Although Ecwid is packed with high-value features, Free plan is always available with no setup charges and no transaction fees. Get your store up and running without paying anything. As your business grows, you can consider upgrading to one of our premium plans to get more great features. See also: Ecwid plan and pricing (www.ecwid.com/pricing?source=wporg-plugin-site)
 
 = See In Action =
 
-* [Demo](http://www.ecwid.com/demo?source=wporg-plugin-site "Ecwid demo")
-* [Backend](https://my.ecwid.com/?source=wporg-plugin-site "Ecwid Control Panel")
+* [Demo Store](http://www.ecwid.com/demo?source=wporg-plugin-site "Ecwid demo")
+* [Ecwid Control panel](https://my.ecwid.com/?source=wporg-plugin-site "Ecwid Control Panel") (you will be able to create a free Ecwid account)
 
 
 = Ecwid Site =
