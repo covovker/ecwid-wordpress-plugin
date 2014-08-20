@@ -9,7 +9,7 @@ class EcwidProductApi {
 
 	var $ECWID_PRODUCT_API_ENDPOINT = '';
 	function __construct($store_id) {
-		$this->ECWID_PRODUCT_API_ENDPOINT = (get_current_theme() == 'Twenty Fourteen' && in_array($_SERVER['SERVER_NAME'], array('localhost', 'lamp.ecwid.com'))) ? "http://apptest-5092.ecwid.com/api/v1" : 'http://app.ecwid.com/api/v1';
+		$this->ECWID_PRODUCT_API_ENDPOINT = 'http://app.ecwid.com/api/v1';
 
 		$this->store_id = intval($store_id);
 	}
