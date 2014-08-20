@@ -193,21 +193,25 @@ class Ecwid_Message_Manager
 
 	protected function need_to_show_message($name)
 	{
-		$screen = get_current_screen();
+		$admin_page = '';
+		if (function_exists('get_current_screen')) {
+			$screen = get_current_screen();
+			$admin_page = $screen->base;
+		}
 
 		switch ($name) {
 			case 'on_activate':
-				return $screen->base == 'plugins' && get_ecwid_store_id() == ECWID_DEMO_STORE_ID;
+				return $admin_page == 'plugins' && get_ecwid_store_id() == ECWID_DEMO_STORE_ID;
 
 			case 'on_storeid_set':
-				return get_ecwid_store_id() != ECWID_DEMO_STORE_ID && $_GET['settings-updated'] == 'true' && $screen->base == 'toplevel_page_ecwid';
+				return get_ecwid_store_id() != ECWID_DEMO_STORE_ID && $_GET['settings-updated'] == 'true' && $admin_page == 'toplevel_page_ecwid';
 
 			case 'no_storeid_on_setup_pages':
 				return get_ecwid_store_id() == ECWID_DEMO_STORE_ID
-					&& in_array($screen->base, array('ecwid-store_page_ecwid-advanced', 'ecwid-store_page_ecwid-appearance'));
+					&& in_array($admin_page, array('ecwid-store_page_ecwid-advanced', 'ecwid-store_page_ecwid-appearance'));
 
 			case 'on_appearance_widgets':
-				return isset($_GET['from-ecwid-appearance']) && $screen->base == 'widgets';
+				return isset($_GET['from-ecwid-appearance']) && $admin_page == 'widgets';
 
 			case 'please_vote':
 				$install_date = get_option('ecwid_installation_date');
