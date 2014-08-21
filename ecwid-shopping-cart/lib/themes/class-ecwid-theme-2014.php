@@ -10,7 +10,7 @@ class Ecwid_Theme_2014 extends Ecwid_Theme_Base
 
 	public function __construct()
 	{
-		parent::construct();
+		parent::__construct();
 
 		wp_enqueue_style( 'ecwid-theme', 'ecwid-shopping-cart/css/themes/2014.css', array('twentyfourteen-style') );
 	}
