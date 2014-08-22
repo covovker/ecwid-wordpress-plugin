@@ -53,12 +53,6 @@ html#ecwid_html body#ecwid_body .ecwid-shopping-cart-minicart {
 	right: 0px;
 }
 
-html.ie8#ecwid_html body#ecwid_body .ecwid-shopping-cart-minicart,
-html.ie9#ecwid_html body#ecwid_body .ecwid-shopping-cart-minicart {
-	right: 30px;
-}
-
-
 html#ecwid_html body#ecwid_body .ecwid-shopping-cart-minicart div.ecwid-minicart-mini {
 	width: 100px;
 	text-align: right;
@@ -347,7 +341,6 @@ html#ecwid_html body#ecwid_body.ecwid-shopping-cart .ecwid-shopping-cart-product
 	html#ecwid_html body#ecwid_body.ecwid-with-minicart .ecwid-productBrowser-auth > div,
 	html#ecwid_html body#ecwid_body.ecwid-with-minicart.ecwid-with-search .ecwid-productBrowser-auth > div {
 		margin-right: 0px;
-		white-space: nowrap;
 	}
 
 
