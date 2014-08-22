@@ -2,6 +2,8 @@
 
 define( 'ECWID_THEMES_DIR', ECWID_PLUGIN_DIR . '/lib/themes' );
 
+add_action('after_switch_theme', 'ecwid_after_switch_theme');
+
 function ecwid_get_theme_name()
 {
 	$version = get_bloginfo('version');
@@ -16,7 +18,7 @@ function ecwid_get_theme_name()
 	return $theme_name;
 }
 
-function ecwid_apply_theme()
+function ecwid_apply_theme($theme_name = null)
 {
 	$themes = array(
 		'Bretheon' => 'bretheon',
@@ -25,7 +27,9 @@ function ecwid_apply_theme()
 		'PageLines' => 'pagelines'
 	);
 
-	$theme_name = ecwid_get_theme_name();
+	if (empty($theme_name)) {
+		$theme_name = ecwid_get_theme_name();
+	}
 
 	$theme_file = '';
 
@@ -39,4 +43,16 @@ function ecwid_apply_theme()
 	if ( !empty( $theme_file ) && is_file( $theme_file ) && is_readable( $theme_file ) ) {
 		require_once( $theme_file );
 	}
+}
+
+function ecwid_after_switch_theme()
+{
+	ecwid_apply_theme();
+
+	global $ecwid_current_theme;
+
+	update_option(
+		'ecwid_advanced_theme_layout',
+		isset($ecwid_current_theme) && $ecwid_current_theme->has_advanced_layout ? 'Y' : 'N'
+	);
 }

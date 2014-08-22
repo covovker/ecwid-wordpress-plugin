@@ -2,6 +2,8 @@
 
 class Ecwid_Theme_Base {
 
+	public $has_advanced_layout = false;
+
 	protected $adjust_pb_scroll = false;
 
 	public function __construct()

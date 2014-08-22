@@ -4,6 +4,8 @@ require_once ECWID_THEMES_DIR . '/class-ecwid-theme-base.php';
 
 class Ecwid_Theme_Responsive extends Ecwid_Theme_Base
 {
+	public $has_advanced_layout = true;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -22,6 +24,7 @@ class Ecwid_Theme_Responsive extends Ecwid_Theme_Base
 		add_filter('body_class', array($this, 'body_class'));
 
 		add_action('ecwid_shop_page_created', array($this, 'on_create_store_page'));
+		add_action('switch_theme', array($this, 'switch_theme'));
 	}
 
 	public function minicart_shortcode_content( $content )
@@ -49,4 +52,5 @@ class Ecwid_Theme_Responsive extends Ecwid_Theme_Base
 	}
 }
 
+global $ecwid_current_theme;
 $ecwid_current_theme = new Ecwid_Theme_Responsive();
