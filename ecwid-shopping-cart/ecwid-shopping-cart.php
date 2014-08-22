@@ -445,7 +445,7 @@ function ecwid_meta() {
     echo '<link rel="dns-prefetch" href="//images.ecwid.com/">' . PHP_EOL;
     echo '<link rel="dns-prefetch" href="//app.ecwid.com/">' . PHP_EOL;
 
-    if (!ecwid_page_has_productbrowser()) {
+    if (!ecwid_page_has_productbrowser() && ecwid_is_store_page_available()) {
         $page_url = ecwid_get_store_page_url();
         echo '<link rel="prefetch" href="' . $page_url . '" />' . PHP_EOL;
         echo '<link rel="prerender" href="' . $page_url . '" />' . PHP_EOL;
@@ -1231,11 +1231,12 @@ function ecwid_get_current_store_page_id()
 	if (is_null($page_id)) {
 		$page_id = false;
 		foreach(array('ecwid_store_page_id', 'ecwid_store_page_id_auto') as $option) {
-			$page_id = get_option($option);
-			if ($page_id) {
-				$status = get_post_status($page_id);
+			$id = get_option($option);
+			if ($id) {
+				$status = get_post_status($id);
 
 				if ($status == 'publish' || $status == 'private') {
+					$page_id = $id;
 					break;
 				}
 			}
