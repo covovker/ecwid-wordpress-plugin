@@ -2,8 +2,8 @@
 Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
-Tested up to: 3.9
-Stable tag: 2.4.3.2
+Tested up to: 3.9.2
+Stable tag: 2.5
 
 Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
 
@@ -110,6 +110,14 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.5 =
+- **Extended compatibility with the "Responsive" WordPress theme.** Ecwid plugin is by design compatible with any theme and automatically adapts itself to any layout and screen size. This makes your store looks good on any device your customers use. One of the most popular free themes for Wordpress -- Responsive -- is also famous for its  responsive design. In this update, we adjusted our plugin to better integrate with Responsive theme and Ecwid stores now look a way better on WordPress sites with Responsive themes to provide better user experience on any device and to generate more sales. If you're thinking which WP theme to choose for your site, you should definitely try the "Responsive" theme with Ecwid. 
+- **Added compatibility with WordPress 4.0.** WordPress 4.0 is just around the corner and we already prepared our plugin for it. We enhanced the plugin installation process to be compatible with the new plugins management coming with WordPress 4.0 and tested every plugin's function to make sure your stores are ready for the upcoming WordPress update. 
+- **Automatic store page recovery functionality.** Some Ecwid users previously faced issues when they deleted or replaced the plugin's generated store page on their Wordpress sites. We added a smart mechanism to Ecwid plugin to automatically detect such situations and prevent any possible troubles connected with them. Now, it you decide to move your store from one page to another within your Wordpress site or temporary hide your store page, the plugin will detect that, find an alternative store page on your site (if any) and keep the links and all the store functionality working OK regardless of whether you currently have a new store page or not. So, whatever update you're making on your site pages, you can rest assured your Ecwid store works fine, be it the product browser, single product snippet or a sidebar widget. 
+- **Fixed broken link in single product widgets.** We fixed a minor issue with broken links in single product widgets, that was reported to us recently. You can add a single product to any page of your site as usually by means of  [ecwid_product] shortcode -- everything will work fine. All existing single product widget will continue working as well -- no actions is required from your side.
+- **Fixed a few layout issues on the plugin's setting pages.** During the recent updates, we were improving the plugin setting pages interfaces. This update brought a few more fixes to the plugin settings pages to make them more user-friendly.
+- **Several fixes for old WordPress versions.** WordPress is often updated with new features and bug fixes. Still, there are some merchants who use the old versions. While encouraging everyone to update their sites regularly, we want our plugin work great for all users. So, in this update, we added a few fixes addressing issues in the old Wordpress versions (2.8 - 3.1)
+
 = 2.4.3.2 =
 - **Onboarding for the new plugin users.** Ecwid plugin now displays new helpful messages when you set up your store and configure the setting. The messages guide the new users through the setup process and provide helpful tips and recommendations.
 - **Improvements in the plugin settings pages and messages.** We updated the texts and styles of the messages displayed on the settings pages. They became clearer and more user-friendly.
