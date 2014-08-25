@@ -1208,19 +1208,29 @@ function ecwid_add_dashboard_widgets() {
 
 function ecwid_save_post($post_id)
 {
+	// If primary or auto store page gets updated
 	if ($post_id == get_option('ecwid_store_page_id') || $post_id == get_option('ecwid_store_page_id_auto')) {
 		$new_status = get_post_status($post_id);
 
+		// and the update either disables the page or removes product browser
 		if (!in_array($new_status, array('publish', 'private')) || !ecwid_page_has_productbrowser($post_id)) {
+
+			// then look for another enabled page that has a product browser in it
 			$pages = get_pages(array('post_status' => 'publish,private'));
 
 			foreach ($pages as $page) {
 				if (ecwid_page_has_productbrowser($page->ID)) {
 					update_option('ecwid_store_page_id_auto', $page->ID);
-					break;
+					return;
 				}
 			}
 		}
+	}
+
+	// if there is no current store page and this new page has a product browser
+	if (ecwid_page_has_productbrowser($post_id) && !ecwid_get_current_store_page_id()) {
+		// then this page becomes a new store page
+		update_option('ecwid_store_page_id_auto', $post_id);
 	}
 }
 
