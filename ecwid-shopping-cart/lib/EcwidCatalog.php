@@ -6,11 +6,11 @@ class EcwidCatalog
     var $store_base_url = '';
     var $ecwid_api = null;
 
-    function __construct($store_id, $store_base_url)
+    function __construct($store_id, $store_base_url, $development=false)
     {
         $this->store_id = intval($store_id);
-        $this->store_base_url = $store_base_url;    
-        $this->ecwid_api = new EcwidProductApi($this->store_id);
+        $this->store_base_url = $store_base_url;
+        $this->ecwid_api = new EcwidProductApi($this->store_id, $development);
     }
 
     function EcwidCatalog($store_id)
@@ -21,7 +21,7 @@ class EcwidCatalog
 
     function get_product($id)
     {
-        $params = array 
+        $params = array
         (
             array("alias" => "p", "action" => "product", "params" => array("id" => $id)),
             array("alias" => "pf", "action" => "profile")
