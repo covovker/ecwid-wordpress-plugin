@@ -201,7 +201,7 @@ function ecwid_meta_description() {
     $whitespaces = " \t\xA0\n\r";// Space, tab, non-breaking space, newline, carriage return
 
     $description = trim($description, $whitespaces);
-    $description = preg_replace("![$whitespaces]+!", " ", $description);
+    $description = preg_replace("![$whitespaces]+!u", " ", $description);
     $description = mb_substr($description, 0, 160);
 
     echo <<<HTML
