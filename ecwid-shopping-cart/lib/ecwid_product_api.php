@@ -7,9 +7,13 @@ class EcwidProductApi {
 
 	var $error_code = '';
 
+
 	var $ECWID_PRODUCT_API_ENDPOINT = "http://app.ecwid.com/api/v1";
 
-	function __construct($store_id) {
+	function __construct($store_id, $development=false) {
+		if ($development) {
+			$this->ECWID_PRODUCT_API_ENDPOINT = "http://appdev.ecwid.com/api/v1";
+		}
 		$this->store_id = intval($store_id);
 	}
 
