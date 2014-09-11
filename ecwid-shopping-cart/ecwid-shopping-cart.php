@@ -496,7 +496,7 @@ function ecwid_meta_description() {
     $description = strip_tags($description);
     $description = html_entity_decode($description, ENT_NOQUOTES, 'UTF-8');
 
-	$description = preg_replace('![\p{Z}\s]{2,}!u', ' ', $description);
+	$description = preg_replace('![\p{Z}\s]{1,}!u', ' ', $description);
 	$description = trim($description, " \t\xA0\n\r"); // Space, tab, non-breaking space, newline, carriage return
 	$description = mb_substr($description, 0, 160);
 	$description = htmlspecialchars($description, ENT_COMPAT, 'UTF-8');
