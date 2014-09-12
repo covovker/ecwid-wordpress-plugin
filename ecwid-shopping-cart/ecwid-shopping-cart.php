@@ -956,6 +956,7 @@ EOT;
 
 		if (ecwid_get_theme_name() == 'Responsive') {
 			update_post_meta($id, '_wp_page_template', 'full-width-page.php');
+			update_option("ecwid_show_search_box", 'Y');
 		}
 	}
 
