@@ -23,7 +23,7 @@ class Ecwid_Theme_Responsive extends Ecwid_Theme_Base
 
 		add_filter('body_class', array($this, 'body_class'));
 
-		add_action('ecwid_shop_page_created', array($this, 'on_create_store_page'));
+		add_action('ecwid_store_page_created', array($this, 'on_create_store_page'));
 		add_action('switch_theme', array($this, 'switch_theme'));
 	}
 
