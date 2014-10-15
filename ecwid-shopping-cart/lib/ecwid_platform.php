@@ -14,7 +14,7 @@ class EcwidPlatform {
 
 	static public function get_price_label()
 	{
-		return t('Price', 'ecwid-shopping-cart');
+		return __('Price', 'ecwid-shopping-cart');
 	}
 
 	static public function fetch_url($url)
