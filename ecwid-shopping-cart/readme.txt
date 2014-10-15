@@ -2,7 +2,7 @@
 Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
-Tested up to: 3.9.2
+Tested up to: 4.0
 Stable tag: 2.5
 
 Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
@@ -110,6 +110,11 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.6 =
+- **Ecwid's new SEO URLs compatibility.** The new Ecwid clean URLs have been released a few days ago for all Ecwid users. Our WordPress plugin is already fully compatible with the new URLs. Your store pages will be better indexed by search engines and the search results will look more attractive as the links themselves will mention the product/category they lead to. Of course, Ecwid will handle all redirects, backward compatibility with the old URL scheme and avoid any duplicate issues. Enjoy the new SE-friendly URLs with no trouble.
+- **Improved formatting of product snippets markup.** In this update we tidied up in the product HTML representations generated for search engines and fixes a few issues in the products data markup. In particular, the price and availability tags have been re-formatted according to the Google recommendations to ensure better search engine results.
+- **A few improvements and fixes for Twenty Fourteen and Responsive themes layout.** Ecwid looks nice on the vast majority of WordPress themes. Additionally, we strive to make it look even better on the most popular themes. This update brings a few more minor layout fixes for the sites with "Responsive" and "Twenty Fourteen" themes installed. 
+
 = 2.5 =
 - **Extended compatibility with the "Responsive" WordPress theme.** Ecwid plugin is by design compatible with any theme and automatically adapts itself to any layout and screen size. This makes your store looks good on any device your customers use. One of the most popular free themes for Wordpress -- Responsive -- is also famous for its  responsive design. In this update, we adjusted our plugin to better integrate with Responsive theme and Ecwid stores now look a way better on WordPress sites with Responsive themes to provide better user experience on any device and to generate more sales. If you're thinking which WP theme to choose for your site, you should definitely try the "Responsive" theme with Ecwid. 
 - **Added compatibility with WordPress 4.0.** WordPress 4.0 is just around the corner and we already prepared our plugin for it. We enhanced the plugin installation process to be compatible with the new plugins management coming with WordPress 4.0 and tested every plugin's function to make sure your stores are ready for the upcoming WordPress update. 
