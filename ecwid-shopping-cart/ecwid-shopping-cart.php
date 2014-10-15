@@ -77,8 +77,8 @@ add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
 
 $ecwid_script_rendered = false; // controls single script.js on page
 
-require_once plugin_dir_path(__FILE__) . '/lib/themes.php';
-require_once plugin_dir_path(__FILE__) . '/lib/class-ecwid-message-manager.php';
+require_once plugin_dir_path(__FILE__) . '/includes/themes.php';
+require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-message-manager.php';
 
 $version = get_bloginfo('version');
 
@@ -242,7 +242,7 @@ function ecwid_build_sitemap_pages()
 	$page_id = ecwid_get_current_store_page_id();
 
 	if (get_post_status($page_id) == 'publish') {
-		include ECWID_PLUGIN_DIR . '/lib/EcwidSitemapBuilder.php';
+		include ECWID_PLUGIN_DIR . '/includes/class-ecwid-sitemap-builder.php';
 
 		$sitemap = new EcwidSitemapBuilder(ecwid_get_store_page_url(), 'build_sitemap_callback', ecwid_new_product_api());
 
@@ -852,7 +852,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
     if (ecwid_can_display_html_catalog()) {
 		$params = ecwid_parse_escaped_fragment($_GET['_escaped_fragment_']);
 		include_once WP_PLUGIN_DIR . '/ecwid-shopping-cart/lib/ecwid_product_api.php';
-		include_once WP_PLUGIN_DIR . '/ecwid-shopping-cart/lib/EcwidCatalog.php';
+		include_once WP_PLUGIN_DIR . '/ecwid-shopping-cart/lib/ecwid_catalog.php';
 
 		$page_url = get_page_link();
 
@@ -1721,18 +1721,6 @@ function ecwid_sidebar_widgets_init() {
 
 add_action('widgets_init', 'ecwid_sidebar_widgets_init');
 
-function ecwid_encode_json($data) {
-    if(version_compare(PHP_VERSION,"5.2.0",">=")) {
-      return json_encode($data);
-     } else {
- include_once(ABSPATH . 'wp-content/plugins/ecwid-shopping-cart/lib/JSON.php');
-        $json_parser = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
-        return $json_parser->encode($data);
-}
-        }
-
-
-
 function ecwid_sso() {
     $key = get_option('ecwid_sso_secret_key');
     if (empty($key)) {
@@ -1753,7 +1741,7 @@ function ecwid_sso() {
             )
             )
         );
-   $user_data = base64_encode(ecwid_encode_json($user_data));
+   $user_data = base64_encode(json_encode($user_data));
     $time = time();
     $hmac = ecwid_hmacsha1("$user_data $time", $key);
     return "<script> var ecwid_sso_profile='$user_data $hmac $time' </script>";   
