@@ -1,0 +1,249 @@
+.ecwid-store-icon {
+	padding-right: 3px;
+	position: relative;
+	display: inline-block;
+	width: 16px;
+	top: 3px;
+}
+
+.ecwid-store-icon svg * {
+	fill: #888;
+}
+
+#ecwid-store-popup-content {
+	display: none;
+}
+
+#ecwid-store-popup-content.open {
+	display: block;
+}
+
+#wp-content-wrap.html-active .ecwid_button {
+	display: none;
+}
+
+.wp-media-buttons:not(.has-ecwid) .update-ecwid {
+	display: none;
+}
+
+.wp-media-buttons.has-ecwid .add-ecwid {
+	display: none;
+}
+
+#ecwid-store-popup-content .media-modal-close:hover {
+	text-decoration: none;
+}
+
+/*
+ * Menu items visibility
+ */
+#ecwid-store-popup-content .media-modal-content .media-menu a {
+	display: none
+}
+
+#ecwid-store-popup-content .media-modal-content[data-mode=store-settings] .media-menu a[data-content=store-settings],
+#ecwid-store-popup-content .media-modal-content[data-mode=add-store] .media-menu a[data-content=add-store],
+#ecwid-store-popup-content .media-modal-content .media-menu a[data-content=appearance]
+{
+	display: inherit;
+}
+
+/*
+ * Content area visibility
+ */
+#ecwid-store-popup-content .media-modal-content .media-frame-title,
+#ecwid-store-popup-content .media-modal-content .media-frame-content,
+#ecwid-store-popup-content .media-modal-content .media-toolbar-primary
+{
+	display: none;
+}
+
+#ecwid-store-popup-content .media-modal-content[data-active-dialog=add-store] .media-frame-title.add-store,
+#ecwid-store-popup-content .media-modal-content[data-active-dialog=add-store] .media-frame-content.store-settings,
+
+#ecwid-store-popup-content .media-modal-content[data-active-dialog=store-settings] .media-frame-title.store-settings,
+#ecwid-store-popup-content .media-modal-content[data-active-dialog=store-settings] .media-frame-content.store-settings,
+
+#ecwid-store-popup-content .media-modal-content[data-active-dialog=appearance] .media-frame-title.appearance,
+#ecwid-store-popup-content .media-modal-content[data-active-dialog=appearance] .media-frame-content.appearance,
+
+#ecwid-store-popup-content .media-modal-content[data-mode=add-store] .media-frame-toolbar .media-toolbar-primary.add-store,
+#ecwid-store-popup-content .media-modal-content[data-mode=store-settings] .media-frame-toolbar .media-toolbar-primary.store-settings
+{
+	display: inherit;
+}
+
+
+/*
+ *
+ */
+.ecwid-store-editor {
+	padding: 13px 19px;
+}
+
+#ecwid-store-popup-content .pure-control-group {
+	margin: 10px 0px;
+}
+
+#ecwid-store-popup-content label {
+	font-size: 14px;
+	font-weight: 400;
+	display: inline-block;
+	width: 270px;
+}
+
+#ecwid-store-popup-content .products-per-page-label {
+	display: block;
+}
+
+#ecwid-store-popup-content .ecwid-pb-view-size {
+	margin-left: 15px;
+	margin-right: 40px;
+	margin-top: 15px;
+}
+
+#ecwid-store-popup-content .ecwid-pb-view-size .title {
+	font-size: 14px;
+}
+
+#ecwid-store-popup-content .ecwid-pb-view-size .ruler {
+	z-index: 0;
+}
+
+#ecwid-store-popup-content input {
+	position: relative;
+	font-size: 13px;
+}
+
+#ecwid-store-popup-content input.number {
+	border-radius: 4px;
+	width: 27px;
+	padding: 3px;
+	text-align: center;
+}
+
+#ecwid-store-popup-content .note.pb-note {
+	width: 595px;
+	font-size: 11px;
+	margin: 8px 5px;
+	line-height: 16px;
+}
+
+#ecwid-store-popup-content hr.after-pb {
+	margin-bottom: 25px;
+}
+
+#ecwid-store-popup-content .media-toolbar-secondary {
+	font-size: 14px;
+	margin-left:5px;
+}
+
+#ecwid-store-popup-content .media-toolbar-secondary .store-id {
+	margin-top: 10px;
+}
+
+
+#ecwid-store-popup-content .ecwid-store-editor.add-store {
+	padding-top: 125px;
+}
+
+#ecwid-store-popup-content .store-settings-preview {
+	display: inline-block;
+	width: 162px;
+	height: 200px;
+}
+
+#ecwid-store-popup-content .store-settings,
+#ecwid-store-popup-content .store-settings-preview
+{
+	vertical-align: top;
+	display: inline-block;
+}
+
+#ecwid-store-popup-content .store-settings h3 {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+#ecwid-store-popup-content .store-settings-preview {
+	width: 145px;
+	margin-top: 15px;
+	position: relative;
+}
+
+#ecwid-store-popup-content .store-settings-preview label {
+	position: absolute;
+	background: transparent;
+	cursor: pointer;
+	display: inline-block;
+}
+
+#ecwid-store-popup-content .store-settings-preview .ecwid-search {
+	top: 0px;
+	width: 45px;
+	height: 45px;
+}
+
+#ecwid-store-popup-content .store-settings-preview .ecwid-minicart {
+	top: 0px;
+	right: 0px;
+	width: 45px;
+	height: 45px;
+}
+
+#ecwid-store-popup-content .store-settings-preview .ecwid-categories {
+	top: 45px;
+	width: 100%;
+	height: 20px;
+}
+
+#ecwid-store-popup-content .store-settings-wrapper path {
+	fill: #d1ecf5;
+}
+
+#ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=categories] path.categories,
+#ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=minicart] path.minicart,
+#ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=search] path.search,
+#ecwid-store-popup-content .store-settings-wrapper.ecwid-categories[data-ecwid-widget-hover=categories] path.categories,
+#ecwid-store-popup-content .store-settings-wrapper.ecwid-minicart[data-ecwid-widget-hover=minicart] path.minicart,
+#ecwid-store-popup-content .store-settings-wrapper.ecwid-search[data-ecwid-widget-hover=search] path.search
+{
+	fill: #56d5ff;
+}
+
+#ecwid-store-popup-content .store-settings-wrapper.ecwid-categories path.categories,
+#ecwid-store-popup-content .store-settings-wrapper.ecwid-minicart path.minicart,
+#ecwid-store-popup-content .store-settings-wrapper.ecwid-search path.search,
+#ecwid-store-popup-content .store-settings-wrapper path.productbrowser
+{
+	fill: #298cba;
+}
+
+#ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=categories] label[data-ecwid-widget=categories],
+#ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=minicart] label[data-ecwid-widget=minicart],
+#ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=search] label[data-ecwid-widget=search]
+{
+	color: #21759B;
+	text-decoration: underline;
+}
+
+#ecwid-store-popup-content .media-frame-content.store-settings {
+	margin-left: 43px;
+}
+
+#ecwid-store-popup-content .media-frame-content .store-settings {
+	margin-left: 43px;
+}
+
+#ecwid-store-popup-content .store-settings .pure-control-group {
+	margin: 20px 0px;
+}
+
+#ecwid-store-popup-content .store-settings .pure-control-group label {
+	font-size: 16px;
+}
+#ecwid-store-popup-content .store-settings .pure-control-group input[type=checkbox] {
+	margin-right: 15px;
+}
+
+

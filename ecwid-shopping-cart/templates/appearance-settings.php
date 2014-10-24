@@ -1,11 +1,3 @@
-<?php
-function ecwid_embed_svg($name) {
-	$code = file_get_contents(ECWID_PLUGIN_DIR . '/images/' . $name . '.svg');
-
-	echo $code;
-}
-
-?>
 <div class="wrap">
 <form class="pure-form pure-form-aligned ecwid-settings appearance-settings" method="POST" action="options.php">
 
