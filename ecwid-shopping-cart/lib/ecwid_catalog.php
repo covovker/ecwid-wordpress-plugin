@@ -1,7 +1,5 @@
 <?php
 
-include_once __DIR__ . '/ecwid_platform.php';
-
 class EcwidCatalog
 {
 	var $store_id = 0;
@@ -84,7 +82,7 @@ class EcwidCatalog
 						if (isset($attribute['internalName']) && $attribute['internalName'] == 'Brand') {
 							$attr_string .= '<span itemprop="brand">' . EcwidPlatform::esc_html($attribute['value']) . '</span>';
 						} else {
-							$attr_string .= $attribute['value'];
+							$attr_string .= EcwidPlatform::esc_html($attribute['value']);
 						}
 
 						$return .= $this->_l($attr_string);
