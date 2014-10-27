@@ -10,21 +10,33 @@ class Ecwid_Theme_Responsive extends Ecwid_Theme_Base
 	{
 		parent::__construct();
 
-		if ( $this->need_advanced_layout() ) {
-			wp_enqueue_style( 'ecwid-theme-adjustments' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive-adjustments.css' ), array(), false, 'all' );
-			wp_enqueue_script( 'ecwid-theme', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ), array( 'jquery' ), false, true );
+		if (!is_admin()) {
 
-			add_filter( 'ecwid_minicart_shortcode_content', array( $this, 'minicart_shortcode_content' ) );
+			if ( $this->need_advanced_layout() ) {
+				wp_enqueue_style( 'ecwid-theme-adjustments' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive-adjustments.css' ), array(), false, 'all' );
+				wp_enqueue_script( 'ecwid-theme', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ), array( 'jquery' ), false, true );
+
+				add_filter( 'ecwid_minicart_shortcode_content', array( $this, 'minicart_shortcode_content' ) );
+			}
+
+			wp_enqueue_style( 'ecwid-open-sans' , 'http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic-ext,cyrillic,greek-ext,vietnamese,greek,latin-ext');
+			wp_enqueue_style( 'dashicons' );
+			wp_enqueue_style( 'ecwid-theme-fixes' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive.css' ), array(), false, 'all' );
+
+			add_filter('body_class', array($this, 'body_class'));
+
+		} else {
+
+			add_action('ecwid_store_page_created', array($this, 'on_create_store_page'));
+			add_action('switch_theme', array($this, 'switch_theme'));
+
 		}
 
-		wp_enqueue_style( 'ecwid-open-sans' , 'http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic-ext,cyrillic,greek-ext,vietnamese,greek,latin-ext');
-		wp_enqueue_style( 'dashicons' );
-		wp_enqueue_style( 'ecwid-theme-fixes' , plugins_url( 'ecwid-shopping-cart/css/themes/responsive.css' ), array(), false, 'all' );
+	}
 
-		add_filter('body_class', array($this, 'body_class'));
+	public function switch_theme()
+	{
 
-		add_action('ecwid_store_page_created', array($this, 'on_create_store_page'));
-		add_action('switch_theme', array($this, 'switch_theme'));
 	}
 
 	public function minicart_shortcode_content( $content )
