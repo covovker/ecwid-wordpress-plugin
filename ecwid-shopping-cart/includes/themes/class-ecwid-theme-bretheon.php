@@ -26,7 +26,7 @@ class Ecwid_Theme_Bretheon extends Ecwid_Theme_Base
 			// not exactly the intended usage, but quite simple and still works
 			// $meta is a serialized array that has the actual content
 			// a right way is to walk through the structure and run has_shortcode against all fields
-			$result = has_shortcode( $meta, 'ecwid_productbrowser' );
+			$result = ecwid_content_has_productbrowser($meta);
 		}
 
 		return $result;

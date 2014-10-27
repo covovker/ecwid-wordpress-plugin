@@ -421,18 +421,39 @@ function add_ecwid_admin_bar_node() {
     );
 }
 
+function ecwid_content_has_productbrowser($content) {
+
+	$result = has_shortcode($content, 'ecwid_productbrowser');
+
+	if (!$result && has_shortcode($content, 'ecwid')) {
+		$shortcodes = ecwid_find_shortcodes($content, 'ecwid');
+		if ($shortcodes) foreach ($shortcodes as $shortcode) {
+
+			$attributes = shortcode_parse_atts($shortcode[3]);
+
+			if (isset($attributes['widgets'])) {
+				$widgets = preg_split('![^0-9^a-z^A-Z^-^_]!', $attributes['widgets']);
+				if (is_array($widgets) && in_array('productbrowser', $widgets)) {
+					$result = true;
+				}
+			}
+		}
+	}
+
+	return $result;
+}
+
 function ecwid_page_has_productbrowser($post_id = null)
 {
-    static $results = null;
+	static $results = null;
 
 	if (is_null($post_id)) {
 		$post_id = get_the_ID();
 	}
 
-    if (is_null($results[$post_id])) {
-        $post_content = get_post($post_id)->post_content;
-        $results[$post_id] = has_shortcode($post_content, 'ecwid_productbrowser');
-
+	if (is_null($results[$post_id])) {
+		$post_content = get_post($post_id)->post_content;
+		$results[$post_id] = ecwid_content_has_productbrowser($post_content);
 		$results[$post_id] = apply_filters( 'ecwid_page_has_productbrowser', $results[$post_id] );
 	}
 
@@ -1905,5 +1926,30 @@ function ecwid_embed_svg($name) {
 	$code = file_get_contents(ECWID_PLUGIN_DIR . '/images/' . $name . '.svg');
 
 	echo $code;
+}
+
+/*
+ * Basically a copy of has_shortcode that returns the matched shortcode
+ */
+function ecwid_find_shortcodes( $content, $tag ) {
+
+	if ( shortcode_exists( $tag ) ) {
+		preg_match_all( '/' . get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER );
+		if ( empty( $matches ) )
+			return false;
+
+		$result = array();
+		foreach ( $matches as $shortcode ) {
+			if ( $tag === $shortcode[2] ) {
+				$result[] = $shortcode;
+			}
+		}
+
+		if (empty($result)) {
+			$result = false;
+		}
+		return $result;
+	}
+	return false;
 }
 ?>
