@@ -806,6 +806,7 @@ function ecwid_product_shortcode($shortcode_attributes) {
 
 	$result .= '</div>';
 
+	$result .= ecwid_get_product_browser_url_script();
 	$result .= '<script type="text/javascript">xSingleProduct()</script>';
 
 	update_option('ecwid_single_product_used', time());
