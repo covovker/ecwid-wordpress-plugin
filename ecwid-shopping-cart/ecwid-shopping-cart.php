@@ -453,8 +453,9 @@ function ecwid_page_has_productbrowser($post_id = null)
 
 	if (is_null($results[$post_id])) {
 		$post_content = get_post($post_id)->post_content;
+
 		$results[$post_id] = ecwid_content_has_productbrowser($post_content);
-		$results[$post_id] = apply_filters( 'ecwid_page_has_productbrowser', $results[$post_id] );
+		$results[$post_id] = apply_filters( 'ecwid_page_has_product_browser', $results[$post_id] );
 	}
 
 	return $results[$post_id];
@@ -1884,7 +1885,6 @@ function ecwid_can_display_html_catalog()
 
 	$profile = $api->get_profile();
 	if (!$profile) return;
-
 	return $profile['closed'] != true;
 }
 
