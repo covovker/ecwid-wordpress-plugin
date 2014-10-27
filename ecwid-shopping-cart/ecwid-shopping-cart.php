@@ -451,7 +451,7 @@ function ecwid_page_has_productbrowser($post_id = null)
 		$post_id = get_the_ID();
 	}
 
-	if (is_null($results[$post_id])) {
+	if (!isset($results[$post_id])) {
 		$post_content = get_post($post_id)->post_content;
 
 		$results[$post_id] = ecwid_content_has_productbrowser($post_content);
