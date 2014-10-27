@@ -8,6 +8,10 @@ class Ecwid_Store_Editor {
 			return;
 		}
 
+		add_action('template_redirect',     array($this, 'get_store_svg'));
+
+		if ($GLOBALS['pagenow'] != 'post.php') return;
+
 		$this->init();
 	}
 
@@ -17,7 +21,6 @@ class Ecwid_Store_Editor {
 		add_action('media_buttons_context', array($this, 'add_editor_button'));
 		add_action('admin_enqueue_scripts', array($this, 'add_scripts'));
 		add_action('in_admin_header',       array($this, 'add_popup'));
-		add_action('template_redirect',     array($this, 'get_store_svg'));
 	}
 
 	public function add_mce_plugin() {
