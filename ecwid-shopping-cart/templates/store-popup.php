@@ -3,8 +3,8 @@
 </script>
 <div id="ecwid-store-popup-content">
 	<div class="media-modal wp-core-ui">
-		<a class="media-modal-close" href="#" title="Close"><span class="media-modal-icon"></span></a>
 		<div class="media-modal-content">
+  		<a class="media-modal-close" href="#" title="Close"><span class="media-modal-icon"></span></a>
 			<div class="media-frame wp-core-ui hide-router">
 				<div class="media-frame-menu">
 					<div class="media-menu">
