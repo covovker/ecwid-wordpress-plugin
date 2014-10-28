@@ -5,7 +5,7 @@ Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
 Text Domain: ecwid-shopping-cart
 Author: Ecwid Team
-Version: 2.5
+Version: 2.7
 Author URI: http://www.ecwid.com?source=wporg
 */
 
@@ -646,10 +646,10 @@ function ecwid_content_started($content)
 
 function ecwid_wrap_shortcode_content($content, $name)
 {
-    return "<!-- Ecwid shopping cart plugin v 2.5 -->"
+    return "<!-- Ecwid shopping cart plugin v 2.7 -->"
 		   . ecwid_get_scriptjs_code()
 	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
-		   . "<!-- END Ecwid Shopping Cart v 2.5 -->";
+		   . "<!-- END Ecwid Shopping Cart v 2.7 -->";
 }
 
 function ecwid_get_scriptjs_code($force_lang = null) {
@@ -840,12 +840,16 @@ function ecwid_shortcode($attributes)
 	$attributes['layout'] = $attributes['minicart_layout'];
 
 	$result = '';
-	foreach ($widgets as $widget) {
+
+	$widgets_order = array('minicart', 'search', 'categories', 'productbrowser');
+	foreach ($widgets_order as $widget) {
 		if ($widget == 'search') {
 			$widget = 'searchbox';
 		}
 
-		$result .= call_user_func_array('ecwid_' . $widget . '_shortcode', array($attributes));
+		if (in_array($widget, $widgets)) {
+			$result .= call_user_func_array('ecwid_' . $widget . '_shortcode', array($attributes));
+		}
 	}
 
 	return $result;

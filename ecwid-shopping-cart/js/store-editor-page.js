@@ -77,7 +77,7 @@ jQuery(document).ready(function() {
 		return {
 			'show_search': false,
 			'show_minicart': true,
-			'show_categories': true,
+			'show_categories': false,
 			'categories_per_row': 3,
 			'grid_rows': 3,
 			'grid_columns': 3,
