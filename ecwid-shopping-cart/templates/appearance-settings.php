@@ -28,7 +28,7 @@
 				</label>
 			</div>
 			<div class="note">
-				<?php echo sprintf(__('Or you can add search box to your website\'s toolbar using <a href="%s">WordPress native widgets</a>', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid-appearance'); ?>
+				<?php echo sprintf(__('Or you can add search box to your website\'s toolbar using <a href="%s">WordPress native widgets</a>', 'ecwid-shopping-cart'), 'widgets.php?from-ecwid=appearance'); ?>
 			</div>
 		</div>
 

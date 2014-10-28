@@ -53,9 +53,13 @@
 								</label>
 							</div>
 						</div>
-					</div>
-					<div class="note">
-						<?php echo sprintf(__('Additionally, you can add store controls to your website\'s toolbar using <a %s>WordPress native widgets</a>', 'ecwid-shoping-cart'), 'target="_blank" href="widgets.php?from-ecwid-appearance"'); ?>
+						<div class="note">
+							<?php echo sprintf(
+									__('Additionally, you can add store controls to your website\'s toolbar using <a %s>WordPress native widgets</a>', 'ecwid-shoping-cart'),
+									'href="widgets.php?from-ecwid=' . (isset($_GET['post']) ? $_GET['post'] : 'new') . '"'
+								);
+							?>
+						</div>
 					</div>
 
 				</div>

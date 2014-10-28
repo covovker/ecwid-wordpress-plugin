@@ -10,7 +10,7 @@ class Ecwid_Store_Editor {
 
 		add_action('template_redirect',     array($this, 'get_store_svg'));
 
-		if ($GLOBALS['pagenow'] != 'post.php') return;
+		if (!in_array($GLOBALS['pagenow'], array('post.php', 'post-new.php'))) return;
 
 		$this->init();
 	}

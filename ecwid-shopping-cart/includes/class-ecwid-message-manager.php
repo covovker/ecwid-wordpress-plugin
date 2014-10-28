@@ -130,6 +130,18 @@ class Ecwid_Message_Manager
 			$params['primary_url'] = ecwid_get_store_page_url();
 		}
 
+		if ($name == 'on_appearance_widgets') {
+
+			if (isset($_GET['from-ecwid']) && $_GET['from-ecwid'] == 'appearance') {
+				$admin_page = 'admin.php?page=ecwid-appearance';
+			} elseif (isset($_GET['from-ecwid']) && $_GET['from-ecwid'] == 'new') {
+				$admin_page = 'post-new.php?post_type=page';
+			} elseif (isset($_GET['from-ecwid']) && is_numeric($_GET['from-ecwid'])) {
+				$admin_page = 'post.php?post=' . $_GET['from-ecwid'] . '&action=edit';
+			}
+
+			$params['secondary_url'] = $admin_page;
+		}
 		$types_map = array(
 			'info' => 'updated',
 			'warning' => 'update-nag',
@@ -163,7 +175,7 @@ class Ecwid_Message_Manager
 				'hideable' => true
 			),
 
-			'no_storeid_on_setup_pages' => array(
+			'on_no_storeid_on_setup_pages' => array(
 				'type' => 'warning',
 				'title' => __('Your store is almost ready!', 'ecwid-shopping-cart' ),
 				'message' => __('Connect your Ecwid account with this site to complete setup and start selling', 'ecwid-shopping-cart' ),
@@ -206,12 +218,16 @@ class Ecwid_Message_Manager
 			case 'on_storeid_set':
 				return get_ecwid_store_id() != ECWID_DEMO_STORE_ID && $_GET['settings-updated'] == 'true' && $admin_page == 'toplevel_page_ecwid';
 
-			case 'no_storeid_on_setup_pages':
-				return get_ecwid_store_id() == ECWID_DEMO_STORE_ID
-					&& in_array($admin_page, array('ecwid-store_page_ecwid-advanced', 'ecwid-store_page_ecwid-appearance'));
+			case 'on_no_storeid_on_setup_pages':
+				$is_newbie = get_ecwid_store_id() == ECWID_DEMO_STORE_ID;
+
+				$is_ecwid_settings = in_array($admin_page, array('ecwid-store_page_ecwid-advanced', 'ecwid-store_page_ecwid-appearance'));
+				$is_store_page = $admin_page == 'post' && $_GET['post'] == ecwid_get_current_store_page_id();
+
+				return $is_newbie && ($is_ecwid_settings || $is_store_page);
 
 			case 'on_appearance_widgets':
-				return isset($_GET['from-ecwid-appearance']) && $admin_page == 'widgets';
+				return isset($_GET['from-ecwid']) && $admin_page == 'widgets';
 
 			case 'please_vote':
 				$install_date = get_option('ecwid_installation_date');
