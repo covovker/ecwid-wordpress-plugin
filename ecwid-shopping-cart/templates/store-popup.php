@@ -240,9 +240,14 @@
 				<div class="media-frame-toolbar">
 					<div class="media-toolbar">
 						<div class="media-toolbar-secondary">
-							<div class="store-id"><?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <?php echo esc_attr(get_ecwid_store_id()); ?></div>
-							<div class="setting-link">
-								<a target="_blank" href="admin.php?page=ecwid"><?php _e('Ecwid plugin settings', 'ecwid-shopping-cart'); ?></div>
+							<?php if (get_ecwid_store_id() != ECWID_DEMO_STORE_ID): ?>
+								<div class="store-id"><?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <?php echo esc_attr(get_ecwid_store_id()); ?></div>
+							<?php else: ?>
+								<div class="store-id"><?php _e('Demo store', 'ecwid-shopping-cart'); ?></div>
+							<?php endif; ?>
+								<div class="setting-link">
+									<a target="_blank" href="admin.php?page=ecwid"><?php _e('Ecwid plugin settings', 'ecwid-shopping-cart'); ?>
+								</div>
 						</div>
 						<div class="media-toolbar-primary add-store">
 							<a href="#" class="button media-button button-primary button-large media-button-select"><?php _e('Insert into page'); ?></a>
