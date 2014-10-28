@@ -4,6 +4,8 @@
 	display: inline-block;
 	width: 16px;
 	top: 3px;
+	height: 16px;
+	max-height: 16px;
 }
 
 .ecwid-store-icon svg * {
@@ -304,5 +306,3 @@
 #ecwid-store-popup-content .store-settings .pure-control-group input[type=checkbox] {
 	margin-right: 15px;
 }
-
-
