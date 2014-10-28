@@ -1,7 +1,7 @@
 <div class="wrap">
 
 	<form method="POST" action="options.php" class="pure-form ecwid-settings general-settings" name="settings">
-		<h2><?php _e('Ecwid Shopping Cart — General settings', 'ecwid-shopping-cart'); ?></h2>
+		<h2><?php _e('Ecwid Shopping Cart — Dashboard', 'ecwid-shopping-cart'); ?></h2>
 		<?php settings_fields('ecwid_options_page'); ?>
 		<fieldset>
 

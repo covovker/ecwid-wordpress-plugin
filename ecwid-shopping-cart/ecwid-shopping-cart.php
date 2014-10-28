@@ -1093,6 +1093,7 @@ function ecwid_abs_intval($value) {
 
 function ecwid_options_add_page() {
 
+	$is_newbie = get_ecwid_store_id() == ECWID_DEMO_STORE_ID;
 
 	add_menu_page(
 		__('Ecwid shopping cart settings', 'ecwid-shopping-cart'),
@@ -1102,10 +1103,16 @@ function ecwid_options_add_page() {
 		'ecwid_general_settings_do_page'
 	);
 
+
+	if ($is_newbie) {
+		$title = __('Setup', 'ecwid-shopping-cart');
+	} else {
+		$title = __('Dashboard', 'ecwid-shopping-cart');
+	}
 	add_submenu_page(
 		'ecwid',
-		__('General settings', 'ecwid-shopping-cart'),
-		__('General', 'ecwid-shopping-cart'),
+		$title,
+		$title,
 		'manage_options',
 		'ecwid',
 		'ecwid_general_settings_do_page'
@@ -1120,14 +1127,16 @@ function ecwid_options_add_page() {
 		'ecwid_appearance_settings_do_page'
 	);
 
-	add_submenu_page(
-		'ecwid',
-		__('Advanced settings', 'ecwid-shopping-cart'),
-		__('Advanced', 'ecwid-shopping-cart'),
-		'manage_options',
-		'ecwid-advanced',
-		'ecwid_advanced_settings_do_page'
-	);
+	if (!$is_newbie || $_GET['page'] == 'ecwid-advanced') {
+		add_submenu_page(
+			'ecwid',
+			__('Advanced settings', 'ecwid-shopping-cart'),
+			__('Advanced', 'ecwid-shopping-cart'),
+			'manage_options',
+			'ecwid-advanced',
+			'ecwid_advanced_settings_do_page'
+		);
+	}
 	//add_options_page('Ecwid shopping cart settings', 'Ecwid shopping cart', 'manage_options', 'ecwid_options_page', 'ecwid_options_do_page');
 }
 
@@ -1210,9 +1219,9 @@ function ecwid_admin_get_footer() {
 function ecwid_general_settings_do_page() {
 
 	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID) {
-		require_once plugin_dir_path(__FILE__) . '/templates/general-settings-initial.php';
+		require_once plugin_dir_path(__FILE__) . '/templates/setup.php';
 	} else {
-		require_once plugin_dir_path(__FILE__) . '/templates/general-settings.php';
+		require_once plugin_dir_path(__FILE__) . '/templates/dashboard.php';
 	}
 }
 
