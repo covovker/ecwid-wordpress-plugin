@@ -210,10 +210,9 @@ function edev_process_request() {
 			);
 			file_put_contents(ABSPATH . '/wp-config.php', $config);
 		}
-        if ($mode == 'reset_messages') {
-            require_once(plugin_dir_path(__FILE__) . '../ecwid-shopping-cart/includes/class-ecwid-message-manager');
-            $mm = new Ecwid_Message_Manager();
-            $mm->reset_hidden_messages();
+        if ($R['mode'] == 'reset_messages') {
+            require_once(plugin_dir_path(__FILE__) . '../ecwid-shopping-cart/includes/class-ecwid-message-manager.php');
+            Ecwid_Message_Manager::reset_hidden_messages();
         }       
 
 		header('Location: ' . $R['back_url']);
