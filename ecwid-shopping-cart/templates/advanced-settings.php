@@ -8,6 +8,7 @@
 
 	<fieldset>
 
+		<?php if (get_option('ecwid_show_appearance_menu') == 'Y'): ?>
 		<div class="pure-control-group bottom-border">
 
 			<?php if (ecwid_is_paid_account()): ?>
@@ -57,6 +58,9 @@
 		</div>
 
 		<hr />
+
+		<?php endif; ?>
+
 
 		<div class="pure-control-group last">
 			<label for="ecwid_sso_secret_key">
