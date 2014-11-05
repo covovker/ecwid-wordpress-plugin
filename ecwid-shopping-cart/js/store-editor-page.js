@@ -64,7 +64,8 @@ jQuery(document).ready(function() {
 			'table_rows': attributes.table,
 			'grid_rows': grid[1],
 			'grid_columns': grid[2],
-			'default_category_id': attributes.default_category_id
+			'default_category_id': attributes.default_category_id,
+			'minicart_layout': 'attachToCategories'
 		};
 
 	}
@@ -85,7 +86,8 @@ jQuery(document).ready(function() {
 			'list_rows': 10,
 			'default_category_id': 0,
 			'category_view': 'grid',
-			'search_view': 'list'
+			'search_view': 'list',
+			'minicart_layout': 'attachToCategories'
 		}
 	}
 
@@ -165,6 +167,7 @@ jQuery(document).ready(function() {
 		result.default_category_id = getNumber('default_category_id', defaults.default_category_id);
 		result.category_view = getString('category_view', ['list', 'grid', 'table'], defaults.category_view);
 		result.search_view = getString('search_view', ['list', 'grid', 'table'], defaults.search_view);
+		result.minicart_layout = 'attachToCategories';
 
 
 		var existingShortcode = ecwid_get_store_shortcode(jQuery('#content').val());
