@@ -19,7 +19,7 @@ function ecwid_get_store_shortcode(content) {
 
 function ecwid_store_start(shortcode) {
 
-	return '<div class="ecwid-store-wrap" data-ecwid-shortcode="' + shortcode.replace(/"/g, '&quot;') + '">';
+	return '<div class="ecwid-store-wrap" contenteditable="false" data-ecwid-shortcode="' + shortcode.replace(/"/g, '&quot;') + '">';
 }
 
 function ecwid_store_end()

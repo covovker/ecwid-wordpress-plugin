@@ -888,6 +888,8 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 
 			store = ecwid_store_start(found.content) + store + ecwid_store_end();
 
+			store = '<p></p>' + store + '<p></p>';
+
 			e.content = e.content.substr(0, found.index) + store + e.content.substr(found.index + found.content.length);
 
 
