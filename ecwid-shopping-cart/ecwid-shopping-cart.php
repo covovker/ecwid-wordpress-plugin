@@ -998,7 +998,7 @@ function ecwid_parse_escaped_fragment($escaped_fragment) {
 function ecwid_store_activate() {
 	$my_post = array();
 	$content = <<<EOT
-<!-- Ecwid code. Please do not remove this line  otherwise your Ecwid shopping cart will not work properly. --> [ecwid_minicart] [ecwid_searchbox] [ecwid_categories] [ecwid_productbrowser] <!-- Ecwid code end -->
+<!-- Ecwid code. Please do not remove this line  otherwise your Ecwid shopping cart will not work properly. --> [ecwid widgets="productbrowser search" grid="3,3" list="10" table="20" default_category_id="0" category_view="grid" search_view="grid" minicart_layout="attachToCategories" ] <!-- Ecwid code end -->
 EOT;
   	add_option("ecwid_store_page_id", '', '', 'yes');
 	add_option("ecwid_store_page_id_auto", '', '', 'yes');
