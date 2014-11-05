@@ -832,9 +832,16 @@ function ecwid_shortcode($attributes)
 		, $attributes
 	);
 
+	$allowed_widgets = array('productbrowser', 'search', 'categories', 'minicart');
 	$widgets = preg_split('![^0-9^a-z^A-Z^-^_]!', $attributes['widgets']);
-	if (!in_array('productbrowser', $widgets)) {
-		$widgets = 'productbrowser';
+	foreach ($widgets as $key => $widget) {
+		if (!in_array($widget, $allowed_widgets)) {
+			unset($widgets[$key]);
+		}
+	}
+
+	if (empty($widgets)) {
+		$widgets = array('productbrowser');
 	}
 
 	$attributes['layout'] = $attributes['minicart_layout'];
@@ -843,11 +850,11 @@ function ecwid_shortcode($attributes)
 
 	$widgets_order = array('minicart', 'search', 'categories', 'productbrowser');
 	foreach ($widgets_order as $widget) {
-		if ($widget == 'search') {
-			$widget = 'searchbox';
-		}
-
 		if (in_array($widget, $widgets)) {
+			if ($widget == 'search') {
+				$widget = 'searchbox';
+			}
+
 			$result .= call_user_func_array('ecwid_' . $widget . '_shortcode', array($attributes));
 		}
 	}
