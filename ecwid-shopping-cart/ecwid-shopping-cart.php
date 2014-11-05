@@ -1031,6 +1031,7 @@ EOT;
 
 	add_option("ecwid_installation_date", time());
 
+	add_option('ecwid_show_appearance_menu', get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'N' : 'Y', 'yes');
 	// Does not affect updates, automatically turned on for new users only
 	add_option("ecwid_advanced_theme_layout", get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', 'yes');
 
@@ -1129,14 +1130,16 @@ function ecwid_options_add_page() {
 		'ecwid_general_settings_do_page'
 	);
 
-	add_submenu_page(
-		'ecwid',
-		__('Appearance settings', 'ecwid-shopping-cart'),
-		__('Appearance', 'ecwid-shopping-cart'),
-		'manage_options',
-		'ecwid-appearance',
-		'ecwid_appearance_settings_do_page'
-	);
+	if (get_option('ecwid_show_appearance_menu') == 'Y') {
+		add_submenu_page(
+			'ecwid',
+			__('Appearance settings', 'ecwid-shopping-cart'),
+			__('Appearance', 'ecwid-shopping-cart'),
+			'manage_options',
+			'ecwid-appearance',
+			'ecwid_appearance_settings_do_page'
+		);
+	}
 
 	if (!$is_newbie || $_GET['page'] == 'ecwid-advanced') {
 		add_submenu_page(
