@@ -30,7 +30,7 @@
 
 						<div class="store-settings">
 							<h3><?php _e('Choose widgets to show', 'ecwid-shopping-cart'); ?></h3>
-							<p><?php _e('Product catalog will be shown automatically', 'ecwid-shopping-cart'); ?></p>
+							<p class="note"><?php _e('Product catalog will be shown automatically', 'ecwid-shopping-cart'); ?></p>
 
 							<div class="pure-control-group">
 								<label data-ecwid-widget="search">
@@ -74,7 +74,7 @@
 
 				<div class="media-frame-content ecwid-store-editor appearance">
 
-					<div class="pure-control-group">
+					<div class="pure-control-group pb-views">
 						<label class="products-per-page-label"><?php _e('Number of products per page', 'ecwid-shopping-cart'); ?></label>
 						<div class="ecwid-pb-view-size grid active" tabindex="1">
 							<div class="title"><?php _e('Grid view', 'ecwid-shopping-cart'); ?></div>
@@ -178,26 +178,18 @@
 
 					</div>
 
-					<div class="pure-control-group small-input">
-						<div class="input">
-							<div>
-								<input
-									id="ecwid_pb_categoriesperrow"
-									name="categories_per_row"
-									type="text"
-									class="number"
-									value="<?php echo esc_attr(get_option('ecwid_pb_categoriesperrow')); ?>"
-									<?php echo $disabled_str; ?>
-									/>
-							</div>
-						</div>
-						<div class="label">
-							<label for="ecwid_pb_categoriesperrow">
-								<?php _e('Number of categories per row', 'ecwid-shopping-cart'); ?>
-							</label>
-						</div>
-						<div class="note">
-						</div>
+					<div class="pure-control-group">
+						<label for="ecwid_pb_categoriesperrow">
+							<?php _e('Number of categories per row', 'ecwid-shopping-cart'); ?>
+						</label>
+						<input
+							id="ecwid_pb_categoriesperrow"
+							name="categories_per_row"
+							type="text"
+							class="number"
+							value="<?php echo esc_attr(get_option('ecwid_pb_categoriesperrow')); ?>"
+							<?php echo $disabled_str; ?>
+							/>
 					</div>
 
 					<div class="pure-control-group">

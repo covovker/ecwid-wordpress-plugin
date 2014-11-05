@@ -21,7 +21,6 @@
 }
 
 #ecwid-store-popup-content .media-frame-content {
-	color: #777;
 }
 
 #ecwid-store-popup-content.open {
@@ -246,7 +245,7 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 
 #ecwid-store-popup-content .store-settings-preview {
 	width: 145px;
-	margin-top: 5px;
+	margin-top: 17px;
 	position: relative;
 }
 
@@ -255,6 +254,10 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 	background: transparent;
 	cursor: pointer;
 	display: inline-block;
+}
+
+#ecwid-store-popup-content .note {
+	color: #BBBBBB;
 }
 
 #ecwid-store-popup-content .store-settings-preview .ecwid-search {
@@ -303,7 +306,6 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 #ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=search] label[data-ecwid-widget=search]
 {
 	color: #21759B;
-	text-decoration: underline;
 }
 
 #ecwid-store-popup-content .media-frame-content.store-settings {
@@ -320,7 +322,24 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 
 #ecwid-store-popup-content .store-settings .pure-control-group label {
 	font-size: 16px;
+	color: black;
 }
 #ecwid-store-popup-content .store-settings .pure-control-group input[type=checkbox] {
 	margin-right: 15px;
 }
+
+@media only screen and (max-width: 640px) {
+	#ecwid-store-popup-content .note.pb-note {
+		width: auto;
+		text-align: left;
+	}
+
+	#ecwid-store-popup-content .pb-views {
+		text-align: center;
+	}
+
+	#ecwid-store-popup-content label {
+		width: auto;
+	}
+}
+
