@@ -23,5 +23,11 @@
 		c0,0,0,1.7,0,1.7c0,2.3-1.9,4.2-4.2,4.2c-2.1,0-3.8-1.5-4.1-3.5L248.4,28.6z"/>
 </g>
 	<text x="280" y="116" text-anchor="middle" fill="#050303" font-family="Open Sans,Helvetica Neue,sans-serif" font-size="20"><?php _e('Your store will be shown here!', 'ecwid-shopping-cart'); ?></text>
-	<text x="280" y="145" text-anchor="middle" fill="#999999" font-family="Open Sans,Helvetica Neue,sans-serif" font-size="14"><?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <?php echo esc_attr(get_option('ecwid_store_id')); ?></text>
+	<text x="280" y="145" text-anchor="middle" fill="#999999" font-family="Open Sans,Helvetica Neue,sans-serif" font-size="14">
+		<?php if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID): ?>
+			<?php _e('Demo Store', 'ecwid-shopping-cart'); ?>
+		<?php else: ?>
+			<?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <?php echo esc_attr(get_option('ecwid_store_id')); ?>
+		<?php endif; ?>
+	</text>
 </svg>
