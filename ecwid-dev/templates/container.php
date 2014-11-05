@@ -37,4 +37,6 @@
 		<a class="edev_set_lang" href="javascript:void();" rel="<?= $locale ?>"><?= $locale ?></a>
 		<?php endforeach; ?>
 	<?php endif; ?>
+    <br />
+    <a href="javascript: edev_submit({mode: 'reset_messages'});">Reset messages</a> 
 </div>
