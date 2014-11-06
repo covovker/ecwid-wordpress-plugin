@@ -305,7 +305,7 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 #ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=minicart] label[data-ecwid-widget=minicart],
 #ecwid-store-popup-content .store-settings-wrapper[data-ecwid-widget-hover=search] label[data-ecwid-widget=search]
 {
-	color: #21759B;
+	color: #40c1ec;
 }
 
 #ecwid-store-popup-content .media-frame-content.store-settings {
@@ -323,7 +323,41 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 #ecwid-store-popup-content .store-settings .pure-control-group label {
 	font-size: 16px;
 	color: black;
+	font-weight: 400;
 }
+
+#ecwid-store-popup-content .appearance label {
+        font-weight: 600;
+}
+
+@media only screen and (max-width: 640px) {
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list {
+		margin: 35px 0px;
+		position: relative;
+	}
+
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list select,
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list input {
+		width: 100%;
+	}
+
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list input#ecwid_pb_categoriesperrow {
+		width: 27px;
+		position: absolute;
+		right: 0px;
+	}
+		
+	#ecwid-store-popup-content .appearance input.number {
+		margin-left: inherit;
+	}
+
+	#ecwid-store-popup-content .media-frame-content .store-settings-wrapper .store-settings {
+		padding-left: 0px;
+	}
+
+
+}
+
 #ecwid-store-popup-content .store-settings .pure-control-group input[type=checkbox] {
 	margin-right: 15px;
 }
@@ -336,6 +370,11 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 
 	#ecwid-store-popup-content .pb-views {
 		text-align: center;
+	}
+
+	#ecwid-store-popup-content .ecwid-pb-view-size {
+		margin-left: 25px;
+		margin-right: 25px;
 	}
 
 	#ecwid-store-popup-content label {
