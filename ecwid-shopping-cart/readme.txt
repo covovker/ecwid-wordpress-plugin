@@ -51,7 +51,7 @@ New-gen technologies make Ecwid much faster than usual shopping carts regardless
 
 = Free =
 
-Although Ecwid is packed with high-value features, Free plan is always available with no setup charges and no transaction fees. Get your store up and running without paying anything. As your business grows, you can consider upgrading to one of our premium plans to get more great features. See also: Ecwid plan and pricing (www.ecwid.com/pricing?source=wporg-plugin-site)
+Although Ecwid is packed with high-value features, Free plan is always available with no setup charges and no transaction fees. Get your store up and running without paying anything. As your business grows, you can consider upgrading to one of our premium plans to get more great features. See also: [Ecwid plan and pricing](www.ecwid.com/pricing?source=wporg-plugin-site)
 
 = See In Action =
 
