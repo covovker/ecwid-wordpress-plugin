@@ -141,7 +141,7 @@
 
 					<hr class="after-pb" />
 
-					<div class="pure-control-group default-category-id">
+					<div class="pure-control-group params-list default-category-id">
 
 						<?php if (ecwid_is_paid_account()): ?>
 							<label for="ecwid_default_category_id">
@@ -183,7 +183,7 @@
 
 					</div>
 
-					<div class="pure-control-group">
+					<div class="pure-control-group params-list">
 						<label for="ecwid_pb_categoriesperrow">
 							<?php _e('Number of categories per row', 'ecwid-shopping-cart'); ?>
 						</label>
@@ -197,7 +197,7 @@
 							/>
 					</div>
 
-					<div class="pure-control-group">
+					<div class="pure-control-group params-list">
 						<label for="ecwid_pb_defaultview">
 							<?php _e('Default view mode on product pages', 'ecwid-shopping-cart'); ?>
 						</label>
@@ -214,7 +214,7 @@
 						</select>
 					</div>
 
-					<div class="pure-control-group">
+					<div class="pure-control-group params-list">
 						<label for="ecwid_pb_searchview">
 							<?php _e('Default view mode on search results', 'ecwid-shopping-cart'); ?>
 						</label>
