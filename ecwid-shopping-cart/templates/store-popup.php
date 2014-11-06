@@ -141,12 +141,15 @@
 
 					<hr class="after-pb" />
 
-					<div class="pure-control-group bottom-border">
+					<div class="pure-control-group default-category-id">
 
 						<?php if (ecwid_is_paid_account()): ?>
 							<label for="ecwid_default_category_id">
 								<?php _e('Category shown by default', 'ecwid-shopping-cart'); ?>
 							</label>
+
+
+						<div class="value">
 
 							<select name="default_category_id" id="ecwid_default_category_id">
 								<option value=""><?php _e('Store root category', 'ecwid-shopping-cart'); ?></option>
@@ -161,6 +164,8 @@
 									</option>
 								<?php endforeach; ?>
 							</select>
+						</div>
+
 						<?php else: ?>
 
 							<label for="ecwid_default_category_id">
@@ -196,7 +201,6 @@
 						<label for="ecwid_pb_defaultview">
 							<?php _e('Default view mode on product pages', 'ecwid-shopping-cart'); ?>
 						</label>
-
 						<select	id="ecwid_pb_defaultview" name="category_view" $disabled_str>
 						<option value="grid" <?php if(get_option('ecwid_pb_defaultview') == 'grid') echo 'selected="selected"' ?> >
 							<?php _e('Grid', 'ecwid-shopping-cart'); ?>
