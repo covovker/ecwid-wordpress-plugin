@@ -97,7 +97,7 @@
 	html:not(.ie8) #ecwid-store-popup-content .media-modal-content {
 		position: absolute;
 		width: 900px;
-		height: 600px;
+		height: 650px;
 		top: 50%;
 		left: 50%;
 		right: inherit;
@@ -127,7 +127,7 @@
 
 	html:not(.ie8) #ecwid-store-popup-content .media-modal-content {
 		position: absolute;
-		height: 600px;
+		height: 650px;
 		top: 50%;
 		bottom: inherit;
 		transform: translate(0%,-50%);
@@ -179,9 +179,14 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 
 #ecwid-store-popup-content .ecwid-pb-view-size {
 	margin-left: 15px;
-	margin-right: 40px;
+	margin-right: 30px;
 	margin-top: 15px;
 }
+
+#ecwid-store-popup-content .ecwid-pb-view-size:nth-child(4) {
+	margin-right: 0px;
+}
+
 
 #ecwid-store-popup-content .ecwid-pb-view-size .title {
 	font-size: 14px;
@@ -335,65 +340,7 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 }
 
 #ecwid-store-popup-content .appearance label {
-        font-weight: 600;
-}
-
-@media only screen and (max-width: 640px) {
-	#ecwid-store-popup-content .appearance .pure-control-group.params-list {
-		margin: 35px 0px;
-		position: relative;
-	}
-
-	#ecwid-store-popup-content .appearance .pure-control-group.params-list select,
-	#ecwid-store-popup-content .appearance .pure-control-group.params-list input {
-		width: 100%;
-	}
-
-	#ecwid-store-popup-content .appearance .pure-control-group.params-list input#ecwid_pb_categoriesperrow {
-		width: 27px;
-		position: absolute;
-		right: 0px;
-	}
-		
-	#ecwid-store-popup-content .appearance input.number {
-		margin-left: inherit;
-	}
-
-	#ecwid-store-popup-content .media-frame-content .store-settings-wrapper .store-settings {
-		padding-left: 0px;
-	}
-
-
-}
-
-#ecwid-store-popup-content .store-settings .pure-control-group input[type=checkbox] {
-	margin-right: 15px;
-}
-
-@media only screen and (max-width: 640px) {
-	#ecwid-store-popup-content .note.pb-note {
-		width: auto;
-		text-align: left;
-	}
-
-	#ecwid-store-popup-content .pb-views {
-		text-align: center;
-	}
-
-	#ecwid-store-popup-content .ecwid-pb-view-size {
-		margin-left: 25px;
-		margin-right: 25px;
-	}
-
-	#ecwid-store-popup-content label {
-		width: auto;
-		min-width: inherit;
-		max-width: inherit;
-	}
-
-	#ecwid-store-popup-content .media-frame-content .store-settings-wrapper {
-		padding-left: 0px;
-	}
+  font-weight: 600;
 }
 
 #ecwid-store-popup-content .pure-control-group.default-category-id {
@@ -414,4 +361,69 @@ html:not(.ie8) #ecwid-store-popup-content .store-settings-wrapper {
 #ecwid-store-popup-content .pure-control-group.default-category-id .value select,
 #ecwid-store-popup-content .pure-control-group.default-category-id .value input {
 	width:100%;
+}
+
+
+@media only screen and (max-width: 440px) {
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list {
+		margin: 35px 0px;
+		position: relative;
+	}
+
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list select,
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list input {
+		width: 100%;
+	}
+
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list label,
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list .value {
+		display: inline-block;
+		width: 100%;
+	}
+
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list input#ecwid_pb_categoriesperrow {
+		width: 27px;
+		position: absolute;
+		right: 0px;
+	}
+
+	#ecwid-store-popup-content .media-frame-content .store-settings-wrapper .store-settings {
+		padding-left: 0px;
+	}
+
+
+	#ecwid-store-popup-content .appearance .pure-control-group.params-list label {
+		width: auto;
+		min-width: inherit;
+		max-width: inherit;
+	}
+}
+
+#ecwid-store-popup-content .store-settings .pure-control-group input[type=checkbox] {
+	margin-right: 15px;
+}
+
+@media only screen and (max-width: 640px) {
+	#ecwid-store-popup-content .note.pb-note {
+		width: auto;
+		text-align: left;
+	}
+
+	#ecwid-store-popup-content .pb-views {
+		text-align: center;
+	}
+
+
+	#ecwid-store-popup-content .appearance input.number {
+		margin-left: inherit;
+	}
+
+	#ecwid-store-popup-content .ecwid-pb-view-size {
+		margin-left: 25px;
+		margin-right: 25px;
+	}
+
+	#ecwid-store-popup-content .media-frame-content .store-settings-wrapper {
+		padding-left: 0px;
+	}
 }
