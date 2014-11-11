@@ -27,6 +27,24 @@ $(document).ready(function() {
 	$('a.edev_set_lang').click(function() {
 		edev_submit({new_lang: this.rel});
 	});
+
+	$('#edev-container .usage-stats a').mouseover(
+		function() {
+			debugger;
+			if ($('#usage-hint').length > 0) return;
+			$('<div id="usage-hint" style="border:1px solid blue;position:absolute">' + this.title + '</div>').appendTo(document.body).css(
+					{
+						'background': 'white',
+						'top' : '' + ($(this).offset().top + 20) + 'px',
+						'left': '' + ($(this).offset().left - 50) + 'px'
+					}
+			);
+		}
+	);
+
+	$('#edev-container .usage-stats a').mouseout( function() {
+		$('#usage-hint').remove();
+	});
 });
 
 
