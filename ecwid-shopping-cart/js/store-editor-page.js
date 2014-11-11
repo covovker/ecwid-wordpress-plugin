@@ -122,9 +122,13 @@ jQuery(document).ready(function() {
 		$(this).addClass('active');
 
 		$('.media-modal-content', $popup).attr('data-active-dialog', $(this).attr('data-content'));
-
+		$('.media-menu').removeClass('visible');
 		return false;
 	});
+
+	$('h1', $popup).click(function() {
+		$('.media-menu').toggleClass('visible');
+	})
 
 	/*
 	 * Main button click
