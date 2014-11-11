@@ -27,10 +27,6 @@
 	display: block;
 }
 
-#wp-content-wrap.html-active .ecwid_button {
-	display: none;
-}
-
 .wp-media-buttons:not(.has-ecwid) .update-ecwid {
 	display: none;
 }
