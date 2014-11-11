@@ -895,13 +895,9 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 
 		if ( e.get ) {
 
-			function getAttr( str, name ) {
-				name = new RegExp( name + '=\"([^\"]+)\"' ).exec( str );
-				return name ? window.decodeURIComponent( name[1] ) : '';
-			}
-
 			return e.content = e.content.replace( /(<img [^>]*data-ecwid-shortcode=[^>]+>)/g, function( match, image ) {
-				var data = getAttr( image, 'data-ecwid-shortcode' );
+
+				var data = window.decodeURIComponent($(image).attr('data-ecwid-shortcode'));
 
 				if ( data ) {
 					return data;

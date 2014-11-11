@@ -192,8 +192,9 @@ jQuery(document).ready(function() {
 			$('#content').val(
 				$('#content').val().replace(existingShortcode.content, shortcode.shortcode.string())
 			);
-			$(tinymce.activeEditor.getBody()).find('.ecwid-store-wrap').attr('data-ecwid-shortcode', shortcode.shortcode.string());
+			$(tinymce.activeEditor.getBody()).find('.ecwid-store-editor').attr('data-ecwid-shortcode', shortcode.shortcode.string());
 		} else {
+
 			if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
 				tinymce.activeEditor.execCommand('mceInsertContent', false, shortcode.shortcode.string());
 			} else {
@@ -255,7 +256,11 @@ ecwid_open_store_popup = function() {
 	if (tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden()) {
 		tinyMCE.activeEditor.save();
 
-		shortcode = ecwid_get_store_shortcode($(tinyMCE.activeEditor.getBody()).find('.ecwid-store-wrap').attr('data-ecwid-shortcode'));
+		var content = $(tinyMCE.activeEditor.getBody())
+				.find('.ecwid-store-editor')
+				.attr('data-ecwid-shortcode');
+
+		var shortcode = ecwid_get_store_shortcode(window.decodeURIComponent(content));
 	} else {
 		shortcode = ecwid_get_store_shortcode(jQuery('#content').val());
 	}
