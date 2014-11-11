@@ -18,6 +18,10 @@
 					<h1><?php _e('Add Store', 'ecwid-shopping-cart'); ?></h1>
 				</div>
 
+				<div class="media-frame-title store-settings">
+					<h1><?php _e('Store settings', 'ecwid-shopping-cart'); ?></h1>
+				</div>
+
 				<div class="media-frame-content ecwid-store-editor store-settings">
 
 					<div class="store-settings-wrapper">
