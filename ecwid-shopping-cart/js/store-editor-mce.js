@@ -884,41 +884,31 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 
 			var content = e.content;
 
-			var store = '<img class="ecwid-store-editor" src="' + ecwid_store_svg + '" data-mce-placeholder="true" data-mce-resize="false">';
-
-			store = ecwid_store_start(found.content) + store + ecwid_store_end();
-
-			store = '<p></p>' + store + '<p></p>';
+			var store = '<img data-ecwid-shortcode="' + window.encodeURIComponent(found.content) + '" src="' + ecwid_store_svg + '" data-mce-placeholder="true" data-mce-resize="false" class="ecwid-store-editor">';
 
 			e.content = e.content.substr(0, found.index) + store + e.content.substr(found.index + found.content.length);
-
-
-
-			/*
-			 if ( e.content.indexOf( '<!--more' ) !== -1 ) {
-			 e.content = e.content.replace( /<!--more(.*?)-->/g, function( match, moretext ) {
-			 return '<img src="' + tinymce.Env.transparentSrc + '" data-wp-more="' + moretext + '" ' +
-			 'class="wp-more-tag mce-wp-more" title="Read More..." data-mce-resize="false" data-mce-placeholder="1" />';
-			 });
-			 }
-			 */
 		}
 	});
 
 	// Replace images with tags
 	editor.on( 'PostProcess', function( e ) {
+
 		if ( e.get ) {
 
-			var node = this.dom.select('.ecwid-store-wrap');
-			var shortcode  = jQuery(node).attr('data-ecwid-shortcode');
+			function getAttr( str, name ) {
+				name = new RegExp( name + '=\"([^\"]+)\"' ).exec( str );
+				return name ? window.decodeURIComponent( name[1] ) : '';
+			}
 
-			if (!shortcode) return;
+			return e.content = e.content.replace( /(<img [^>]*data-ecwid-shortcode=[^>]+>)/g, function( match, image ) {
+				var data = getAttr( image, 'data-ecwid-shortcode' );
 
-			var start = e.content.indexOf(ecwid_store_start(shortcode));
+				if ( data ) {
+					return data;
+				}
 
-			var end = e.content.indexOf(ecwid_store_end(), start) + ecwid_store_end().length;
-
-			e.content = e.content.replace(e.content.substring(start, end), shortcode);
+				return match;
+			});
 		}
 	});
 });

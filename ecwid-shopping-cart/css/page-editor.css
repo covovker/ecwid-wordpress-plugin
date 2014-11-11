@@ -1,9 +1,9 @@
-.ecwid-store-wrap img.ecwid-store-editor {
+.mce-content-body img.ecwid-store-editor {
 	padding-top: 30px;
-	background: #f1f1f1;
-	border: 1px solid #e7e7e7;
+	background: #F1F1F1;
+	border: 1px solid #E7E7E7;
 	height: 200px;
-	width:100%;
+	width: 100%;
 	display: block;
 }
 

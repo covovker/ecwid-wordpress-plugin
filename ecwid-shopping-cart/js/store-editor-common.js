@@ -16,13 +16,3 @@ function ecwid_get_store_shortcode(content) {
 
 	return found;
 }
-
-function ecwid_store_start(shortcode) {
-
-	return '<div class="ecwid-store-wrap" contenteditable="false" data-ecwid-shortcode="' + shortcode.replace(/"/g, '&quot;') + '">';
-}
-
-function ecwid_store_end()
-{
-	return '</div>';
-}
