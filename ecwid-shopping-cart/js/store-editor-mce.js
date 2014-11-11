@@ -381,6 +381,8 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 			editor.dom.remove( node );
 		}
 		removeToolbar();
+
+		editor.dom.remove(editor.dom.select('#ecwid-edit-store-button'));
 	}
 
 	function addToolbar( node ) {
@@ -399,6 +401,8 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 
 		toolbarHtml = '<div class="dashicons dashicons-edit edit" data-mce-bogus="1"></div>' +
 				'<div class="dashicons dashicons-no-alt remove" data-mce-bogus="1"></div>';
+
+		toolbarHtml += '<div class="ecwid-store-button-wrapper"><a class="ecwid-edit-store-button">' + tinymce.i18n.translate('Edit store apperance') + '</a></div>';
 
 		toolbar = dom.create( 'div', {
 			'id': 'ecwid-store-toolbar',
@@ -813,6 +817,7 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 			if ( wrap ) {
 				dom.events.cancel( event );
 				removeImage( node );
+
 				return false;
 			}
 
@@ -827,6 +832,8 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 			}
 
 			removeToolbar();
+			editor.dom.remove(editor.dom.select('#ecwid-edit-store-button'));
+
 		}
 	});
 
@@ -872,6 +879,8 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 
 	editor.on( 'cut', function() {
 		removeToolbar();
+
+		editor.dom.remove(editor.dom.select('#ecwid-edit-store-button'));
 	});
 
 	// Replace Read More/Next Page tags with images

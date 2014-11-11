@@ -110,6 +110,22 @@ jQuery(document).ready(function() {
 		} else {
 			$('.wp-media-buttons').removeClass('has-ecwid');
 		}
+
+		if (hasEcwid && tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
+			var button = tinymce.activeEditor.dom.select('#ecwid-edit-store-button');
+			if (button.length == 0) {
+				var body = tinymce.activeEditor.dom.doc.body;
+
+				var store = jQuery(content).find('.ecwid-store-editor');
+				$('<input type="button" id="ecwid-edit-store-button" contenteditable="false" data-mce-bogus="true" value="test" /> ')
+						.css({
+							'position': 'absolute',
+							'top': '' + store.offset().y + 'px',
+							'left': '' + store.offset().x + 'px'
+						})
+						.appendTo(body);
+			}
+		}
 	}
 
 	setInterval(checkEcwid, 800);
@@ -188,9 +204,35 @@ jQuery(document).ready(function() {
 			$('#content').val(
 				$('#content').val().replace(existingShortcode.content, shortcode.shortcode.string())
 			);
-			$(tinymce.activeEditor.getBody()).find('.ecwid-store-wrap').attr('data-ecwid-shortcode', shortcode.shortcode.string());
-		} else if (tinymce.activeEditor) {
-			tinymce.activeEditor.execCommand('mceInsertContent', false, shortcode.shortcode.string());
+
+			if (tinymce.activeEditor) {
+				$(tinymce.activeEditor.getBody()).find('.ecwid-store-wrap').attr('data-ecwid-shortcode', shortcode.shortcode.string());
+			}
+		} else {
+				if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
+					tinymce.activeEditor.execCommand('mceInsertContent', false, shortcode.shortcode.string());
+				} else {
+
+					getCursorPosition = function(el) {
+						var pos = 0;
+						if('selectionStart' in el) {
+							pos = el.selectionStart;
+						} else if('selection' in document) {
+							el.focus();
+							var Sel = document.selection.createRange();
+							var SelLength = document.selection.createRange().text.length;
+							Sel.moveStart('character', -el.value.length);
+							pos = Sel.text.length - SelLength;
+						}
+						return pos;
+					}
+
+					var el = $('#content');
+					var cursorPosition = getCursorPosition(el.get(0));
+
+					el.val(el.val().substr(0, cursorPosition) + shortcode.shortcode.string() + el.val().substr(cursorPosition));
+
+				}
 		}
 
 		$('#ecwid-store-popup-content').removeClass('open');
