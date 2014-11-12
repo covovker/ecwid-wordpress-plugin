@@ -81,12 +81,6 @@ body[class*=branch-3] #ecwid-store-popup-content .media-frame-title span.dashico
 	display: inherit;
 }
 
-@media only screen and (max-width: 640px), screen and (max-height: 400px) {
-	#ecwid-store-popup-content .media-modal-content .media-frame-title {
-		display: none !important;
-	}
-}
-
 /*
  * Size and centering
  */
