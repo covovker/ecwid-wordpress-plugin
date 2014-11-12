@@ -399,10 +399,7 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 		dom.setAttrib( node, 'data-ecwid-store-select', 1 );
 		rectangle = dom.getRect( node );
 
-		toolbarHtml = '<div class="dashicons dashicons-edit edit" data-mce-bogus="1"></div>' +
-				'<div class="dashicons dashicons-no-alt remove" data-mce-bogus="1"></div>';
-
-		toolbarHtml += '<div class="ecwid-store-button-wrapper"><a class="ecwid-edit-store-button">' + tinymce.i18n.translate('Edit store apperance') + '</a></div>';
+		toolbarHtml = '<div class="dashicons dashicons-no-alt remove" data-mce-bogus="1"></div>';
 
 		toolbar = dom.create( 'div', {
 			'id': 'ecwid-store-toolbar',
@@ -904,13 +901,9 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 
 		if ( e.get ) {
 
-			function getAttr( str, name ) {
-				name = new RegExp( name + '=\"([^\"]+)\"' ).exec( str );
-				return name ? window.decodeURIComponent( name[1] ) : '';
-			}
-
 			return e.content = e.content.replace( /(<img [^>]*data-ecwid-shortcode=[^>]+>)/g, function( match, image ) {
-				var data = getAttr( image, 'data-ecwid-shortcode' );
+
+				var data = window.decodeURIComponent($(image).attr('data-ecwid-shortcode'));
 
 				if ( data ) {
 					return data;

@@ -7,7 +7,6 @@ function ecwid_get_store_shortcode(content) {
 			break;
 		}
 		index = found.index + 1;
-		found = false;
 	}
 
 	if (typeof found == 'undefined') {

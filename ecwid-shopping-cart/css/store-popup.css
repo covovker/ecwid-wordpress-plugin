@@ -53,6 +53,9 @@
 	display: inherit;
 }
 
+body[class*=branch-3] #ecwid-store-popup-content .media-frame-title span.dashicons {
+	display: none;
+}
 /*
  * Content area visibility
  */

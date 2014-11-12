@@ -859,6 +859,8 @@ function ecwid_shortcode($attributes)
 		}
 	}
 
+	update_option('ecwid_store_shortcode_used', time());
+
 	return $result;
 }
 
@@ -1800,7 +1802,41 @@ function ecwid_gather_stats()
 		'default_category',
 		'google_xml_sitemaps_used',
 		'ecwid_product_advisor_used',
-		'ecwid_single_product_used'
+		'ecwid_single_product_used',
+		'ecwid_store_shortcode_used'
+	);
+
+	$usage_stats = ecwid_gather_usage_stats();
+	$stats['usage'] = '';
+
+	$usage = '';
+	foreach ($usage_params as $index => $item) {
+		$usage[$index] = (int)$usage_stats[$item];
+	}
+
+	$stats['usage'] = $usage_version . '_' . implode('', $usage);
+
+	return $stats;
+}
+
+function ecwid_gather_usage_stats()
+{
+	$usage_params = array(
+		'paid',
+		'display_search',
+		'horizontal_categories_enabled',
+		'minicart_enabled',
+		'search_widget',
+		'vcategories_widget',
+		'minicart_normal_widget',
+		'minicart_mini_widget',
+		'badge_widget',
+		'sso_enabled',
+		'default_category',
+		'google_xml_sitemaps_used',
+		'ecwid_product_advisor_used',
+		'ecwid_single_product_used',
+		'ecwid_store_shortcode_used'
 	);
 
 	$usage_stats = array();
@@ -1818,17 +1854,9 @@ function ecwid_gather_stats()
 	$usage_stats['google_xml_sitemaps_used'] = (bool) is_plugin_active('google-sitemap-generator/sitemap.php');
 	$usage_stats['ecwid_product_advisor_used'] = (bool) is_plugin_active('ecwid-useful-tools/ecwid-product-advisor.php');
 	$usage_stats['ecwid_single_product_used'] = (bool) (get_option('ecwid_single_product_used') + 60*60*24*14 > time());
+	$usage_stats['ecwid_store_shortcode_used'] = (bool) (get_option('ecwid_store_shortcode_used') + 60*60*24*14 > time());
 
-	$stats['usage'] = '';
-
-	$usage = '';
-	foreach ($usage_params as $index => $item) {
-		$usage[$index] = (int)$usage_stats[$item];
-	}
-
-	$stats['usage'] = $usage_version . '_' . implode('', $usage);
-
-	return $stats;
+	return $usage_stats;
 }
 
 function ecwid_sidebar_widgets_init() {

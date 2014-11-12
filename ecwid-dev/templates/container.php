@@ -38,5 +38,11 @@
 		<?php endforeach; ?>
 	<?php endif; ?>
     <br />
-    <a href="javascript: edev_submit({mode: 'reset_messages'});">Reset messages</a> 
+    <a href="javascript: edev_submit({mode: 'reset_messages'});">Reset messages</a>
+		<br />
+	<div class="usage-stats">
+
+		Usage stats:
+	<?php foreach (ecwid_gather_usage_stats() as $key => $value): ?><a style="cursor: pointer" title="<?php echo $key; ?>"><?php echo $value ? '1' : '0'; ?></a><?php endforeach; ?>
+	</div>
 </div>

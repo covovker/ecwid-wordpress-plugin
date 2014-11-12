@@ -60,6 +60,7 @@ HTML;
 		wp_enqueue_style('ecwid-store-editor-css', plugins_url('ecwid-shopping-cart/css/store-popup.css'));
 		wp_enqueue_script('ecwid-store-editor-common-js', plugins_url('ecwid-shopping-cart/js/store-editor-common.js'));
 		wp_enqueue_script('ecwid-store-editor-page-js', plugins_url('ecwid-shopping-cart/js/store-editor-page.js'));
+		wp_localize_script('ecwid-store-editor-page-js', 'ecwid_i18n', array('edit_store_appearance' => __('Edit store appearance', 'ecwid-shopping-cart')));
 		add_editor_style(plugins_url('ecwid-shopping-cart/css/page-editor.css'));
 	}
 

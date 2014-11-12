@@ -15,11 +15,21 @@
 				</div>
 
 				<div class="media-frame-title add-store">
-					<h1><?php _e('Add Store', 'ecwid-shopping-cart'); ?></h1>
+					<h1>
+						<?php _e('Add Store', 'ecwid-shopping-cart'); ?><span class="dashicons dashicons-arrow-down"></span>
+					</h1>
 				</div>
 
 				<div class="media-frame-title store-settings">
-					<h1><?php _e('Store settings', 'ecwid-shopping-cart'); ?></h1>
+					<h1>
+						<?php _e('Store settings', 'ecwid-shopping-cart'); ?><span class="dashicons dashicons-arrow-down"></span>
+					</h1>
+				</div>
+
+				<div class="media-frame-title appearance">
+					<h1>
+						<?php _e('Appearance', 'ecwid-shopping-cart'); ?><span class="dashicons dashicons-arrow-down"></span>
+					</h1>
 				</div>
 
 				<div class="media-frame-content ecwid-store-editor store-settings">
@@ -66,14 +76,6 @@
 						</div>
 					</div>
 
-				</div>
-
-				<div class="media-frame-title store-settings">
-					<h1><?php _e('Store Settings', 'ecwid-shopping-cart'); ?></h1>
-				</div>
-
-				<div class="media-frame-title appearance">
-					<h1><?php _e('Appearance', 'ecwid-shopping-cart'); ?></h1>
 				</div>
 
 				<div class="media-frame-content ecwid-store-editor appearance">
