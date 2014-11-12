@@ -683,30 +683,36 @@ function ecwid_script_shortcode($params) {
     return ecwid_wrap_shortcode_content($content, 'script');
 }
 
-function ecwid_minicart_shortcode($params) {
+function ecwid_minicart_shortcode($attributes) {
 
-	$attributes = shortcode_atts(
+	$params = shortcode_atts(
 		array(
-			'layout' => null
-		), $params
+			'layout' => null,
+			'is_ecwid_shortcode' => false
+		), $attributes
 	);
 
-	$layout = $attributes['layout'];
+	$layout = $params['layout'];
 	if (!in_array($layout, array('', 'attachToCategories', 'floating', 'Mini', 'MiniAttachToProductBrowser'))) {
 		$layout = 'attachToCategories';
 	}
 
-	$ecwid_enable_minicart = get_option('ecwid_enable_minicart');
-	$ecwid_show_categories = get_option('ecwid_show_categories');
+	if ($params['is_ecwid_shortcode']) {
+		// it is a part of the ecwid shortcode, we need to show it anyways
+		$ecwid_enable_minicart = $ecwid_show_categories = true;
+	} else {
+		// it is a ecwid_minicart widget that works based on appearance settings
+		$ecwid_enable_minicart = get_option('ecwid_enable_minicart');
+		$ecwid_show_categories = get_option('ecwid_show_categories');
+	}
 
-	$str = '';
-	if ($attributes['layout'])
 	$result = '';
+
 	if (!empty($ecwid_enable_minicart) && !empty($ecwid_show_categories)) {
 		$result = <<<EOT
 <script type="text/javascript"> xMinicart("style=","layout=$layout"); </script>
 EOT;
-    }
+	}
 
 	$result = apply_filters('ecwid_minicart_shortcode_content', $result);
 
@@ -717,9 +723,15 @@ EOT;
 	return $result;
 }
 
-function ecwid_searchbox_shortcode() {
+function ecwid_searchbox_shortcode($attributes) {
 
-	$ecwid_show_search_box = get_option('ecwid_show_search_box');
+	$params = shortcode_atts(
+		array(
+			'is_ecwid_shortcode' => false
+		), $attributes
+	);
+
+	$ecwid_show_search_box = $params['is_ecwid_shortcode'] ? true : get_option('ecwid_show_search_box');
     if (!empty($ecwid_show_search_box)) {
         $result = <<<EOT
 <script type="text/javascript"> xSearchPanel("style="); </script>
@@ -735,16 +747,22 @@ EOT;
 	return $result;
 }
 
-function ecwid_categories_shortcode() {
+function ecwid_categories_shortcode($attributes) {
 
-    $ecwid_show_categories = get_option('ecwid_show_categories');
+	$params = shortcode_atts(
+		array(
+			'is_ecwid_shortcode' => false
+		), $attributes
+	);
+
+  $ecwid_show_categories = $params['is_ecwid_shortcode'] ? true : get_option('ecwid_show_categories');
 
 	$result = '';
-    if (!empty($ecwid_show_categories)) {
-        $result = <<<EOT
+  if (!empty($ecwid_show_categories)) {
+  	$result = <<<EOT
 <script type="text/javascript"> xCategories("style="); </script>
 EOT;
-    }
+  }
 
 	$result = apply_filters('ecwid_categories_shortcode_content', $result);
 
@@ -845,6 +863,7 @@ function ecwid_shortcode($attributes)
 	}
 
 	$attributes['layout'] = $attributes['minicart_layout'];
+	$attributes['is_ecwid_shortcode'] = true;
 
 	$result = '';
 
