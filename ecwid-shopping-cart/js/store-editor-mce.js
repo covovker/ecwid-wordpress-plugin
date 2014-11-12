@@ -796,6 +796,17 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 //		}
 //	});
 
+
+	editor.on( 'keyup', function( event ) {
+		var node, wrap, P, spacer,
+				selection = editor.selection,
+				keyCode = event.keyCode,
+				dom = editor.dom;
+
+		if ( keyCode === tinymce.util.VK.DELETE || keyCode === tinymce.util.VK.BACKSPACE ) {
+			checkEcwid();
+		}
+	});
 	editor.on( 'keydown', function( event ) {
 		var node, wrap, P, spacer,
 				selection = editor.selection,
@@ -814,6 +825,7 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 			if ( wrap ) {
 				dom.events.cancel( event );
 				removeImage( node );
+				editor.dom.remove(editor.dom.select('#ecwid-edit-store-button'));
 
 				return false;
 			}
@@ -832,6 +844,7 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 			editor.dom.remove(editor.dom.select('#ecwid-edit-store-button'));
 
 		}
+
 	});
 
 	editor.on( 'mousedown', function( event ) {

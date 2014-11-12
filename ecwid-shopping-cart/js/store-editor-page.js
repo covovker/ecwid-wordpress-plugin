@@ -111,11 +111,11 @@ jQuery(document).ready(function() {
 			$('.wp-media-buttons').removeClass('has-ecwid');
 		}
 
-		if (hasEcwid && tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
+		if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
+			var body = tinymce.activeEditor.dom.doc.body;
 			var button = tinymce.activeEditor.dom.select('#ecwid-edit-store-button');
-			if (button.length == 0) {
-				var body = tinymce.activeEditor.dom.doc.body;
 
+			if (hasEcwid && button.length == 0) {
 				var store = jQuery(content).find('.ecwid-store-editor');
 				var button = $('<input type="button" id="ecwid-edit-store-button" contenteditable="false" data-mce-bogus="true" value="' + ecwid_i18n.edit_store_appearance + '" />')
 						.appendTo(body);
@@ -128,6 +128,8 @@ jQuery(document).ready(function() {
 						.appendTo(body);
 
 				button.click(ecwid_open_store_popup);
+			} else if (!hasEcwid && button.length > 0) {
+				tinymce.activeEditor.dom.remove(button);
 			}
 		}
 	}
