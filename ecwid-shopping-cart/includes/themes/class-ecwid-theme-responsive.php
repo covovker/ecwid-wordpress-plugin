@@ -17,6 +17,7 @@ class Ecwid_Theme_Responsive extends Ecwid_Theme_Base
 				wp_enqueue_script( 'ecwid-theme', plugins_url( 'ecwid-shopping-cart/js/themes/responsive.js' ), array( 'jquery' ), false, true );
 
 				add_filter( 'ecwid_minicart_shortcode_content', array( $this, 'minicart_shortcode_content' ) );
+				add_filter( 'ecwid_search_shortcode_content', array( $this, 'search_shortcode_content' ) );
 			}
 
 			wp_enqueue_style( 'ecwid-open-sans' , 'http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic-ext,cyrillic,greek-ext,vietnamese,greek,latin-ext');
@@ -42,9 +43,16 @@ class Ecwid_Theme_Responsive extends Ecwid_Theme_Base
 	public function minicart_shortcode_content( $content )
 	{
 
-		if ( get_the_ID() == get_option( 'ecwid_store_page_id' ) ) {
+		if ( ecwid_page_has_productbrowser() ) {
 			$content = '<script type="text/javascript"> xMinicart("style=","layout=Mini"); </script>';
 		}
+
+		return $content;
+	}
+
+	public function search_shortcode_content( $content ) {
+
+		$content .= '<script type="text/javascript>jQuery(document.body).addClass("ecwid-with-search"); </script>';
 
 		return $content;
 	}
