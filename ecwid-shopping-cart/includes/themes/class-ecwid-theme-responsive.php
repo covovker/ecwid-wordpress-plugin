@@ -52,7 +52,7 @@ class Ecwid_Theme_Responsive extends Ecwid_Theme_Base
 
 	public function search_shortcode_content( $content ) {
 
-		$content .= '<script type="text/javascript>jQuery(document.body).addClass("ecwid-with-search"); </script>';
+		$content .= '<script type="text/javascript">jQuery(document.body).addClass("ecwid-with-search"); </script>';
 
 		return $content;
 	}
