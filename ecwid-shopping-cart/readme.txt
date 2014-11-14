@@ -3,7 +3,7 @@ Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 4.0
-Stable tag: 2.5
+Stable tag: 2.6
 
 Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
 
@@ -51,7 +51,7 @@ New-gen technologies make Ecwid much faster than usual shopping carts regardless
 
 = Free =
 
-Although Ecwid is packed with high-value features, Free plan is always available with no setup charges and no transaction fees. Get your store up and running without paying anything. As your business grows, you can consider upgrading to one of our premium plans to get more great features. See also: [Ecwid plan and pricing](www.ecwid.com/pricing?source=wporg-plugin-site)
+Although Ecwid is packed with high-value features, Free plan is always available with no setup charges and no transaction fees. Get your store up and running without paying anything. As your business grows, you can consider upgrading to one of our premium plans to get more great features. See also: [Ecwid plan and pricing](http://www.ecwid.com/pricing?source=wporg-plugin-site)
 
 = See In Action =
 
