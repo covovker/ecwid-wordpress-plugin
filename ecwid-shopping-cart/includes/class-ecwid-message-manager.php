@@ -48,7 +48,7 @@ class Ecwid_Message_Manager
 		if ($secondary_button) {
 			$secondary_title = $params['secondary_title'];
 			$secondary_url   = $params['secondary_url'];
-			$secondary_blank = $params['secondary_blank'];
+			$secondary_blank = @$params['secondary_blank'];
 		}
 
 		$do_not_show_again = true == $params['hideable'];
@@ -153,7 +153,7 @@ class Ecwid_Message_Manager
 		return $params;
 	}
 
-	protected function get_default_messages()
+	protected static function get_default_messages()
 	{
 		return array(
 			'on_activate' => array(

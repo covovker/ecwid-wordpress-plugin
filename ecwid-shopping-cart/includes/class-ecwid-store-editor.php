@@ -60,12 +60,13 @@ HTML;
 		wp_enqueue_style('ecwid-store-editor-css', plugins_url('ecwid-shopping-cart/css/store-popup.css'));
 		wp_enqueue_script('ecwid-store-editor-common-js', plugins_url('ecwid-shopping-cart/js/store-editor-common.js'));
 		wp_enqueue_script('ecwid-store-editor-page-js', plugins_url('ecwid-shopping-cart/js/store-editor-page.js'));
-		wp_localize_script('ecwid-store-editor-page-js', 'ecwid_i18n', array('edit_store_appearance' => __('Edit store appearance', 'ecwid-shopping-cart')));
+		wp_localize_script('ecwid-store-editor-page-js', 'ecwid_i18n', array('edit_store_appearance' => __('Edit Appearance', 'ecwid-shopping-cart')));
 		add_editor_style(plugins_url('ecwid-shopping-cart/css/page-editor.css'));
 	}
 
 	public function get_store_svg() {
-		if ($_GET['file'] == 'ecwid_store_svg.svg' && current_user_can('administrator')) {
+		if (isset($_GET['file']) && $_GET['file'] == 'ecwid_store_svg.svg' && current_user_can('administrator')) {
+			ecwid_load_textdomain();
 			header('Content-type: image/svg+xml');
 			require_once(ECWID_PLUGIN_DIR . 'templates/store-svg.php');
 			die();

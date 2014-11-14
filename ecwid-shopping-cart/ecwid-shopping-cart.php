@@ -732,11 +732,13 @@ function ecwid_searchbox_shortcode($attributes) {
 	);
 
 	$ecwid_show_search_box = $params['is_ecwid_shortcode'] ? true : get_option('ecwid_show_search_box');
-    if (!empty($ecwid_show_search_box)) {
-        $result = <<<EOT
+
+	$result = '';
+	if (!empty($ecwid_show_search_box)) {
+  	$result = <<<EOT
 <script type="text/javascript"> xSearchPanel("style="); </script>
 EOT;
-    }
+  }
 
 	$result = apply_filters('ecwid_search_shortcode_content', $result);
 
@@ -1223,7 +1225,7 @@ function ecwid_settings_api_init() {
 
 		case 'general':
 			register_setting('ecwid_options_page', 'ecwid_store_id','ecwid_abs_intval' );
-			if (intval($_POST['ecwid_store_id']) == 0) {
+			if (isset($POST['ecwid_store_id']) && intval($_POST['ecwid_store_id']) == 0) {
 				Ecwid_Message_Manager::reset_hidden_messages();
 			}
 			break;

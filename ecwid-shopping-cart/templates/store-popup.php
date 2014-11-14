@@ -69,7 +69,7 @@
 						</div>
 						<div class="note">
 							<?php echo sprintf(
-									__('Additionally, you can add store controls to your website\'s toolbar using <a %s>WordPress native widgets</a>', 'ecwid-shoping-cart'),
+									__('Additionally, you can add store controls to your website\'s toolbar using <a %s>WordPress native widgets</a>', 'ecwid-shopping-cart'),
 									'href="widgets.php?from-ecwid=' . (isset($_GET['post']) ? $_GET['post'] : 'new') . '"'
 								);
 							?>
@@ -199,7 +199,6 @@
 							type="text"
 							class="number"
 							value="<?php echo esc_attr(get_option('ecwid_pb_categoriesperrow')); ?>"
-							<?php echo $disabled_str; ?>
 							/>
 					</div>
 
@@ -207,7 +206,7 @@
 						<label for="ecwid_pb_defaultview">
 							<?php _e('Default view mode on product pages', 'ecwid-shopping-cart'); ?>
 						</label>
-						<select	id="ecwid_pb_defaultview" name="category_view" $disabled_str>
+						<select	id="ecwid_pb_defaultview" name="category_view">
 						<option value="grid" <?php if(get_option('ecwid_pb_defaultview') == 'grid') echo 'selected="selected"' ?> >
 							<?php _e('Grid', 'ecwid-shopping-cart'); ?>
 						</option>
@@ -225,7 +224,7 @@
 							<?php _e('Default view mode on search results', 'ecwid-shopping-cart'); ?>
 						</label>
 
-						<select	id="ecwid_pb_searchview" name="search_view" $disabled_str>
+						<select	id="ecwid_pb_searchview" name="search_view">
 						<option value="grid" <?php if(get_option('ecwid_pb_searchview') == 'grid') echo 'selected="selected"' ?> >
 							<?php _e('Grid', 'ecwid-shopping-cart'); ?>
 						</option>

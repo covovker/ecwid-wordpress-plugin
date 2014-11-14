@@ -100,7 +100,7 @@ jQuery(document).ready(function() {
 		if (tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden()) {
 			content = tinyMCE.activeEditor.getBody();
 
-			hasEcwid = jQuery(content).find('.ecwid-store-editor').length > 0;
+			hasEcwid = $(content).find('.ecwid-store-editor').length > 0;
 		} else {
 			hasEcwid = ecwid_get_store_shortcode(jQuery('#content').val());
 		}
@@ -116,21 +116,25 @@ jQuery(document).ready(function() {
 			var button = tinymce.activeEditor.dom.select('#ecwid-edit-store-button');
 
 			if (hasEcwid && button.length == 0) {
-				var store = jQuery(content).find('.ecwid-store-editor');
 				var button = $('<input type="button" id="ecwid-edit-store-button" contenteditable="false" data-mce-bogus="true" value="' + ecwid_i18n.edit_store_appearance + '" />')
-						.appendTo(body);
-
-				button.css({
-							'position': 'absolute',
-							'top': '' + (store.offset().top + 60) + 'px',
-							'left': '' + (store.offset().left + store.outerWidth() / 2 - button.outerWidth() / 2 - 2) + 'px'
-						})
 						.appendTo(body);
 
 				button.click(ecwid_open_store_popup);
 			} else if (!hasEcwid && button.length > 0) {
 				tinymce.activeEditor.dom.remove(button);
 			}
+
+			if (hasEcwid) {
+				var store = $(body).find('.ecwid-store-editor');
+				var button = $('#ecwid-edit-store-button', body);
+				button.css({
+					'position': 'absolute',
+					'top': '' + (store.offset().top + 168) + 'px',
+					'left': '' + (store.offset().left + store.outerWidth() / 2 - button.outerWidth() / 2 - 2) + 'px'
+				});
+			}
+
+			jQuery('#wp_editbtns').css('display', 'none !important');
 		}
 	}
 
@@ -222,6 +226,7 @@ jQuery(document).ready(function() {
 
 			if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
 				tinymce.activeEditor.execCommand('mceInsertContent', false, shortcode.shortcode.string());
+				tinymce.activeEditor.execCommand('mceSetContent', false, tinymce.activeEditor.getBody().innerHTML);
 			} else {
 
 				getCursorPosition = function(el) {
@@ -316,6 +321,10 @@ ecwid_open_store_popup = function() {
 
 
 	updatePreview();
+
+
+	tinyMCE.activeEditor.execCommand('SelectAll');
+	tinyMCE.activeEditor.selection.collapse();
 
 	return false;
 };

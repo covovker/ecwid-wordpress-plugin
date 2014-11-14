@@ -1,4 +1,6 @@
-.mce-content-body img.ecwid-store-editor {
+.mce-content-body img.ecwid-store-editor,
+.mceContentBody img.ecwid-store-editor
+{
 	padding-top: 30px;
 	background: #F1F1F1;
 	border: 1px solid #E7E7E7;
@@ -7,7 +9,9 @@
 	display: block;
 }
 
-.mce-content-body .ecwid-store-editor[data-ecwid-store-select="1"] {
+.mce-content-body .ecwid-store-editor[data-ecwid-store-select="1"],
+.mceContentBody .ecwid-store-editor[data-ecwid-store-select="1"]
+{
 	outline: 1px solid #777;
 }
 
@@ -29,9 +33,9 @@
 	font-size: 30px;
 }
 
-#ecwid-edit-store-button {
-	margin-top: 108px;
 
+
+#ecwid-edit-store-button {
 	padding: 0 12px 2px;
 	height: 30px;
 	line-height: 28px;
@@ -47,6 +51,7 @@
 
 	cursor: pointer;
 }
+
 
 #ecwid-edit-store-button:hover {
 	background: #1E8CBE;
