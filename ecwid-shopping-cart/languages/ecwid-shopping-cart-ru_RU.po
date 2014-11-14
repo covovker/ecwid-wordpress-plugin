@@ -40,7 +40,7 @@ msgid "Store"
 msgstr "Магазин"
 
 msgid "<strong>Ecwid shopping cart is almost ready</strong>. Please visit <a target=\"_blank\" href=\"%s\">the created page</a> to see your store with demo products. In order to finish the installation, please go to the <a href=\"admin.php?page=ecwid\"><strong>Ecwid settings</strong></a> and configure the plugin."
-msgstr "<strong>Эквид-магазин почти готов к использованию</strong>. Пройдите по <a target=\"_blank\" href=\"%s\">ссылке</a>, чтобы посмотреть ваш магазин с демонстрационными продуктами. Чтобы закончить установку, пожалуйста, откройте страницу <a href=\"admin.php?page=ecwid\"><strong>настроек Эквида</strong></a> и настройте плагин."
+msgstr "<strong>Эквид-магазин почти готов к использованию</strong>. Пройдите по <a target=\"_blank\" href=\"%s\">ссылке</a>, чтобы посмотреть ваш магазин с демонстрационными товарами. Чтобы закончить установку, пожалуйста, откройте страницу <a href=\"admin.php?page=ecwid\"><strong>настроек Эквида</strong></a> и настройте плагин."
 
 msgid "Do you like your Ecwid online store? We'd appreciate it if you add your review and vote for the plugin on Wordpress site."
 msgstr "Вам нравится ваш Эквид-магазин? Будем благодарны, если вы оставите отзыв и проголосуете за Эквид на сайте WordPress."
@@ -53,6 +53,12 @@ msgstr "Магазин Ecwid"
 
 msgid "General settings"
 msgstr "Основные настройки"
+
+msgid "Dashboard"
+msgstr "Консоль"
+
+msgid "Ecwid Shopping Cart — Connect"
+msgstr "Магазин Ecwid — Подключение"
 
 msgid "General"
 msgstr "Основные"
@@ -154,13 +160,13 @@ msgid "Ecwid Shopping Cart — Appearance settings"
 msgstr "Магазин Ecwid — Настройки внешнего вида"
 
 msgid "Display search box above products"
-msgstr "Показывать форму поиска над списком продуктов"
+msgstr "Показывать форму поиска над списком товаров"
 
 msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
 msgstr "Или вы можете добавить форму поиска на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>"
 
 msgid "Display horizontal categories above products"
-msgstr "Показывать горизонтальное меню категорий над списком продуктов"
+msgstr "Показывать горизонтальное меню категорий над списком товаров"
 
 msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
 msgstr "Или вы можете добавить вертикальное меню категорий на ваш сайт с помощью <a href=\"%s\">виджетов WordPress</a>"
@@ -175,7 +181,7 @@ msgid "Number of categories per row"
 msgstr "Количество категорий в ряд"
 
 msgid "Number of products per page"
-msgstr "Количество продуктов на странице"
+msgstr "Количество товаров на странице"
 
 msgid "Grid view"
 msgstr "Вид \"сетка\""
@@ -187,10 +193,10 @@ msgid "Table view"
 msgstr "Вид \"таблица\""
 
 msgid "Here you can control how many products will be displayed per page. These options define maximum values. If there is not enough space to show all product columns, Ecwid will adapt the number of columns to hold all products."
-msgstr "Здесь вы можете задать количество отображаемых продуктов на странице. Эти цифры определяют максимальные значения. Если на странице в сетке продуктов будет недостаточно места для отображения всех столбцов, Эквид уменьшит их количество."
+msgstr "Здесь вы можете задать количество отображаемых товаров на странице. Эти цифры определяют максимальные значения. Если все столбцы в сетке товаров не будут помещаться на странице, Эквид автоматически уменьшит количество столбцов."
 
 msgid "Default view mode on product pages"
-msgstr "Вид страницы продуктов по умолчанию"
+msgstr "Вид страницы товаров по умолчанию"
 
 msgid "Grid"
 msgstr "Сетка"
@@ -204,8 +210,8 @@ msgstr "Таблица"
 msgid "Default view mode on search results"
 msgstr "Вид страницы результатов поиска по умолчанию"
 
-msgid "Ecwid Shopping Cart — General settings"
-msgstr "Магазин Ecwid — Основные настройки"
+msgid "Ecwid Shopping Cart — Dashboard"
+msgstr "Магазин Ecwid — Консоль"
 
 msgid "Thank you for choosing Ecwid to build your online store"
 msgstr "Спасибо вам за то, что выбрали Ecwid для своего интернет-магазина"
@@ -329,3 +335,48 @@ msgstr "Вернуться к настройкам"
 
 msgid "Rate Ecwid at WordPress.org"
 msgstr "Оценить Эквид на WordPress.org"
+
+msgid "Add Store"
+msgstr "Добавить магазин"
+
+msgid "Store settings"
+msgstr "Настройки витрины"
+
+msgid "Edit Store"
+msgstr "Изменить магазин"
+
+msgid "Edit store"
+msgstr "Изменить магазин"
+
+msgid "Your store will be shown here!"
+msgstr "Ваш магазин будет показан тут"
+
+msgid "Edit Appearance"
+msgstr "Настроить"
+
+msgid "Choose widgets to show"
+msgstr "Включите элементы магазина"
+
+msgid "Product catalog will be shown automatically"
+msgstr "Каталог товаров появится автоматически"
+
+msgid "Show minicart"
+msgstr "Корзина"
+
+msgid "Show search"
+msgstr "Поиск"
+
+msgid "Show horizontal categories"
+msgstr "Меню категорий"
+
+msgid "Additionally, you can add store controls to your website's toolbar using <a %s>WordPress native widgets</a>"
+msgstr "Вы также можете добавить блоки магазина на сайт с помощью <a %s>виджетов WordPress</a>"
+
+msgid "Ecwid plugin settings"
+msgstr "Настройки плагина"
+
+msgid "Insert into page"
+msgstr "Добавить на страницу"
+
+msgid "Save and close"
+msgstr "Сохранить и закрыть"
