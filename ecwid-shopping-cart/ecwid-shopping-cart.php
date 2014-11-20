@@ -1256,7 +1256,7 @@ function ecwid_admin_get_footer() {
 function ecwid_general_settings_do_page() {
 
 	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID) {
-		require_once plugin_dir_path(__FILE__) . '/templates/setup.php';
+		require_once plugin_dir_path(__FILE__) . '/templates/connect.php';
 	} else {
 		require_once plugin_dir_path(__FILE__) . '/templates/dashboard.php';
 	}
