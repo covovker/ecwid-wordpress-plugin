@@ -3,7 +3,7 @@ Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 4.0
-Stable tag: 2.6
+Stable tag: 2.7
 
 Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
 
@@ -110,6 +110,13 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.7 =
+- **A brand new 'Add store' tool in WordPress editor toolbar.** Ecwid is now integrated with WordPress WYSIWYG editor: click the 'Add Store' button in the page editor toolbar, chose widgets to show, adjust the appearance and place your store on any page of your site. Now you can decide what store widgets to show and configure store appearance right in the page editor.
+- **New "[ecwid]" shortcode.** The new shortcode allows you to control every aspect of your store appearance by means of tweaking the shortcode parameters right in the store page code. Display/hide the search widget, choose the minicart layout you like, display different store categories on different site pages and so on. This shortcode serves the "Add Store" button mentioned above and almost every tweak is available in the new "Add Store" window so you don't have to edit any code in most cases. Still, an advanced Wordpress user may consider using shortcodes for more flexible and quick integration.
+- **Improved behavior of single product widgets.** If you put a single product widget on your site using the [ecwid_product] shortcode, you might notice that it opens a popup with the customer cart when a customer purchases the product. Now single product widgets are smarter: when the customer decides to buy a product and opens a cart page, the main store page on your site will be opened providing the customer with the built-in cart&checkout functionality. The checkout layout will fit better your site design and provide better buying experience when it's embedded into a page rather than in a popup-like window.
+- **Fix for the Envision theme.** The Envision theme didn't display Ecwid widgets properly because of a custom page content generation it uses. We issued a workaround from our side to let all Envision users install and use Ecwid plugin on their sites. If you use Envision theme and want to set up an online store on your site, go ahead and install Ecwid plugin, it will work OK for you.
+- **Fixes of PHP notices.** Some of Ecwid users discovered a few PHP notices (warnings) on their site referring to the Ecwid plugin. Although those didn't break anything, they could be quite annoying. We cleaned up the plugin code to get rid of those warning messages, now the plugin should work without any odd message. 
+
 = 2.6 =
 - **Ecwid's new SEO URLs compatibility.** The new Ecwid clean URLs have been released a few days ago for all Ecwid users. Our WordPress plugin is already fully compatible with the new URLs. Your store pages will be better indexed by search engines and the search results will look more attractive as the links themselves will mention the product/category they lead to. Of course, Ecwid will handle all redirects, backward compatibility with the old URL scheme and avoid any duplicate issues. Enjoy the new SE-friendly URLs with no trouble.
 - **Improved formatting of product snippets markup.** In this update we tidied up in the product HTML representations generated for search engines and fixes a few issues in the products data markup. In particular, the price and availability tags have been re-formatted according to the Google recommendations to ensure better search engine results.
