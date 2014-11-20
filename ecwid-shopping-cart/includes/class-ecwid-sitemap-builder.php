@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__FILE__) . '/JSONStreamingParser/Listener.php';
-require_once dirname(__FILE__) . '/JSONStreamingParser/Parser.php';
+require_once dirname(__FILE__) . '/../lib/JSONStreamingParser/Listener.php';
+require_once dirname(__FILE__) . '/../lib/JSONStreamingParser/Parser.php';
 
 
 class EcwidSitemapBuilder implements JsonStreamingParser_Listener {

@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/ecwid_platform.php';
+include_once dirname(__FILE__) . '/ecwid_platform.php';
 
 class EcwidProductApi {
 
