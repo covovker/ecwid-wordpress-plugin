@@ -1164,7 +1164,7 @@ function ecwid_options_add_page() {
 		);
 	}
 
-	if (!$is_newbie || $_GET['page'] == 'ecwid-advanced') {
+	if (!$is_newbie || (isset($_GET['page']) && $_GET['page'] == 'ecwid-advanced')) {
 		add_submenu_page(
 			'ecwid',
 			__('Advanced settings', 'ecwid-shopping-cart'),
