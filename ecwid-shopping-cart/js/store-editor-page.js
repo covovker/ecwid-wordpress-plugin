@@ -135,6 +135,12 @@ jQuery(document).ready(function() {
 			}
 
 			jQuery('#wp_editbtns').css('display', 'none !important');
+
+			if (window.location.search.indexOf('show-ecwid=true') != -1 && typeof this.show_ecwid_processed == 'undefined') {
+				ecwid_open_store_popup();
+				tinymce.activeEditor.plugins.ecwid.addToolbar();
+				this.show_ecwid_processed = true;
+			}
 		}
 	}
 
@@ -325,7 +331,7 @@ ecwid_open_store_popup = function() {
 	updatePreview();
 
 
-	if (tinyMCE.activeEditor) {
+	if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
 		tinyMCE.activeEditor.execCommand('SelectAll');
 		tinyMCE.activeEditor.selection.collapse();
 	}
