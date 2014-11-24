@@ -128,7 +128,7 @@ class Ecwid_Message_Manager
 
 		if ($name == 'on_storeid_set') {
 			$params['primary_url'] = ecwid_get_store_page_url();
-			$params['secondary_url'] = 'post.php?post=' . ecwid_get_current_store_page_id() . '&action=edit';
+			$params['secondary_url'] = 'post.php?post=' . ecwid_get_current_store_page_id() . '&action=edit&show-ecwid=true';
 		}
 
 		if ($name == 'on_appearance_widgets') {
