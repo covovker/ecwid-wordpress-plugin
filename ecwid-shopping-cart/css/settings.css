@@ -300,148 +300,6 @@ display: none;
 	vertical-align: middle;
 }
 
-.general-settings {
-	font-size: 14px;
-	max-width: 750px;
-}
-
-.general-settings .greeting-box {
-	height: 141px;
-	padding-bottom: 12px;
-}
-
-.general-settings .greeting-box .image-container {
-	padding-right: 20px;
-}
-
-.general-settings .greeting-box > div {
-	display: table-cell;
-	vertical-align: middle;
-}
-
-.general-settings .greeting-box .main-message {
-	font-size: 22px;
-	font-weight: bold;
-	line-height: 22px;
-}
-
-.general-settings .greeting-box .secondary-message {
-	font-size: 17px;
-	padding-top: 13px;
-	line-height: 23px;
-}
-
-.general-settings ol {
-	margin-top: 30px;
-	padding-left: 10px;
-	list-style-position: inside;
-}
-
-.general-settings ol li {
-	font-size: 20px;
-	margin-bottom: 34px;
-	font-weight: bold;
-	padding-top: 10px;
-}
-
-.general-settings ol li * {
-	color: #333333;
-	font-size:13px;
-	font-weight: normal;
-}
-
-.general-settings ol li h4 {
-	font-size: 20px;
-	font-weight: bold;
-	margin: 0px 0px 12px;
-	display: inline-block;
-}
-
-.general-settings .ecwid-account-buttons .pure-button {
-	margin: 5px 17px 5px 0px;
-}
-
-.general-settings .ecwid-account-buttons {
-	padding: 20px 0px;
-	margin-bottom: -5px;
-}
-
-.general-settings p.note {
-	font-weight: bold;
-}
-
-.ecwid-settings .note {
-	font-size: 11px;
-	color: #A0A0A0;
-	display: inline-block;
-	line-height: 16px;
-}
-
-
-.general-settings input[type=text] {
-	height: 34px;
-	font-size: 14px;
-}
-
-.general-settings .find-store-id-in-cp {
-	line-height: 18px;
-	margin-bottom: 15px;
-}
-
-.general-settings .find-store-id-in-cp em {
-	color: #246fba;
-	font-style: normal;
-}
-
-.general-settings #ecwid_store_id {
-	position: relative;
-	top: 2px;
-	width: 153px;
-}
-
-.general-settings .section {
-	line-height: 24px;
-	height: 80px;
-	display: table;
-	vertical-align: middle;
-	width: 640px;
-}
-
-.general-settings .section.account-section {
-	height: 40px;
-	margin-bottom: 10px;
-}
-
-
-.general-settings .section .left {
-	display: table-cell;
-	vertical-align: middle;
-}
-
-.general-settings .section .right {
-	display: table-cell;
-	vertical-align: middle;
-	text-align: right;
-}
-
-.general-settings .section.small-text {
-	line-height: normal;
-}
-
-
-.general-settings .section .left-section {
-	float: left;
-}
-
-.general-settings .section .main-info {
-	font-size: 18px;
-}
-
-.general-settings .section .secondary-info {
-	font-size: 12px;
-	line-height: 20px;
-}
-
 .ecwid-settings .note.grayed-links,
 .ecwid-settings .note.grayed-links a:not(:hover)
 {
@@ -449,4 +307,296 @@ display: none;
 	color: #A0A0A0;
 	margin-top:10px;
 	margin-bottom: 10px;
+}
+
+/* Common main */
+.ecwid-admin .box {
+	position: relative;
+	margin-top: 25px;
+
+	border: 1px solid #E5E5E5;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+	background: #FFF;
+}
+
+
+.ecwid-admin h2:before {
+	background: url(../images/ecwid_logo_symbol_RGB.svg);
+	width: 100px;
+	height: 20px;
+	border: 2px solid blue;
+}
+
+.ecwid-admin h3 {
+	position: relative;
+	padding: 5px 0px 5px 20px;
+	margin: 5px 2px;
+
+	height: 55px;
+	line-height: 55px;
+
+	font-size: 18px;
+	font-weight: normal;
+
+	border-bottom: 1px solid #EEE;
+}
+
+
+.ecwid-admin h3 svg {
+	width: 32px;
+	height: 32px;
+	position: relative;
+	top: 8px;
+	margin-right: 10px;
+}
+/* END Common main */
+
+
+/* CONNECT - positioning */
+.ecwid-connect .box > div {
+	margin: 0px auto;
+	text-align: center;
+}
+
+.ecwid-connect .box h3 + div {
+	margin-top: 40px;
+}
+
+.ecwid-connect .box div:last-child {
+	margin-bottom: 40px;
+}
+
+.ecwid-connect .box .greeting-message {
+	margin-top: 11px;
+	line-height: 1.3em;
+}
+
+.ecwid-connect .box .connect-button {
+	margin-top: 38px;
+}
+
+.ecwid-connect .box .note {
+	margin-top: 15px;
+}
+
+.ecwid-connect .box .create-account-link {
+	margin-top: 35px;
+}
+
+
+/* CONNECT - styles */
+.ecwid-connect .box .greeting-message {
+	font-size: 24px;
+	font-weight: lighter;
+}
+
+.ecwid-connect .box .connect-button a {
+	padding: 14px 40px;
+	border: 0px none;
+	border-radius: 4px;
+
+	background: #59bb00;
+	color: white;
+	font-size: 18px;
+	font-weight: lighter;
+	text-decoration: none;
+
+	transition: color 0.1s linear, background-color 0.1s linear, border-color 0.1s linear;
+	display: inline-block;
+}
+
+.ecwid-connect .box .connect-button a:hover {
+	background: #64A52F;
+}
+
+.ecwid-connect .box .note {
+	color: #A0A0A0;
+	line-height: 18px;
+}
+
+.ecwid-connect .box .note.initial {
+	max-width: 250px;
+}
+
+.ecwid-connect .box .note.auth-error {
+	max-width: 350px;
+	color: red;
+}
+
+.ecwid-connect .box .create-account-link a {
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.ecwid-dashboard .body {
+	padding: 70px 50px;
+}
+
+.ecwid-dashboard .greeting-image {
+	padding-right: 37px;
+	display: table-cell;
+}
+
+.ecwid-dashboard .greeting {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.ecwid-dashboard .greeting .greeting-title {
+	font-size: 24px;
+	margin-bottom: 12px;
+}
+
+.ecwid-dashboard .greeting .greeting-message {
+	font-size: 16px;
+	margin-bottom: 5px;
+	line-height: 1.3em;
+}
+
+.ecwid-dashboard .greeting .store-id {
+	font-size: 28px;
+	font-weight: lighter;
+	padding: 18px 25px;
+	position: relative;
+	left: -25px;
+	display: inline-block;
+	border: 1px solid white;
+	border-bottom: none;
+	height: 21px;
+}
+
+.ecwid-dashboard .greeting .store-id:hover
+{
+	border: 1px solid #CCC;
+	border-bottom: none;
+}
+
+.ecwid-dashboard .store-id a {
+	text-decoration: none;
+}
+
+.ecwid-dashboard .drop-down > *:first-child:after {
+	font-family: 'dashicons';
+	content: '\f347';
+	position: relative;
+	top: .2em;
+	font-weight: lighter;
+}
+
+.ecwid-dashboard .drop-down:hover > *:first-child:after {
+	font-family: 'dashicons';
+	content: '\f343';
+}
+
+
+.ecwid-dashboard .drop-down > *:first-child {
+	color: #0074A2;
+	white-space: nowrap;
+}
+
+.ecwid-dashboard .drop-down > *:first-child:hover {
+	color: #2EA2CC;
+}
+
+.ecwid-dashboard .drop-down {
+	position: relative;
+}
+
+.ecwid-dashboard .drop-down:hover {
+	color: #2EA2CC;
+}
+
+.ecwid-dashboard .drop-down ul
+{
+	display: none;
+}
+.ecwid-dashboard .drop-down:hover ul
+{
+	display: inline-block;
+}
+
+
+.ecwid-dashboard .drop-down ul {
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	font-size: 14px;
+	left: 0px;
+	margin: 0px;
+	padding-left: 0px;
+
+	outline: 1px solid #ccc;
+}
+
+.ecwid-dashboard .drop-down ul li {
+	padding-left: 5px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 0;
+	background: white;
+	text-align: left;
+}
+
+.ecwid-dashboard .drop-down ul li:last-child {
+	border-bottom: none;
+}
+
+
+.ecwid-dashboard .drop-down ul a {
+	display: block;
+	padding: 16px 20px;
+	text-decoration: none;
+}
+
+.ecwid-dashboard .drop-down ul li:hover {
+	background: #0074A2;
+}
+
+.ecwid-dashboard .drop-down ul li:hover a {
+	color: white;
+}
+
+.ecwid-dashboard .drop-down * {
+	transition: color .2s, background .2s;
+}
+
+.ecwid-dashboard .head-links {
+	position: absolute;
+	right: 15px;
+	top: 0px;
+
+}
+
+.ecwid-dashboard .head-links > * {
+	display: inline-block;
+	padding: 15px 15px;
+}
+
+.ecwid-dashboard .head-links a {
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.ecwid-dashboard.width-600 .body {
+	text-align: center;
+	padding: 20px 0px;
+}
+
+.ecwid-dashboard.width-600 .greeting-image,
+.ecwid-dashboard.width-600 .greeting
+{
+	display: block;
+	padding-right: 0px;
+}
+
+.ecwid-dashboard.width-600 .store-id,
+.ecwid-dashboard.width-600 .store-id:hover {
+	left: 0px;
+}
+
+.ecwid-admin .mobile-br br {
+	display: none;
+}
+
+.ecwid-admin.width-600 .mobile-br br {
+	display: inherit;
 }

@@ -130,6 +130,11 @@ div.ecwid-message {
 	top: 6px;
 }
 
+body[class*="_page_ecwid"] .ecwid-message {
+	margin: 20px 20px 20px 0px;
+}
+
+
 .ecwid-message.dev {
 	outline: 2px solid red;
 	width: 434px;

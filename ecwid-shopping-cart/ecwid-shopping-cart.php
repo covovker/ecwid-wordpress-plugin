@@ -82,7 +82,7 @@ $ecwid_script_rendered = false; // controls single script.js on page
 require_once plugin_dir_path(__FILE__) . '/includes/themes.php';
 require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-message-manager.php';
 require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-store-editor.php';
-
+require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-oauth.php';
 
 $version = get_bloginfo('version');
 
@@ -452,10 +452,14 @@ function ecwid_page_has_productbrowser($post_id = null)
 	}
 
 	if (!isset($results[$post_id])) {
-		$post_content = get_post($post_id)->post_content;
+		$post = get_post($post_id);
 
-		$results[$post_id] = ecwid_content_has_productbrowser($post_content);
-		$results[$post_id] = apply_filters( 'ecwid_page_has_product_browser', $results[$post_id] );
+		if ($post) {
+			$post_content = get_post($post_id)->post_content;
+
+			$results[$post_id] = ecwid_content_has_productbrowser($post_content);
+			$results[$post_id] = apply_filters( 'ecwid_page_has_product_browser', $results[$post_id] );
+		}
 	}
 
 	return $results[$post_id];
@@ -1058,6 +1062,9 @@ EOT;
 	// Does not affect updates, automatically turned on for new users only
 	add_option("ecwid_advanced_theme_layout", get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', 'yes');
 
+	add_option('ecwid_oauth_client_id', 'MCcryC6Ezk8TtLjR');
+	add_option('ecwid_oauth_client_secret', 'difkFu82vgFAweMX8z4KsiEPoaGxqLbB');
+
     $id = get_option("ecwid_store_page_id");	
 	$_tmp_page = null;
 	if (!empty($id) and ($id > 0)) { 
@@ -1255,7 +1262,11 @@ function ecwid_admin_get_footer() {
 
 function ecwid_general_settings_do_page() {
 
+	wp_enqueue_script('ecwid-connect-js', plugins_url('ecwid-shopping-cart/js/dashboard.js'));
+
 	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID) {
+		global $ecwid_oauth;
+		$connection_error = isset($_GET['connection_error']);
 		require_once plugin_dir_path(__FILE__) . '/templates/connect.php';
 	} else {
 		require_once plugin_dir_path(__FILE__) . '/templates/dashboard.php';
