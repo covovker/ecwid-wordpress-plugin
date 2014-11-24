@@ -298,7 +298,7 @@ class MoParser {
 			}
 		}
 
-		$this->_data[$locale][''] = trim($this->_data[$locale]['']);
+		$this->_data[$locale][''] = trim(@$this->_data[$locale]['']);
 
 		unset($this->_data[$locale]['']);
 		return $this->_data;
