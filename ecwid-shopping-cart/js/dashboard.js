@@ -22,3 +22,16 @@ jQuery(window).resize(function() {
 		head.find('ul').removeClass('drop-down-content open').addClass('head-links');
 	}
 }).trigger('resize');
+
+show_reconnect = function() {
+	jQuery('<div class="ecwid-popup"></div>').load(
+		'admin-post.php?action=ecwid_show_reconnect',
+		'',
+		function() {
+			jQuery('.ecwid-popup .close').click(function() {
+				jQuery(this).closest('.ecwid-popup').remove();
+			});
+		}
+	).appendTo('body');
+
+}

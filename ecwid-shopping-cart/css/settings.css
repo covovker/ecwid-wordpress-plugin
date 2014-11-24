@@ -600,3 +600,52 @@ display: none;
 .ecwid-admin.width-600 .mobile-br br {
 	display: inherit;
 }
+
+.ecwid-popup {
+	position: fixed;
+	left: 170px;
+	top: 42px;
+	right: 10px;
+	bottom: 10px;
+}
+
+.ecwid-popup .wrap {
+	margin: 0px;
+}
+
+.ecwid-popup .box {
+	margin: 0px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+.ecwid-popup h3 span.close {
+	position: absolute;
+	right: 15px;
+	cursor: pointer;
+	color: #2EA2CC;
+}
+
+.ecwid-popup h3 span.close:before {
+	content: "X";
+	font-family: ecwid-icons;
+	font-size: 36px;
+}
+
+
+@media screen and (max-width: 960px) {
+	.ecwid-popup {
+		left: 44px;
+	}
+}
+
+@media screen and (max-width: 782px) {
+	.ecwid-popup {
+		left: 0px;
+		right: 0px;
+		top: 46px;
+		bottom: 0px;
+	}
+}

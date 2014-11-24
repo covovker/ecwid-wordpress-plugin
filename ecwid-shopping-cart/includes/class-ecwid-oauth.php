@@ -6,6 +6,13 @@ class Ecwid_OAuth {
 	{
 		add_action('admin_post_ecwid_oauth', array($this, 'process_authorization'));
 		add_action('admin_post_ecwid_disconnect', array($this, 'disconnect_store'));
+		add_action('admin_post_ecwid_show_reconnect', array($this, 'show_reconnect'));
+	}
+
+	public function show_reconnect()
+	{
+		$ecwid_oauth = $this;
+		require_once(ECWID_PLUGIN_DIR . '/templates/reconnect.php');
 	}
 
 	public function get_auth_dialog_url( $scopes = array( 'read_store_profile', 'read_catalog', 'update_catalog' ) )
