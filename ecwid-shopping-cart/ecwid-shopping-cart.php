@@ -702,7 +702,7 @@ function ecwid_minicart_shortcode($attributes) {
 	);
 
 	$layout = $params['layout'];
-	if (!in_array($layout, array('', 'attachToCategories', 'floating', 'Mini', 'MiniAttachToProductBrowser'))) {
+	if (!in_array($layout, array('', 'attachToCategories', 'floating', 'Mini', 'MiniAttachToProductBrowser'), true)) {
 		$layout = 'attachToCategories';
 	}
 
