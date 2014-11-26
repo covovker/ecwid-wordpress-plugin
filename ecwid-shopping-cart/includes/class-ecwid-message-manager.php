@@ -223,7 +223,7 @@ class Ecwid_Message_Manager
 				$is_newbie = get_ecwid_store_id() == ECWID_DEMO_STORE_ID;
 
 				$is_ecwid_settings = in_array($admin_page, array('ecwid-store_page_ecwid-advanced', 'ecwid-store_page_ecwid-appearance'));
-				$is_store_page = $admin_page == 'post' && $_GET['post'] == ecwid_get_current_store_page_id();
+				$is_store_page = $admin_page == 'post' && isset($_GET['post']) && $_GET['post'] == ecwid_get_current_store_page_id();
 
 				return $is_newbie && ($is_ecwid_settings || $is_store_page);
 
