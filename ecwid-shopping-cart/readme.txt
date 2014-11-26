@@ -110,6 +110,9 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.7.1 =
+- Fixed a few issues with the store appearance settings that were discovered in the recently released update (v2.7)
+
 = 2.7 =
 - **A brand new 'Add store' tool in WordPress editor toolbar.** Ecwid is now integrated with WordPress WYSIWYG editor: click the 'Add Store' button in the page editor toolbar, chose widgets to show, adjust the appearance and place your store on any page of your site. Now you can decide what store widgets to show and configure store appearance right in the page editor.
 - **New "[ecwid]" shortcode.** The new shortcode allows you to control every aspect of your store appearance by means of tweaking the shortcode parameters right in the store page code. Display/hide the search widget, choose the minicart layout you like, display different store categories on different site pages and so on. This shortcode serves the "Add Store" button mentioned above and almost every tweak is available in the new "Add Store" window so you don't have to edit any code in most cases. Still, an advanced Wordpress user may consider using shortcodes for more flexible and quick integration.
