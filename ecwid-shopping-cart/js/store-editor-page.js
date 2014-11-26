@@ -331,7 +331,7 @@ ecwid_open_store_popup = function() {
 
 	if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
 		tinyMCE.activeEditor.execCommand('SelectAll');
-		tinyMCE.activeEditor.selection.collapse();
+		tinyMCE.activeEditor.selection.collapse(true);
 	}
 
 	return false;
