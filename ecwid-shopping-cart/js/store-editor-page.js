@@ -325,8 +325,10 @@ ecwid_open_store_popup = function() {
 	updatePreview();
 
 
-	tinyMCE.activeEditor.execCommand('SelectAll');
-	tinyMCE.activeEditor.selection.collapse();
+	if (tinyMCE.activeEditor) {
+		tinyMCE.activeEditor.execCommand('SelectAll');
+		tinyMCE.activeEditor.selection.collapse();
+	}
 
 	return false;
 };
