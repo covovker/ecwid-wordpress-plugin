@@ -221,7 +221,9 @@ jQuery(document).ready(function() {
 			$('#content').val(
 				$('#content').val().replace(existingShortcode.content, shortcode.shortcode.string())
 			);
-			$(tinymce.activeEditor.getBody()).find('.ecwid-store-editor').attr('data-ecwid-shortcode', shortcode.shortcode.string());
+			if (tinyMCE.activeEditor) {
+				$(tinymce.activeEditor.getBody()).find('.ecwid-store-editor').attr('data-ecwid-shortcode', shortcode.shortcode.string());
+			}
 		} else {
 
 			if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
