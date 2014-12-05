@@ -65,6 +65,7 @@ HTML;
 	}
 
 	public function get_store_svg() {
+		// TODO: Move this to admin-post
 		if (isset($_GET['file']) && $_GET['file'] == 'ecwid_store_svg.svg' && current_user_can('administrator')) {
 			ecwid_load_textdomain();
 			header('Content-type: image/svg+xml');
