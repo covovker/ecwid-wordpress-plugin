@@ -285,9 +285,23 @@ function ecwid_minifier_compatibility()
 
 function ecwid_check_version()
 {
-	if (is_null(get_option('ecwid_plugin_version', null))) {
-		$plugin_data = get_plugin_data(__FILE__);
-		add_option('ecwid_plugin_version', $plugin_data['Version']);
+	$plugin_data = get_plugin_data(__FILE__);
+	$current_version = $plugin_data['Version'];
+	$stored_version = get_option('ecwid_plugin_version', null);
+
+	$fresh_install = !$stored_version;
+	$upgrade = $stored_version && version_compare($current_version, $stored_version) > 0;
+
+	if ($fresh_install) {
+
+		do_action('ecwid_plugin_installed', $current_version);
+		add_option('ecwid_plugin_version', $current_version);
+
+	} elseif ($upgrade) {
+
+		do_action('ecwid_plugin_upgraded', array( 'old' => $stored_version, 'new' => $current_version ) );
+		update_option('ecwid_plugin_version', $current_version);
+
 	}
 }
 
