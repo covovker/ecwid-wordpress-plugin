@@ -1788,6 +1788,43 @@ class EcwidVCategoriesWidget extends WP_Widget {
 
 }
 
+class EcwidStoreLinkWidget extends WP_Widget {
+
+	function EcwidStoreLinkWidget() {
+		$widget_ops = array('classname' => 'widget_ecwid_store_link', 'description' => __('Store link', 'ecwid-shopping-cart'));
+		$this->WP_Widget('ecwidstorelink', __('Ecwid Store Link', 'ecwid-shopping-cart'), $widget_ops);
+	}
+
+	function widget($args, $instance) {
+		extract($args);
+		echo $before_widget;
+
+		echo '<div>';
+
+		echo '<a href="' . ecwid_get_store_page_url() . '">' . $instance['label'] . '</a>';
+		echo '</div>';
+
+		echo $after_widget;
+	}
+
+	function update($new_instance, $old_instance){
+		$instance = $old_instance;
+		$instance['label'] = strip_tags(stripslashes($new_instance['label']));
+
+		return $instance;
+	}
+
+	function form($instance){
+		$instance = wp_parse_args( (array) $instance, array( 'label' => 'Store' ) );
+
+		$label = htmlspecialchars($instance['label']);
+
+		echo '<p><label for="' . $this->get_field_name('label') . '">' . __('Label:') . ' <input style="width:100%;" id="' . $this->get_field_id('label') . '" name="' . $this->get_field_name('label') . '" type="text" value="' . $label . '" /></label></p>';
+	}
+
+}
+
+
 function ecwid_send_stats()
 {
 	$storeid = get_ecwid_store_id();
@@ -1909,6 +1946,7 @@ function ecwid_sidebar_widgets_init() {
 	register_widget('EcwidVCategoriesWidget');
 	register_widget('EcwidMinicartMiniViewWidget');
 	register_widget('EcwidBadgeWidget');
+	register_widget('EcwidStoreLinkWidget');
 }
 
 add_action('widgets_init', 'ecwid_sidebar_widgets_init');
