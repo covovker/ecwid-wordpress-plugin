@@ -29,7 +29,7 @@ class Ecwid_Theme_2015 extends Ecwid_Theme_Base
 			if (!$options) {
 				$options = array(
 					2 => array(
-						'label' => 'Store'
+						'label' => __('Shop', 'ecwid-shopping-cart')
 					),
 					'_multiwidget' => 1
 				);

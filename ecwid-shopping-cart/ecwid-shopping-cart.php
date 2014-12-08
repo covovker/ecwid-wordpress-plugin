@@ -1815,11 +1815,11 @@ class EcwidStoreLinkWidget extends WP_Widget {
 	}
 
 	function form($instance){
-		$instance = wp_parse_args( (array) $instance, array( 'label' => __('Shop') ) );
+		$instance = wp_parse_args( (array) $instance, array( 'label' => __('Shop', 'ecwid-shopping-cart') ) );
 
 		$label = htmlspecialchars($instance['label']);
 
-		echo '<p><label for="' . $this->get_field_name('label') . '">' . __('Label:') . ' <input style="width:100%;" id="' . $this->get_field_id('label') . '" name="' . $this->get_field_name('label') . '" type="text" value="' . $label . '" /></label></p>';
+		echo '<p><label for="' . $this->get_field_name('label') . '">' . __('Text') . ': <input style="width:100%;" id="' . $this->get_field_id('label') . '" name="' . $this->get_field_name('label') . '" type="text" value="' . $label . '" /></label></p>';
 	}
 
 }
