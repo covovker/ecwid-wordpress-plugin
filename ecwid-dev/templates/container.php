@@ -1,4 +1,4 @@
-<div id="edev-container" style="display: none; position: absolute; right: 10px; top: 40px; border: 1px solid red; padding: 3px">
+<div id="edev-container" style="display: none; position: absolute; right: 10px; top: 40px; transition: background .2s; border: 1px solid red; padding: 3px; background: white">
 	Voting message:
 	<?php if (!get_option('ecwid_show_vote_message')): ?>
 		<b>Disabled</b>
@@ -44,5 +44,10 @@
 
 		Usage stats:
 	<?php foreach (ecwid_gather_usage_stats() as $key => $value): ?><a style="cursor: pointer" title="<?php echo $key; ?>"><?php echo $value ? '1' : '0'; ?></a><?php endforeach; ?>
+	</div>
+
+	<div class="console">
+		<input type="text" id="console" /><br />
+		<textarea id="console-result" style="width:300px"></textarea>
 	</div>
 </div>
