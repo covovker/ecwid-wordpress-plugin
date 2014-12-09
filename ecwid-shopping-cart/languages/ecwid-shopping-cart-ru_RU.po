@@ -388,4 +388,4 @@ msgid "Ecwid Store Page Link"
 msgstr "Ссылка на Эквид-магазин"
 
 msgid "A link to your store page"
-msgstr "Ссылка на страницу вашего магазина"
+msgstr "Ссылка на страницу магазина"
