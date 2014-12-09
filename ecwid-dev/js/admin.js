@@ -30,7 +30,6 @@ $(document).ready(function() {
 
 	$('#edev-container .usage-stats a').mouseover(
 		function() {
-			debugger;
 			if ($('#usage-hint').length > 0) return;
 			$('<div id="usage-hint" style="border:1px solid blue;position:absolute">' + this.title + '</div>').appendTo(document.body).css(
 					{
@@ -41,6 +40,28 @@ $(document).ready(function() {
 			);
 		}
 	);
+
+	var notLocked = true;
+	$.fn.animateHighlight = function(highlightColor, duration) {
+		var highlightBg = highlightColor || "#FFFF9C";
+		var animateMs = duration || 1500;
+		var originalBg = this.css("backgroundColor");
+		if (notLocked) {
+			notLocked = false;
+			this.stop().css("background-color", highlightBg)
+					.animate({backgroundColor: originalBg}, animateMs);
+			setTimeout( function() { notLocked = true; }, animateMs);
+		}
+	};
+
+	$('#edev-container #console').keypress(function(e) {
+		if(e.which == 13) {
+			jQuery.get('admin-post.php?action=edev_get_var_value&var=' + jQuery('#console').val(), {}, function(result) {
+				jQuery('#console-result').prepend(result + "\n").css('outline', '3px solid yellow');
+				$('#console-result').animate({outlineWidth: 0}, 500);
+			} );
+		}
+	});
 
 	$('#edev-container .usage-stats a').mouseout( function() {
 		$('#usage-hint').remove();

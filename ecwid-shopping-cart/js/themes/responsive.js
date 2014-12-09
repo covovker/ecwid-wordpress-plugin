@@ -64,14 +64,15 @@ function doMobileLayout()
 		'top': $('.ecwid-productBrowser').prop('offsetTop') - 50 + 8
 	});
 }
-
-Ecwid.OnPageLoaded.add(function(args) {
-	if ($(window).width() < 650) {
-		doMobileLayout();
-	} else {
-		doDefaultLayout();
-	}
-});
+if (typeof Ecwid != 'undefined') {
+	Ecwid.OnPageLoaded.add(function(args) {
+		if ($(window).width() < 650) {
+			doMobileLayout();
+		} else {
+			doDefaultLayout();
+		}
+	});
+}
 
 $(window).resize(function() {
 	if ($(window).width() < 650) {

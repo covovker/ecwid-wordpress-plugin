@@ -8,7 +8,7 @@
 
 	<fieldset>
 
-		<?php if (get_option('ecwid_show_appearance_menu') == 'Y'): ?>
+		<?php if (get_option('ecwid_hide_appearance_menu') != 'Y'): ?>
 		<div class="pure-control-group bottom-border">
 
 			<?php if (ecwid_is_paid_account()): ?>

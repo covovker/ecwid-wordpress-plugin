@@ -13,6 +13,34 @@ if ( is_admin() ){
 	add_action('admin_footer', 'edev_footer');
 	add_action('admin_init', 'edev_process_request');
 	add_action('admin_menu', 'edev_add_page');
+  add_action('admin_post_edev_get_var_value', 'get_var_value');
+}
+
+function get_var_value()
+{
+	$params = $_REQUEST;
+	if ($params['var']) {
+		$var = $params['var'];
+		$value = get_option($var);
+
+		if (!empty($value)) {
+			echo 'option ' . $var . ': ';
+			var_export($value);
+		}
+
+		else {
+			$value = $GLOBALS[$var];
+			if (!empty($value)) {
+				echo 'global var ' . $var . ': ';
+				var_export($value);
+			}
+		}
+
+		if (empty($value)) {
+			echo 'not found ' . $var;
+		}
+		exit();
+	}
 }
 
 function get_locales()

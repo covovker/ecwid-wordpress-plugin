@@ -380,3 +380,12 @@ msgstr "Добавить на страницу"
 
 msgid "Save and close"
 msgstr "Сохранить и закрыть"
+
+msgid "Shop"
+msgstr "Магазин"
+
+msgid "Ecwid Store Page Link"
+msgstr "Ссылка на Эквид-магазин"
+
+msgid "A link to your store page"
+msgstr "Ссылка на страницу магазина"

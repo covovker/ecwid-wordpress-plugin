@@ -5,7 +5,7 @@ Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
 Text Domain: ecwid-shopping-cart
 Author: Ecwid Team
-Version: 2.7
+Version: 2.7.1
 Author URI: http://www.ecwid.com?source=wporg
 */
 
@@ -33,6 +33,7 @@ add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
 
 if ( is_admin() ){ 
   add_action('admin_init', 'ecwid_settings_api_init');
+	add_action('admin_init', 'ecwid_check_version');
   add_action('admin_notices', 'ecwid_show_admin_messages');
   add_action('admin_menu', 'ecwid_options_add_page');
   add_action('wp_dashboard_setup', 'ecwid_add_dashboard_widgets' );
@@ -279,6 +280,28 @@ function ecwid_minifier_compatibility()
 		if (is_object($wp_minify) && array_key_exists('default_exclude', get_object_vars($wp_minify)) && is_array($wp_minify->default_exclude)) {
 			$wp_minify->default_exclude[] = 'ecwid.com/script.js';
 		}
+	}
+}
+
+function ecwid_check_version()
+{
+	$plugin_data = get_plugin_data(__FILE__);
+	$current_version = $plugin_data['Version'];
+	$stored_version = get_option('ecwid_plugin_version', null);
+
+	$fresh_install = !$stored_version;
+	$upgrade = $stored_version && version_compare($current_version, $stored_version) > 0;
+
+	if ($fresh_install) {
+
+		do_action('ecwid_plugin_installed', $current_version);
+		add_option('ecwid_plugin_version', $current_version);
+
+	} elseif ($upgrade) {
+
+		do_action('ecwid_plugin_upgraded', array( 'old' => $stored_version, 'new' => $current_version ) );
+		update_option('ecwid_plugin_version', $current_version);
+
 	}
 }
 
@@ -650,10 +673,10 @@ function ecwid_content_started($content)
 
 function ecwid_wrap_shortcode_content($content, $name)
 {
-    return "<!-- Ecwid shopping cart plugin v 2.7 -->"
+    return "<!-- Ecwid shopping cart plugin v 2.7.1 -->"
 		   . ecwid_get_scriptjs_code()
 	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
-		   . "<!-- END Ecwid Shopping Cart v 2.7 -->";
+		   . "<!-- END Ecwid Shopping Cart v 2.7.1 -->";
 }
 
 function ecwid_get_scriptjs_code($force_lang = null) {
@@ -697,7 +720,7 @@ function ecwid_minicart_shortcode($attributes) {
 	);
 
 	$layout = $params['layout'];
-	if (!in_array($layout, array('', 'attachToCategories', 'floating', 'Mini', 'MiniAttachToProductBrowser'))) {
+	if (!in_array($layout, array('', 'attachToCategories', 'floating', 'Mini', 'MiniAttachToProductBrowser'), true)) {
 		$layout = 'attachToCategories';
 	}
 
@@ -1058,7 +1081,7 @@ EOT;
 
 	add_option("ecwid_installation_date", time());
 
-	add_option('ecwid_show_appearance_menu', get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'N' : 'Y', 'yes');
+	add_option('ecwid_hide_appearance_menu', get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', 'yes');
 	// Does not affect updates, automatically turned on for new users only
 	add_option("ecwid_advanced_theme_layout", get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', 'yes');
 
@@ -1160,7 +1183,7 @@ function ecwid_options_add_page() {
 		'ecwid_general_settings_do_page'
 	);
 
-	if (get_option('ecwid_show_appearance_menu') == 'Y') {
+	if (get_option('ecwid_hide_appearance_menu') != 'Y') {
 		add_submenu_page(
 			'ecwid',
 			__('Appearance settings', 'ecwid-shopping-cart'),
@@ -1776,6 +1799,43 @@ class EcwidVCategoriesWidget extends WP_Widget {
 
 }
 
+class EcwidStoreLinkWidget extends WP_Widget {
+
+	function EcwidStoreLinkWidget() {
+		$widget_ops = array('classname' => 'widget_ecwid_store_link', 'description' => __('A link to your store page', 'ecwid-shopping-cart'));
+		$this->WP_Widget('ecwidstorelink', __('Ecwid Store Page Link', 'ecwid-shopping-cart'), $widget_ops);
+	}
+
+	function widget($args, $instance) {
+		extract($args);
+		echo $before_widget;
+
+		echo '<div>';
+
+		echo '<a href="' . ecwid_get_store_page_url() . '">' . $instance['label'] . '</a>';
+		echo '</div>';
+
+		echo $after_widget;
+	}
+
+	function update($new_instance, $old_instance){
+		$instance = $old_instance;
+		$instance['label'] = strip_tags(stripslashes($new_instance['label']));
+
+		return $instance;
+	}
+
+	function form($instance){
+		$instance = wp_parse_args( (array) $instance, array( 'label' => __('Shop', 'ecwid-shopping-cart') ) );
+
+		$label = htmlspecialchars($instance['label']);
+
+		echo '<p><label for="' . $this->get_field_name('label') . '">' . __('Text') . ': <input style="width:100%;" id="' . $this->get_field_id('label') . '" name="' . $this->get_field_name('label') . '" type="text" value="' . $label . '" /></label></p>';
+	}
+
+}
+
+
 function ecwid_send_stats()
 {
 	$storeid = get_ecwid_store_id();
@@ -1868,7 +1928,8 @@ function ecwid_gather_usage_stats()
 		'google_xml_sitemaps_used',
 		'ecwid_product_advisor_used',
 		'ecwid_single_product_used',
-		'ecwid_store_shortcode_used'
+		'ecwid_store_shortcode_used',
+		'store_link_widget'
 	);
 
 	$usage_stats = array();
@@ -1887,6 +1948,7 @@ function ecwid_gather_usage_stats()
 	$usage_stats['ecwid_product_advisor_used'] = (bool) is_plugin_active('ecwid-useful-tools/ecwid-product-advisor.php');
 	$usage_stats['ecwid_single_product_used'] = (bool) (get_option('ecwid_single_product_used') + 60*60*24*14 > time());
 	$usage_stats['ecwid_store_shortcode_used'] = (bool) (get_option('ecwid_store_shortcode_used') + 60*60*24*14 > time());
+	$usage_stats['store_link_widget'] = (bool) is_active_widget(false, false, 'ecwidstorelink');
 
 	return $usage_stats;
 }
@@ -1897,6 +1959,7 @@ function ecwid_sidebar_widgets_init() {
 	register_widget('EcwidVCategoriesWidget');
 	register_widget('EcwidMinicartMiniViewWidget');
 	register_widget('EcwidBadgeWidget');
+	register_widget('EcwidStoreLinkWidget');
 }
 
 add_action('widgets_init', 'ecwid_sidebar_widgets_init');
