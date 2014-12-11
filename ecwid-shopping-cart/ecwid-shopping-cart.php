@@ -173,6 +173,10 @@ HTML;
 
 function ecwid_add_frontend_styles() {
 	wp_enqueue_style('ecwid-css', plugins_url('ecwid-shopping-cart/css/frontend.css'));
+	if (get_option('ecwid_use_chameleon') == 'Y') {
+		wp_enqueue_style('ecwid-chameleon-css', plugins_url('ecwid-shopping-cart/css/chameleon.css'));
+		wp_enqueue_script('ecwid-chameleon-js', plugins_url('ecwid-shopping-cart/js/chameleon.js'), array(), '', true);
+	}
 }
 
 function ecwid_load_textdomain() {
@@ -1017,7 +1021,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 	$s = '';
 
 	$s = <<<EOT
-    <div id="ecwid-store-$store_id">
+    <div id="ecwid-store-$store_id" id="ProductBrowser-1">
 		{$plain_content}
 	</div>
 	<script type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str, "id=ecwid-store-$store_id");</script>
@@ -1087,6 +1091,8 @@ EOT;
 
 	add_option('ecwid_oauth_client_id', 'MCcryC6Ezk8TtLjR');
 	add_option('ecwid_oauth_client_secret', 'difkFu82vgFAweMX8z4KsiEPoaGxqLbB');
+
+	add_option('ecwid_user_chameleon', '');
 
     $id = get_option("ecwid_store_page_id");	
 	$_tmp_page = null;
@@ -1895,7 +1901,8 @@ function ecwid_gather_stats()
 		'google_xml_sitemaps_used',
 		'ecwid_product_advisor_used',
 		'ecwid_single_product_used',
-		'ecwid_store_shortcode_used'
+		'ecwid_store_shortcode_used',
+		'store_link_widget'
 	);
 
 	$usage_stats = ecwid_gather_usage_stats();
@@ -1990,7 +1997,7 @@ function ecwid_sso() {
     return "<script> var ecwid_sso_profile='$user_data $hmac $time' </script>";   
     }
     else {
-        return "<script> var ecwid_sso_profile='' </script>";
+        //return "<script> var ecwid_sso_profile='' </script>";
     }
 
  
