@@ -26,7 +26,7 @@ function getStyle(el, styleProp) {
 
 // Add css to inherit parent styles
 Ecwid.OnPageLoad.add(function(page) {
-	jQuery('.ecwid-productBrowser').attr('id', 'ProductBrowser-1');
+	document.getElementsByClassName('ecwid-productBrowser')[0].id = 'ProductBrowser-1';
 	var widget_ids = ['ProductBrowser-1', 'Categories-1', 'VCategories-1', 'SearchPanel-1', 'Minicart-1'];
 	var parent = document.getElementById('ProductBrowser-1').parentNode;
 	var color  = getStyle(parent, 'color');
