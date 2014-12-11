@@ -1092,7 +1092,7 @@ EOT;
 	add_option('ecwid_oauth_client_id', 'MCcryC6Ezk8TtLjR');
 	add_option('ecwid_oauth_client_secret', 'difkFu82vgFAweMX8z4KsiEPoaGxqLbB');
 
-	add_option('ecwid_user_chameleon', '');
+	add_option('ecwid_use_chameleon', '');
 
     $id = get_option("ecwid_store_page_id");	
 	$_tmp_page = null;
