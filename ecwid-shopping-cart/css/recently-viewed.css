@@ -2,7 +2,6 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product {
 	display: block;
 	height: 120px;
 	position: relative;
-	padding: 2px;
 	margin: 5px;
 	border: 1px solid #CCC;
 	opacity: .9;
@@ -49,7 +48,7 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-
 html#ecwid_html body#ecwid_body .ecwid-SingleProduct .ecwid-SingleProduct-picture {
 	display: table-cell;
 	vertical-align: middle;
-	line-height: 114px;
+	line-height: 120px;
 	width: 100px;
 }
 
