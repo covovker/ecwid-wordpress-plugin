@@ -26,4 +26,24 @@ jQuery(document).ready(function() {
 			}
 		);
 	});
+
+	if (location.href.match(/wp-admin\/widgets.php/)) {
+		jQuery('div[id^="widget-"]').filter('div[id*="_ecwid"]').filter('div[id*="__i__"]').each(function(idx, el) {
+			if (location.href.match(/wp-admin\/widgets.php\?from-ecwid=/)) {
+				if (jQuery('.ecwid-widget').length > 0) {
+					jQuery(el).insertAfter(jQuery('.ecwid-widget:last'));
+				} else {
+					jQuery(el).prependTo(jQuery('#widget-list'));
+				}
+				jQuery('.widget-top', el).addClass('ecwid-widget-highlighted');
+
+			}
+
+			var classname = el.id.match(/ecwid(.*)-__i__/);
+			classname = 'ecwid-widget-' + classname[1];
+			jQuery(el).addClass('ecwid-widget')
+				.find('.widget-top')
+				.addClass(classname);
+		});
+	}
 });

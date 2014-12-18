@@ -146,3 +146,51 @@ div.ecwid-message {
 .ecwid-message.dev .ecwid-message-hide {
   letter-spacing: -0.22px;
 }
+
+.widget-top.ecwid-widget-highlighted {
+	background: blue;
+	color: white;
+}
+
+.ecwid-widget .widget-top h4:before {
+	font-family: dashicons;
+	font-size: 20px;
+	position: relative;
+	top: 4px;
+	right: 4px;
+	margin-right: -4px;
+	line-height: 10px;
+}
+
+.ecwid-widget .widget-top.ecwid-widget-highlighted h4:before {
+	color: yellow;
+}
+
+.widget-top.ecwid-widget-badge h4:before {
+	content: "\f323";
+}
+
+.widget-top.ecwid-widget-minicart h4:before,
+.widget-top.ecwid-widget-minicart_miniview h4:before {
+	content: "\f174";
+}
+
+.widget-top.ecwid-widget-vcategories h4:before {
+	content: "\f163";
+}
+
+.widget-top.ecwid-widget-categories h4:before {
+	content: "\f480";
+}
+
+.widget-top.ecwid-widget-search h4:before {
+	content: "\f179";
+}
+
+.widget-top.ecwid-widget-storelink h4:before {
+	content: "\f504";
+}
+
+.widget-top.ecwid-widget-recentlyviewed h4:before {
+	content: "\f321";
+}
