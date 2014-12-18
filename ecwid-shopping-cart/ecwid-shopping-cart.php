@@ -1928,7 +1928,9 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 		$ids = array();
 		if ($recently_viewed && isset($recently_viewed->products)) {
 			echo '<div class="ecwid-recently-viewed-products">';
-			foreach ($recently_viewed->products as $key => $product) {
+
+			for ($i = count($recently_viewed->products) - 1; $i >= 0; $i--) {
+				$product = $recently_viewed->products[$i];
 				$counter++;
 				if (isset($product->id) && isset($product->link)) {
 					$ids[] = $product->id;
