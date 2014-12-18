@@ -61,6 +61,7 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .e
 	display: table-cell;
 	line-height: 120px;
 	width: 100px;
+	margin-left: 10px !important;
 }
 
 html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-SingleProduct-picture img {
@@ -69,7 +70,6 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-
 	max-width: 100px;
 	max-height: 100px;
 	margin-right: 10px;
-	margin-left: 10px !important;
 	vertical-align: middle;
 }
 
