@@ -171,8 +171,50 @@ function ecwid_validate_recently_viewed(parent_id, ids)
 	}
 }
 
+function recently_viewed_on_resize()
+{
+	for (var i = 0; i < ecwid_recently_viewed_widgets.length; i++) {
+		var parent = jQuery('.ecwid-recently-viewed-products', '#' + ecwid_recently_viewed_widgets[i].parent_id);
+		if (parent.width() > 210) {
+			parent.addClass('wide');
+		} else {
+			parent.removeClass('wide');
+		}
+	}
+}
+
+// Debounce function from http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+var ecwid_debounce = function (func, threshold, execAsap) {
+
+	var timeout;
+
+	return function debounced () {
+		var obj = this, args = arguments;
+		function delayed () {
+			if (!execAsap)
+				func.apply(obj, args);
+			timeout = null;
+		};
+
+		if (timeout)
+			clearTimeout(timeout);
+		else if (execAsap)
+			func.apply(obj, args);
+
+		timeout = setTimeout(delayed, threshold || 100);
+	};
+
+}
+
+jQuery(window).resize(ecwid_debounce(recently_viewed_on_resize, 200));
+
 if (typeof ecwid_recently_viewed_widgets != 'undefined') {
 	for (var i = 0; i < ecwid_recently_viewed_widgets.length; i++) {
 		ecwid_validate_recently_viewed(ecwid_recently_viewed_widgets[i].parent_id, ecwid_recently_viewed_widgets[i].ids);
+
 	}
 }
+
+jQuery(document).ready(function() {
+	recently_viewed_on_resize();
+});

@@ -1,6 +1,5 @@
 html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product {
 	display: block;
-	height: 120px;
 	position: relative;
 	margin: 5px;
 	border: 1px solid #CCC;
@@ -23,10 +22,27 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product:focus
 	outline: none;
 }
 
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title {
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product {
+	height: 120px;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .ecwid-title,
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .ecwid-price {
 	position: absolute;
 	left: 120px;
+	text-align: center;
+}
+
+
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .ecwid-title {
 	top: 15px;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .ecwid-price {
+	bottom: 15px;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title {
 	overflow: hidden;
 	max-height: 55px;
 	margin-right:5px;
@@ -40,16 +56,9 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product div[ite
 	position: static;
 }
 
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-price {
-	position: absolute;
-	left: 120px;
-	bottom: 15px;
-}
-
-
-html#ecwid_html body#ecwid_body .ecwid-SingleProduct .ecwid-SingleProduct-picture {
-	display: table-cell;
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .ecwid-SingleProduct-picture {
 	vertical-align: middle;
+	display: table-cell;
 	line-height: 120px;
 	width: 100px;
 }
@@ -60,12 +69,13 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-
 	max-width: 100px;
 	max-height: 100px;
 	margin-right: 10px;
-	margin-left: 10px;
+	margin-left: 10px !important;
 	vertical-align: middle;
 }
 
-
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-productBrowser-price,
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title {
-	text-align: left;
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-price,
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title,
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product div[itemprop="image"]
+{
+	text-align: center;
 }
