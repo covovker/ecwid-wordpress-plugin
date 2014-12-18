@@ -1,5 +1,11 @@
 var recently_viewed = {products: []};
 
+jQuery.cookie('test_ecwid_shopping_cart_recently_products_cookie', 'test_ecwid_shopping_cart_cookie_value', { path: '/' });
+if (jQuery.cookie('test_ecwid_shopping_cart_recently_products_cookie') != 'test_ecwid_shopping_cart_cookie_value') {
+	// Cookies do not work, we do nothing
+	exit;
+}
+
 jQuery(document).ready(function() {
 	var cookieName = 'ecwid-shopping-cart-recently-viewed';
 
