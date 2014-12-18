@@ -1050,34 +1050,34 @@ function ecwid_store_activate() {
 	$content = <<<EOT
 <!-- Ecwid code. Please do not remove this line  otherwise your Ecwid shopping cart will not work properly. --> [ecwid widgets="productbrowser search" grid="3,3" list="10" table="20" default_category_id="0" category_view="grid" search_view="grid" minicart_layout="attachToCategories" ] <!-- Ecwid code end -->
 EOT;
-  	add_option("ecwid_store_page_id", '', '', 'yes');
+	add_option("ecwid_store_page_id", '', '', 'yes');
 	add_option("ecwid_store_page_id_auto", '', '', 'yes');
 
 	add_option("ecwid_store_id", ECWID_DEMO_STORE_ID, '', 'yes');
-    
-    add_option("ecwid_enable_minicart", 'Y', '', 'yes');
-    add_option("ecwid_show_categories", '', '', 'yes');
-    add_option("ecwid_show_search_box", '', '', 'yes');
+	
+	add_option("ecwid_enable_minicart", 'Y', '', 'yes');
+	add_option("ecwid_show_categories", '', '', 'yes');
+	add_option("ecwid_show_search_box", '', '', 'yes');
 
-    add_option("ecwid_pb_categoriesperrow", '3', '', 'yes');
+	add_option("ecwid_pb_categoriesperrow", '3', '', 'yes');
 
-    add_option("ecwid_pb_productspercolumn_grid", '3', '', 'yes');
-    add_option("ecwid_pb_productsperrow_grid", '3', '', 'yes');
-    add_option("ecwid_pb_productsperpage_list", '10', '', 'yes');
-    add_option("ecwid_pb_productsperpage_table", '20', '', 'yes');
+	add_option("ecwid_pb_productspercolumn_grid", '3', '', 'yes');
+	add_option("ecwid_pb_productsperrow_grid", '3', '', 'yes');
+	add_option("ecwid_pb_productsperpage_list", '10', '', 'yes');
+	add_option("ecwid_pb_productsperpage_table", '20', '', 'yes');
 
-    add_option("ecwid_pb_defaultview", 'grid', '', 'yes');
-    add_option("ecwid_pb_searchview", 'list', '', 'yes');
+	add_option("ecwid_pb_defaultview", 'grid', '', 'yes');
+	add_option("ecwid_pb_searchview", 'list', '', 'yes');
 
-    add_option("ecwid_mobile_catalog_link", '', '', 'yes');  
-    add_option("ecwid_default_category_id", '', '', 'yes');  
-     
-    add_option('ecwid_is_api_enabled', 'on', '', 'yes');
-    add_option('ecwid_api_check_time', 0, '', 'yes');
+	add_option("ecwid_mobile_catalog_link", '', '', 'yes');  
+	add_option("ecwid_default_category_id", '', '', 'yes');  
+	 
+	add_option('ecwid_is_api_enabled', 'on', '', 'yes');
+	add_option('ecwid_api_check_time', 0, '', 'yes');
 
 	add_option('ecwid_show_vote_message', true);
 
-    add_option("ecwid_sso_secret_key", '', '', 'yes'); 
+	add_option("ecwid_sso_secret_key", '', '', 'yes'); 
 
 	add_option("ecwid_installation_date", time());
 
@@ -1088,7 +1088,7 @@ EOT;
 	add_option('ecwid_oauth_client_id', 'MCcryC6Ezk8TtLjR');
 	add_option('ecwid_oauth_client_secret', 'difkFu82vgFAweMX8z4KsiEPoaGxqLbB');
 
-    $id = get_option("ecwid_store_page_id");	
+	$id = get_option("ecwid_store_page_id");	
 	$_tmp_page = null;
 	if (!empty($id) and ($id > 0)) { 
 		$_tmp_page = get_post($id);
@@ -1100,6 +1100,7 @@ EOT;
 		wp_update_post( $my_post );
 
 	} else {
+		ecwid_load_textdomain();
 		$my_post['post_title'] = __('Store', 'ecwid-shopping-cart');
 		$my_post['post_content'] = $content;
 		$my_post['post_status'] = 'publish';
