@@ -1835,6 +1835,152 @@ class EcwidStoreLinkWidget extends WP_Widget {
 
 }
 
+class EcwidRecentlyViewedWidget extends WP_Widget {
+
+	var $max = 10;
+	var $min = 1;
+	var $default = 3;
+	function EcwidRecentlyViewedWidget() {
+		$widget_ops = array('classname' => 'widget_ecwid_recently_viewed', 'description' => __('A list of products recently viewed by a customer. Add this widget to the sidebar to let them later return to the products they saw in your shop.', 'ecwid-shopping-cart'));
+		$this->WP_Widget('ecwidrecentlyviewed', __('Recently Viewed Products', 'ecwid-shopping-cart'), $widget_ops);
+		$recently_viewed = json_decode(stripslashes($_COOKIE['ecwid-shopping-cart-recently-viewed']));
+
+		if ($recently_viewed && $recently_viewed->store_id != get_ecwid_store_id()) {
+			setcookie('ecwid-shopping-cart-recently-viewed', null, strftime('-1 day'));
+		}
+
+	}
+
+	function widget($args, $instance) {
+
+		wp_enqueue_script('ecwid-recently-viewed-js', plugins_url('ecwid-shopping-cart/js/recently-viewed.js'), array('jquery', 'utils'));
+		wp_enqueue_style('ecwid-recently-viewed-css', plugins_url('ecwid-shopping-cart/css/recently-viewed.css'));
+		extract($args);
+
+		$title = apply_filters('widget_title', empty($instance['title']) ? '&nbsp;' : $instance['title']);
+
+		echo $before_widget;
+
+		if ( $title )
+			echo $before_title . $title . $after_title;
+
+		echo ecwid_get_scriptjs_code();
+
+		$recently_viewed = false;
+		if (isset($_COOKIE['ecwid-shopping-cart-recently-viewed'])) {
+			$recently_viewed = json_decode($_COOKIE['ecwid-shopping-cart-recently-viewed']);
+		}
+		$recently_viewed = json_decode(stripslashes($_COOKIE['ecwid-shopping-cart-recently-viewed']));
+
+		if ($recently_viewed && $recently_viewed->store_id != get_ecwid_store_id()) {
+			$recently_viewed = null;
+		}
+
+		$ids = array();
+		if ($recently_viewed && isset($recently_viewed->products)) {
+			echo '<div class="ecwid-recently-viewed-products">';
+			foreach ($recently_viewed->products as $key => $product) {
+				$counter++;
+				if (isset($product->id) && isset($product->link)) {
+					$ids[] = $product->id;
+					$hide = $counter > $instance['number_of_products'] ? ' hidden' : '';
+					echo <<<HTML
+	<a class="product$hide" href="$product->link">
+		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-$product->id" itemscope itemtype="http://schema.org/Product" data-single-product-id="$product->id">
+			<div itemprop="image"></div>
+			<div class="ecwid-title" itemprop="name"></div>
+			<div itemtype="http://schema.org/Offer" itemscope itemprop="offers"><div class="ecwid-productBrowser-price ecwid-price" itemprop="price"></div></div>
+		</div>
+		<script type="text/javascript">xSingleProduct();</script>
+	</a>
+HTML;
+				}
+			}
+		} else {
+			echo <<<HTML
+<script type="text/javascript">
+jQuery(document).ready(function() {
+  wpCookies.remove('ecwid-shopping-cart-recently-viewed');
+  recently_viewed = {products: []};
+});
+</script>
+HTML;
+		}
+		$ids_string = '';
+		if (!empty($ids)) {
+			$ids_string = implode(',', $ids);
+		}
+
+		echo <<<HTML
+<script type="text/javascript">
+	if (typeof ecwid_recently_viewed_widgets == 'undefined') {
+		var ecwid_recently_viewed_widgets = [];
+	}
+	ecwid_recently_viewed_widgets.push({parent_id:'$this->id', ids:[$ids_string], max: $instance[number_of_products]});
+</script>
+HTML;
+
+
+		echo <<<HTML
+<script id="recently-viewed-template-$this->id" type="text/ecwid-shopping-cart-template">
+<a class="product" href="LINK">
+		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-PRODUCT_ID" itemscope="" itemtype="http://schema.org/Product" data-single-product-id="PRODUCT_ID">
+
+			<div itemprop="image">
+				<div class="ecwid-SingleProduct-picture">
+					<img class="gwt-Image" src="IMAGE" alt="NAME" title="NAME">
+				</div>
+			</div>
+			<div class="ecwid-title" itemprop="name">NAME</div>
+			<div itemtype="http://schema.org/Offer" itemscope="" itemprop="offers">
+				<div class="ecwid-productBrowser-price ecwid-price" itemprop="price">
+					<div><div>PRICE</div></div>
+				</div>
+			</div>
+
+		</div>
+	</a>
+</script>
+HTML;
+
+
+
+		echo $after_widget;
+	}
+
+	function update($new_instance, $old_instance){
+		$instance = $old_instance;
+		$instance['title'] = strip_tags(stripslashes($new_instance['title']));
+		$num = intval($new_instance['number_of_products']);
+		if ($num > $this->max || $num < $this->min) {
+			$num = $this->default;
+		}
+		$instance['number_of_products'] = intval($new_instance['number_of_products']);
+
+		return $instance;
+	}
+
+	function form($instance){
+		$instance = wp_parse_args( (array) $instance,
+			array(
+				'title' => __('Recently Viewed Products', 'ecwid-shopping-cart'),
+				'number_of_products' => 3
+			)
+		);
+
+		$title = htmlspecialchars($instance['title']);
+		$number_of_products = $instance['number_of_products'];
+		if ($number_of_products)
+
+		echo '<p><label for="' . $this->get_field_name('title') . '">' . __('Title') . ': <input style="width:100%;" id="' . $this->get_field_id('title') . '" name="' . $this->get_field_name('title') . '" type="text" value="' . $title . '" /></label></p>';
+		echo '<p><label for="' . $this->get_field_name('number_of_products') . '">' . __( 'Number of products to show', 'ecwid-shopping-cart' ) . ': <input style="width:100%;" id="' . $this->get_field_id('number_of_products') . '" name="' . $this->get_field_name('number_of_products') . '" type="number" min="' . $this->min . '" max="' . $this->max . '" value="' . $number_of_products . '" /></label></p>';
+	}
+
+	function is_valid_number_of_products($num) {
+		return is_numeric($num) && $num <= $this->max && $num >= $this->min;
+	}
+}
+
 
 function ecwid_send_stats()
 {
@@ -1960,6 +2106,7 @@ function ecwid_sidebar_widgets_init() {
 	register_widget('EcwidMinicartMiniViewWidget');
 	register_widget('EcwidBadgeWidget');
 	register_widget('EcwidStoreLinkWidget');
+	register_widget('EcwidRecentlyViewedWidget');
 }
 
 add_action('widgets_init', 'ecwid_sidebar_widgets_init');

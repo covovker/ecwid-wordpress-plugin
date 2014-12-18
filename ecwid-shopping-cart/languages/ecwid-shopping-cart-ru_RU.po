@@ -389,3 +389,12 @@ msgstr "Ссылка на Эквид-магазин"
 
 msgid "A link to your store page"
 msgstr "Ссылка на страницу магазина"
+
+msgid "Recently Viewed Products"
+msgstr "Недавно просмотренные товары"
+
+msgid "A list of products recently viewed by a customer. Add this widget to the sidebar to let them later return to the products they saw in your shop."
+msgstr "Список товаров магазина, которые недавно просматривал посетитель. Этот виджет позволит покупателям вернуться к недавно просмотренным товарам и совершить покупку."
+
+msgid "Number of products to show"
+msgstr "Количество товаров"
