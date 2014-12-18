@@ -22,6 +22,37 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product:focus
 	outline: none;
 }
 
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title {
+	overflow: hidden;
+	max-height: 55px;
+	margin-right:5px;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product:hover .ecwid-title {
+	text-decoration: underline;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product div[itemprop="offers"] {
+	position: static;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-SingleProduct-picture img {
+	height: auto !important;
+	width: auto !important;
+	max-width: 100px;
+	max-height: 100px;
+	margin-top: 10px !important;
+	vertical-align: middle;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-price,
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title,
+html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product div[itemprop="image"]
+{
+	text-align: center;
+}
+
+
 html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product {
 	height: 120px;
 }
@@ -42,40 +73,10 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .e
 	bottom: 15px;
 }
 
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title {
-	overflow: hidden;
-	max-height: 55px;
-	margin-right:5px;
-}
-
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product:hover .ecwid-title {
-	text-decoration: underline;
-}
-
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product div[itemprop="offers"] {
-	position: static;
-}
-
 html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .ecwid-SingleProduct-picture {
 	vertical-align: middle;
 	display: table-cell;
 	line-height: 120px;
 	width: 100px;
-	margin-left: 10px !important;
-}
-
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-SingleProduct-picture img {
-	height: auto !important;
-	width: auto !important;
-	max-width: 100px;
-	max-height: 100px;
-	margin-right: 10px;
-	vertical-align: middle;
-}
-
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-price,
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title,
-html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product div[itemprop="image"]
-{
-	text-align: center;
+	margin: 0px 10px !important;
 }
