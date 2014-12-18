@@ -578,7 +578,7 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 
 			return e.content = e.content.replace( /(<img [^>]*data-ecwid-shortcode=[^>]+>)/g, function( match, image ) {
 
-				var data = window.decodeURIComponent($(image).attr('data-ecwid-shortcode'));
+				var data = window.decodeURIComponent(jQuery(image).attr('data-ecwid-shortcode'));
 
 				if ( data ) {
 					return data;
