@@ -25,7 +25,6 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product:focus
 html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product .ecwid-title {
 	overflow: hidden;
 	max-height: 55px;
-	margin-right:5px;
 }
 
 html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products .product:hover .ecwid-title {
@@ -61,7 +60,8 @@ html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .e
 html#ecwid_html body#ecwid_body .ecwid-recently-viewed-products.wide .product .ecwid-price {
 	position: absolute;
 	left: 120px;
-	text-align: center;
+	text-align: left;
+	margin-right: 5px;
 }
 
 

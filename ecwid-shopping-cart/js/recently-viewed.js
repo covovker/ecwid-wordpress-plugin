@@ -136,6 +136,12 @@ jQuery(document).ready(function() {
 					jQuery('.ecwid-Product-' + recently_viewed.products[j].id, parent).closest('a.product').addClass('hidden');
 				}
 			}
+
+			if (items.length > 0) {
+				jQuery('#' + ecwid_recently_viewed_widgets[i].parent_id).show();
+			} else {
+				jQuery('#' + ecwid_recently_viewed_widgets[i].parent_id).hide();
+			}
 		}
 	}
 
@@ -174,6 +180,10 @@ function ecwid_validate_recently_viewed(parent_id, ids)
 			}
 		}
 		recently_viewed.products.push(product);
+	}
+
+	if (jQuery('#' + parent_id).find('a.product').length == 0) {
+		jQuery('#' + parent_id).hide();
 	}
 }
 
