@@ -38,7 +38,7 @@ jQuery(document).ready(function() {
 			attributes.grid = '3,3';
 		}
 
-		var grid = attributes.grid.match(/^(\d+),(\d+)jQuery/);
+		var grid = attributes.grid.match(/^(\d+),(\d+)/);
 		attributes.grid_rows = grid[1];
 		attributes.grid_columns = grid[2];
 
