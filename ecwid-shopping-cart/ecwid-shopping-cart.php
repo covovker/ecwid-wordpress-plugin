@@ -2093,7 +2093,8 @@ function ecwid_gather_stats()
 		'ecwid_product_advisor_used',
 		'ecwid_single_product_used',
 		'ecwid_store_shortcode_used',
-		'store_link_widget'
+		'store_link_widget',
+		'recently_viewed_widget'
 	);
 
 	$usage_stats = ecwid_gather_usage_stats();
@@ -2127,7 +2128,8 @@ function ecwid_gather_usage_stats()
 		'ecwid_product_advisor_used',
 		'ecwid_single_product_used',
 		'ecwid_store_shortcode_used',
-		'store_link_widget'
+		'store_link_widget',
+		'recently_viewed_widget'
 	);
 
 	$usage_stats = array();
@@ -2147,6 +2149,7 @@ function ecwid_gather_usage_stats()
 	$usage_stats['ecwid_single_product_used'] = (bool) (get_option('ecwid_single_product_used') + 60*60*24*14 > time());
 	$usage_stats['ecwid_store_shortcode_used'] = (bool) (get_option('ecwid_store_shortcode_used') + 60*60*24*14 > time());
 	$usage_stats['store_link_widget'] = (bool) is_active_widget(false, false, 'ecwidstorelink');
+	$usage_stats['recently_viewed_widget'] = (bool) is_active_widget(false, false, 'ecwidrecentlyviewed');
 
 	return $usage_stats;
 }
