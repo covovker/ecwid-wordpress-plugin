@@ -1093,6 +1093,7 @@ EOT;
 		wp_update_post( $my_post );
 
 	} else {
+        ecwid_load_textdomain();
 		$my_post['post_title'] = __('Store', 'ecwid-shopping-cart');
 		$my_post['post_content'] = $content;
 		$my_post['post_status'] = 'publish';
