@@ -1885,7 +1885,8 @@ function ecwid_gather_stats()
 		'google_xml_sitemaps_used',
 		'ecwid_product_advisor_used',
 		'ecwid_single_product_used',
-		'ecwid_store_shortcode_used'
+		'ecwid_store_shortcode_used',
+		'store_link_widget'
 	);
 
 	$usage_stats = ecwid_gather_usage_stats();
