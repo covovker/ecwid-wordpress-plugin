@@ -153,8 +153,9 @@ body[class*="_page_ecwid"] .ecwid-message {
 }
 
 .widget-top.ecwid-widget-highlighted {
-	background: blue;
+	background: #1d7ac4;
 	color: white;
+	font-weight: normal;
 }
 
 .ecwid-widget .widget-top h4:before {
@@ -168,7 +169,7 @@ body[class*="_page_ecwid"] .ecwid-message {
 }
 
 .ecwid-widget .widget-top.ecwid-widget-highlighted h4:before {
-	color: yellow;
+	color: white;
 }
 
 .widget-top.ecwid-widget-badge h4:before {
