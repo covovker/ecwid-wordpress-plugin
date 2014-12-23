@@ -133,11 +133,15 @@ jQuery(document).ready(function() {
 			}
 
 			jQuery('#wp_editbtns').css('display', 'none !important');
+		}
 
-			if (window.location.search.indexOf('show-ecwid=true') != -1 && typeof this.show_ecwid_processed == 'undefined') {
-				ecwid_open_store_popup();
+
+		if (window.location.search.indexOf('show-ecwid=true') != -1 && typeof this.show_ecwid_processed == 'undefined') {
+			ecwid_open_store_popup();
+			this.show_ecwid_processed = true;
+
+			if (tinymce.activeEditor) {
 				tinymce.activeEditor.plugins.ecwid.addToolbar();
-				this.show_ecwid_processed = true;
 			}
 		}
 	}
