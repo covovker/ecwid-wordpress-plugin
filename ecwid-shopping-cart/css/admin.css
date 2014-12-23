@@ -150,6 +150,7 @@ div.ecwid-message {
 .widget-top.ecwid-widget-highlighted {
 	background: #1d7ac4;
 	color: white;
+	font-weight: normal;
 }
 
 .ecwid-widget .widget-top h4 {
