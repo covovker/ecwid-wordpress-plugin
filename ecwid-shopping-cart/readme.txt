@@ -2,8 +2,8 @@
 Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
-Tested up to: 4.0
-Stable tag: 2.7
+Tested up to: 4.1
+Stable tag: 2.7.3
 
 Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
 
@@ -110,6 +110,14 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.7.3 =
+- Several bug fixes and minor improvements for the new "Add Store" button in WordPress Editor
+
+= 2.7.2 =
+- **A new sidebar widget: Ecwid Store Page Link.** The widget adds your store page link to the site's sidebar. You may want to use it with blog-focused WordPress themes that don't have a navigation menu, e.g. the upcoming "Twenty Fifteen" theme. Also, you can consider adding the widget to your sidebar to make your store page more visible to your visitors. 
+- **Wordpress 4.1 and Twenty Fifteen theme compatibility.** The new WordPress version is coming soon and bringing a brand new 'Twenty Fifteen' theme. Ecwid plugin is now totally ready for the upcoming changes and will work OK in the new environment. Feel free to upgrade your site to Wordpress 4.1 as soon as it's released.
+- A few minor improvements and bugfixes for the new "Add Store" button released in the version 2.7
+
 = 2.7.1 =
 - Fixed a few issues with the store appearance settings that were discovered in the recently released update (v2.7)
 
