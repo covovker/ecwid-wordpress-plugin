@@ -93,7 +93,7 @@ jQuery(document).ready(function() {
 						id: items[j].id,
 						name: jQuery('.ecwid-Product-' + items[j].id + ' .ecwid-title', parent).text(),
 						image: jQuery('.ecwid-Product-' + items[j].id + ' img', parent).attr('src'),
-						price: jQuery('.ecwid-Product-' + items[j].id + ' .ecwid-price:first', parent).text(),
+						price: jQuery('.ecwid-Product-' + items[j].id + ' .ecwid-productBrowser-price-value', parent).text(),
 						link: jQuery('.ecwid-Product-' + items[j].id, parent).closest('a.product').attr('href')
 					}
 				}
