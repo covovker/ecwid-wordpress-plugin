@@ -1877,9 +1877,10 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 			$recently_viewed = null;
 		}
 
+		echo '<div class="ecwid-recently-viewed-products">';
+
 		$ids = array();
 		if ($recently_viewed && isset($recently_viewed->products)) {
-			echo '<div class="ecwid-recently-viewed-products">';
 
 			for ($i = count($recently_viewed->products) - 1; $i >= 0; $i--) {
 				$product = $recently_viewed->products[$i];
@@ -1888,7 +1889,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 					$ids[] = $product->id;
 					$hide = $counter > $instance['number_of_products'] ? ' hidden' : '';
 					echo <<<HTML
-	<a class="product$hide" href="$product->link">
+	<a class="product$hide" href="$product->link" alt="$product->name" title="$product->name">
 		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-$product->id" itemscope itemtype="http://schema.org/Product" data-single-product-id="$product->id">
 			<div itemprop="image"></div>
 			<div class="ecwid-title" itemprop="name"></div>
@@ -1926,18 +1927,18 @@ HTML;
 
 		echo <<<HTML
 <script id="recently-viewed-template-$this->id" type="text/ecwid-shopping-cart-template">
-<a class="product" href="LINK">
+	<a class="product" href="LINK" title="NAME">
 		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-PRODUCT_ID" itemscope="" itemtype="http://schema.org/Product" data-single-product-id="PRODUCT_ID">
 
 			<div itemprop="image">
 				<div class="ecwid-SingleProduct-picture">
-					<img class="gwt-Image" src="IMAGE" alt="NAME" title="NAME">
+					<img class="gwt-Image" src="IMAGE" alt="NAME">
 				</div>
 			</div>
 			<div class="ecwid-title" itemprop="name">NAME</div>
 			<div itemtype="http://schema.org/Offer" itemscope="" itemprop="offers">
 				<div class="ecwid-productBrowser-price ecwid-price" itemprop="price">
-					<div><div>PRICE</div></div>
+					<div>PRICE</div>
 				</div>
 			</div>
 
@@ -1946,7 +1947,7 @@ HTML;
 </script>
 HTML;
 
-
+		echo "</div>";
 
 		echo $after_widget;
 	}

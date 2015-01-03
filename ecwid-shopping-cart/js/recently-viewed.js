@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
 			'link': link,
 			'name': jQuery('.ecwid-productBrowser-head').text(),
 			'image': jQuery('.ecwid-productBrowser-details .ecwid-productBrowser-details-thumbnail img.gwt-Image').attr('src'),
-			'price': jQuery('.ecwid-productBrowser-details .ecwid-productBrowser-price:first').text()
+			'price': jQuery('.ecwid-productBrowser-details .ecwid-productBrowser-price-value').text()
 		});
 
 		if (cookie.products.length > 11) {
@@ -93,9 +93,12 @@ jQuery(document).ready(function() {
 						id: items[j].id,
 						name: jQuery('.ecwid-Product-' + items[j].id + ' .ecwid-title', parent).text(),
 						image: jQuery('.ecwid-Product-' + items[j].id + ' img', parent).attr('src'),
-						price: jQuery('.ecwid-Product-' + items[j].id + ' .ecwid-productBrowser-price-value', parent).text(),
+						price: jQuery('.ecwid-Product-' + items[j].id + ' .ecwid-price:first', parent).text(),
 						link: jQuery('.ecwid-Product-' + items[j].id, parent).closest('a.product').attr('href')
 					}
+
+					jQuery('.ecwid-Product-' + items[j].id + ' .ecwid-title', parent)
+							.data('initial-text', jQuery('.ecwid-Product-' + items[j].id + ' .ecwid-title', parent).text())
 				}
 			}
 
@@ -146,7 +149,7 @@ jQuery(document).ready(function() {
 	}
 
 	function create_recently_viewed(product, widget) {
-		var id = jQuery(widget).closest('.widget.widget_ecwid_recently_viewed').attr('id');
+		var id = jQuery(widget).closest('.widget_ecwid_recently_viewed').attr('id');
 		var template = jQuery('#recently-viewed-template-' + id).html();
 
 		template = template.replace(/PRODUCT_ID/, product.id);
@@ -156,6 +159,8 @@ jQuery(document).ready(function() {
 		template = template.replace(/NAME/g, product.name);
 
 		jQuery(widget).append(template);
+		var title_el = jQuery(widget).find('.ecwid-title');
+		title_el.data('initial-text', title_el.text());
 	}
 });
 
@@ -191,11 +196,15 @@ function recently_viewed_on_resize()
 {
 	for (var i = 0; i < ecwid_recently_viewed_widgets.length; i++) {
 		var parent = jQuery('.ecwid-recently-viewed-products', '#' + ecwid_recently_viewed_widgets[i].parent_id);
-		if (parent.width() > 210) {
+		if (parent.width() > 250) {
 			parent.addClass('wide');
 		} else {
 			parent.removeClass('wide');
 		}
+
+		parent.find('.ecwid-title').each(function(idx, el) {
+			jQuery(el).html(jQuery(el).data('initial-text'));
+		})
 	}
 }
 
