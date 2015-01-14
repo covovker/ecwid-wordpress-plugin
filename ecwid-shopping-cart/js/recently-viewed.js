@@ -50,7 +50,7 @@ jQuery(document).ready(function() {
 		recently_viewed.products.unshift({
 			'id': id,
 			'link': link,
-			'name': jQuery('.ecwid-productBrowser-head').text(),
+			'name':  jQuery('.ecwid-productBrowser-head').text(),
 			'image': jQuery('.ecwid-productBrowser-details .ecwid-productBrowser-details-thumbnail img.gwt-Image').attr('src'),
 			'price': jQuery('.ecwid-productBrowser-details .ecwid-productBrowser-price-value').text()
 		});
@@ -196,7 +196,7 @@ function recently_viewed_on_resize()
 {
 	for (var i = 0; i < ecwid_recently_viewed_widgets.length; i++) {
 		var parent = jQuery('.ecwid-recently-viewed-products', '#' + ecwid_recently_viewed_widgets[i].parent_id);
-		if (parent.width() > 250) {
+		if (parent.width() > 200) {
 			parent.addClass('wide');
 		} else {
 			parent.removeClass('wide');

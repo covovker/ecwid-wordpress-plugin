@@ -1734,7 +1734,6 @@ class EcwidSearchWidget extends WP_Widget {
 		echo '<script type="text/javascript"> xSearchPanel("style="); </script>';
 
 		echo '</div>';
-
       
 		echo $after_widget;
     }
