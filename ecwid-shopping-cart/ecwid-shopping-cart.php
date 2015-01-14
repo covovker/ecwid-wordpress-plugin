@@ -63,8 +63,9 @@ if ( is_admin() ){
   add_action('template_redirect', 'ecwid_apply_theme');
   add_action('wp_enqueue_scripts', 'ecwid_add_frontend_styles');
   add_action('wp', 'ecwid_seo_ultimate_compatibility', 0);
-  add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
-  add_filter('wp_title', 'ecwid_seo_title', 20);
+  add_action('wp', 'ecwid_remove_default_canonical');
+  add_filter('wp_title', 'ecwid_seo_compatibility_init', 0);
+  add_filter('the_title', 'ecwid_seo_title', 20);
   add_action('plugins_loaded', 'ecwid_minifier_compatibility', 0);
   add_action('wp_head', 'ecwid_meta_description', 0);
   add_action('wp_head', 'ecwid_ajax_crawling_fragment');
@@ -341,14 +342,19 @@ function ecwid_seo_compatibility_template_redirect()
 	remove_action( 'template_redirect', array( $wpseo_front, 'force_rewrite_output_buffer' ), 99999 );
 }
 
+if (!is_admin) add_action('wp', 'ecwid_remove_default_canonical');
+function ecwid_remove_default_canonical()
+{
+	if (array_key_exists('_escaped_fragment_', $_GET) && ecwid_page_has_productbrowser()) {
+		remove_action( 'wp_head','rel_canonical');
+	}
+}
+
 function ecwid_seo_compatibility_init($title)
 {
     if (!array_key_exists('_escaped_fragment_', $_GET) || !ecwid_page_has_productbrowser()) {
         return $title;
     }
-
-    // Default wordpress canonical
-    remove_action( 'wp_head','rel_canonical');
 
     // Yoast Wordpress SEO
     global $wpseo_front;
