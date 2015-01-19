@@ -26,7 +26,7 @@ if ( ! defined( 'ECWID_PLUGIN_URL' ) ) {
 
 
 // Older versions of Google XML Sitemaps plugin generate it in admin, newer in site area, so the hook should be assigned in both of them
-add_action('sm_buildmap', 'ecwid_build_sitemap_pages');
+add_action('sm_buildmap', 'ecwid_build_google_xml_sitemap');
 
 // Needs to be in both front-end and back-end to allow admin zone recognize the shortcode
 add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
@@ -65,7 +65,7 @@ if ( is_admin() ){
   add_action('wp', 'ecwid_seo_ultimate_compatibility', 0);
   add_action('wp', 'ecwid_remove_default_canonical');
   add_filter('wp_title', 'ecwid_seo_compatibility_init', 0);
-  add_filter('the_title', 'ecwid_seo_title', 20);
+  add_filter('wp_title', 'ecwid_seo_title', 20);
   add_action('plugins_loaded', 'ecwid_minifier_compatibility', 0);
   add_action('wp_head', 'ecwid_meta_description', 0);
   add_action('wp_head', 'ecwid_ajax_crawling_fragment');
@@ -92,6 +92,48 @@ function ecwid_add_breadcrumbs_navxt($trail)
 {
 	$breadcrumb = new bcn_breadcrumb('Ecwid', '', '', 'http://ecwid.com');
 	$trail->add($breadcrumb);
+}
+
+add_filter('wpseo_sitemap_index', 'ecwid_wpseo_do_sitemap_index');
+
+function ecwid_wpseo_do_sitemap_index($params)
+{
+	$now = date('Y-m-dTH:i:sP', time());
+	return <<<XML
+		<sitemap>
+			<loc>http://localhost/wordpress/40/index.php?sitemap=ecwid</loc>
+			<lastmod>$now</lastmod>
+		</sitemap>
+XML;
+
+	// should return index string
+}
+
+add_action('wpseo_do_sitemap_ecwid', 'ecwid_wpseo_do_sitemap');
+
+add_action('wpseo_do_sitemap_ecwid_content', 'ecwid_wpseo_do_sitemap');
+
+function ecwid_wpseo_build_sitemap_callback($loc, $freq, $priority)
+{
+	global $ecwid_wpseo_sitemap;
+
+	$ecwid_wpseo_sitemap .= <<<XML
+	<url>
+		<loc>$loc</loc>
+		<changefreq>$freq</changefreq>
+		<priority>$priority</priority>
+	</url>
+
+XML;
+}
+
+function ecwid_wpseo_do_sitemap($params)
+{
+	global $ecwid_wpseo_sitemap;
+
+	ecwid_build_sitemap('ecwid_wpseo_build_sitemap_callback');
+
+	$GLOBALS['wpseo_sitemaps']->set_sitemap($ecwid_wpseo_sitemap);
 }
 
 function ecwid_add_breadcrumb_links_wpseo($links)
@@ -241,7 +283,7 @@ function ecwid_backward_compatibility() {
 }
 
 
-function ecwid_build_sitemap_pages()
+function ecwid_build_sitemap($callback)
 {
 	if (!ecwid_is_paid_account() || !ecwid_is_store_page_available()) return;
 
@@ -250,13 +292,18 @@ function ecwid_build_sitemap_pages()
 	if (get_post_status($page_id) == 'publish') {
 		include ECWID_PLUGIN_DIR . '/includes/class-ecwid-sitemap-builder.php';
 
-		$sitemap = new EcwidSitemapBuilder(ecwid_get_store_page_url(), 'build_sitemap_callback', ecwid_new_product_api());
+		$sitemap = new EcwidSitemapBuilder(ecwid_get_store_page_url(), $callback, ecwid_new_product_api());
 
 		$sitemap->generate();
 	}
 }
 
-function build_sitemap_callback($url, $priority, $frequency)
+function ecwid_build_google_xml_sitemap()
+{
+	return ecwid_build_sitemap('ecwid_google_xml_sitemap_build_sitemap_callback');
+}
+
+function ecwid_google_xml_sitemap_build_sitemap_callback($url, $priority, $frequency)
 {
 	static $generatorObject = null;
 	if (is_null($generatorObject)) {
@@ -342,7 +389,6 @@ function ecwid_seo_compatibility_template_redirect()
 	remove_action( 'template_redirect', array( $wpseo_front, 'force_rewrite_output_buffer' ), 99999 );
 }
 
-if (!is_admin) add_action('wp', 'ecwid_remove_default_canonical');
 function ecwid_remove_default_canonical()
 {
 	if (array_key_exists('_escaped_fragment_', $_GET) && ecwid_page_has_productbrowser()) {
@@ -384,6 +430,40 @@ function ecwid_seo_compatibility_init($title)
 
 	return $title;
 
+}
+
+add_filter('aiosp_sitemap_extra', 'ecwid_aoisp_sitemap_types');
+add_filter('aiosp_sitemap_custom_ecwid', 'ecwid_aiosp_sitemap_content');
+
+
+function ecwid_aoisp_sitemap_types($params)
+{
+	return array_merge($params, array('ecwid'));
+}
+
+function ecwid_aiosp_build_sitemap_callback($url, $priority, $frequency)
+{
+	global $_ecwid_aiosp_sitemap;
+
+	array_push($_ecwid_aiosp_sitemap, array(
+		'loc' => $url,
+		'priority' => $priority,
+		'changefreq' => $frequency
+	));
+}
+
+function ecwid_aiosp_sitemap_content($params)
+{
+	global $_ecwid_aiosp_sitemap;
+	$_ecwid_aiosp_sitemap = array();
+
+	ecwid_build_sitemap('ecwid_aiosp_build_sitemap_callback');
+
+	$tmp = $_ecwid_aiosp_sitemap;
+
+	$_ecwid_aiosp_sitemap = null;
+
+	return $tmp;
 }
 
 function ecwid_seo_compatibility_restore()
