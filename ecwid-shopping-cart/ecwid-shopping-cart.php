@@ -94,48 +94,6 @@ function ecwid_add_breadcrumbs_navxt($trail)
 	$trail->add($breadcrumb);
 }
 
-add_filter('wpseo_sitemap_index', 'ecwid_wpseo_do_sitemap_index');
-
-function ecwid_wpseo_do_sitemap_index($params)
-{
-	$now = date('Y-m-dTH:i:sP', time());
-	return <<<XML
-		<sitemap>
-			<loc>http://localhost/wordpress/40/index.php?sitemap=ecwid</loc>
-			<lastmod>$now</lastmod>
-		</sitemap>
-XML;
-
-	// should return index string
-}
-
-add_action('wpseo_do_sitemap_ecwid', 'ecwid_wpseo_do_sitemap');
-
-add_action('wpseo_do_sitemap_ecwid_content', 'ecwid_wpseo_do_sitemap');
-
-function ecwid_wpseo_build_sitemap_callback($loc, $freq, $priority)
-{
-	global $ecwid_wpseo_sitemap;
-
-	$ecwid_wpseo_sitemap .= <<<XML
-	<url>
-		<loc>$loc</loc>
-		<changefreq>$freq</changefreq>
-		<priority>$priority</priority>
-	</url>
-
-XML;
-}
-
-function ecwid_wpseo_do_sitemap($params)
-{
-	global $ecwid_wpseo_sitemap;
-
-	ecwid_build_sitemap('ecwid_wpseo_build_sitemap_callback');
-
-	$GLOBALS['wpseo_sitemaps']->set_sitemap($ecwid_wpseo_sitemap);
-}
-
 function ecwid_add_breadcrumb_links_wpseo($links)
 {
 	return array_merge((array)$links, array(
@@ -430,40 +388,6 @@ function ecwid_seo_compatibility_init($title)
 
 	return $title;
 
-}
-
-add_filter('aiosp_sitemap_extra', 'ecwid_aoisp_sitemap_types');
-add_filter('aiosp_sitemap_custom_ecwid', 'ecwid_aiosp_sitemap_content');
-
-
-function ecwid_aoisp_sitemap_types($params)
-{
-	return array_merge($params, array('ecwid'));
-}
-
-function ecwid_aiosp_build_sitemap_callback($url, $priority, $frequency)
-{
-	global $_ecwid_aiosp_sitemap;
-
-	array_push($_ecwid_aiosp_sitemap, array(
-		'loc' => $url,
-		'priority' => $priority,
-		'changefreq' => $frequency
-	));
-}
-
-function ecwid_aiosp_sitemap_content($params)
-{
-	global $_ecwid_aiosp_sitemap;
-	$_ecwid_aiosp_sitemap = array();
-
-	ecwid_build_sitemap('ecwid_aiosp_build_sitemap_callback');
-
-	$tmp = $_ecwid_aiosp_sitemap;
-
-	$_ecwid_aiosp_sitemap = null;
-
-	return $tmp;
 }
 
 function ecwid_seo_compatibility_restore()
