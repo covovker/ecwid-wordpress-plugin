@@ -31,6 +31,8 @@ add_action('sm_buildmap', 'ecwid_build_google_xml_sitemap');
 // Needs to be in both front-end and back-end to allow admin zone recognize the shortcode
 add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
 
+add_action( 'plugins_loaded', 'ecwid_init_integrations' );
+
 if ( is_admin() ){ 
   add_action('admin_init', 'ecwid_settings_api_init');
 	add_action('admin_init', 'ecwid_check_version');
@@ -84,6 +86,21 @@ $ecwid_script_rendered = false; // controls single script.js on page
 require_once plugin_dir_path(__FILE__) . '/includes/themes.php';
 require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-message-manager.php';
 require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-store-editor.php';
+
+function ecwid_init_integrations()
+{
+	if ( !function_exists( 'get_plugins' ) ) { require_once ( ABSPATH . 'wp-admin/includes/plugin.php' ); }
+
+	$integrations = array(
+		'aiosp' => 'all-in-one-seo-pack/all_in_one_seo_pack.php'
+	);
+
+	foreach ($integrations as $key => $plugin) {
+		if ( is_plugin_active($plugin) ) {
+			require_once ECWID_PLUGIN_DIR . '/includes/class-ecwid-integration-' . $key . '.php';
+		}
+	}
+}
 
 
 $version = get_bloginfo('version');
@@ -290,7 +307,7 @@ function ecwid_build_sitemap($callback)
 	$page_id = ecwid_get_current_store_page_id();
 
 	if (get_post_status($page_id) == 'publish') {
-		include ECWID_PLUGIN_DIR . '/includes/class-ecwid-sitemap-builder.php';
+		require_once ECWID_PLUGIN_DIR . '/includes/class-ecwid-sitemap-builder.php';
 
 		$sitemap = new EcwidSitemapBuilder(ecwid_get_store_page_url(), $callback, ecwid_new_product_api());
 
@@ -405,7 +422,7 @@ function ecwid_seo_compatibility_init($title)
     // Yoast Wordpress SEO
     global $wpseo_front;
 	// Canonical
-    remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20);
+  remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20);
 	// Title
 	remove_action( 'get_header', array( $wpseo_front, 'force_rewrite_output_buffer' ) ); // Older versions of plugin
 	remove_action( 'wp_footer', array( $wpseo_front, 'flush_cache'));
@@ -413,57 +430,13 @@ function ecwid_seo_compatibility_init($title)
 	remove_action( 'wpseo_head', array( $wpseo_front, 'metadesc' ), 10 );
 
 	// Platinum SEO Pack
-    // Canonical
-    ecwid_override_option('psp_canonical', false);
-    // Title
-    ecwid_override_option('aiosp_rewrite_titles', false);
-
-	// All in one SEO Pack
-    global $aioseop_options, $aiosp;
-    // Canonical
-    $aioseop_options['aiosp_can'] = false;
-    // Title
-	add_filter('aioseop_title', '__return_null');
-	// Description
-	add_filter('aioseop_description', '__return_null');
-
+  // Canonical
+  ecwid_override_option('psp_canonical', false);
+  // Title
+  ecwid_override_option('aiosp_rewrite_titles', false);
 
 	return $title;
 
-}
-
-add_filter('aiosp_sitemap_extra', 'ecwid_aoisp_sitemap_types');
-add_filter('aiosp_sitemap_custom_ecwid', 'ecwid_aiosp_sitemap_content');
-
-
-function ecwid_aoisp_sitemap_types($params)
-{
-	return array_merge($params, array('ecwid'));
-}
-
-function ecwid_aiosp_build_sitemap_callback($url, $priority, $frequency)
-{
-	global $_ecwid_aiosp_sitemap;
-
-	array_push($_ecwid_aiosp_sitemap, array(
-		'loc' => $url,
-		'priority' => $priority,
-		'changefreq' => $frequency
-	));
-}
-
-function ecwid_aiosp_sitemap_content($params)
-{
-	global $_ecwid_aiosp_sitemap;
-	$_ecwid_aiosp_sitemap = array();
-
-	ecwid_build_sitemap('ecwid_aiosp_build_sitemap_callback');
-
-	$tmp = $_ecwid_aiosp_sitemap;
-
-	$_ecwid_aiosp_sitemap = null;
-
-	return $tmp;
 }
 
 function ecwid_seo_compatibility_restore()
