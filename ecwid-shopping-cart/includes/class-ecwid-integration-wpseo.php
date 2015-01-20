@@ -10,8 +10,10 @@ class Ecwid_Integration_WordPress_SEO_By_Yoast
 		add_action( 'wp', array( $this, 'disable_seo_on_escaped_fragment' ) );
 		add_action( 'template_redirect', array( $this, 'disable_rewrite_titles' ) );
 
-		add_filter( 'wpseo_sitemap_index', array( $this, 'wpseo_hook_sitemap_index' ) );
-		add_filter( 'wpseo_do_sitemap_ecwid', array( $this, 'wpseo_hook_do_sitemap' ) );
+		if (ecwid_is_paid_account() && ecwid_is_store_page_available()) {
+			add_filter( 'wpseo_sitemap_index', array( $this, 'wpseo_hook_sitemap_index' ) );
+			add_filter( 'wpseo_do_sitemap_ecwid', array( $this, 'wpseo_hook_do_sitemap' ) );
+		}
 
 		add_filter( 'ecwid_title_separator', array( $this, 'get_title_separator' ) );
 	}
@@ -41,6 +43,7 @@ class Ecwid_Integration_WordPress_SEO_By_Yoast
 	// Hook that new sitemap type to aiosp sitemap
 	public function wpseo_hook_sitemap_index( )
 	{
+		if ()
 		$now = date('Y-m-dTH:i:sP', time());
 		$sitemap_url = wpseo_xml_sitemaps_base_url('ecwid-sitemap.xml');
 		return <<<XML
