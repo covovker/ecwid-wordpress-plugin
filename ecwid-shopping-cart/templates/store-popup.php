@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script data-cfasync="false"  type="text/javascript">
 	var ecwid_store_svg = '<?php echo get_site_url('', 'index.php?file=ecwid_store_svg.svg'); ?>';
 </script>
 <div id="ecwid-store-popup-content">
