@@ -1,4 +1,4 @@
-<script data-cfasync="false" type="text/javascript">
+<script type="text/javascript">
 	var ecwid_store_svg = '<?php echo get_site_url('', 'index.php?file=ecwid_store_svg.svg'); ?>';
 </script>
 <div id="ecwid-store-popup-content">
@@ -254,7 +254,7 @@
 							<a href="#" class="button media-button button-primary button-large media-button-select"><?php _e('Insert into page'); ?></a>
 						</div>
 						<div class="media-toolbar-primary store-settings">
-							<a href="#" class="button media-button button-primary button-large media-button-select"><?php _e('Save and close', 'ecwid-shopping-cart'); ?></a>
+							<a href="#" class="button media-button button-primary button-large media-button-select"><?php _e('Update'); ?></a>
 						</div>
 					</div>
 				</div>
