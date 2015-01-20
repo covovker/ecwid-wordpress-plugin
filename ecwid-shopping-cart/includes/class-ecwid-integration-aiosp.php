@@ -7,14 +7,10 @@ class Ecwid_Integration_All_In_One_SEO_Pack
 
 	public function __construct()
 	{
-		if ( !(bool) is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php' ) ) {
-			return;
-		}
-
 		add_action( 'wp', array( $this, 'disable_seo_on_escaped_fragment' ) );
 
 		add_filter( 'aiosp_sitemap_extra', array( $this, 'aiosp_hook_sitemap_extra' ) );
-		add_filter('aiosp_sitemap_custom_ecwid', array( $this, 'aiosp_hook_sitemap_content') );
+		add_filter( 'aiosp_sitemap_custom_ecwid', array( $this, 'aiosp_hook_sitemap_content') );
 	}
 
 	// Disable titles, descriptions and canonical link on ecwid _escaped_fragment_ pages

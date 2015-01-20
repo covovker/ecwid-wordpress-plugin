@@ -66,7 +66,7 @@ if ( is_admin() ){
   add_action('wp_enqueue_scripts', 'ecwid_add_frontend_styles');
   add_action('wp', 'ecwid_seo_ultimate_compatibility', 0);
   add_action('wp', 'ecwid_remove_default_canonical');
-  add_filter('wp_title', 'ecwid_seo_compatibility_init', 0);
+  add_filter('wp', 'ecwid_seo_compatibility_init', 0);
   add_filter('wp_title', 'ecwid_seo_title', 20);
   add_action('plugins_loaded', 'ecwid_minifier_compatibility', 0);
   add_action('wp_head', 'ecwid_meta_description', 0);
@@ -92,7 +92,8 @@ function ecwid_init_integrations()
 	if ( !function_exists( 'get_plugins' ) ) { require_once ( ABSPATH . 'wp-admin/includes/plugin.php' ); }
 
 	$integrations = array(
-		'aiosp' => 'all-in-one-seo-pack/all_in_one_seo_pack.php'
+		'aiosp' => 'all-in-one-seo-pack/all_in_one_seo_pack.php',
+		'wpseo' => 'wordpress-seo/wp-seo.php'
 	);
 
 	foreach ($integrations as $key => $plugin) {
@@ -111,14 +112,16 @@ function ecwid_add_breadcrumbs_navxt($trail)
 	$trail->add($breadcrumb);
 }
 
+/*
 add_filter('wpseo_sitemap_index', 'ecwid_wpseo_do_sitemap_index');
 
 function ecwid_wpseo_do_sitemap_index($params)
 {
 	$now = date('Y-m-dTH:i:sP', time());
+	$sitemap_url = wpseo_xml_sitemaps_base_url('ecwid-sitemap.xml');
 	return <<<XML
 		<sitemap>
-			<loc>http://localhost/wordpress/40/index.php?sitemap=ecwid</loc>
+			<loc>$sitemap_url</loc>
 			<lastmod>$now</lastmod>
 		</sitemap>
 XML;
@@ -130,7 +133,7 @@ add_action('wpseo_do_sitemap_ecwid', 'ecwid_wpseo_do_sitemap');
 
 add_action('wpseo_do_sitemap_ecwid_content', 'ecwid_wpseo_do_sitemap');
 
-function ecwid_wpseo_build_sitemap_callback($loc, $freq, $priority)
+function ecwid_wpseo_build_sitemap_callback($loc, $priority, $freq)
 {
 	global $ecwid_wpseo_sitemap;
 
@@ -144,15 +147,21 @@ function ecwid_wpseo_build_sitemap_callback($loc, $freq, $priority)
 XML;
 }
 
+
 function ecwid_wpseo_do_sitemap($params)
 {
 	global $ecwid_wpseo_sitemap;
 
+	$ecwid_wpseo_sitemap = <<<XML
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+XML;
+
 	ecwid_build_sitemap('ecwid_wpseo_build_sitemap_callback');
 
+	$ecwid_wpseo_sitemap .= '</urlset>';
 	$GLOBALS['wpseo_sitemaps']->set_sitemap($ecwid_wpseo_sitemap);
 }
-
+*/
 function ecwid_add_breadcrumb_links_wpseo($links)
 {
 	return array_merge((array)$links, array(
@@ -419,16 +428,6 @@ function ecwid_seo_compatibility_init($title)
         return $title;
     }
 
-    // Yoast Wordpress SEO
-    global $wpseo_front;
-	// Canonical
-  remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20);
-	// Title
-	remove_action( 'get_header', array( $wpseo_front, 'force_rewrite_output_buffer' ) ); // Older versions of plugin
-	remove_action( 'wp_footer', array( $wpseo_front, 'flush_cache'));
-	// Description
-	remove_action( 'wpseo_head', array( $wpseo_front, 'metadesc' ), 10 );
-
 	// Platinum SEO Pack
   // Canonical
   ecwid_override_option('psp_canonical', false);
@@ -534,10 +533,13 @@ function ecwid_page_has_productbrowser($post_id = null)
 	}
 
 	if (!isset($results[$post_id])) {
-		$post_content = get_post($post_id)->post_content;
+		$post = get_post($post_id);
+		if ($post) {
+			$post_content = get_post($post_id)->post_content;
 
-		$results[$post_id] = ecwid_content_has_productbrowser($post_content);
-		$results[$post_id] = apply_filters( 'ecwid_page_has_product_browser', $results[$post_id] );
+			$results[$post_id] = ecwid_content_has_productbrowser($post_content);
+			$results[$post_id] = apply_filters( 'ecwid_page_has_product_browser', $results[$post_id] );
+		}
 	}
 
 	return $results[$post_id];
@@ -658,10 +660,17 @@ function ecwid_get_product_and_category($category_id, $product_id) {
     return $return;
 }
 
+function ecwid_get_title_separator()
+{
+	return apply_filters('ecwid_title_separator', '|');
+}
+
 function ecwid_seo_title($content) {
     if (isset($_GET['_escaped_fragment_']) && ecwid_is_api_enabled()) {
     $params = ecwid_parse_escaped_fragment($_GET['_escaped_fragment_']);
     $ecwid_seo_title = '';
+
+		$separator = ecwid_get_title_separator();
 
     $api = ecwid_new_product_api();
 
@@ -674,8 +683,8 @@ function ecwid_seo_title($content) {
                 $ecwid_seo_title = $ecwid_product['name'];
                 if(is_array($ecwid_product['categories'])){
                     foreach ($ecwid_product['categories'] as $ecwid_category){
-                        if($ecwid_category['defaultCategory']==true){
-                        $ecwid_seo_title .=" | ";
+                        if ( $ecwid_category['defaultCategory'] == true ) {
+                        $ecwid_seo_title .= ' ' . $separator . ' ';
                         $ecwid_seo_title .=  $ecwid_category['name'];
                         }
                     }
@@ -683,7 +692,7 @@ function ecwid_seo_title($content) {
             }
         }
 
-        elseif ($params['mode'] == 'category'){
+        elseif ($params['mode'] == 'category') {
          $api = ecwid_new_product_api();
          $ecwid_category = $api->get_category($params['id']);
          $ecwid_seo_title =  $ecwid_category['name'];
@@ -691,7 +700,7 @@ function ecwid_seo_title($content) {
     }
 
     if (!empty($ecwid_seo_title))
-        return $ecwid_seo_title . " | " . $content;
+        return "$ecwid_seo_title $separator $content";
     else
         return $content;
 
