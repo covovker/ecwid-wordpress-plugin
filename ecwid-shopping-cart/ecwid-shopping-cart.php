@@ -166,8 +166,6 @@ function ecwid_ie8_fonts_inclusion()
 	src:url($url);
 }
 </style>
-<script type="text/javascript">
-</script>
 HTML;
 
 }
@@ -743,7 +741,7 @@ function ecwid_minicart_shortcode($attributes) {
 
 	if (!empty($ecwid_enable_minicart) && !empty($ecwid_show_categories)) {
 		$result = <<<EOT
-<script type="text/javascript"> xMinicart("style=","layout=$layout"); </script>
+<script data-cfasync="false" type="text/javascript"> xMinicart("style=","layout=$layout"); </script>
 EOT;
 	}
 
@@ -769,7 +767,7 @@ function ecwid_searchbox_shortcode($attributes) {
 	$result = '';
 	if (!empty($ecwid_show_search_box)) {
   	$result = <<<EOT
-<script type="text/javascript"> xSearchPanel("style="); </script>
+<script data-cfasync="false" type="text/javascript"> xSearchPanel("style="); </script>
 EOT;
   }
 
@@ -795,7 +793,7 @@ function ecwid_categories_shortcode($attributes) {
 	$result = '';
   if (!empty($ecwid_show_categories)) {
   	$result = <<<EOT
-<script type="text/javascript"> xCategories("style="); </script>
+<script data-cfasync="false" type="text/javascript"> xCategories("style="); </script>
 EOT;
   }
 
@@ -861,7 +859,7 @@ function ecwid_product_shortcode($shortcode_attributes) {
 	$result .= '</div>';
 
 	$result .= ecwid_get_product_browser_url_script();
-	$result .= '<script type="text/javascript">xSingleProduct()</script>';
+	$result .= '<script data-cfasync="false" type="text/javascript">xSingleProduct()</script>';
 
 	update_option('ecwid_single_product_used', time());
 
@@ -1016,7 +1014,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 		}
 		if ($url) {
 			$parsed = parse_url($url);
-			$plain_content .= '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "'. $parsed['fragment'] . '";</script>';
+			$plain_content .= '<script data-cfasync="false" type="text/javascript"> if (!document.location.hash) document.location.hash = "'. $parsed['fragment'] . '";</script>';
 		}
     }
 
@@ -1026,7 +1024,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
     <div id="ecwid-store-$store_id">
 		{$plain_content}
 	</div>
-	<script type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str, "id=ecwid-store-$store_id");</script>
+	<script data-cfasync="false" type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str, "id=ecwid-store-$store_id");</script>
 EOT;
     return ecwid_wrap_shortcode_content($s, 'product-browser');
 }
@@ -1480,7 +1478,7 @@ function ecwid_get_product_browser_url_script()
 	if (ecwid_is_store_page_available()) {
 		$url = ecwid_get_store_page_url();
 
-		$str = '<script type="text/javascript">var ecwid_ProductBrowserURL = "' . esc_js($url) . '";</script>';
+		$str = '<script data-cfasync="false" type="text/javascript">var ecwid_ProductBrowserURL = "' . esc_js($url) . '";</script>';
 	}
 
 	return $str;
@@ -1640,7 +1638,7 @@ class EcwidMinicartWidget extends WP_Widget {
 
 		echo ecwid_get_scriptjs_code();
 		echo ecwid_get_product_browser_url_script();
-        echo '<script type="text/javascript"> xMinicart("style="); </script>';
+        echo '<script data-cfasync="false" type="text/javascript"> xMinicart("style="); </script>';
 
 		echo '</div>';
 
@@ -1685,7 +1683,7 @@ class EcwidMinicartMiniViewWidget extends WP_Widget {
 
 		echo ecwid_get_scriptjs_code();
 		echo ecwid_get_product_browser_url_script();
-		echo '<script type="text/javascript"> xMinicart("style=left:10px","layout=Mini"); </script>';
+		echo '<script data-cfasync="false" type="text/javascript"> xMinicart("style=left:10px","layout=Mini"); </script>';
 
 		echo '</div>';
 
@@ -1730,7 +1728,7 @@ class EcwidSearchWidget extends WP_Widget {
 
 		echo ecwid_get_scriptjs_code();
 		echo ecwid_get_product_browser_url_script();
-		echo '<script type="text/javascript"> xSearchPanel("style="); </script>';
+		echo '<script data-cfasync="false" type="text/javascript"> xSearchPanel("style="); </script>';
 
 		echo '</div>';
 
@@ -1775,7 +1773,7 @@ class EcwidVCategoriesWidget extends WP_Widget {
 
 		echo ecwid_get_scriptjs_code();
 		echo ecwid_get_product_browser_url_script();
-		echo '<script type="text/javascript"> xVCategories("style="); </script>';
+		echo '<script data-cfasync="false" type="text/javascript"> xVCategories("style="); </script>';
 
 		echo '</div>';
 
@@ -1988,10 +1986,10 @@ function ecwid_sso() {
    $user_data = base64_encode(json_encode($user_data));
     $time = time();
     $hmac = ecwid_hmacsha1("$user_data $time", $key);
-    return "<script> var ecwid_sso_profile='$user_data $hmac $time' </script>";   
+    return "<script data-cfasync='false' type='text/javascript'> var ecwid_sso_profile='$user_data $hmac $time' </script>";
     }
     else {
-        return "<script> var ecwid_sso_profile='' </script>";
+        return "<script data-cfasync='false' type='text/javascript'> var ecwid_sso_profile='' </script>";
     }
 
  
