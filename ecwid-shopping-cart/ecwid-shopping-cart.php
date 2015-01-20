@@ -1209,7 +1209,7 @@ function ecwid_options_add_page() {
 	//add_options_page('Ecwid shopping cart settings', 'Ecwid shopping cart', 'manage_options', 'ecwid_options_page', 'ecwid_options_do_page');
 }
 
-function ecwid_register_admin_styles() {
+function ecwid_register_admin_styles($hook_suffix) {
 
 	wp_enqueue_style('ecwid-admin-css', plugins_url('ecwid-shopping-cart/css/admin.css'));
 
@@ -1218,7 +1218,9 @@ function ecwid_register_admin_styles() {
 	}
 }
 
-function ecwid_register_settings_styles() {
+function ecwid_register_settings_styles($hook_suffix) {
+
+	if ($hook_suffix != 'post.php' && strpos($hook_suffix, 'ecwid') === false) return;
 
 	wp_enqueue_style('ecwid-settings-pure-css', plugins_url('ecwid-shopping-cart/css/pure-min.css'), array(), '', 'all');
 	wp_enqueue_style('ecwid-settings-css', plugins_url('ecwid-shopping-cart/css/settings.css'), array(), '', 'all');
