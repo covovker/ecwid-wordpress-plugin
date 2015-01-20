@@ -8,6 +8,7 @@ class Ecwid_Integration_WordPress_SEO_By_Yoast
 	public function __construct()
 	{
 		add_action( 'wp', array( $this, 'disable_seo_on_escaped_fragment' ) );
+		add_action( 'template_redirect', array( $this, 'disable_rewrite_titles' ) );
 
 		add_filter( 'wpseo_sitemap_index', array( $this, 'wpseo_hook_sitemap_index' ) );
 		add_filter( 'wpseo_do_sitemap_ecwid', array( $this, 'wpseo_hook_do_sitemap' ) );
@@ -27,6 +28,14 @@ class Ecwid_Integration_WordPress_SEO_By_Yoast
 		remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20);
 		// Description
 		remove_action( 'wpseo_head', array( $wpseo_front, 'metadesc' ), 10 );
+	}
+
+	public function disable_rewrite_titles()
+	{
+		global $wpseo_front;
+
+		// Newer versions of Wordpress SEO assign their rewrite on this stage
+		remove_action( 'template_redirect', array( $wpseo_front, 'force_rewrite_output_buffer' ), 99999 );
 	}
 
 	// Hook that new sitemap type to aiosp sitemap

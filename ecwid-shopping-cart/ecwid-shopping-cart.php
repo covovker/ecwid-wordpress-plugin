@@ -60,7 +60,6 @@ if ( is_admin() ){
 	add_shortcode('ecwid', 'ecwid_shortcode');
   add_action('init', 'ecwid_backward_compatibility');
   add_action('send_headers', 'ecwid_503_on_store_closed');
-  add_action('template_redirect', 'ecwid_seo_compatibility_template_redirect');
   add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
   add_action('template_redirect', 'ecwid_apply_theme');
   add_action('wp_enqueue_scripts', 'ecwid_add_frontend_styles');
@@ -405,14 +404,6 @@ function ecwid_seo_ultimate_compatibility()
 		remove_action('su_head', array($seo_ultimate->modules['canonical'], 'link_rel_canonical_tag'));
 		remove_action('su_head', array($seo_ultimate->modules['canonical'], 'http_link_rel_canonical'));
 	}
-}
-
-function ecwid_seo_compatibility_template_redirect()
-{
-	global $wpseo_front;
-
-	// Newer versions of Wordpress SEO assign their rewrite on this stage
-	remove_action( 'template_redirect', array( $wpseo_front, 'force_rewrite_output_buffer' ), 99999 );
 }
 
 function ecwid_remove_default_canonical()
