@@ -43,7 +43,6 @@ class Ecwid_Integration_WordPress_SEO_By_Yoast
 	// Hook that new sitemap type to aiosp sitemap
 	public function wpseo_hook_sitemap_index( )
 	{
-		if ()
 		$now = date('Y-m-dTH:i:sP', time());
 		$sitemap_url = wpseo_xml_sitemaps_base_url('ecwid-sitemap.xml');
 		return <<<XML
