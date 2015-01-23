@@ -3,7 +3,7 @@ Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 4.1
-Stable tag: 2.7.4
+Stable tag: 2.7.4.1
 
 Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
 
@@ -110,8 +110,11 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 2.7.4.1 =
+- Additional fixes for the "title" tags on product pages following the 2.7.4 version's updates.
+
 = 2.7.4 =
-- Improvements of 'title' and 'canonical' meta tags generation. The update prevents incorrect meta tags appearing in some WordPress themes in WordPress 4.1 
+- Improvements of 'title' and 'canonical' meta tags generation. The update prevents incorrect meta tags appearing in some WordPress themes in WordPress 4.1
 
 = 2.7.3 =
 - Several bug fixes and minor improvements for the new "Add Store" button in WordPress Editor
