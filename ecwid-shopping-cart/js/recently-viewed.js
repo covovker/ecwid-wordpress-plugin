@@ -1,4 +1,11 @@
-var recently_viewed = {products: []};
+jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
+
+});
+
+jQuery('.ecwid-recently-viewed-products').recentlyViewedProducts();
+
+
+/*var recently_viewed = {products: []};
 
 wpCookies.set('test_ecwid_shopping_cart_recently_products_cookie', 'test_ecwid_shopping_cart_cookie_value', { path: '/' });
 if (wpCookies.get('test_ecwid_shopping_cart_recently_products_cookie') != 'test_ecwid_shopping_cart_cookie_value') {
@@ -242,4 +249,4 @@ if (typeof ecwid_recently_viewed_widgets != 'undefined') {
 
 jQuery(document).ready(function() {
 	recently_viewed_on_resize();
-});
+});*/

@@ -1,0 +1,27 @@
+.ecwid-productsList {
+	overflow: hidden;
+}
+
+.ecwid-productsList li {
+	list-style: none;
+	display: block;
+}
+
+.ecwid-productsList .ecwid-productsList-image,
+.ecwid-productsList .ecwid-productsList-name
+{
+	text-align: center;
+}
+
+.ecwid-initial-productsList-content {
+	display: none;
+}
+
+.ecwid-productsList ul li {
+	padding: 10px;
+	border-bottom: 1px solid #CCC;
+}
+
+.ecwid-productsList ul li:last-child {
+	border-bottom: 0px none;
+}

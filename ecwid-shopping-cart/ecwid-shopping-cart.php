@@ -238,6 +238,8 @@ HTML;
 }
 
 function ecwid_add_frontend_styles() {
+	wp_register_script('ecwid-products-list-js', plugins_url('ecwid-shopping-cart/js/products-list.js'), array('jquery-ui-widget'));
+	wp_register_style('ecwid-products-list-css', plugins_url('ecwid-shopping-cart/css/products-list.css'));
 	wp_enqueue_style('ecwid-css', plugins_url('ecwid-shopping-cart/css/frontend.css'));
 }
 
@@ -1902,7 +1904,9 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 
 	function widget($args, $instance) {
 
-		wp_enqueue_script('ecwid-recently-viewed-js', plugins_url('ecwid-shopping-cart/js/recently-viewed.js'), array('jquery', 'utils'));
+		wp_enqueue_script('ecwid-recently-viewed-js', plugins_url('ecwid-shopping-cart/js/recently-viewed.js'), array('jquery', 'utils', 'ecwid-products-list-js'));
+		wp_enqueue_style('ecwid-products-list-css');
+		//wp_enqueue_script('ecwid-recently-viewed-js', plugins_url('ecwid-shopping-cart/js/recently-viewed.js'), array('jquery', 'utils'));
 		wp_enqueue_style('ecwid-recently-viewed-css', plugins_url('ecwid-shopping-cart/css/recently-viewed.css'));
 		extract($args);
 
@@ -1965,11 +1969,15 @@ HTML;
 
 		echo <<<HTML
 <script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery('#$this->id .ecwid-recently-viewed-products').recentlyViewedProducts();
+});
+/*
 	if (typeof ecwid_recently_viewed_widgets == 'undefined') {
 		var ecwid_recently_viewed_widgets = [];
 	}
 	ecwid_recently_viewed_widgets.push({parent_id:'$this->id', ids:[$ids_string], max: $instance[number_of_products]});
-</script>
+*/</script>
 HTML;
 
 
