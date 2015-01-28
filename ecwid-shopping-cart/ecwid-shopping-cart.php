@@ -1929,7 +1929,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 			$recently_viewed = null;
 		}
 
-		echo '<div class="ecwid-recently-viewed-products">';
+		echo '<div class="ecwid-recently-viewed-products" data-ecwid-max="' . $instance['number_of_products'] . '">';
 
 		$ids = array();
 		if ($recently_viewed && isset($recently_viewed->products)) {
@@ -1942,7 +1942,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 					$hide = $counter > $instance['number_of_products'] ? ' hidden' : '';
 					echo <<<HTML
 	<a class="product$hide" href="$product->link" alt="$product->name" title="$product->name">
-		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-$product->id" itemscope itemtype="http://schema.org/Product" data-single-product-id="$product->id">
+		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-$product->id" data-single-product-link="$product->link" itemscope itemtype="http://schema.org/Product" data-single-product-id="$product->id">
 			<div itemprop="image"></div>
 			<div class="ecwid-title" itemprop="name"></div>
 			<div itemtype="http://schema.org/Offer" itemscope itemprop="offers"><div class="ecwid-productBrowser-price ecwid-price" itemprop="price"></div></div>
@@ -1969,37 +1969,11 @@ HTML;
 
 		echo <<<HTML
 <script type="text/javascript">
+<!--
 jQuery(document).ready(function() {
 	jQuery('#$this->id .ecwid-recently-viewed-products').recentlyViewedProducts();
 });
-/*
-	if (typeof ecwid_recently_viewed_widgets == 'undefined') {
-		var ecwid_recently_viewed_widgets = [];
-	}
-	ecwid_recently_viewed_widgets.push({parent_id:'$this->id', ids:[$ids_string], max: $instance[number_of_products]});
-*/</script>
-HTML;
-
-
-		echo <<<HTML
-<script id="recently-viewed-template-$this->id" type="text/ecwid-shopping-cart-template">
-	<a class="product" href="LINK" title="NAME">
-		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-PRODUCT_ID" itemscope="" itemtype="http://schema.org/Product" data-single-product-id="PRODUCT_ID">
-
-			<div itemprop="image">
-				<div class="ecwid-SingleProduct-picture">
-					<img class="gwt-Image" src="IMAGE" alt="NAME">
-				</div>
-			</div>
-			<div class="ecwid-title" itemprop="name">NAME</div>
-			<div itemtype="http://schema.org/Offer" itemscope="" itemprop="offers">
-				<div class="ecwid-productBrowser-price ecwid-price" itemprop="price">
-					<div>PRICE</div>
-				</div>
-			</div>
-
-		</div>
-	</a>
+-->
 </script>
 HTML;
 

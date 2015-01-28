@@ -1,10 +1,23 @@
+/**
+	* Common styles
+	*/
 .ecwid-productsList {
 	overflow: hidden;
+	position: relative;
 }
 
-.ecwid-productsList li {
+.ecwid-productsList ul li {
 	list-style: none;
 	display: block;
+	padding: 0px;
+	border-top: 1px solid #CCC;
+}
+
+.ecwid-productsList ul li {
+	opacity : .7;
+}
+.ecwid-productsList ul li:hover {
+	opacity: 1;
 }
 
 .ecwid-productsList .ecwid-productsList-image,
@@ -17,11 +30,93 @@
 	display: none;
 }
 
-.ecwid-productsList ul li {
-	padding: 10px;
-	border-bottom: 1px solid #CCC;
+.ecwid-productsList ul,
+#widgets .ecwid-productsList ul {
+	padding: 0px;
+	margin: 0px;
 }
 
-.ecwid-productsList ul li:last-child {
-	border-bottom: 0px none;
+.ecwid-productsList ul li:first-child{
+	border-top: 0px none;
+}
+
+.ecwid-productsList .ecwid-productsList-image img {
+	width: 80%;
+}
+
+.ecwid-productsList ul li.hide {
+	display: none;
+}
+
+
+/*
+ * Narrow layout
+ */
+
+.ecwid-productsList.narrow ul li .ecwid-productsList-image img {
+	width: 80%;
+}
+
+.ecwid-productsList.narrow ul li .ecwid-productsList-name,
+.ecwid-productsList.narrow ul li .ecwid-productsList-price
+{
+	display: none;
+}
+
+.ecwid-productsList.narrow ul li {
+	padding: 5px;
+}
+
+/*
+ * Wide layout
+ */
+
+.ecwid-productsList.wide ul li
+{
+	position: relative;
+	padding: 3px;
+}
+
+.ecwid-productsList.wide ul li .ecwid-productsList-image,
+.ecwid-productsList.wide ul li .ecwid-productsList-name,
+.ecwid-productsList.wide ul li .ecwid-productsList-price
+{
+	text-align: left;
+}
+
+.ecwid-productsList.wide ul li .ecwid-productsList-image {
+	width: 100px;
+	height: 100px;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.ecwid-productsList.wide ul li .ecwid-productsList-image img {
+	width: auto;
+	max-width: 100px;
+	max-height: 100px;
+	display: block;
+	margin: 0px auto;
+}
+
+.ecwid-productsList.wide ul li .ecwid-productsList-name,
+.ecwid-productsList.wide ul li .ecwid-productsList-price
+{
+	position: absolute;
+	left: 120px;
+	right: 0px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.ecwid-productsList.wide ul li .ecwid-productsList-name {
+	top: 20px;
+	font-size: 14px;
+}
+
+
+.ecwid-productsList.wide ul li .ecwid-productsList-price {
+	bottom: 20px;
+	font-size: 18px !important;
 }

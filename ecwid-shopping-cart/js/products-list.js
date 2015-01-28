@@ -8,6 +8,8 @@ jQuery.widget('ecwid.productsList', {
 		max: 3
 	},
 
+	sort: [],
+
 	_prefix: 'ecwid-productsList',
 
 	_create: function() {
@@ -17,18 +19,32 @@ jQuery.widget('ecwid.productsList', {
 		this._setOption('debug', false);
 		this._initFromHtmlData();
 		this._readSingleProducts();
+		this._onWindowResize();
 		this._render();
+
+		var self = this;
+		jQuery(window).resize(
+			ecwid_debounce(
+				function() {
+					self._onWindowResize();
+				}
+			, 200)
+		);
 	},
 
 	_render: function() {
-		var count = 0;
+		var toShow = this._getProductsToShow();
+
+		for (var i in toShow) {
+			this._showProduct(this.products[toShow[i]]);
+		}
+
 		for (var id in this.products) {
-			this._showProduct(this.products[id]);
-			count++;
-			if (count >= this.options.max) {
-				break;
+			if (toShow.indexOf(id) == -1) {
+				this._hideProduct(this.products[id]);
 			}
 		}
+
 	},
 
 	_setOption: function(key, value) {
@@ -43,7 +59,7 @@ jQuery.widget('ecwid.productsList', {
 	},
 
 	_getProductElement: function(id) {
-		return this.container.find(this._getProductClass(id));
+		return this.container.find('.' + this._getProductClass(id));
 	},
 
 	_showProduct: function(product) {
@@ -53,14 +69,27 @@ jQuery.widget('ecwid.productsList', {
 			this._renderProduct(product);
 		}
 
-		this._getProductElement(product.id).show();
+
+		this._getProductElement(product.id)
+				.addClass('show')
+				.removeClass('hide')
+				.prependTo(this.container);
+	},
+
+	_hideProduct: function(product) {
+		this._getProductElement(product.id)
+			.addClass('hide')
+			.removeClass('show');
 	},
 
 	_renderProduct: function(product) {
 		var container = jQuery('<li class="' + this._getProductClass(product.id) + '">').appendTo(this.container);
 
 		if (product.link != '') {
-			container = jQuery('<a href="' + product.link + '">').appendTo(container);
+			container = jQuery('<a>')
+				.attr('href', product.link)
+				.attr('title', product.name)
+				.appendTo(container);
 		}
 		if (product.image) {
 			jQuery('<div class="' + this._prefix + '-image">').append('<img src="' + product.image + '">').appendTo(container);
@@ -68,6 +97,7 @@ jQuery.widget('ecwid.productsList', {
 			jQuery('<div class="' + this._prefix + '-image ecwid-noimage">').appendTo(container);
 		}
 		jQuery('<div class="' + this._prefix + '-name">').append(product.name).appendTo(container);
+		jQuery('<div class="' + this._prefix + '-price ecwid-productBrowser-price">').append(product.price).appendTo(container);
 
 	},
 
@@ -108,11 +138,26 @@ jQuery.widget('ecwid.productsList', {
 	},
 
 	_readSingleProduct: function(singleProductContainer) {
-		this.addProduct({
+		var product = {
 			name: jQuery('.ecwid-title', singleProductContainer).text(),
 			image: jQuery('.ecwid-SingleProduct-picture img', singleProductContainer).attr('src'),
-			id: jQuery(singleProductContainer).data('single-product-id')
-		}, true);
+			id: jQuery(singleProductContainer).data('single-product-id'),
+			link: jQuery(singleProductContainer).data('single-product-link'),
+		}
+		if (jQuery('.ecwid-productBrowser-price .gwt-HTML', singleProductContainer).length > 0) {
+			product.price = jQuery('.ecwid-productBrowser-price .gwt-HTML', singleProductContainer).html();
+		} else {
+			product.price = jQuery('.ecwid-price', singleProductContainer).html();
+		}
+		this.addProduct(product);
+	},
+
+	_getProductsToShow: function() {
+		return this.sort.slice(0, this.options.max);
+	},
+
+	_addToSort: function(id) {
+		this.sort.push(id.toString());
 	},
 
 	_triggerError: function(message) {
@@ -150,14 +195,52 @@ jQuery.widget('ecwid.productsList', {
 					id: 0,
 					name: 'no name',
 					image: '',
-					link: ''
+					link: '',
+					price: '',
+					toString: function() {return this.name;}
 				},
 				product
 		);
 
+		this._addToSort(product.id);
+
 		if (forceRender) {
-			this._renderProduct(this.products[product.id]);
+			this._render();
+		}
+	},
+
+	_onWindowResize: function() {
+		if (this.element.width() < 300) {
+			this.element.addClass('narrow').removeClass('wide');
+		} else {
+			this.element.removeClass('narrow').addClass('wide');
 		}
 	}
-
 });
+
+
+// Debounce function from http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+var ecwid_debounce = function (func, threshold, execAsap) {
+
+	var timeout;
+
+	return function debounced () {
+		var obj = this, args = arguments;
+		function delayed () {
+			if (!execAsap) {
+				func.apply(obj, args);
+			}
+			timeout = null;
+		};
+
+		if (timeout)
+			clearTimeout(timeout);
+		else if (execAsap)
+			func.apply(obj, args);
+
+		timeout = setTimeout(delayed, threshold || 100);
+	};
+
+}
+
+jQuery('.ecwid-productsList').trigger('ecwidOnWindowResize');
