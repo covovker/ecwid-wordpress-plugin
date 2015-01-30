@@ -149,7 +149,7 @@ jQuery.widget('ecwid.productsList', {
 		} else {
 			product.price = jQuery('.ecwid-price', singleProductContainer).html();
 		}
-		this.addProduct(product);
+		this.addProduct(product, true);
 	},
 
 	_getProductsToShow: function() {
