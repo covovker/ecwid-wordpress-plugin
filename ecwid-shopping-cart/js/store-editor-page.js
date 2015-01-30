@@ -1,17 +1,15 @@
 jQuery(document).ready(function() {
-	$ = jQuery;
-
-	$popup = $('#ecwid-store-popup-content');
+	$popup = jQuery('#ecwid-store-popup-content');
 
 	/*
 	 * Media buttons handlers
 	 */
-	$('#update-ecwid-button,#insert-ecwid-button').click(ecwid_open_store_popup);
+	jQuery('#update-ecwid-button,#insert-ecwid-button').click(ecwid_open_store_popup);
 
 	/*
 	 * Close button handler
 	 */
-	$('.media-modal-close', $popup).click(function() {
+	jQuery('.media-modal-close', $popup).click(function() {
 		$popup.removeClass('open');
 		return false;
 	});
@@ -26,13 +24,13 @@ jQuery(document).ready(function() {
 	buildParams = function(shortcode) {
 		if (!shortcode) return {};
 
-		var attributes = $.extend({}, shortcode.shortcode.attrs.named);
+		var attributes = jQuery.extend({}, shortcode.shortcode.attrs.named);
 
-		if ($.inArray(attributes.category_view, ['grid', 'list', 'table']) == -1) {
+		if (jQuery.inArray(attributes.category_view, ['grid', 'list', 'table']) == -1) {
 			attributes.category_view = undefined;
 		}
 
-		if (!$.inArray(attributes.search_view, ['grid', 'list', 'table']) == -1) {
+		if (!jQuery.inArray(attributes.search_view, ['grid', 'list', 'table']) == -1) {
 			attributes.search_view = undefined;
 		}
 
@@ -40,7 +38,7 @@ jQuery(document).ready(function() {
 			attributes.grid = '3,3';
 		}
 
-		var grid = attributes.grid.match(/^(\d+),(\d+)$/);
+		var grid = attributes.grid.match(/^(\d+),(\d+)/);
 		attributes.grid_rows = grid[1];
 		attributes.grid_columns = grid[2];
 
@@ -54,9 +52,9 @@ jQuery(document).ready(function() {
 		var widgets = attributes.widgets.split(/[^a-z^A-Z^0-9^-^_]/);
 
 		return {
-			'show_search': $.inArray('search', widgets) != -1,
-			'show_categories': $.inArray('categories', widgets) != -1,
-			'show_minicart': $.inArray('minicart', widgets) != -1,
+			'show_search': jQuery.inArray('search', widgets) != -1,
+			'show_categories': jQuery.inArray('categories', widgets) != -1,
+			'show_minicart': jQuery.inArray('minicart', widgets) != -1,
 			'categories_per_row': attributes.categories_per_row,
 			'category_view': attributes.category_view,
 			'search_view': attributes.search_view,
@@ -100,15 +98,15 @@ jQuery(document).ready(function() {
 		if (tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden()) {
 			content = tinyMCE.activeEditor.getBody();
 
-			hasEcwid = $(content).find('.ecwid-store-editor').length > 0;
+			hasEcwid = jQuery(content).find('.ecwid-store-editor').length > 0;
 		} else {
 			hasEcwid = ecwid_get_store_shortcode(jQuery('#content').val());
 		}
 
 		if (hasEcwid) {
-			$('.wp-media-buttons').addClass('has-ecwid');
+			jQuery('.wp-media-buttons').addClass('has-ecwid');
 		} else {
-			$('.wp-media-buttons').removeClass('has-ecwid');
+			jQuery('.wp-media-buttons').removeClass('has-ecwid');
 		}
 
 		if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
@@ -116,7 +114,7 @@ jQuery(document).ready(function() {
 			var button = tinymce.activeEditor.dom.select('#ecwid-edit-store-button');
 
 			if (hasEcwid && button.length == 0) {
-				var button = $('<input type="button" id="ecwid-edit-store-button" contenteditable="false" data-mce-bogus="true" value="' + ecwid_i18n.edit_store_appearance + '" />')
+				var button = jQuery('<input type="button" id="ecwid-edit-store-button" contenteditable="false" data-mce-bogus="true" value="' + ecwid_i18n.edit_store_appearance + '" />')
 						.appendTo(body);
 
 				button.click(ecwid_open_store_popup);
@@ -125,8 +123,8 @@ jQuery(document).ready(function() {
 			}
 
 			if (hasEcwid) {
-				var store = $(body).find('.ecwid-store-editor');
-				var button = $('#ecwid-edit-store-button', body);
+				var store = jQuery(body).find('.ecwid-store-editor');
+				var button = jQuery('#ecwid-edit-store-button', body);
 				button.css({
 					'position': 'absolute',
 					'top': '' + (store.offset().top + 168) + 'px',
@@ -136,45 +134,55 @@ jQuery(document).ready(function() {
 
 			jQuery('#wp_editbtns').css('display', 'none !important');
 		}
+
+
+		if (window.location.search.indexOf('show-ecwid=true') != -1 && typeof this.show_ecwid_processed == 'undefined') {
+			ecwid_open_store_popup();
+			this.show_ecwid_processed = true;
+
+			if (tinymce.activeEditor) {
+				tinymce.activeEditor.plugins.ecwid.addToolbar();
+			}
+		}
 	}
 
 	setInterval(checkEcwid, 1000);
 
-	$('#content-tmce').click(function() {
+	jQuery('#content-tmce').click(function() {
 		checkEcwid()
 	});
 	/*
 	 * Handles media modal menus
 	 */
-	$('.media-menu-item', $popup).click(function() {
-		$('.media-menu .media-menu-item', $popup).removeClass('active');
-		$(this).addClass('active');
+	jQuery('.media-menu-item', $popup).click(function() {
+		jQuery('.media-menu .media-menu-item', $popup).removeClass('active');
+		jQuery(this).addClass('active');
 
-		$('.media-modal-content', $popup).attr('data-active-dialog', $(this).attr('data-content'));
-		$('.media-menu').removeClass('visible');
+		jQuery('.media-modal-content', $popup).attr('data-active-dialog', jQuery(this).attr('data-content'));
+		jQuery('.media-menu').removeClass('visible');
 		return false;
 	});
 
-	$('h1', $popup).click(function() {
-		$('.media-menu').toggleClass('visible');
+	jQuery('h1', $popup).click(function() {
+		jQuery('.media-menu').toggleClass('visible');
 	})
 
 	/*
 	 * Main button click
 	 */
-	$('.button-primary', $popup).click(function() {
+	jQuery('.button-primary', $popup).click(function() {
 
 		var result = {}, defaults = getDefaultParams();
 
 		result.widgets = 'productbrowser';
 		for (var i in {search:1, categories:1, minicart:1}) {
-			if ($('input[name=show_' + i + ']').prop('checked')) {
+			if (jQuery('input[name=show_' + i + ']').prop('checked')) {
 				result.widgets += ' ' + i;
 			}
 		}
 
 		getNumber = function(name, fallback) {
-			var value = parseInt($('[name=' + name + ']', $popup).val());
+			var value = parseInt(jQuery('[name=' + name + ']', $popup).val());
 
 			if (isNaN(value) || value < 0) {
 				value = fallback;
@@ -184,9 +192,9 @@ jQuery(document).ready(function() {
 		}
 
 		getString = function(name, values, fallback) {
-			var value = $('[name=' + name + ']', $popup).val();
+			var value = jQuery('[name=' + name + ']', $popup).val();
 
-			if ($.inArray(value, values) == -1) {
+			if (jQuery.inArray(value, values) == -1) {
 				value = fallback;
 			}
 
@@ -218,11 +226,11 @@ jQuery(document).ready(function() {
 		}
 
 		if (existingShortcode) {
-			$('#content').val(
-				$('#content').val().replace(existingShortcode.content, shortcode.shortcode.string())
+			jQuery('#content').val(
+				jQuery('#content').val().replace(existingShortcode.content, shortcode.shortcode.string())
 			);
 			if (tinyMCE.activeEditor) {
-				$(tinymce.activeEditor.getBody()).find('.ecwid-store-editor').attr('data-ecwid-shortcode', shortcode.shortcode.string());
+				jQuery(tinymce.activeEditor.getBody()).find('.ecwid-store-editor').attr('data-ecwid-shortcode', shortcode.shortcode.string());
 			}
 		} else {
 
@@ -245,7 +253,7 @@ jQuery(document).ready(function() {
 					return pos;
 				}
 
-				var el = $('#content');
+				var el = jQuery('#content');
 				var cursorPosition = getCursorPosition(el.get(0));
 
 				el.val(el.val().substr(0, cursorPosition) + shortcode.shortcode.string() + el.val().substr(cursorPosition));
@@ -254,31 +262,31 @@ jQuery(document).ready(function() {
 		}
 
 
-		$('#ecwid-store-popup-content').removeClass('open');
+		jQuery('#ecwid-store-popup-content').removeClass('open');
 	});
 
 	updatePreview = function() {
-		$('.store-settings input[type=checkbox]', $popup).each(function(idx, el) {
-			var widget = $(el).parent().attr('data-ecwid-widget');
-			var preview = $('.store-settings-preview svg path.' + widget, $popup);
-			if ($(el).prop('checked')) {
-				$('.store-settings-wrapper').addClass('ecwid-' + widget);
+		jQuery('.store-settings input[type=checkbox]', $popup).each(function(idx, el) {
+			var widget = jQuery(el).parent().attr('data-ecwid-widget');
+			var preview = jQuery('.store-settings-preview svg path.' + widget, $popup);
+			if (jQuery(el).prop('checked')) {
+				jQuery('.store-settings-wrapper').addClass('ecwid-' + widget);
 			} else {
-				$('.store-settings-wrapper').removeClass('ecwid-' + widget);
+				jQuery('.store-settings-wrapper').removeClass('ecwid-' + widget);
 			}
 		});
 	}
 
-	$('.store-settings-wrapper label', $popup).hover(
+	jQuery('.store-settings-wrapper label', $popup).hover(
 		function() {
-			$('.store-settings-wrapper').attr('data-ecwid-widget-hover', $(this).attr('data-ecwid-widget'));
+			jQuery('.store-settings-wrapper').attr('data-ecwid-widget-hover', jQuery(this).attr('data-ecwid-widget'));
 		},
 		function() {
-			$('.store-settings-wrapper').attr('data-ecwid-widget-hover', '');
+			jQuery('.store-settings-wrapper').attr('data-ecwid-widget-hover', '');
 		}
 	);
 
-	$('.store-settings input[type=checkbox]', $popup).change(updatePreview);
+	jQuery('.store-settings input[type=checkbox]', $popup).change(updatePreview);
 });
 
 ecwid_open_store_popup = function() {
@@ -288,7 +296,7 @@ ecwid_open_store_popup = function() {
 	if (tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden()) {
 		tinyMCE.activeEditor.save();
 
-		var content = $(tinyMCE.activeEditor.getBody())
+		var content = jQuery(tinyMCE.activeEditor.getBody())
 				.find('.ecwid-store-editor')
 				.attr('data-ecwid-shortcode');
 
@@ -300,10 +308,10 @@ ecwid_open_store_popup = function() {
 	$popup.addClass('open');
 
 	params = {};
-	$.extend(params, getDefaultParams(), buildParams(shortcode));
+	jQuery.extend(params, getDefaultParams(), buildParams(shortcode));
 
 	for (var i in params) {
-		var el = $('[name=' + i + ']', $popup);
+		var el = jQuery('[name=' + i + ']', $popup);
 		if (el.attr('type') == 'checkbox') {
 			el.prop('checked', params[i]);
 		} else {
@@ -315,19 +323,18 @@ ecwid_open_store_popup = function() {
 	// in other words, mode = [add-store,store-settings] and active dialog is [add-store|store-settings, appearance]
 	// buttons and menu items are for mode, current title and content are for dialog
 	var current = !shortcode ? 'add-store' : 'store-settings';
-	$('.media-modal-content', $popup).attr('data-mode', current);
-	$('.media-modal-content', $popup).attr('data-active-dialog', current);
-	$('.media-menu-item')
+	jQuery('.media-modal-content', $popup).attr('data-mode', current);
+	jQuery('.media-modal-content', $popup).attr('data-active-dialog', current);
+	jQuery('.media-menu-item')
 			.removeClass('active')
 			.filter('[data-content=' + current + ']').addClass('active');
 
 
 	updatePreview();
 
-
-	if (tinyMCE.activeEditor) {
+	if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
 		tinyMCE.activeEditor.execCommand('SelectAll');
-		tinyMCE.activeEditor.selection.collapse();
+		tinyMCE.activeEditor.selection.collapse(true);
 	}
 
 	return false;

@@ -421,6 +421,12 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 		toolbarActive = true;
 	}
 
+	this.addToolbar = function() {
+		addToolbar(
+			jQuery(editor.dom.doc.body).find('.ecwid-store-editor').get(0)
+		);
+	}
+
 	function removeToolbar(parentNode) {
 
 		if (parentNode && editor.dom.getAttrib( parentNode, 'class') == 'ecwid-store-editor' ) {
@@ -549,15 +555,7 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 		}
 	});
 
-	/*
-	editor.onCut.add( function() {
-		removeToolbar();
-
-		editor.dom.remove(editor.dom.select('#ecwid-edit-store-button'));
-	});
-	*/
-
-	// Replace Read More/Next Page tags with images
+		// Replace Read More/Next Page tags with images
 	editor.onBeforeSetContent.add( function( editor, e ) {
 		if ( e.content ) {
 
@@ -580,7 +578,7 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 
 			return e.content = e.content.replace( /(<img [^>]*data-ecwid-shortcode=[^>]+>)/g, function( match, image ) {
 
-				var data = window.decodeURIComponent($(image).attr('data-ecwid-shortcode'));
+				var data = window.decodeURIComponent(jQuery(image).attr('data-ecwid-shortcode'));
 
 				if ( data ) {
 					return data;
