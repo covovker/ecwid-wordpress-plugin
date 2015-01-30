@@ -83,6 +83,7 @@ $ecwid_script_rendered = false; // controls single script.js on page
 require_once plugin_dir_path(__FILE__) . '/includes/themes.php';
 require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-message-manager.php';
 require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-store-editor.php';
+require_once plugin_dir_path(__FILE__) . '/includes/class-ecwid-store.php';
 
 
 $version = get_bloginfo('version');
