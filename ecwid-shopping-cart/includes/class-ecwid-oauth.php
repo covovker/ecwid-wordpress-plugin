@@ -1,5 +1,7 @@
 <?php
 
+require_once ECWID_PLUGIN_DIR . '/includes/class-ecwid-api-v3.php';
+
 class Ecwid_OAuth {
 
 	public function __construct()

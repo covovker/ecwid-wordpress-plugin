@@ -41,6 +41,5 @@ class EcwidPlatform {
     }
 
     return $return;
-
 	}
 }
