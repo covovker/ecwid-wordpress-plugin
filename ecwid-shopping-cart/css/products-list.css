@@ -108,6 +108,10 @@ html#ecwid_html body#ecwid_body .ecwid-productsList ul li .ecwid-productsList-pr
 	border-bottom-right-radius: 0px;
 }
 
+html#ecwid_html body#ecwid_body .ecwid-productsList.width-m ul li .ecwid-productsList-name {
+	padding-top: 3px;
+}
+
 html#ecwid_html body#ecwid_body .ecwid-productsList.width-m ul li .ecwid-productsList-price
 {
 	padding-bottom: 8px;
@@ -156,10 +160,11 @@ html#ecwid_html body#ecwid_body .ecwid-productsList.width-m ul li .ecwid-product
 
 html#ecwid_html body#ecwid_body .ecwid-productsList div.ecwid-productsList-image.ecwid-noimage {
 	background-position: 50% 50%;
-	background-size: 75px 75px;
+	background-size: 55px 55px;
 	opacity: 1;
 	width: 75px;
-	height: 75px;
+	height: 60px;
+	padding: 5px;
 }
 
 .ecwid-productsList.width-l ul li .ecwid-productsList-name,
@@ -167,7 +172,7 @@ html#ecwid_html body#ecwid_body .ecwid-productsList div.ecwid-productsList-image
 {
 	width: auto;
 	position: absolute;
-	left: 87px;
+	left: 93px;
 	right: 0px;
 	overflow: hidden;
 	white-space: nowrap;
@@ -182,7 +187,7 @@ html#ecwid_html body#ecwid_body .ecwid-productsList div.ecwid-productsList-image
 
 .ecwid-productsList.width-l ul li .ecwid-productsList-price {
 	top: 50%;
-	margin-top: 4px;
+	margin-top: -2px;
 }
 
 html#ecwid_html body#ecwid_body .ecwid-productsList ul li .ecwid-productsList-name
