@@ -210,10 +210,12 @@ jQuery.widget('ecwid.productsList', {
 	},
 
 	_onWindowResize: function() {
-		if (this.element.width() < 300) {
-			this.element.addClass('narrow').removeClass('wide');
+		if (this.element.width() < 150) {
+			this.element.addClass('width-s').removeClass('width-m width-l');
+		} else if (this.element.width() < 300) {
+			this.element.addClass('width-m').removeClass('width-s width-l');
 		} else {
-			this.element.removeClass('narrow').addClass('wide');
+			this.element.addClass('width-l').removeClass('width-s width-m');
 		}
 	}
 });
