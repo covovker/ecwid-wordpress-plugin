@@ -140,7 +140,6 @@ class Ecwid_Store {
 			}
 		}
 
-		die(var_dump(123));
 		return $latest_date;
 	}
 
