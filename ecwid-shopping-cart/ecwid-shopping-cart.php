@@ -1125,7 +1125,12 @@ function ecwid_show_admin_messages() {
 
 	global $ecwid_store;
 
-	die(var_dump($ecwid_store->do_fetch_orders_iteration()));
+	update_option('ecwid_last_fetched_order_date', null);
+	$ecwid_store->do_fetch_orders_iteration();
+	$ecwid_store->do_fetch_orders_iteration();
+	$ecwid_store->do_fetch_orders_iteration();
+	$ecwid_store->do_fetch_orders_iteration();
+	$ecwid_store->do_fetch_orders_iteration();
 
 	if (is_admin()) {
 		Ecwid_Message_Manager::show_messages();

@@ -22,19 +22,23 @@ class Ecwid_Store {
 	{
 		$date = get_option('ecwid_last_fetched_order_date');
 
+		//$date = '';
 		if (!$date) {
 			$date = $this->_get_first_order_date();
 
 			if (!$date) {
 				// finished
 				// @TODO handle this case
-				die(var_dump($date));
+				//die(var_dump('123123', $date));
 			}
 		}
 
 		$last_order_date = $this->_fetch_orders($date);
 
-		die(var_dump($last_order_date));
+		if (!$last_order_date) {
+			return false;
+		}
+		echo $last_order_date;
 
 		$date = explode('-', $last_order_date);
 		$next_date = mktime(0, 0, 0, $date[1], $date[0] + 1, $date[2]);
@@ -60,12 +64,15 @@ class Ecwid_Store {
 	}
 
 	/**
+	 * Fetches orders since specified date and returns last order date
+	 *
 	 * @param $since_date string Date to fetch orders from
 	 *
 	 * @return last processed date
 	 */
 	protected function _fetch_orders($since_date)
 	{
+		$limit = 5;
 		// Unfortunately, API does not allow to sort results, therefore in order
 		// to have a persistent set of orders we have to paginate and rely on date
 		// The idea is the following
@@ -86,13 +93,23 @@ class Ecwid_Store {
 		// Fetch first 100 orders
 		$result = $this->api->get_orders(array(
 			'createdFrom' => $since_date,
-			'limit' => 100
+			'limit' => $limit
 		));
 
+		if ($result == false) {
+			return false;
+		}
+
+		$result = $this->api->get_orders(array(
+			'createdFrom' => $since_date,
+			'limit' => $limit,
+			'offset' => $result['total'] - $result['limit']
+		));
 
 		// Get the most recent date
 		$latest_date = $since_date;
 		foreach ($result['items'] as $order) {
+			echo "$order[createDate] > $latest_date = " . ($order['createDate'] > $latest_date ? 'Y' : 'N') . '<br />';
 			if ($order['createDate'] > $latest_date) {
 				$latest_date = $order['createDate'];
 			}
@@ -102,29 +119,28 @@ class Ecwid_Store {
 			$result['items']
 		);
 
-		$latest_date = $this->api->get_date_from_date_time($latest_date);
-
-
 		// Fetch all orders at latest date
 		$result = $this->api->get_orders(array(
-			'createdFrom' => $latest_date,
-			'createdTo' => $latest_date,
-			'limit' => 100
+			'createdFrom' => strftime('%Y-%m-%d %H:%M:%S', strtotime($latest_date)),
+			'createdTo' => strftime('%Y-%m-%d %H:%M:%S', strtotime($latest_date) + 60*60*24),
+			'limit' => $limit
 		));
 
 		$orders_sets[] = $result['items'];
 		$offset = 0;
 		while ($result['count'] + $result['offset'] < $result['total']) {
-			$offset += 100;
-			$result = $this->api->get_orders(array(
+			$offset += $limit;
+			$batch = $this->api->get_orders(array(
 				'createdFrom' => $latest_date,
 				'createdTo' => $latest_date,
-				'limit' => 100,
+				'limit' => $limit,
 				'offset' => $offset
 			));
 
-			$orders_sets[] = $result['items'];
+			$orders_sets[] = $batch['items'];
 		}
+
+		die(var_dump($orders_sets));
 
 		// Process all fetched orders
 		$processed_orders = array();
@@ -133,6 +149,9 @@ class Ecwid_Store {
 				if (in_array($order['orderNumber'], $processed_orders)) {
 					continue;
 				}
+
+				print_r($order);
+				continue;
 
 				$this->process_order($order);
 
@@ -145,7 +164,37 @@ class Ecwid_Store {
 
 	public function process_order($order)
 	{
-		print_r($order);
+		global $wpdb;
+
+		$order_id = $wpdb->insert(
+				$wpdb->ecwid_orders,
+				array(
+					'id' => $order['orderNumber'],
+					'create_date' => $order['createDate'],
+					'payment_status' => $order['paymentStatus'],
+					'fulfillment_status' => $order['shipmentStatus'],
+					'raw' => serialize($order)
+				)
+		);
+
+		foreach ($order['items'] as $item) {
+			$this->_process_order_item($order_id, $item);
+		}
+	}
+
+	protected function _process_order_item($order_id, $item) {
+		global $wpdb;
+
+		$item_id = $wpdb->insert(
+			$wpdb->ecwid_order_items,
+			array(
+				'id' => $item['id'],
+				'product_id' => $item['productId'],
+				'order_id' => $order_id,
+				'quantity' => $item['quantity'],
+				'price' => $item['price']
+			)
+		);
 	}
 
 	public function get_product($id)
@@ -228,7 +277,8 @@ class Ecwid_Store {
 		$fields = array (
 			'create_date' => 'datetime NOT NULL DEFAULT "0000-00-00 00:00:00"',
 			'payment_status' => 'varchar(40) NOT NULL default ""',
-			'fulfillment_status' => 'varchar(40) NOT NULL default ""'
+			'fulfillment_status' => 'varchar(40) NOT NULL default ""',
+			'raw' => 'text'
 		);
 
 		return array(
