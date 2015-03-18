@@ -155,7 +155,7 @@
             </div>
             <div class="ecwid-button-description on-connect">
                 <?php _e('Don\'t have an Ecwid account?', 'ecwid-shopping-cart'); ?>
-                <a href="https://my.ecwid.com/cp/?source=wporg#register" onclick="javascript:jQuery('.ecwid-landing').addClass('connect').removeClass('register');"><?php _e('Register at Ecwid for free', 'ecwid-shopping-cart'); ?></a>
+                <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register" onclick="javascript:switch_to_connect()"><?php _e('Register at Ecwid for free', 'ecwid-shopping-cart'); ?></a>
             </div>
 
         </div>
