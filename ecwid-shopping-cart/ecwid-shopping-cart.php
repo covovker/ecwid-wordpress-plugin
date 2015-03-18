@@ -1316,15 +1316,17 @@ function ecwid_admin_get_footer() {
 function ecwid_general_settings_do_page() {
 
 	if (get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID) {
-        global $ecwid_oauth;
+    global $ecwid_oauth;
 
-        wp_enqueue_style('ecwid-landing-css', plugins_url('ecwid-shopping-cart/css/landing.css'));
-        wp_enqueue_style('ecwid-landing-fonts-css', 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300');
 
-        $connection_error = isset($_GET['connection_error']);
-        $register = !$connection_error && !isset($_GET['connect']);
+		wp_enqueue_script('ecwid-landing', plugins_url('ecwid-shopping-cart/js/landing.js'));
+		wp_enqueue_style('ecwid-landing', plugins_url('ecwid-shopping-cart/css/landing.css'));
+		wp_enqueue_style('ecwid-landing-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300');
 
-        require_once(ECWID_PLUGIN_DIR . '/templates/landing.php');
+		$connection_error = isset($_GET['connection_error']);
+		$register = !$connection_error && !isset($_GET['connect']);
+
+		require_once(ECWID_PLUGIN_DIR . '/templates/landing.php');
 	} else {
         wp_enqueue_script('ecwid-connect-js', plugins_url('ecwid-shopping-cart/js/dashboard.js'));
 

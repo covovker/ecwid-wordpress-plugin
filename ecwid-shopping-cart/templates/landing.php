@@ -9,7 +9,7 @@
             <?php _e('There are few little steps left to start selling<br />on your WordPress site', 'ecwid-shopping-cart'); ?>
         </h1>
         <div class="ecwid-thank-steps">
-            <div class="ecwid-thank-step ecwid-thank-step-one">
+            <div class="ecwid-thank-step ecwid-thank-step-one<?php echo $register ?'' : ' active'; ?>">
                 <div class="ecwid-thank-step-image"><img src="<?php echo ECWID_PLUGIN_URL; ?>images/landing/ecwid.svg" class="none-active"><img src="<?php echo ECWID_PLUGIN_URL; ?>images/landing/ecwid-active.svg" class="active"></div>
                 <div class="ecwid-thank-step-description">
                     <h2><?php _e('Register', 'ecwid-shopping-cart'); ?></h2>
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="ecwid-button">
-            <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register" class="button button--blue on-register"  onclick="javascript:jQuery('.ecwid-landing').addClass('connect').removeClass('register');">
+            <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register" class="button button--blue on-register"  onclick="javascript:switch_to_connect()">
                 <?php _e('Create Ecwid store', 'ecwid-shopping-cart'); ?>
             </a>
             <button class="button button--green on-connect" onclick="javascript:location.href='<?php echo esc_attr($ecwid_oauth->get_auth_dialog_url()); ?>';">
@@ -59,7 +59,7 @@
             </div>
             <div class="ecwid-button-description on-connect">
                 <?php _e('Don\'t have an Ecwid account?', 'ecwid-shopping-cart'); ?>
-                <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register" onclick="javascript:jQuery('.ecwid-landing').addClass('connect').removeClass('register');"><?php _e('Register at Ecwid for free', 'ecwid-shopping-cart'); ?></a>
+                <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register" onclick="javascript:switch_to_connect();"><?php _e('Register at Ecwid for free', 'ecwid-shopping-cart'); ?></a>
             </div>
             <div class="button-description-mobile on-register">
                 <?php _e('You will be asked to log in to your Ecwid Control Panel<br />and give permissions to show your store on this site', 'ecwid-shopping-cart'); ?>
@@ -143,12 +143,12 @@
         <h2><?php _e('Start selling <br>on your WordPress <nobr>site for free</nobr>', 'ecwid-shopping-cart'); ?>
         </h2>
         <div class="ecwid-button">
-            <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register" class="button button--blue on-register"  onclick="javascript:jQuery('.ecwid-landing').addClass('connect').removeClass('register');">
+            <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register" class="button button--blue on-register"  onclick="javascript:switch_to_connect();">
                 <?php _e('Get Started, Create Ecwid Account', 'ecwid-shopping-cart'); ?>
             </a>
-            <button class="button button--green on-connect" onclick="javascript:location.href='<?php echo esc_attr($ecwid_oauth->get_auth_dialog_url()); ?>';">
+            <a class="button button--green on-connect" href="<?php echo esc_attr($ecwid_oauth->get_auth_dialog_url()); ?>';">
                 <?php _e('Connect your store', 'ecwid-shopping-cart'); ?>
-            </button>
+            </a>
             <div class="ecwid-button-description on-register">
                 <?php _e('Already have Ecwid account?', 'ecwid-shopping-cart'); ?>
                 <a href="<?php echo esc_attr($ecwid_oauth->get_auth_dialog_url()); ?>"><?php _e('Connect your store to this site', 'ecwid-shopping-cart'); ?></a>
