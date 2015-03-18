@@ -33,7 +33,7 @@ add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
 
 if ( is_admin() ){ 
   add_action('admin_init', 'ecwid_settings_api_init');
-	add_action('admin_init', 'ecwid_check_version');
+  add_action('admin_init', 'ecwid_check_version');
   add_action('admin_notices', 'ecwid_show_admin_messages');
   add_action('admin_menu', 'ecwid_options_add_page');
   add_action('wp_dashboard_setup', 'ecwid_add_dashboard_widgets' );
@@ -48,7 +48,7 @@ if ( is_admin() ){
   add_action('admin_head', 'ecwid_send_stats');
   add_action('save_post', 'ecwid_save_post');
   add_action('init', 'ecwid_apply_theme');
-	add_action('get_footer', 'ecwid_admin_get_footer');
+  add_action('get_footer', 'ecwid_admin_get_footer');
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
   add_shortcode('ecwid_minicart', 'ecwid_minicart_shortcode');
@@ -1125,14 +1125,7 @@ function ecwid_show_admin_messages() {
 
 	global $ecwid_store;
 
-	update_option('ecwid_last_fetched_order_date', null);
-	$ecwid_store->do_fetch_orders_iteration();
-	$ecwid_store->do_fetch_orders_iteration();
-	$ecwid_store->do_fetch_orders_iteration();
-	$ecwid_store->do_fetch_orders_iteration();
-	$ecwid_store->do_fetch_orders_iteration();
-
-	if (is_admin()) {
+    if (is_admin()) {
 		Ecwid_Message_Manager::show_messages();
 	}
 }
@@ -1854,7 +1847,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 	function EcwidRecentlyViewedWidget() {
 		$widget_ops = array('classname' => 'widget_ecwid_recently_viewed', 'description' => __('A list of products recently viewed by a customer. Add this widget to the sidebar to let them later return to the products they saw in your shop.', 'ecwid-shopping-cart'));
 		$this->WP_Widget('ecwidrecentlyviewed', __('Recently Viewed Products', 'ecwid-shopping-cart'), $widget_ops);
-		$recently_viewed = json_decode(stripslashes($_COOKIE['ecwid-shopping-cart-recently-viewed']));
+		$recently_viewed = json_decode(stripslashes(@$_COOKIE['ecwid-shopping-cart-recently-viewed']));
 
 		if ($recently_viewed && $recently_viewed->store_id != get_ecwid_store_id()) {
 			setcookie('ecwid-shopping-cart-recently-viewed', null, strftime('-1 day'));
