@@ -35,7 +35,7 @@ msgid "Ecwid shopping cart settings"
 msgstr "Ecwid alışveriş sepeti ayarları"
 
 msgid "Ecwid Store"
-msgstr "Evwid Mağazası"
+msgstr "Ecwid Mağazası"
 
 msgid "Setup"
 msgstr "Kurulum"
