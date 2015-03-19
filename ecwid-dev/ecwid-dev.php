@@ -14,6 +14,7 @@ if ( is_admin() ){
 	add_action('admin_init', 'edev_process_request');
 	add_action('admin_menu', 'edev_add_page');
   add_action('admin_post_edev_get_var_value', 'get_var_value');
+	add_action('admin_action_edev_download_pot', 'edev_download_pot');
 }
 
 function get_var_value()
@@ -52,7 +53,8 @@ function get_locales()
 		'de_DE',
 		'fr_FR',
 		'es_ES',
-		'pt_BR'
+		'pt_BR',
+		'tr_TR'
 	);
 }
 
@@ -76,6 +78,21 @@ function edev_show_translate_page()
 	$labels = get_labels_in_directory($dir, 'ecwid-shopping-cart');
 
 	require plugin_dir_path(__FILE__) . 'templates/translate.php';
+}
+
+function edev_download_pot()
+{
+	$labels = get_labels_in_directory(realpath(plugin_dir_path(__FILE__) . '../ecwid-shopping-cart'), 'ecwid-shopping-cart');
+
+	header('Content-Type:application/octet-stream');
+	header('Content-Disposition: attachment; filename=ecwid-shopping-cart.pot');
+
+	foreach ($labels as $key => $label) {
+		echo 'msgid "' . str_replace('"', '\"', $key) .  "\"\n";
+		echo 'msgstr "' . ($_GET['mode'] == 'filler' ? preg_replace('![^ ]!', 'x', $key) : '') . '"' . "\n\n";
+	}
+
+	die();
 }
 
 function edev_load_translations()
@@ -163,6 +180,21 @@ function get_translation_labels($php_code)
 	$expect_ind = 0;
 	$results = array();
 	$result = array();
+
+	$data = get_plugin_data(WP_PLUGIN_DIR . '/ecwid-shopping-cart/ecwid-shopping-cart.php', false, false);
+
+	$results[] = array(
+		'label' => "'$data[Name]'",
+		'domain' => '"ecwid-shopping-cart"'
+	);
+	$results[] = array(
+		'label' => "'$data[Author]'",
+		'domain' => '"ecwid-shopping-cart"'
+	);
+	$results[] = array(
+		'label' => "'$data[Description]'",
+		'domain' => '"ecwid-shopping-cart"'
+	);
 
 	foreach ($tokens as $token) {
 		if (is_array($token) && $token[0] == 375) continue;

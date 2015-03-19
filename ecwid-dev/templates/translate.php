@@ -20,6 +20,16 @@
 		<?php endforeach; ?>
 	</tr>
 <?php endforeach; ?>
+	<tr>
+		<td></td>
+		<td align="center">
+			<a id="download_pot" href="admin.php?action=edev_download_pot">POT</a>
+			<a id="download_pot" href="admin.php?action=edev_download_pot&mode=filler">xxx POT</a>
+		</td>
+		<td colspan="<?= sizeof($translations) + 1 ?>" align="center">
+
+		</td>
+	</tr>
 
 	<tr style="background: #FFCCCC">
 		<td colspan="<?= sizeof($translations) + 2 ?>" align="center">
