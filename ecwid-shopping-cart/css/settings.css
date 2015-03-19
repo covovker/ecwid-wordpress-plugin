@@ -455,7 +455,6 @@ display: none;
 
 .ecwid-dashboard .drop-down.store-id {
 	font-size: 14px;
-	font-weight: lighter;
 	padding: 10px 16px;
 	position: absolute;
 	right: 6px;
@@ -581,23 +580,37 @@ display: none;
 	font-size: 14px;
 }
 
-.ecwid-dashboard.width-600 .body {
+.ecwid-dashboard.width-smaller .body {
 	text-align: center;
 	padding: 20px 0px;
 }
 
-.ecwid-dashboard.width-600 .greeting-image,
-.ecwid-dashboard.width-600 .greeting
+.ecwid-dashboard.width-smaller .greeting-image,
+.ecwid-dashboard.width-smaller .greeting
 {
 	display: block;
 	padding-right: 0px;
+}
+
+.ecwid-dashboard.width-smaller h3 {
+	height: 76px;
+}
+
+.ecwid-dashboard.width-smaller .store-id {
+	right: inherit;
+	left: 50px;
+	top: 45px;
+}
+
+.ecwid-dashboard.width-smaller .greeting-title {
+	margin-top: 10px;
 }
 
 .ecwid-admin .mobile-br br {
 	display: none;
 }
 
-.ecwid-admin.width-600 .mobile-br br {
+.ecwid-admin.width-smaller .mobile-br br {
 	display: inherit;
 }
 

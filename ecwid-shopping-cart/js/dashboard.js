@@ -1,6 +1,6 @@
 jQuery(window).resize(function() {
-	if (jQuery(this).width() < 600) {
-		jQuery('.ecwid-admin').addClass('width-600');
+	if (jQuery(this).width() < 768) {
+		jQuery('.ecwid-admin').addClass('width-smaller');
 		var head =
 		jQuery('.ecwid-dashboard .box .head');
 		/*
@@ -8,7 +8,7 @@ jQuery(window).resize(function() {
 		head.find('h2').addClass('drop-down-head');
 		head.find('ul').addClass('drop-down-content open').removeClass('head-links');*/
 	} else {
-		jQuery('.ecwid-admin').removeClass('width-600');
+		jQuery('.ecwid-admin').removeClass('width-smaller');
 	}
 }).trigger('resize');
 
