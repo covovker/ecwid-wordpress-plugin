@@ -48,7 +48,7 @@
                 <?php _e('Free registration, No credit card required', 'ecwid-shopping-cart'); ?>
             </div>
             <div class="button-description-mobile on-error ecwid-connection-error">
-                <?php _e( 'Connection error - after clicking button you need to login<br /> and accept permissions to use our plugin. Please, try again.', 'ecwid-shopping-cart' ); ?>
+                <?php _e( 'Connection error: please click the button again and give permissions for this plugin<br /> to show your Ecwid store on this site.', 'ecwid-shopping-cart' ); ?>
             </div>
             <div class="button-description-mobile on-connect on-no-error">
                 <?php _e('You will be asked to log in to your Ecwid Control Panel<br />and give permissions to show your store on this site', 'ecwid-shopping-cart'); ?>
@@ -75,7 +75,7 @@
             <div class="ecwid-thank-background-tablet"><img src="<?php echo ECWID_PLUGIN_URL; ?>images/landing/tablet-iphone.png"></div>
         </div>
     </div>
-    <div class="ecwid-description on-register">
+    <div class="ecwid-description">
         <div class="ecwid-description-inner">
             <div class="ecwid-description-image"><img src="<?php echo ECWID_PLUGIN_URL; ?>images/landing/ecwid-description-image.jpg"></div>
             <div class="ecwid-description-text">
@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    <div class="ecwid-features on-register">
+    <div class="ecwid-features">
         <div class="ecwid-features-inner">
             <h2><?php _e('Features', 'ecwid-shopping-cart'); ?></h2>
             <div class="ecwid-features-top">

@@ -453,19 +453,22 @@ display: none;
 	line-height: 1.3em;
 }
 
-.ecwid-dashboard .greeting .store-id {
-	font-size: 28px;
+.ecwid-dashboard .drop-down.store-id {
+	font-size: 14px;
 	font-weight: lighter;
-	padding: 18px 25px;
-	position: relative;
-	left: -25px;
+	padding: 10px 16px;
+	position: absolute;
+	right: 6px;
+	top: 9px;
+	line-height: 20px;
 	display: inline-block;
 	border: 1px solid white;
 	border-bottom: none;
 	height: 21px;
+	cursor: pointer;
 }
 
-.ecwid-dashboard .greeting .store-id:hover
+.ecwid-dashboard .store-id:hover
 {
 	border: 1px solid #CCC;
 	border-bottom: none;
@@ -543,7 +546,7 @@ display: none;
 
 .ecwid-dashboard .drop-down ul a {
 	display: block;
-	padding: 16px 20px;
+	padding: 10px 16px;
 	text-decoration: none;
 }
 
@@ -559,19 +562,21 @@ display: none;
 	transition: color .2s, background .2s;
 }
 
-.ecwid-dashboard .head-links {
-	position: absolute;
-	right: 15px;
-	top: 0px;
-
+.ecwid-dashboard .greeting-links {
+	padding-left: 0px;
+	margin-top: 5px;
 }
 
-.ecwid-dashboard .head-links > * {
+.ecwid-dashboard .greeting-links > * {
 	display: inline-block;
-	padding: 15px 15px;
+	margin: 15px 15px;
 }
 
-.ecwid-dashboard .head-links a {
+.ecwid-dashboard .greeting-links > *:first-child {
+	margin-left: 0;
+}
+
+.ecwid-dashboard .greeting-links a {
 	text-decoration: none;
 	font-size: 14px;
 }
@@ -586,11 +591,6 @@ display: none;
 {
 	display: block;
 	padding-right: 0px;
-}
-
-.ecwid-dashboard.width-600 .store-id,
-.ecwid-dashboard.width-600 .store-id:hover {
-	left: 0px;
 }
 
 .ecwid-admin .mobile-br br {

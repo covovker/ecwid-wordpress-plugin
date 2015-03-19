@@ -15,7 +15,7 @@ class Ecwid_OAuth {
 		require_once(ECWID_PLUGIN_DIR . '/templates/reconnect.php');
 	}
 
-	public function get_auth_dialog_url( $scopes = array( 'read_store_profile', 'read_catalog', 'update_catalog' ) )
+	public function get_auth_dialog_url( $scopes = array( 'read_store_profile', 'read_catalog' ) )
 	{
 		if ( !is_array( $scopes ) ) {
 			return false;
