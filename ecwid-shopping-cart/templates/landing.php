@@ -13,7 +13,7 @@
                 <div class="ecwid-thank-step-image"><img src="<?php echo ECWID_PLUGIN_URL; ?>images/landing/ecwid.svg" class="none-active"><img src="<?php echo ECWID_PLUGIN_URL; ?>images/landing/ecwid-active.svg" class="active"></div>
                 <div class="ecwid-thank-step-description">
                     <h2><?php _e('Register', 'ecwid-shopping-cart'); ?></h2>
-                    <p><?php _e('Create a free Ecwid account to manage your<br />store and inventory. No credit card required'); ?></p>
+                    <p><?php _e('Create a free Ecwid account to manage your<br />store and inventory. No credit card required', 'ecwid-shopping-cart'); ?></p>
                 </div>
             </div>
             <div class="ecwid-thank-step ecwid-thank-step-two">
@@ -95,7 +95,7 @@
                     </div>
                     <div class="ecwid-features-top-item-text">
                         <h3><?php _e('Compatible with your theme', 'ecwid-shopping-cart'); ?></h3>
-                        <p><?php _e('Ecwid is compatible with your<br>“Responsive” WordPress theme<br>out of the box.'); ?></p>
+                        <p><?php _e('Ecwid is compatible with your<br>“Responsive” WordPress theme<br>out of the box.', 'ecwid-shopping-cart'); ?></p>
                     </div>
                 </div>
                 <div class="ecwid-features-top-item">
