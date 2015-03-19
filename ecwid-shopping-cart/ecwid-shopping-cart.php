@@ -1347,8 +1347,10 @@ function ecwid_get_categories_for_selector() {
 		$api = ecwid_new_product_api();
 		$categories = $api->get_all_categories();
 		$by_id = array();
-		foreach ($categories as $key => $category) {
-			$by_id[$category['id']] = $category;
+		if (is_array($categories)) {
+			foreach ($categories as $key => $category) {
+				$by_id[$category['id']] = $category;
+			}
 		}
 		unset($categories);
 
