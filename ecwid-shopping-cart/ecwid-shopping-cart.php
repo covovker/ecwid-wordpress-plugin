@@ -2096,6 +2096,7 @@ function ecwid_send_stats()
 		$link = get_bloginfo('url');
 	}
 
+	die(var_dump($url));
 	wp_remote_get($url, array('headers' => array('Referer' => $link)));
 
 	update_option('ecwid_stats_sent_date', time());
@@ -2129,7 +2130,8 @@ function ecwid_gather_stats()
 		'ecwid_single_product_used',
 		'ecwid_store_shortcode_used',
 		'store_link_widget',
-		'recently_viewed_widget'
+		'recently_viewed_widget',
+		'avalanche_used'
 	);
 
 	$usage_stats = ecwid_gather_usage_stats();
@@ -2164,7 +2166,8 @@ function ecwid_gather_usage_stats()
 		'ecwid_single_product_used',
 		'ecwid_store_shortcode_used',
 		'store_link_widget',
-		'recently_viewed_widget'
+		'recently_viewed_widget',
+		'avalanche_used'
 	);
 
 	$usage_stats = array();
@@ -2185,6 +2188,7 @@ function ecwid_gather_usage_stats()
 	$usage_stats['ecwid_store_shortcode_used'] = (bool) (get_option('ecwid_store_shortcode_used') + 60*60*24*14 > time());
 	$usage_stats['store_link_widget'] = (bool) is_active_widget(false, false, 'ecwidstorelink');
 	$usage_stats['recently_viewed_widget'] = (bool) is_active_widget(false, false, 'ecwidrecentlyviewed');
+	$usage_stats['avalanche_used'] = (bool) is_plugin_active('ecwid-widgets-avalanche/ecwid_widgets_avalanche.php');
 
 	return $usage_stats;
 }
