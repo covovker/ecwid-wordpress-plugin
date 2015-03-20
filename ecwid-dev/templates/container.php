@@ -1,4 +1,5 @@
 <div id="edev-container" style="display: none; position: absolute; right: 10px; top: 40px; transition: background .2s; border: 1px solid red; padding: 3px; background: white">
+	<a style="position: absolute; right: 2px; color: red" href="javascript:jQuery('#edev-container').remove()">Close</a>
 	Voting message:
 	<?php if (!get_option('ecwid_show_vote_message')): ?>
 		<b>Disabled</b>
