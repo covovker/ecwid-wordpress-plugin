@@ -348,6 +348,9 @@ display: none;
 	height: 70px;
 }
 
+.ecwid-admin .box .head {
+	text-align: left;
+}
 
 .ecwid-admin .head svg {
 	width: 32px;

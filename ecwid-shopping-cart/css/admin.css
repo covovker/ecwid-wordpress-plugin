@@ -134,9 +134,14 @@ div.ecwid-message {
 	top: 6px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 700px) {
 	.ecwid-message .ecwid-message-buttons > div:last-child {
 		position: inherit;
+	}
+
+
+	.ecwid-message .ecwid-message-buttons > div:not(:first-child) {
+		padding-left: 0px;
 	}
 
 	.ecwid-message .ecwid-message-buttons > div {
@@ -146,8 +151,10 @@ div.ecwid-message {
 	.ecwid-message .ecwid-message-buttons > div a {
 		text-align: center;
 		white-space: normal;
+		width: 100%;
 	}
 }
+
 body[class*="_page_ecwid"] .ecwid-message {
 	margin: 20px 20px 20px 0px;
 }
