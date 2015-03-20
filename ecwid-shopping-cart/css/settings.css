@@ -472,10 +472,15 @@ display: none;
 	border: 1px solid transparent;
 	border-bottom: none;
 	height: 21px;
+
 	cursor: pointer;
 }
 
-.ecwid-dashboard .store-id:hover
+.ecwid-dashboard .drop-down.store-id.hover {
+	cursor: default;
+}
+
+.ecwid-dashboard .drop-down.hover
 {
 	border: 1px solid #CCC;
 	border-bottom: none;
@@ -494,7 +499,7 @@ display: none;
 	font-weight: lighter;
 }
 
-.ecwid-dashboard .drop-down:hover > *:first-child:after {
+.ecwid-dashboard .drop-down.hover > *:first-child:after {
 	font-family: 'dashicons';
 	content: '\f343';
 }
@@ -513,7 +518,7 @@ display: none;
 	position: relative;
 }
 
-.ecwid-dashboard .drop-down:hover {
+.ecwid-dashboard .drop-down.hover {
 	color: #2EA2CC;
 }
 
@@ -521,7 +526,7 @@ display: none;
 {
 	display: none;
 }
-.ecwid-dashboard .drop-down:hover ul
+.ecwid-dashboard .drop-down.hover ul
 {
 	display: inline-block;
 }
