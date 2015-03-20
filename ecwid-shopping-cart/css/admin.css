@@ -93,7 +93,7 @@ div.ecwid-message {
 }
 
 .ecwid-message .ecwid-message-buttons > div {
-	display: table-cell;
+	display: inline-block;
 	vertical-align: middle;
 }
 
@@ -102,8 +102,12 @@ div.ecwid-message {
 }
 
 .ecwid-message .ecwid-message-buttons > div:last-child {
-	text-align: right;
-	width: 100%;
+	position: absolute;
+
+	padding-left: 0px;
+
+	top: 0px;
+	right: 0px;
 }
 
 .ecwid-message .ecwid-message-buttons > div a{
@@ -130,6 +134,20 @@ div.ecwid-message {
 	top: 6px;
 }
 
+@media screen and (max-width: 767px) {
+	.ecwid-message .ecwid-message-buttons > div:last-child {
+		position: inherit;
+	}
+
+	.ecwid-message .ecwid-message-buttons > div {
+		display: block;
+	}
+
+	.ecwid-message .ecwid-message-buttons > div a {
+		text-align: center;
+		white-space: normal;
+	}
+}
 body[class*="_page_ecwid"] .ecwid-message {
 	margin: 20px 20px 20px 0px;
 }
