@@ -40,10 +40,12 @@
 			}
 
 			var classname = el.id.match(/ecwid(.*)-__i__/);
-			classname = 'ecwid-widget-' + classname[1];
-			jQuery(el).addClass('ecwid-widget')
-				.find('.widget-top')
-				.addClass(classname);
+			if (classname) {
+				classname = 'ecwid-widget-' + classname[1];
+				jQuery(el).addClass('ecwid-widget')
+					.find('.widget-top')
+					.addClass(classname);
+			}
 		});
 	}
 
