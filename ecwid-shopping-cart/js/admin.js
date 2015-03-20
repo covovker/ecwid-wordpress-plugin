@@ -1,4 +1,4 @@
-jQuery(document).ready(function() {
+	jQuery(document).ready(function() {
 	jQuery('#hide-vote-message').click(function() {
 		jQuery('#hide-vote-message').addClass('hiding');
 		jQuery.getJSON(
@@ -28,8 +28,8 @@ jQuery(document).ready(function() {
 	});
 
 	if (location.href.match(/wp-admin\/widgets.php/)) {
-		jQuery('div[id^="widget-"]').filter('div[id*="_ecwid"]').filter('div[id*="__i__"]').each(function(idx, el) {
-			if (location.href.match(/wp-admin\/widgets.php\?from-ecwid=/)) {
+		jQuery('div[id^="widget-"]').filter('div[id*="_ecwid"]').each(function(idx, el) {
+			if (location.href.match(/wp-admin\/widgets.php\?from-ecwid=/) && el.id.match(/__i__/)) {
 				if (jQuery('.ecwid-widget').length > 0) {
 					jQuery(el).insertAfter(jQuery('.ecwid-widget:last'));
 				} else {

@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script data-cfasync="false"  type="text/javascript">
 	var ecwid_store_svg = '<?php echo get_site_url('', 'index.php?file=ecwid_store_svg.svg'); ?>';
 </script>
 <div id="ecwid-store-popup-content">
@@ -70,7 +70,7 @@
 						<div class="note">
 							<?php echo sprintf(
 									__('Additionally, you can add store controls to your website\'s toolbar using <a %s>WordPress native widgets</a>', 'ecwid-shopping-cart'),
-									'href="widgets.php?from-ecwid=' . (isset($_GET['post']) ? $_GET['post'] : 'new') . '"'
+									' target="_blank" href="widgets.php?from-ecwid=' . (isset($_GET['post']) ? $_GET['post'] : 'new') . '"'
 								);
 							?>
 						</div>
@@ -254,7 +254,7 @@
 							<a href="#" class="button media-button button-primary button-large media-button-select"><?php _e('Insert into page'); ?></a>
 						</div>
 						<div class="media-toolbar-primary store-settings">
-							<a href="#" class="button media-button button-primary button-large media-button-select"><?php _e('Save and close', 'ecwid-shopping-cart'); ?></a>
+							<a href="#" class="button media-button button-primary button-large media-button-select"><?php _e('Update'); ?></a>
 						</div>
 					</div>
 				</div>

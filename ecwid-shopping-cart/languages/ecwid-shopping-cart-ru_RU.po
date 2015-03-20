@@ -398,12 +398,3 @@ msgstr "Список товаров магазина, которые недав�
 
 msgid "Number of products to show"
 msgstr "Количество товаров"
-
-msgid "Ecwid Shopping Cart"
-msgstr "Магазин Эквид"
-
-msgid "Ecwid Team"
-msgstr "Команда Эквид"
-
-msgid "Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up."
-msgstr "бла-бла-бла описание"
