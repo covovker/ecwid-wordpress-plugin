@@ -1,6 +1,6 @@
 #adminmenu #toplevel_page_ecwid div.wp-menu-image:before {
 	font-family: 'ecwid-icons' !important;
-	content: "\e602";
+	content: "\e603";
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -23,7 +23,7 @@
 }
 
 #wpadminbar #wp-admin-bar-ecwid-main .ab-icon.ecwid-top-menu-item:before {
-	content: "\e602";
+	content: "\e603";
 	width: auto;
 	margin-right: 0px;
 }
