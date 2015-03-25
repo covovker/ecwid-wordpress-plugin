@@ -1143,8 +1143,8 @@ EOT;
 	// Does not affect updates, automatically turned on for new users only
 	add_option("ecwid_advanced_theme_layout", get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', 'yes');
 
-	add_option('ecwid_oauth_client_id', 'MCcryC6Ezk8TtLjR');
-	add_option('ecwid_oauth_client_secret', 'difkFu82vgFAweMX8z4KsiEPoaGxqLbB');
+	add_option('ecwid_oauth_client_id', 'RD4o2KQimiGUrFZc');
+	add_option('ecwid_oauth_client_secret', 'jEPVdcA3KbzKVrG8FZDgNnsY3wKHDTF8');
 
 	$id = get_option("ecwid_store_page_id");	
 	$_tmp_page = null;
@@ -1382,7 +1382,7 @@ function ecwid_general_settings_do_page() {
 		wp_enqueue_style('ecwid-landing-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300');
 
 		$connection_error = isset($_GET['connection_error']);
-		$register = !$connection_error && !isset($_GET['connect']);
+		$register = !$connection_error && !isset($_GET['connect']) && !@$_COOKIE['ecwid_create_store_clicked'];
 
 		require_once(ECWID_PLUGIN_DIR . '/templates/landing.php');
 	} else {

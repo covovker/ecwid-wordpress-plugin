@@ -59,6 +59,8 @@ class Ecwid_OAuth {
 		update_option( 'ecwid_store_id', $result->store_id );
 		update_option( 'ecwid_oauth_token', $result->access_token );
 
+		setcookie('ecwid_create_store_clicked', null, strtotime('-1 day'), ADMIN_COOKIE_PATH, COOKIE_DOMAIN);
+
 		wp_redirect('admin.php?page=ecwid&settings-updated=true');
 	}
 
