@@ -11,6 +11,30 @@ class Ecwid_API_V3 {
 		$this->_store_id = $store_id;
 	}
 
+	public function get_products($params)
+	{
+		$def = $this->_explain_get_products();
+
+		$endpoint = sprintf(
+			'https://app.ecwid.com/api/v3/%s/%s',
+			$this->_store_id,
+			$def['endpoint']
+		);
+
+
+		$params = $this->_prepare_params($def['params'], $params);
+
+		$result = EcwidPlatform::fetch_url($endpoint . '?' . http_build_query($params));
+
+		if ($result['code'] == 200 && isset($result['data'])) {
+			$result = json_decode($result['data'], true);
+		} else {
+			$result = false;
+		}
+
+		return $result;
+	}
+
 	public function get_orders($params)
 	{
 		$def = $this->_explain_get_orders();
@@ -80,6 +104,27 @@ class Ecwid_API_V3 {
 		$result['token']  = get_option('ecwid_oauth_token');
 
 		return $result;
+	}
+
+
+	protected function _explain_get_products()
+	{
+		return array(
+			'endpoint' => 'products',
+			'method' => 'GET',
+			'params' => array(
+				'storeId' => 'number',
+				'token' => 'string',
+				'keyword' => 'string',
+				'offset' => 'number',
+				'limit' => 'number',
+				'sortBy' => 'string',
+				'createdFrom' => 'string',
+				'createdTo' => 'string',
+				'updatedFrom' => 'string',
+				'updatedTo' => 'string',
+			)
+		);
 	}
 
 	protected function _explain_get_orders()

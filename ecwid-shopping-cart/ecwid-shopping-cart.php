@@ -258,6 +258,7 @@ function ecwid_build_sitemap_pages()
 
 function build_sitemap_callback($url, $priority, $frequency)
 {
+
 	static $generatorObject = null;
 	if (is_null($generatorObject)) {
 		$generatorObject = GoogleSitemapGenerator::GetInstance(); //Please note the "&" sign!
@@ -286,6 +287,12 @@ function ecwid_minifier_compatibility()
 
 function ecwid_check_version()
 {
+	global $ecwid_store;
+	$result = $ecwid_store->do_fetch_products_iteration();
+
+	var_dump($result);
+
+
 	$plugin_data = get_plugin_data(__FILE__);
 	$current_version = $plugin_data['Version'];
 	$stored_version = get_option('ecwid_plugin_version', null);

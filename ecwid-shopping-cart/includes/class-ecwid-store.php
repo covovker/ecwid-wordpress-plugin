@@ -18,6 +18,38 @@ class Ecwid_Store {
 		add_action( 'init', array($this, 'init_db_tables') );
 	}
 
+	public function do_fetch_products_iteration() {
+		$page = get_option('ecwid_last_fetched_product_page');
+		if (!$page) {
+			$page = 0;
+		}
+
+		$page_size = 3;
+
+		$result = $this->api->get_products(array(
+			'offset' => $page * $page_size,
+			'limit' => $page_size,
+			'sortBy' => 'ADDED_TIME_ASC'
+		));
+
+		global $wpdb;
+
+		foreach($result['items'] as $product) {
+			$product_id = $wpdb->insert(
+				$wpdb->ecwid_products,
+				array(
+					'id' => $product['id'],
+					'hash_url' => substr($product['url'], strpos($product['url'], '#')),
+					'thumb_url' => $product['thumbnailUrl'],
+					'name' => $product['name'],
+					'raw' => serialize($product)
+				)
+			);
+		}
+
+		update_option('ecwid_last_fetched_product_page', $page + 1);
+	}
+
 	public function do_fetch_orders_iteration()
 	{
 		$date = get_option('ecwid_last_fetched_order_date');
@@ -264,7 +296,9 @@ class Ecwid_Store {
 	{
 		$fields = array (
 			'name' => 'varchar(255) NOT NULL default ""',
-			'product_type' => 'bigint(20) NOT NULL default 0',
+			'hash_url' => 'varchar(255) NOT NULL default ""',
+			'thumb_url' => 'varchar(255) NOT NULL default ""',
+			'raw' => 'text'
 		);
 
 		return array(
