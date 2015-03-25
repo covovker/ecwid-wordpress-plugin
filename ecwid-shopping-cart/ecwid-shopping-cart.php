@@ -2096,7 +2096,6 @@ function ecwid_send_stats()
 		$link = get_bloginfo('url');
 	}
 
-	die(var_dump($url));
 	wp_remote_get($url, array('headers' => array('Referer' => $link)));
 
 	update_option('ecwid_stats_sent_date', time());
