@@ -1300,6 +1300,19 @@ function ecwid_register_admin_styles($hook_suffix) {
 	if (version_compare(get_bloginfo('version'), '3.8-beta') > 0) {
 		wp_enqueue_style('ecwid-admin38-css', plugins_url('ecwid-shopping-cart/css/admin.3.8.css'), array('ecwid-admin-css'), '', 'all');
 	}
+
+	if (isset($_GET['page']) && $_GET['page'] == 'ecwid') {
+
+		if (get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID) {
+			// Open dashboard for the first time, ecwid store id is set to demo => need landing styles/scripts
+			wp_enqueue_script('ecwid-landing-js', plugins_url('ecwid-shopping-cart/js/landing.js'));
+			wp_enqueue_style('ecwid-landing-css', plugins_url('ecwid-shopping-cart/css/landing.css'), array(), '', 'all');
+			wp_enqueue_style('ecwid-landing-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300');
+		} else {
+			// We already connected and disconnected the store, no need for fancy landing
+			wp_enqueue_script('ecwid-connect-js', plugins_url('ecwid-shopping-cart/js/dashboard.js'));
+		}
+	}
 }
 
 function ecwid_register_settings_styles($hook_suffix) {
@@ -1367,31 +1380,21 @@ function ecwid_common_admin_scripts() {
 	wp_enqueue_script('ecwid-modernizr-js', plugins_url('ecwid-shopping-cart/js/modernizr.js'));
 }
 
-function ecwid_admin_get_footer() {
-
-}
-
 function ecwid_general_settings_do_page() {
 
 	if (get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID) {
     global $ecwid_oauth;
-
-
-		wp_enqueue_script('ecwid-landing', plugins_url('ecwid-shopping-cart/js/landing.js'));
-		wp_enqueue_style('ecwid-landing', plugins_url('ecwid-shopping-cart/css/landing.css'));
-		wp_enqueue_style('ecwid-landing-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300');
 
 		$connection_error = isset($_GET['connection_error']);
 		$register = !$connection_error && !isset($_GET['connect']) && !@$_COOKIE['ecwid_create_store_clicked'];
 
 		require_once(ECWID_PLUGIN_DIR . '/templates/landing.php');
 	} else {
-        wp_enqueue_script('ecwid-connect-js', plugins_url('ecwid-shopping-cart/js/dashboard.js'));
 
         if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID) {
             global $ecwid_oauth;
-
             $connection_error = isset($_GET['connection_error']);
+
             require_once ECWID_PLUGIN_DIR . '/templates/connect.php';
         } else {
             require_once ECWID_PLUGIN_DIR . '/templates/dashboard.php';
