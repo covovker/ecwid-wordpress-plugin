@@ -1168,7 +1168,7 @@ EOT;
 		$id = wp_insert_post( $my_post );
 		update_option('ecwid_store_page_id', $id);
 
-		if (ecwid_get_theme_name() == 'Responsive') {
+		if (ecwid_get_theme_identification() == 'responsive') {
 			update_post_meta($id, '_wp_page_template', 'full-width-page.php');
 			update_option("ecwid_show_search_box", 'Y');
 		}
@@ -2111,7 +2111,7 @@ function ecwid_gather_stats()
 	$stats = array();
 
 	$stats['version'] = get_bloginfo('version');
-	$stats['theme'] = ecwid_get_theme_name();
+	$stats['theme'] = ecwid_get_theme_identification();
 
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 

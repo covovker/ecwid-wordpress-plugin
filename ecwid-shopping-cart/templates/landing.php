@@ -95,7 +95,7 @@
                     </div>
                     <div class="ecwid-features-top-item-text">
                         <h3><?php _e('Compatible with your theme', 'ecwid-shopping-cart'); ?></h3>
-                        <p><?php _e('Ecwid is compatible with your<br>“Responsive” WordPress theme<br>out of the box.', 'ecwid-shopping-cart'); ?></p>
+                        <p><?php echo sprintf(__('Ecwid is compatible with your<br>“%s” WordPress theme<br>out of the box.', 'ecwid-shopping-cart'), ecwid_get_theme_name()); ?></p>
                     </div>
                 </div>
                 <div class="ecwid-features-top-item">

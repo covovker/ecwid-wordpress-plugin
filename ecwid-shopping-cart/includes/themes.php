@@ -4,7 +4,22 @@ define( 'ECWID_THEMES_DIR', ECWID_PLUGIN_DIR . '/includes/themes' );
 
 add_action('after_switch_theme', 'ecwid_after_switch_theme');
 
+
 function ecwid_get_theme_name()
+{
+	$version = get_bloginfo('version');
+
+	if (version_compare( $version, '3.4' ) < 0) {
+		$theme_name = get_current_theme();
+	} else {
+		$theme = wp_get_theme();
+		$theme_name = $theme->Name;
+	}
+
+	return $theme_name;
+}
+
+function ecwid_get_theme_identification()
 {
 	$version = get_bloginfo('version');
 
@@ -23,7 +38,7 @@ function ecwid_apply_theme($theme_name = null)
 	$themes = array('bretheon', 'responsive', 'twentyfourteen', 'pagelines', 'envision', 'twentyfifteen');
 
 	if (empty($theme_name)) {
-		$theme_name = ecwid_get_theme_name();
+		$theme_name = ecwid_get_theme_identification();
 	}
 
 	$theme_file = '';
