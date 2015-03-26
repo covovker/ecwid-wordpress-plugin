@@ -27,7 +27,12 @@ class Ecwid_Integration_WordPress_SEO_By_Yoast
 
 		global $wpseo_front;
 		// Canonical
-		remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20);
+
+		if (empty($wpseo_front)) {
+			$wpseo_front = WPSEO_Frontend::get_instance();
+		}
+
+		remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20 );
 		// Description
 		remove_action( 'wpseo_head', array( $wpseo_front, 'metadesc' ), 10 );
 	}
