@@ -59,7 +59,8 @@ class EcwidSitemapBuilder implements JsonStreamingParser_Listener {
 		if (is_array($obj) && array_key_exists('url', $obj)) {
 			$callback = $this->callback;
 
-			$callback(
+			call_user_func(
+				$callback,
 				ecwid_get_entity_url($obj, $this->type == 'products' ? 'p' : 'c'),
 				$this->type == 'products' ? 0.6 : 0.5,
 				'weekly'

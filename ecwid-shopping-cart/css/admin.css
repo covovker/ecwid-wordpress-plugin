@@ -93,7 +93,7 @@ div.ecwid-message {
 }
 
 .ecwid-message .ecwid-message-buttons > div {
-	display: table-cell;
+	display: inline-block;
 	vertical-align: middle;
 }
 
@@ -102,8 +102,12 @@ div.ecwid-message {
 }
 
 .ecwid-message .ecwid-message-buttons > div:last-child {
-	text-align: right;
-	width: 100%;
+	position: absolute;
+
+	padding-left: 0px;
+
+	top: 0px;
+	right: 0px;
 }
 
 .ecwid-message .ecwid-message-buttons > div a{
@@ -122,12 +126,33 @@ div.ecwid-message {
 }
 
 .ecwid-message .ecwid-message-hide:before {
-	content: "X";
+	content: "\e606";
 	font-family: ecwid-icons;
 	font-size: 26px;
 	position: relative;
 	left: 1px;
 	top: 6px;
+}
+
+@media screen and (max-width: 700px) {
+	.ecwid-message .ecwid-message-buttons > div:last-child {
+		position: inherit;
+	}
+
+
+	.ecwid-message .ecwid-message-buttons > div:not(:first-child) {
+		padding-left: 0px;
+	}
+
+	.ecwid-message .ecwid-message-buttons > div {
+		display: block;
+	}
+
+	.ecwid-message .ecwid-message-buttons > div a {
+		text-align: center;
+		white-space: normal;
+		width: 100%;
+	}
 }
 
 body[class*="_page_ecwid"] .ecwid-message {
@@ -152,51 +177,96 @@ body[class*="_page_ecwid"] .ecwid-message {
   letter-spacing: -0.22px;
 }
 
-.widget-top.ecwid-widget-highlighted {
+#available-widgets .widget-top.ecwid-widget-highlighted {
 	background: #1d7ac4;
 	color: white;
 	font-weight: normal;
 }
 
-.ecwid-widget .widget-top h4:before {
-	font-family: dashicons;
+#available-widgets .ecwid-widget .widget-top h4 {
+	padding-left: 42px;
+}
+
+#available-widgets .ecwid-widget .widget-top h4:before {
 	font-size: 20px;
-	position: relative;
-	top: 4px;
-	right: 4px;
+	position: absolute;
+	top: 12px;
+	left: 16px;
 	margin-right: -4px;
 	line-height: 10px;
+	font-family: 'ecwid-icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	color: #1d7ac4;
+	opacity: .5;
+}
+#available-widgets .ecwid-widget .widget-top:hover h4:before {
+	opacity: 1;
 }
 
-.ecwid-widget .widget-top.ecwid-widget-highlighted h4:before {
+#available-widgets .ecwid-widget .widget-top.ecwid-widget-highlighted h4:before {
 	color: white;
+	opacity: 1;
 }
 
-.widget-top.ecwid-widget-badge h4:before {
-	content: "\f323";
+@font-face {
+	font-family: 'ecwid-icons';
+	src:url('../fonts/ecwid-icons.eot?-b8sbws');
+	src:url('../fonts/ecwid-icons.eot?#iefix-b8sbws') format('embedded-opentype'),
+	url('../fonts/ecwid-icons.woff?-b8sbws') format('woff'),
+	url('../fonts/ecwid-icons.ttf?-b8sbws') format('truetype'),
+	url('../fonts/ecwid-icons.svg?-b8sbws#ecwid-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
-.widget-top.ecwid-widget-minicart h4:before,
-.widget-top.ecwid-widget-minicart_miniview h4:before {
-	content: "\f174";
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'ecwid-icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-.widget-top.ecwid-widget-vcategories h4:before {
-	content: "\f163";
+#available-widgets .widget-top.ecwid-widget-badge h4:before {
+	content: "\e603";
 }
 
-.widget-top.ecwid-widget-categories h4:before {
-	content: "\f480";
+#available-widgets .widget-top.ecwid-widget-minicart h4:before,
+#available-widgets .widget-top.ecwid-widget-minicart_miniview h4:before
+{
+	content: "\e601";
 }
 
-.widget-top.ecwid-widget-search h4:before {
-	content: "\f179";
+#available-widgets .widget-top.ecwid-widget-vcategories h4:before,
+#available-widgets .widget-top.ecwid-widget-categories h4:before
+{
+	content: "\e602";
 }
 
-.widget-top.ecwid-widget-storelink h4:before {
-	content: "\f504";
+#available-widgets .widget-top.ecwid-widget-search h4:before {
+	content: "\e604";
 }
 
-.widget-top.ecwid-widget-recentlyviewed h4:before {
-	content: "\f321";
+#available-widgets .widget-top.ecwid-widget-storelink h4:before {
+	content: "\e605";
+}
+
+#available-widgets .widget-top.ecwid-widget-recentlyviewed h4:before {
+	content: "\e600";
 }

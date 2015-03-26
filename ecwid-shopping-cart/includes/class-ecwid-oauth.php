@@ -17,7 +17,7 @@ class Ecwid_OAuth {
 		require_once(ECWID_PLUGIN_DIR . '/templates/reconnect.php');
 	}
 
-	public function get_auth_dialog_url( $scopes = array( 'read_store_profile', 'read_catalog', 'read_orders' ) )
+	public function get_auth_dialog_url( $scopes = array( 'read_store_profile', 'read_catalog' ) )
 	{
 		if ( !is_array( $scopes ) ) {
 			return false;
@@ -27,7 +27,7 @@ class Ecwid_OAuth {
 
 		$params['source']        = 'wporg';
 		$params['client_id'] 		 = get_option( 'ecwid_oauth_client_id' );
-		$params['redirect_uri']  = get_admin_url( '', 'admin-post.php?action=ecwid_oauth' );
+		$params['redirect_uri']  = admin_url( 'admin-post.php?action=ecwid_oauth' );
 		$params['response_type'] = 'code';
 		$params['scope']         = implode( ' ', $scopes );
 
@@ -43,7 +43,7 @@ class Ecwid_OAuth {
 		$params['code'] = $_REQUEST['code'];
 		$params['client_id'] = get_option( 'ecwid_oauth_client_id' );
 		$params['client_secret'] = get_option( 'ecwid_oauth_client_secret' );
-		$params['redirect_uri'] = get_admin_url( '', 'admin-post.php?action=ecwid_oauth' );
+		$params['redirect_uri'] = admin_url( 'admin-post.php?action=ecwid_oauth' );
 		$params['grant_type'] = 'authorization_code';
 
 		$return = wp_remote_post('https://my.ecwid.com/api/oauth/token', array('body' => $params));
@@ -60,6 +60,8 @@ class Ecwid_OAuth {
 
 		update_option( 'ecwid_store_id', $result->store_id );
 		update_option( 'ecwid_oauth_token', $result->access_token );
+
+		setcookie('ecwid_create_store_clicked', null, strtotime('-1 day'), ADMIN_COOKIE_PATH, COOKIE_DOMAIN);
 
 		wp_redirect('admin.php?page=ecwid&settings-updated=true');
 	}

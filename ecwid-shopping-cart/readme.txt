@@ -2,21 +2,19 @@
 Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
-Tested up to: 4.0
-Stable tag: 2.7
+Tested up to: 4.1
+Stable tag: 2.8
 
 Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
 
 == Description ==
 **Wordpress.com officially recommends Ecwid as an e-commerce solution to millions of its users!**
 
-[Ecwid](http://www.ecwid.com?source=wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that seamlessly integrates with your Wordpress website. Join over *500,000* sellers in *175* countries and sell globally with over *40* international payment options, real-time shipping integrations and support of *45* languages.
-
+[Ecwid](http://www.ecwid.com?source=wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that allows you to sell on your WordPress website. Join over *700,000* sellers in *175* countries and sell globally with over *40* international payment options, real-time shipping integrations and support of *45* languages.
 
 = Full-featured Shopping Cart =
 
-Ecwid is a free shopping cart solution that is designed to fit any existing site. Simply set up this plugin and your products, categories and checkout pages will automatically embed on your Wordpress site and adjust themselves to the given page size and layout. 
-
+Ecwid is a free e-commerce solution that is designed to fit any existing site. Simply set up this plugin and your products, categories and checkout pages will automatically embed on your WordPress site and adjust themselves to the given page size and layout. Quickly launch your online shop and use [Ecwid's rich feature set](http://www.ecwid.com/features?source=wporg-plugin-site "Ecwid features") to attract more customers to your WordPress store.
 
 = Data Security and Seamless Upgrades =
 
@@ -26,7 +24,7 @@ With Ecwid, your store data is fully hosted on our secure servers. So, regardles
 * seamless upgrades and security updates
 * secure checkout via encrypted HTTPS connection
 
-So, you don't need to worry about software updates, security patches and server maintenance - we do that for you. Your store gets all the new features and bug fixes automatically.
+So, you don't need to worry about software updates, security patches and server maintenance - we do that for you. Your online store gets all the new features and bug fixes automatically.
 
 
 = Mobile Responsive Design =
@@ -36,22 +34,21 @@ Ecwid works fine on any Wordpress site, especially on those running mobile-optim
 
 = Social Commerce =
 
-Unlock power of social commerce with Ecwid -- add your existing store to Facebook in a few clicks and sell to millions of Facebook users. Ecwid will automatically synchronize your products, customers, orders and inventory between your Wordpress and Facebook store fronts. Ecwid is the **#1 e-commerce app on Facebook**. Join! 
+Unlock power of social commerce with Ecwid – add your existing online store to Facebook in a few clicks and sell to millions of Facebook users. Ecwid will automatically synchronize your products, customers, orders and inventory between your WordPress and Facebook store fronts. Ecwid is the **#1 e-commerce app on Facebook**. Join!
 
 
 = Sell Everywhere =
 
-With Ecwid, you can mirror your shop on many websites, blogs, social sites and marketplaces like *Google Shopping*, *Yahoo* and *Shopping.com* and sell simultaneously everywhere. Add your store to as many sites as you want, manage it from one place.
+With Ecwid, you can mirror your online shop on many websites, blogs, social sites and marketplaces like *Google Shopping*, *Yahoo* and *Shopping.com* and sell simultaneously everywhere. Add your store to as many sites as you want, manage it from one place.
 
 
-= Lighting Fast =
+= Lightning Fast =
 
 New-gen technologies make Ecwid much faster than usual shopping carts regardless the hosting service you use. 
 
 
 = Free =
-
-Although Ecwid is packed with high-value features, Free plan is always available with no setup charges and no transaction fees. Get your store up and running without paying anything. As your business grows, you can consider upgrading to one of our premium plans to get more great features. See also: [Ecwid plan and pricing](http://www.ecwid.com/pricing?source=wporg-plugin-site)
+Although Ecwid is packed with high-value features, Free plan is always available with no setup charges and no transaction fees. Get your online store up and running without paying anything. As your business grows, you can consider upgrading to one of our premium plans to get more ecommerce features. See also: [Ecwid plan and pricing](http://www.ecwid.com/pricing?source=wporg-plugin-site)
 
 = See In Action =
 
@@ -110,6 +107,34 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 3.0 =
+- **New sidebar widget: Recently Viewed Products.** A new Ecwid's sidebar widget is now available – your site can now show the products that the customer has recently visited. The links and images in the sidebar are updated automatically, so the customer can return to the product they previously opened and probably decide to buy it. This will increase visibility of your products for the customers and generate more sales. Enable the new widget under Appearance->Widgets menu in your admin backend.
+- **New design of the plugin Dashboard.** The dashboard ("Ecwid") page in the plugin backend is now nicer and more useful. 
+- **Completely redesigned Registration page.** This is for the new users of the plugin. When installing the plugin, a user will now see a beautiful welcome page that will introduce them to Ecwid and guide through the setup process. 
+- **New easier store connection.** Previously, to connect an Ecwid store with a Wordpress site and display store products, a new user had to copy and paste their store ID from Ecwid Control Panel. Now, even this easy step became easier – the user only needs to click a few buttons to authorize themselves and the plugin will automatically detect and connect their store. For those with technical background: we use oAuth2 for this, which is now a part of the newest Ecwid API.
+
+
+= 2.8 =
+- **Integration with the XML sitemap functionality of Yoast and All in One SEO Pack plugins.** Ecwid has been integrated with Google XML Sitemaps plugin allowing you to generate a sitemap containing the links to your products and categories. Now, the sitemaps generated by Yoast SEO and All in One SEO plugins will also include store pages, if you're on a paid Ecwid plan.
+- **Improved design of Ecwid sidebar controls in the Appearance/Widgets page in Wordpress backend.** Store sidebar widgets controls are now more noticeable and responsive.
+- **Improved compatibility with the Cloudflare's Rocketloader.** Rocket loader tool sometimes blocked Ecwid scripts from loading. We added another improvements to prevent such issues.
+- **Fixes and improvements of the meta title tag generation on product and categories pages.** 
+- **A few minor fixes and adjustments.**
+
+= 2.7.4.1 =
+- Additional fixes for the "title" tags on product pages following the 2.7.4 version's updates.
+
+= 2.7.4 =
+- Improvements of 'title' and 'canonical' meta tags generation. The update prevents incorrect meta tags appearing in some WordPress themes in WordPress 4.1
+
+= 2.7.3 =
+- Several bug fixes and minor improvements for the new "Add Store" button in WordPress Editor
+
+= 2.7.2 =
+- **A new sidebar widget: Ecwid Store Page Link.** The widget adds your store page link to the site's sidebar. You may want to use it with blog-focused WordPress themes that don't have a navigation menu, e.g. the upcoming "Twenty Fifteen" theme. Also, you can consider adding the widget to your sidebar to make your store page more visible to your visitors. 
+- **Wordpress 4.1 and Twenty Fifteen theme compatibility.** The new WordPress version is coming soon and bringing a brand new 'Twenty Fifteen' theme. Ecwid plugin is now totally ready for the upcoming changes and will work OK in the new environment. Feel free to upgrade your site to Wordpress 4.1 as soon as it's released.
+- A few minor improvements and bugfixes for the new "Add Store" button released in the version 2.7
+
 = 2.7.1 =
 - Fixed a few issues with the store appearance settings that were discovered in the recently released update (v2.7)
 

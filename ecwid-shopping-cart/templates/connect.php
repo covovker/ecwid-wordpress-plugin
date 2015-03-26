@@ -1,9 +1,10 @@
 <div class="wrap ecwid-admin ecwid-connect">
 	<div class="box">
-		<h3>
-			<?php ecwid_embed_svg('ecwid_logo_symbol_RGB');?>
-			<?php _e( 'Ecwid Shopping Cart', 'ecwid-shopping-cart' ); ?>
-		</h3>
+		<div class="head"><?php ecwid_embed_svg('ecwid_logo_symbol_RGB');?>
+			<h3>
+				<?php _e( 'Ecwid Shopping Cart', 'ecwid-shopping-cart' ); ?>
+			</h3>
+		</div>
 		<div class="greeting-image">
 			<img src="<?php echo(esc_attr(ECWID_PLUGIN_URL)); ?>/images/store_inprogress.png" width="142" />
 		</div>

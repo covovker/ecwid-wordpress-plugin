@@ -329,24 +329,35 @@ display: none;
 
 .ecwid-admin h3 {
 	position: relative;
-	padding: 5px 0px 5px 20px;
-	margin: 5px 2px;
+	padding: 0px;
+	margin: 0px;
+	left: 60px;
 
-	height: 55px;
-	line-height: 55px;
+	display: inline-block;
+	height: 70px;
+	line-height: 70px;
+
+	text-align: left;
 
 	font-size: 18px;
 	font-weight: normal;
-
-	border-bottom: 1px solid #EEE;
 }
 
+.ecwid-admin .head {
+	border-bottom: 1px solid #EEE;
+	height: 70px;
+}
 
-.ecwid-admin h3 svg {
+.ecwid-admin .box .head {
+	text-align: left;
+}
+
+.ecwid-admin .head svg {
 	width: 32px;
 	height: 32px;
-	position: relative;
-	top: 8px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
 	margin-right: 10px;
 }
 /* END Common main */
@@ -453,22 +464,30 @@ display: none;
 	line-height: 1.3em;
 }
 
-.ecwid-dashboard .greeting .store-id {
-	font-size: 28px;
-	font-weight: lighter;
-	padding: 18px 25px;
-	position: relative;
-	left: -25px;
+.ecwid-dashboard .drop-down.store-id {
+	font-size: 14px;
+	padding: 10px 16px;
+	position: absolute;
+	right: 6px;
+	top: 13px;
+	line-height: 20px;
 	display: inline-block;
-	border: 1px solid white;
+	border: 1px solid transparent;
 	border-bottom: none;
 	height: 21px;
+
+	cursor: pointer;
 }
 
-.ecwid-dashboard .greeting .store-id:hover
+.ecwid-dashboard .drop-down.store-id.hover {
+	cursor: default;
+}
+
+.ecwid-dashboard .drop-down.hover
 {
 	border: 1px solid #CCC;
 	border-bottom: none;
+	background: white;
 }
 
 .ecwid-dashboard .store-id a {
@@ -483,7 +502,7 @@ display: none;
 	font-weight: lighter;
 }
 
-.ecwid-dashboard .drop-down:hover > *:first-child:after {
+.ecwid-dashboard .drop-down.hover > *:first-child:after {
 	font-family: 'dashicons';
 	content: '\f343';
 }
@@ -502,7 +521,7 @@ display: none;
 	position: relative;
 }
 
-.ecwid-dashboard .drop-down:hover {
+.ecwid-dashboard .drop-down.hover {
 	color: #2EA2CC;
 }
 
@@ -510,7 +529,7 @@ display: none;
 {
 	display: none;
 }
-.ecwid-dashboard .drop-down:hover ul
+.ecwid-dashboard .drop-down.hover ul
 {
 	display: inline-block;
 }
@@ -529,7 +548,6 @@ display: none;
 }
 
 .ecwid-dashboard .drop-down ul li {
-	padding-left: 5px;
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 0;
 	background: white;
@@ -543,7 +561,7 @@ display: none;
 
 .ecwid-dashboard .drop-down ul a {
 	display: block;
-	padding: 16px 20px;
+	padding: 10px 16px;
 	text-decoration: none;
 }
 
@@ -559,45 +577,67 @@ display: none;
 	transition: color .2s, background .2s;
 }
 
-.ecwid-dashboard .head-links {
-	position: absolute;
-	right: 15px;
-	top: 0px;
-
+.ecwid-dashboard .greeting-links {
+	padding-left: 0px;
+	margin-top: 5px;
 }
 
-.ecwid-dashboard .head-links > * {
+.ecwid-dashboard .greeting-links > * {
 	display: inline-block;
-	padding: 15px 15px;
+	margin: 15px 15px;
 }
 
-.ecwid-dashboard .head-links a {
+.ecwid-dashboard .greeting-links > *:first-child {
+	margin-left: 0;
+}
+
+.ecwid-dashboard .greeting-links a {
 	text-decoration: none;
 	font-size: 14px;
 }
 
-.ecwid-dashboard.width-600 .body {
+.ecwid-dashboard.width-smaller .head {
+	height: 74px;
+}
+
+.ecwid-dashboard.width-smaller .head svg {
+	left: 20px;
+	top: 24px;
+}
+
+.ecwid-dashboard.width-smaller .head h3 {
+	left: 68px;
+	top: -4px;
+}
+
+.ecwid-dashboard.width-smaller .store-id {
+	right: inherit;
+	left: 51px;
+	top: 30px;
+}
+
+.ecwid-dashboard.width-smaller .body {
 	text-align: center;
 	padding: 20px 0px;
 }
 
-.ecwid-dashboard.width-600 .greeting-image,
-.ecwid-dashboard.width-600 .greeting
+.ecwid-dashboard.width-smaller .greeting-image,
+.ecwid-dashboard.width-smaller .greeting
 {
 	display: block;
 	padding-right: 0px;
 }
 
-.ecwid-dashboard.width-600 .store-id,
-.ecwid-dashboard.width-600 .store-id:hover {
-	left: 0px;
+.ecwid-dashboard.width-smaller .greeting-title {
+	margin-top: 10px;
 }
+
 
 .ecwid-admin .mobile-br br {
 	display: none;
 }
 
-.ecwid-admin.width-600 .mobile-br br {
+.ecwid-admin.width-smaller .mobile-br br {
 	display: inherit;
 }
 
@@ -629,7 +669,7 @@ display: none;
 }
 
 .ecwid-popup h3 span.close:before {
-	content: "X";
+	content: "\e606";
 	font-family: ecwid-icons;
 	font-size: 36px;
 }
