@@ -379,6 +379,9 @@ body {
 
 .ecwid-button {
     text-align: center; }
+.ecwid-button a,
+.ecwid-button button {
+		background-image: none; }
 .ecwid-button .button {
     border-radius: 4px;
     border: 0;
