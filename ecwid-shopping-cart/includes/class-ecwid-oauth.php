@@ -25,7 +25,7 @@ class Ecwid_OAuth {
 
 		$params['source']        = 'wporg';
 		$params['client_id'] 		 = get_option( 'ecwid_oauth_client_id' );
-		$params['redirect_uri']  = get_admin_url( '', 'admin-post.php?action=ecwid_oauth' );
+		$params['redirect_uri']  = admin_url( 'admin-post.php?action=ecwid_oauth' );
 		$params['response_type'] = 'code';
 		$params['scope']         = implode( ' ', $scopes );
 
@@ -41,7 +41,7 @@ class Ecwid_OAuth {
 		$params['code'] = $_REQUEST['code'];
 		$params['client_id'] = get_option( 'ecwid_oauth_client_id' );
 		$params['client_secret'] = get_option( 'ecwid_oauth_client_secret' );
-		$params['redirect_uri'] = get_admin_url( '', 'admin-post.php?action=ecwid_oauth' );
+		$params['redirect_uri'] = admin_url( 'admin-post.php?action=ecwid_oauth' );
 		$params['grant_type'] = 'authorization_code';
 
 		$return = wp_remote_post('https://my.ecwid.com/api/oauth/token', array('body' => $params));
