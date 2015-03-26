@@ -37,16 +37,17 @@
 				<div class="greeting-message mobile-br">
 					<?php _e( 'Your Ecwid store is connected<br /> to your WordPress website', 'ecwid-shopping-cart' ); ?>
 				</div>
-				<ul class="greeting-links">
-					<li>
-						<a href="<?php echo ecwid_get_store_page_url(); ?>"><?php _e('Visit storefront', 'ecwid-shopping-cart'); ?></a>
-					</li>
-					<li>
-						<a href="//my.ecwid.com/cp?source=wporg"><?php _e('Open control panel', 'ecwid-shopping-cart'); ?></a>
-					</li>
-				</ul>
-
 			<?php endif; ?>
+
+			<ul class="greeting-links">
+				<li>
+					<a href="<?php echo ecwid_get_store_page_url(); ?>"><?php _e('Visit storefront', 'ecwid-shopping-cart'); ?></a>
+				</li>
+				<li>
+					<a href="//my.ecwid.com/cp?source=wporg"><?php _e('Open control panel', 'ecwid-shopping-cart'); ?></a>
+				</li>
+			</ul>
+
 
 
 			</div>
