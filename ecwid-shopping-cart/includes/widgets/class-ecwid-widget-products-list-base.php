@@ -50,11 +50,12 @@ HTML;
 	}
 
 	protected function _get_products_list_init_js() {
+		$classname = 'ecwid-widget-' . $this->_name;
 		$code = <<<HTML
 <script type="text/javascript">
 <!--
 jQuery(document).ready(function() {
-	jQuery('#$this->id ' . $this->_get_widget_wrapper_class_name()).productsList();
+	jQuery('#$this->id .$classname').productsList();
 });
 -->
 </script>
@@ -95,5 +96,10 @@ HTML;
 
 	protected function _get_products() {
 		return false;
+	}
+
+	protected function _get_widget_wrapper_class_name()
+	{
+		return 'ecwid-widget-' . $this->_name . ' ecwid-productsList';
 	}
 }

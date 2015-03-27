@@ -1,23 +1,19 @@
 jQuery.widget('ecwid.productsList', {
-	container: null,
-
-	products: {
-	},
-
 	options: {
 		max: 3
 	},
 
-	sort: [],
-
 	_prefix: 'ecwid-productsList',
 
 	_create: function() {
+		this.products = [];
+		this.sort = [];
 		this.element.addClass(this._prefix);
 		this._removeInitialContent();
 		this.container = jQuery('<ul>').appendTo(this.element);
-		this._setOption('debug', false);
+		this._setOption('debug', true);
 		this._initFromHtmlData();
+//		debugger;
 		this._readSingleProducts();
 		this._onWindowResize();
 		this._render();
@@ -30,6 +26,14 @@ jQuery.widget('ecwid.productsList', {
 				}
 			, 200)
 		);
+
+		/*
+		var check_rendered = setInterval(
+				function() {
+					clearInterval(check_rendered);
+				}
+		, 500
+		);*/
 	},
 
 	_render: function() {
@@ -83,6 +87,12 @@ jQuery.widget('ecwid.productsList', {
 	},
 
 	_renderProduct: function(product) {
+		if (this.options.debug) {
+			console.log('start render product:');
+			console.log(product);
+			console.log('container:');
+			console.log(this.container);
+		}
 		var container = jQuery('<li class="' + this._getProductClass(product.id) + '">').appendTo(this.container);
 
 		if (product.link != '') {
@@ -98,6 +108,11 @@ jQuery.widget('ecwid.productsList', {
 		}
 		jQuery('<div class="' + this._prefix + '-name">').append(product.name).appendTo(container);
 		jQuery('<div class="' + this._prefix + '-price ecwid-productBrowser-price">').append(product.price).appendTo(container);
+
+		if (this.options.debug) {
+			console.log('prodct rendered:');
+			console.log(product);
+		}
 
 	},
 
@@ -149,6 +164,13 @@ jQuery.widget('ecwid.productsList', {
 		} else {
 			product.price = jQuery('.ecwid-price', singleProductContainer).html();
 		}
+
+
+		if (this.options.debug) {
+			console.log('read product:');
+			console.log(product);
+		}
+
 		this.addProduct(product, true);
 	},
 
@@ -207,6 +229,10 @@ jQuery.widget('ecwid.productsList', {
 		if (forceRender) {
 			this._render();
 		}
+	},
+
+	getProducts: function() {
+		return this.products;
 	},
 
 	_onWindowResize: function() {
