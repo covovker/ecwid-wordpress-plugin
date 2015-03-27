@@ -301,25 +301,25 @@ msgstr ""
 msgid "Plugin is installed successfully!"
 msgstr ""
 
-msgid "There are just a few steps left to start selling<br />on your WordPress site"
+msgid "There are just a few steps left to start selling<br /> on your WordPress site"
 msgstr ""
 
-msgid "There are few little steps left to start selling<br />on your WordPress site"
+msgid "There are few little steps left to start selling<br /> on your WordPress site"
 msgstr ""
 
 msgid "Register"
 msgstr ""
 
-msgid "Create a free Ecwid account to manage your<br />store and inventory. No credit card required"
+msgid "Create a free Ecwid account to manage your store and inventory.<br /> No credit card required"
 msgstr ""
 
 msgid "Connect"
 msgstr ""
 
-msgid "Add your Ecwid store to your site<br />in two clicks"
+msgid "Add your Ecwid store to your site <nobr>in two clicks</nobr>"
 msgstr ""
 
-msgid "Connect your Ecwid store to this site<br />in two clicks"
+msgid "Connect your Ecwid store to this site <nobr>in two clicks</nobr>"
 msgstr ""
 
 msgid "Start selling"
@@ -376,7 +376,7 @@ msgstr ""
 msgid "Compatible with your theme"
 msgstr ""
 
-msgid "Ecwid is compatible with your<br>“Responsive” WordPress theme<br>out of the box."
+msgid "Ecwid is compatible with your<br>“%s” WordPress theme<br>out of the box."
 msgstr ""
 
 msgid "Free and always up to date"
@@ -449,9 +449,6 @@ msgid "Demo store"
 msgstr ""
 
 msgid "Ecwid plugin settings"
-msgstr ""
-
-msgid "Save and close"
 msgstr ""
 
 msgid "Your store will be shown here!"
