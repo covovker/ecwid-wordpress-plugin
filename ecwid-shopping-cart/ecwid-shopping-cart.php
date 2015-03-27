@@ -362,10 +362,8 @@ function ecwid_minifier_compatibility()
 
 function ecwid_check_version()
 {
-	global $ecwid_store;
-	$result = $ecwid_store->do_fetch_products_iteration();
-
-	var_dump($result);
+//	global $ecwid_store;
+//	$result = $ecwid_store->do_fetch_products_iteration();
 
 
 	$plugin_data = get_plugin_data(__FILE__);
@@ -1978,8 +1976,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 	function widget($args, $instance) {
 
 		wp_enqueue_script('ecwid-recently-viewed-js', plugins_url('ecwid-shopping-cart/js/recently-viewed.js'), array('jquery', 'utils', 'ecwid-products-list-js'));
-		wp_enqueue_style('ecwid-products-list-css');
-		wp_enqueue_style('ecwid-recently-viewed-css', plugins_url('ecwid-shopping-cart/css/recently-viewed.css'));
+		wp_enqueue_style('ecwid-recently-viewed-css', plugins_url('ecwid-shopping-cart/css/recently-viewed.css'), array('ecwid-products-list-css'));
 		extract($args);
 
 		$title = apply_filters('widget_title', empty($instance['title']) ? '&nbsp;' : $instance['title']);
@@ -2006,6 +2003,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 		$ids = array();
 		if ($recently_viewed && isset($recently_viewed->products)) {
 
+			$counter = 0;
 			for ($i = count($recently_viewed->products) - 1; $i >= 0; $i--) {
 				$product = $recently_viewed->products[$i];
 				$counter++;
@@ -2220,6 +2218,12 @@ function ecwid_sidebar_widgets_init() {
 	register_widget('EcwidBadgeWidget');
 	register_widget('EcwidStoreLinkWidget');
 	register_widget('EcwidRecentlyViewedWidget');
+
+	require_once ECWID_PLUGIN_DIR . '/includes/widgets/class-ecwid-widget-base.php';
+	require_once ECWID_PLUGIN_DIR . '/includes/widgets/class-ecwid-widget-products-list-base.php';
+	require_once ECWID_PLUGIN_DIR . '/includes/widgets/class-ecwid-widget-random-products.php';
+
+	register_widget('Ecwid_Widget_Random_Products');
 }
 
 add_action('widgets_init', 'ecwid_sidebar_widgets_init');
