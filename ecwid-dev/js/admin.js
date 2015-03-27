@@ -66,6 +66,23 @@ $(document).ready(function() {
 	$('#edev-container .usage-stats a').mouseout( function() {
 		$('#usage-hint').remove();
 	});
+
+	jQuery('#edev-container').draggable({
+			stop: function() {
+				debugger;
+				jQuery.getJSON(
+						'admin-ajax.php',
+						{
+							action: 'edev_drag',
+							x: jQuery(this).offset().left,
+							y: jQuery(this).offset().top
+						},
+						function(data) {
+						}
+				);
+			}
+		}
+	);
 });
 
 

@@ -15,6 +15,32 @@ if ( is_admin() ){
 	add_action('admin_menu', 'edev_add_page');
   add_action('admin_post_edev_get_var_value', 'get_var_value');
 	add_action('admin_action_edev_download_pot', 'edev_download_pot');
+	add_action('admin_head', 'edev_admin_head');
+	add_action('wp_ajax_edev_drag', 'edev_drag');
+}
+
+function edev_drag()
+{
+	update_option('edev_container_x', $_GET['x']);
+	update_option('edev_container_y', $_GET['y']);
+}
+
+function edev_admin_head()
+{
+	if (is_null(get_option('edev_crowdin_mode', null))) {
+		add_option('edev_crowdin_mode', 'N');
+	}
+
+	if (get_option('edev_crowdin_mode') == 'Y') {
+		echo <<<HTML
+<script type="text/javascript">
+  var _jipt = [];
+  _jipt.push(['project', 'ecwid-plugin-for-wordpressorg']);
+</script>
+<script type="text/javascript" src="//cdn.crowdin.com/jipt/jipt.js"></script>
+HTML;
+
+	}
 }
 
 function get_var_value()
@@ -54,7 +80,8 @@ function get_locales()
 		'fr_FR',
 		'es_ES',
 		'pt_BR',
-		'tr_TR'
+		'tr_TR',
+		'fake'
 	);
 }
 
@@ -368,11 +395,25 @@ class MoParser {
 
 function edev_admin_script() {
 
-	wp_register_script('edev-admin-js', plugins_url('ecwid-dev/js/admin.js'), array(), '', '');
+	wp_register_script('edev-admin-js', plugins_url('ecwid-dev/js/admin.js'), array('jquery-ui-draggable'), '', '');
 	wp_enqueue_script('edev-admin-js');
 
 }
 
 function edev_footer() {
 	include plugin_dir_path(__FILE__) . 'templates/container.php';
+
+	$left = get_option('edev_container_x') . 'px';
+	$top = get_option('edev_container_y') . 'px';
+	echo <<<HTML
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery('#edev-container').css({
+		'left': '$left',
+		'top': '$top'
+	});
+});
+</script>
+HTML;
+
 }

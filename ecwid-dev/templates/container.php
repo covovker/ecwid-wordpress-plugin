@@ -1,4 +1,5 @@
-<div id="edev-container" style="display: none; position: absolute; right: 10px; top: 40px; transition: background .2s; border: 1px solid red; padding: 3px; background: white">
+<div id="edev-container" style="display: none; position: absolute; width:400px; min-height: 200px; transition: background .2s; border: 1px solid red; padding: 3px; background: white">
+	<div style="outline:1px solid red;cursor: move">Drag me</div>
 	<a style="position: absolute; right: 2px; color: red" href="javascript:jQuery('#edev-container').remove()">Close</a>
 	Voting message:
 	<?php if (!get_option('ecwid_show_vote_message')): ?>
@@ -52,3 +53,7 @@
 		<textarea id="console-result" style="width:300px"></textarea>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+</script>
