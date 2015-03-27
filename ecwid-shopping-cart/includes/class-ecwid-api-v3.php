@@ -151,9 +151,4 @@ class Ecwid_API_V3 {
 			)
 		);
 	}
-
-    protected function _explain_get_products()
-    {
-
-    }
 }
