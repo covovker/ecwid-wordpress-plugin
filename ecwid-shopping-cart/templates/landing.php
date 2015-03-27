@@ -2,18 +2,18 @@
     <div class="ecwid-thank">
         <h1 class="on-register">
             <span><?php _e('Plugin is installed successfully!', 'ecwid-shopping-cart'); ?></span>
-            <?php _e('There are just a few steps left to start selling<br />on your WordPress site', 'ecwid-shopping-cart'); ?>
+            <?php _e('There are just a few steps left to start selling<br /> on your WordPress site', 'ecwid-shopping-cart'); ?>
         </h1>
         <h1 class="on-connect">
             <span><?php _e('Plugin is installed successfully!', 'ecwid-shopping-cart'); ?></span>
-            <?php _e('There are few little steps left to start selling<br />on your WordPress site', 'ecwid-shopping-cart'); ?>
+            <?php _e('There are few little steps left to start selling<br /> on your WordPress site', 'ecwid-shopping-cart'); ?>
         </h1>
         <div class="ecwid-thank-steps">
             <div class="ecwid-thank-step ecwid-thank-step-one<?php echo $register ?'' : ' active'; ?>">
                 <div class="ecwid-thank-step-image"><img src="<?php echo ECWID_PLUGIN_URL; ?>images/landing/ecwid.svg" class="none-active"><img src="<?php echo ECWID_PLUGIN_URL; ?>images/landing/ecwid-active.svg" class="active"></div>
                 <div class="ecwid-thank-step-description">
                     <h2><?php _e('Register', 'ecwid-shopping-cart'); ?></h2>
-                    <p><?php _e('Create a free Ecwid account to manage your<br />store and inventory. No credit card required', 'ecwid-shopping-cart'); ?></p>
+                    <p><?php _e('Create a free Ecwid account to manage your store and inventory.<br /> No credit card required', 'ecwid-shopping-cart'); ?></p>
                 </div>
             </div>
             <div class="ecwid-thank-step ecwid-thank-step-two">
@@ -22,8 +22,8 @@
                     <h2>
                         <?php _e('Connect', 'ecwid-shopping-cart'); ?>
                     </h2>
-                    <p class="on-register"><?php _e('Add your Ecwid store to your site<br />in two clicks', 'ecwid-shopping-cart'); ?></p>
-                    <p class="on-connect"><?php _e('Connect your Ecwid store to this site<br />in two clicks', 'ecwid-shopping-cart'); ?></p>
+                    <p class="on-register"><?php _e('Add your Ecwid store to your site <nobr>in two clicks</nobr>', 'ecwid-shopping-cart'); ?></p>
+                    <p class="on-connect"><?php _e('Connect your Ecwid store to this site <nobr>in two clicks</nobr>', 'ecwid-shopping-cart'); ?></p>
                 </div>
             </div>
             <div class="ecwid-thank-step ecwid-thank-step-three">
