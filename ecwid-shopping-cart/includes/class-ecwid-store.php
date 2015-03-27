@@ -5,6 +5,10 @@ if ( !defined( 'ECWID_DEMO_STORE_ID' ) ) {
 	return;
 }
 
+
+echo "start:" . ($start = microtime(true)) . "<br />";
+
+
 require_once ECWID_PLUGIN_DIR . '/includes/class-ecwid-api-v3.php';
 
 class Ecwid_Store {
@@ -15,7 +19,7 @@ class Ecwid_Store {
 	{
 		$this->api = new Ecwid_API_V3( get_ecwid_store_id() );
 
-		add_action( 'init', array($this, 'init_db_tables') );
+        add_action( 'init', array($this, 'init_db_tables') );
 	}
 
 	public function do_fetch_products_iteration() {
@@ -56,7 +60,7 @@ class Ecwid_Store {
 
 		//$date = '';
 		if (!$date) {
-			$date = $this->_get_first_order_date();
+			$date = $this->_get_first_order_day();
 
 			if (!$date) {
 				// finished
@@ -70,14 +74,12 @@ class Ecwid_Store {
 		if (!$last_order_date) {
 			return false;
 		}
-		echo $last_order_date;
 
-		$date = explode('-', $last_order_date);
-		$next_date = mktime(0, 0, 0, $date[1], $date[0] + 1, $date[2]);
-		update_option('ecwid_last_fetched_order_date', strftime('%Y-%m-%d', $next_date));
+		$next_date = $last_order_date + 60*60*24;
+		update_option('ecwid_last_fetched_order_date', $next_date);
 	}
 
-	protected function _get_first_order_date()
+	protected function _get_first_order_day()
 	{
 		$result = $this->api->get_orders(array(
 			'limit' => '1'
@@ -92,19 +94,19 @@ class Ecwid_Store {
 			'offset' => $result['total'] - 1
 		));
 
-		return $this->api->get_date_from_date_time($result['items'][0]['createDate']);
+		return $this->_get_day_start($result['items'][0]['createDate']);
 	}
 
 	/**
 	 * Fetches orders since specified date and returns last order date
 	 *
-	 * @param $since_date string Date to fetch orders from
+	 * @param $since_date int Unix timestamp date to fetch orders from
 	 *
 	 * @return last processed date
 	 */
 	protected function _fetch_orders($since_date)
 	{
-		$limit = 5;
+		$limit = 100;
 		// Unfortunately, API does not allow to sort results, therefore in order
 		// to have a persistent set of orders we have to paginate and rely on date
 		// The idea is the following
@@ -122,9 +124,9 @@ class Ecwid_Store {
 		// and larger shops with over 100 orders per day will still have no
 		// significant overhead when fetching their orders
 
-		// Fetch first 100 orders
+        // Fetch first 100 orders
 		$result = $this->api->get_orders(array(
-			'createdFrom' => $since_date,
+			'createdFrom' => $this->api->make_time($since_date),
 			'limit' => $limit
 		));
 
@@ -132,49 +134,46 @@ class Ecwid_Store {
 			return false;
 		}
 
-		$result = $this->api->get_orders(array(
-			'createdFrom' => $since_date,
+        $result = $this->api->get_orders(array(
+			'createdFrom' => $this->api->make_time($since_date),
 			'limit' => $limit,
 			'offset' => $result['total'] - $result['limit']
 		));
 
-		// Get the most recent date
+        // Get the most recent date
 		$latest_date = $since_date;
 		foreach ($result['items'] as $order) {
-			echo "$order[createDate] > $latest_date = " . ($order['createDate'] > $latest_date ? 'Y' : 'N') . '<br />';
-			if ($order['createDate'] > $latest_date) {
-				$latest_date = $order['createDate'];
+            $create_date = $this->api->parse_time($order['createDate']);
+			echo "$create_date > $latest_date = " . ($create_date > $latest_date ? 'Y' : 'N') . '<br />';
+			if ($create_date > $latest_date) {
+				$latest_date = $create_date;
 			}
 		}
 
-		$orders_sets = array(
+        $orders_sets = array(
 			$result['items']
 		);
 
-		// Fetch all orders at latest date
-		$result = $this->api->get_orders(array(
-			'createdFrom' => strftime('%Y-%m-%d %H:%M:%S', strtotime($latest_date)),
-			'createdTo' => strftime('%Y-%m-%d %H:%M:%S', strtotime($latest_date) + 60*60*24),
-			'limit' => $limit
-		));
+        $latest_date_params = array(
+            'createdFrom' => $this->api->make_time($latest_date),
+            'createdTo' => $this->api->make_time($latest_date + 60*60*24),
+            'limit' => $limit
+        );
+
+        // Fetch all orders at latest date
+		$result = $this->api->get_orders($latest_date_params);
 
 		$orders_sets[] = $result['items'];
 		$offset = 0;
 		while ($result['count'] + $result['offset'] < $result['total']) {
 			$offset += $limit;
-			$batch = $this->api->get_orders(array(
-				'createdFrom' => $latest_date,
-				'createdTo' => $latest_date,
-				'limit' => $limit,
-				'offset' => $offset
-			));
+            $latest_date_params['offset'] = $offset;
+            $batch = $this->api->get_orders($latest_date_params);
 
 			$orders_sets[] = $batch['items'];
 		}
 
-		die(var_dump($orders_sets));
-
-		// Process all fetched orders
+        // Process all fetched orders
 		$processed_orders = array();
 		foreach($orders_sets as $set) {
 			foreach ($set as $order) {
@@ -182,16 +181,13 @@ class Ecwid_Store {
 					continue;
 				}
 
-				print_r($order);
-				continue;
-
 				$this->process_order($order);
 
 				$processed_orders[] = $order['orderNumber'];
 			}
 		}
 
-		return $latest_date;
+        return $latest_date;
 	}
 
 	public function process_order($order)
@@ -204,7 +200,7 @@ class Ecwid_Store {
 					'id' => $order['orderNumber'],
 					'create_date' => $order['createDate'],
 					'payment_status' => $order['paymentStatus'],
-					'fulfillment_status' => $order['shipmentStatus'],
+					'fulfillment_status' => $order['fulfillmentStatus'],
 					'raw' => serialize($order)
 				)
 		);
@@ -325,7 +321,8 @@ class Ecwid_Store {
 		$fields = array (
 			'product_id' => 'bigint(20) NOT NULL default 0',
 			'order_id' => 'bigint(20) NOT NULL default 0',
-			'amount' => 'int(11) NOT NULL default 1'
+			'quantity' => 'int(11) NOT NULL default 1',
+            'price' => 'decimal (10, 2) NOT NULL default 0'
 		);
 
 		return array(
@@ -351,7 +348,13 @@ class Ecwid_Store {
 	{
 
 	}
+
+    protected function _get_day_start($api_time)
+    {
+        $day = date_parse($api_time);
+
+        return mktime(0, 0, 0, $day['month'], $day['day'], $day['year']);
+    }
 }
 
 $ecwid_store = new Ecwid_Store();
-$ecwid_store->init_db_tables();

@@ -37,7 +37,7 @@ add_action( 'plugins_loaded', 'ecwid_init_integrations' );
 
 if ( is_admin() ){ 
   add_action('admin_init', 'ecwid_settings_api_init');
-	add_action('admin_init', 'ecwid_check_version');
+  add_action('admin_init', 'ecwid_check_version');
   add_action('admin_notices', 'ecwid_show_admin_messages');
   add_action('admin_menu', 'ecwid_options_add_page');
   add_action('wp_dashboard_setup', 'ecwid_add_dashboard_widgets' );
@@ -52,7 +52,7 @@ if ( is_admin() ){
   add_action('admin_head', 'ecwid_send_stats');
   add_action('save_post', 'ecwid_save_post');
   add_action('init', 'ecwid_apply_theme');
-	add_action('get_footer', 'ecwid_admin_get_footer');
+  add_action('get_footer', 'ecwid_admin_get_footer');
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
   add_shortcode('ecwid_minicart', 'ecwid_minicart_shortcode');
@@ -1188,14 +1188,7 @@ function ecwid_show_admin_messages() {
 
 	global $ecwid_store;
 
-	update_option('ecwid_last_fetched_order_date', null);
-	$ecwid_store->do_fetch_orders_iteration();
-	$ecwid_store->do_fetch_orders_iteration();
-	$ecwid_store->do_fetch_orders_iteration();
-	$ecwid_store->do_fetch_orders_iteration();
-	$ecwid_store->do_fetch_orders_iteration();
-
-	if (is_admin()) {
+    if (is_admin()) {
 		Ecwid_Message_Manager::show_messages();
 	}
 }

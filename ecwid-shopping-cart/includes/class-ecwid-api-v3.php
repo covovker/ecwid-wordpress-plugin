@@ -37,7 +37,7 @@ class Ecwid_API_V3 {
 
 	public function get_orders($params)
 	{
-		$def = $this->_explain_get_orders();
+        $def = $this->_explain_get_orders();
 
 		$endpoint = sprintf(
 			'https://app.ecwid.com/api/v3/%s/%s',
@@ -48,9 +48,9 @@ class Ecwid_API_V3 {
 
 		$params = $this->_prepare_params($def['params'], $params);
 
-		$result = EcwidPlatform::fetch_url($endpoint . '?' . http_build_query($params));
+        $result = EcwidPlatform::fetch_url($endpoint . '?' . http_build_query($params));
 
-		if ($result['code'] == 200 && isset($result['data'])) {
+        if ($result['code'] == 200 && isset($result['data'])) {
 			$result = json_decode($result['data'], true);
 		} else {
 			$result = false;
@@ -64,19 +64,15 @@ class Ecwid_API_V3 {
 		return get_option( 'ecwid_oauth_token' );
 	}
 
-	/**
-	 * Extracts date compatible with API from date time returned by API
-	 *
-	 * @param $datetime
-	 */
-	public function get_date_from_date_time($datetime)
-	{
-		return substr(
-			$datetime,
-			0,
-			10 // strlen('YYYY-MM-DD')
-		);
-	}
+    public function make_time($time)
+    {
+        return strftime('%Y-%m-%d %H:%M:%S', $time);
+    }
+
+    public function parse_time($api_time)
+    {
+        return strtotime($api_time);
+    }
 
 	/**
 	 * Prepares params array according to params definition. Filters redundant
@@ -155,4 +151,9 @@ class Ecwid_API_V3 {
 			)
 		);
 	}
+
+    protected function _explain_get_products()
+    {
+
+    }
 }
