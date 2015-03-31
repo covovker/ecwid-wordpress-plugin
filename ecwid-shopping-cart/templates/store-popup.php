@@ -8,7 +8,7 @@
 			<div class="media-frame wp-core-ui hide-router">
 				<div class="media-frame-menu">
 					<div class="media-menu">
-						<a href="#" class="media-menu-item" data-content="add-store"><?php _e('Add store', 'ecwid-shopping-cart'); ?></a>
+						<a href="#" class="media-menu-item" data-content="add-store"><?php _e('Add Store', 'ecwid-shopping-cart'); ?></a>
 						<a href="#" class="media-menu-item" data-content="store-settings"><?php _e('Store settings', 'ecwid-shopping-cart'); ?></a>
 						<a href="#" class="media-menu-item" data-content="appearance"><?php _e('Appearance', 'ecwid-shopping-cart'); ?></a>
 					</div>
