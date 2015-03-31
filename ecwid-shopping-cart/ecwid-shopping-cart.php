@@ -243,6 +243,10 @@ function ecwid_add_frontend_styles() {
 	wp_register_script('ecwid-products-list-js', plugins_url('ecwid-shopping-cart/js/products-list.js'), array('jquery-ui-widget'));
 	wp_register_style('ecwid-products-list-css', plugins_url('ecwid-shopping-cart/css/products-list.css'));
 	wp_enqueue_style('ecwid-css', plugins_url('ecwid-shopping-cart/css/frontend.css'));
+
+	if (is_active_widget(false, false, 'ecwidrecentlyviewed')) {
+		wp_enqueue_script('ecwid-recently-viewed', plugins_url('ecwid-shopping-cart/js/recently-viewed-common.js'), array('jquery', 'utils'), false, true);
+	}
 }
 
 function ecwid_load_textdomain() {

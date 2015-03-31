@@ -1,18 +1,13 @@
 jQuery.widget('ecwid.productsList', {
-	container: null,
-
-	products: {
-	},
-
-	options: {
-		max: 3
-	},
-
-	sort: [],
-
-	_prefix: 'ecwid-productsList',
 
 	_create: function() {
+
+		this.products = {};
+		this.container = null;
+		this._prefix = 'ecwid-productsList';
+		this.sort = [];
+
+
 		this.element.addClass(this._prefix);
 		this._removeInitialContent();
 		this.container = jQuery('<ul>').appendTo(this.element);

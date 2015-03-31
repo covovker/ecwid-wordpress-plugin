@@ -47,42 +47,8 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 			this._addToSort(product.id);
 		}
 
-		this._refreshCookies(product);
-
 		this._render();
 	},
-
-	_refreshCookies: function(product)
-  {
-		var cookieName = 'ecwid-shopping-cart-recently-viewed';
-
-		var cookie = JSON.parse(wpCookies.get(cookieName));
-
-		if (cookie == null || typeof(cookie) != 'object') {
-			cookie = {last: 0, products: []};
-		}
-
-		var expires = new Date;
-		expires.setMonth(expires.getMonth() + 1);
-
-		var src = jQuery('script[src*="app.ecwid.com/script.js?"]').attr('src');
-		var re = /app.ecwid.com\/script.js\?(\d*)/;
-		cookie.store_id = src.match(re)[1];
-
-		for (var i = 0; i < cookie.products.length; i++) {
-			if (cookie.products[i].id == product.id) {
-				cookie.products.splice(i, 1);
-			}
-		}
-
-		cookie.products.unshift({
-			id: product.id,
-			link: product.link
-		});
-
-		wpCookies.set(cookieName, JSON.stringify(cookie), expires.toUTCString() );
-
-  },
 
 	_getProductsToShow: function() {
 		// copy array using slice
