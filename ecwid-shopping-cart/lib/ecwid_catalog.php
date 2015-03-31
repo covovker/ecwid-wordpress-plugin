@@ -107,11 +107,11 @@ class EcwidCatalog
 					}
 					   if($product_options["type"] == "TEXTAREA")
 					{
-						 $return .=$this->_l('<textarea name="' . EcwidPlatform::esc_attr($product_options["name"]) . '></textarea>');
+						 $return .=$this->_l('<textarea name="' . EcwidPlatform::esc_attr($product_options["name"]) . '"></textarea>');
 					}
 					if ($product_options["type"] == "SELECT")
 					{
-						$return .= $this->_l('<select name='. $product_options["name"].'>', 1);
+						$return .= $this->_l('<select name="'. $product_options["name"].'">', 1);
 						foreach ($product_options["choices"] as $options_param) 
 						{ 
 							$return .= $this->_l(
