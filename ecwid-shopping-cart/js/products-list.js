@@ -6,12 +6,15 @@ jQuery.widget('ecwid.productsList', {
 		this.container = null;
 		this._prefix = 'ecwid-productsList';
 		this.sort = [];
+		this.options = {
+			max: 3,
+			debug: false
+		};
 
 
 		this.element.addClass(this._prefix);
 		this._removeInitialContent();
 		this.container = jQuery('<ul>').appendTo(this.element);
-		this._setOption('debug', false);
 		this._initFromHtmlData();
 		this._readSingleProducts();
 		this._onWindowResize();
@@ -148,7 +151,7 @@ jQuery.widget('ecwid.productsList', {
 	},
 
 	_getProductsToShow: function() {
-		return this.sort.slice(0, this.options.max);
+		return this.sort.slice(0, this.option('max'));
 	},
 
 	_addToSort: function(id) {
@@ -158,7 +161,6 @@ jQuery.widget('ecwid.productsList', {
 	_triggerError: function(message) {
 		message = 'ecwid.productsList ' + message;
 		if (this.options.debug) {
-			debugger;
 			alert(message);
 		}
 		console.log(message);

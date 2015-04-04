@@ -24,7 +24,7 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 
 					setTimeout(function() {
 						self.addViewedProduct(product);
-					}, 300);
+					}, 500);
 				}
 			}
 		);
@@ -70,7 +70,8 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 			}
 		}
 
-		return sort.reverse().slice(0, this.options.max);
+		debugger;
+		return sort.reverse().slice(0, this.option('max')).reverse();
 	}
 });
 
