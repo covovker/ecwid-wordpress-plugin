@@ -274,7 +274,7 @@ msgstr ""
 msgid "Don't have Ecwid account? Create it here"
 msgstr ""
 
-msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>"
+msgid "Questions? Visit <a %s>Ecwid support center</a>"
 msgstr ""
 
 msgid "Store ID"
@@ -421,7 +421,7 @@ msgstr ""
 msgid "New features available, reconnect to be in touch with our updates"
 msgstr ""
 
-msgid "Add store"
+msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>"
 msgstr ""
 
 msgid "Store settings"
@@ -456,3 +456,4 @@ msgstr ""
 
 msgid "Demo Store"
 msgstr ""
+

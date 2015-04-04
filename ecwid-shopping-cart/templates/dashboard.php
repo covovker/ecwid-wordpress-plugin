@@ -41,10 +41,10 @@
 
 			<ul class="greeting-links">
 				<li>
-					<a href="<?php echo ecwid_get_store_page_url(); ?>"><?php _e('Visit storefront', 'ecwid-shopping-cart'); ?></a>
+					<a target="_blank" href="<?php echo ecwid_get_store_page_url(); ?>"><?php _e('Visit storefront', 'ecwid-shopping-cart'); ?></a>
 				</li>
 				<li>
-					<a href="//my.ecwid.com/cp?source=wporg"><?php _e('Open control panel', 'ecwid-shopping-cart'); ?></a>
+					<a target="_blank" href="//my.ecwid.com/cp?source=wporg"><?php _e('Open control panel', 'ecwid-shopping-cart'); ?></a>
 				</li>
 			</ul>
 
@@ -54,5 +54,5 @@
 		</div>
 
 	</div>
-	<p><?php _e('Questions? Visit <a href="http://help.ecwid.com/?source=wporg">Ecwid support center</a>', 'ecwid-shopping-cart'); ?></p>
+	<p><?php echo sprintf(__('Questions? Visit <a %s>Ecwid support center</a>', 'ecwid-shopping-cart'), 'target="_blank" href="http://help.ecwid.com/?source=wporg"'); ?></p>
 </div>

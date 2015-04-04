@@ -274,8 +274,8 @@ msgstr "Ошибка подключения: после нажатия на кн
 msgid "Don't have Ecwid account? Create it here"
 msgstr "Ещё нет аккаунта в Эквиде? Зарегистрируйтесь"
 
-msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>"
-msgstr "Есть вопросы? Посетите <a href=\"http://help.ecwid.com/?source=wporg\">Центр поддержки Эквида (англ)</a> или <a href=\"http://www.ecwid.com/forums/forumdisplay.php?f=10\"> русскоязычный раздел форума</a>"
+msgid "Questions? Visit <a %s>Ecwid support center</a>"
+msgstr "Есть вопросы? Посетите <a %s>Центр поддержки Эквида (англ)</a> или <a target=\"_blank\" href=\"http://www.ecwid.com/forums/forumdisplay.php?f=10\"> русскоязычный раздел форума</a>"
 
 msgid "Store ID"
 msgstr "ID Магазина"
