@@ -107,6 +107,11 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 3.0.1 =
+- Added Russian translation of the new plugin settings and registration pages
+- Fixed a few layout issues on the new registration page in the plugin backend
+
+
 = 3.0 =
 - **New sidebar widget: Recently Viewed Products.** A new Ecwid's sidebar widget is now available – your site can now show the products that the customer has recently visited. The links and images in the sidebar are updated automatically, so the customer can return to the product they previously opened and probably decide to buy it. This will increase visibility of your products for the customers and generate more sales. Enable the new widget under Appearance->Widgets menu in your admin backend.
 - **New design of the plugin Dashboard.** The dashboard ("Ecwid") page in the plugin backend is now nicer and more useful. 
