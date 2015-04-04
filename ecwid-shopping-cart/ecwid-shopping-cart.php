@@ -386,6 +386,30 @@ function ecwid_check_version()
 	}
 }
 
+function ecwid_log_error($message)
+{
+	$errors = get_option('ecwid_error_log');
+	if (!$errors) {
+		$errors = array();
+	} else {
+		$errors = json_decode($errors);
+		if (!is_array($errors)) {
+			$errors = array();
+		}
+	}
+
+	while (count($errors) > 10) {
+		array_shift($errors);
+	}
+
+	$errors[] = array(
+		'message' => $message,
+		'date' => strftime('%c')
+	);
+
+	update_option('ecwid_error_log', json_encode($errors));
+}
+
 function ecwid_plugin_add_oauth()
 {
 	add_option('ecwid_oauth_client_id', 'RD4o2KQimiGUrFZc');

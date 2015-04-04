@@ -45,14 +45,19 @@ class Ecwid_OAuth {
 		$params['grant_type'] = 'authorization_code';
 
 		$return = wp_remote_post('https://my.ecwid.com/api/oauth/token', array('body' => $params));
-		$result = json_decode($return['body']);
+
+		if (is_array($return) && isset($return['body'])) {
+			$result = json_decode($return['body']);
+		}
 
 		if (
-			!isset( $result->store_id )
+			!is_array($return)
+			|| !isset( $result->store_id )
 			|| !isset( $result->scope )
 			|| !isset( $result->access_token )
 			|| ( $result->token_type != 'Bearer' )
 		) {
+			ecwid_log_error(json_encode($return));
 			return $this->trigger_auth_error();
 		}
 
