@@ -373,15 +373,23 @@ function ecwid_check_version()
 
 	if ($fresh_install) {
 
+		ecwid_plugin_add_oauth();
 		do_action('ecwid_plugin_installed', $current_version);
 		add_option('ecwid_plugin_version', $current_version);
 
 	} elseif ($upgrade) {
 
+		ecwid_plugin_add_oauth();
 		do_action('ecwid_plugin_upgraded', array( 'old' => $stored_version, 'new' => $current_version ) );
 		update_option('ecwid_plugin_version', $current_version);
 
 	}
+}
+
+function ecwid_plugin_add_oauth()
+{
+	add_option('ecwid_oauth_client_id', 'RD4o2KQimiGUrFZc');
+	add_option('ecwid_oauth_client_secret', 'jEPVdcA3KbzKVrG8FZDgNnsY3wKHDTF8');
 }
 
 function ecwid_override_option($name, $new_value = null)
@@ -1147,8 +1155,7 @@ EOT;
 	// Does not affect updates, automatically turned on for new users only
 	add_option("ecwid_advanced_theme_layout", get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', 'yes');
 
-	add_option('ecwid_oauth_client_id', 'RD4o2KQimiGUrFZc');
-	add_option('ecwid_oauth_client_secret', 'jEPVdcA3KbzKVrG8FZDgNnsY3wKHDTF8');
+	/* All new options should go to check_version thing */
 
 	$id = get_option("ecwid_store_page_id");	
 	$_tmp_page = null;
