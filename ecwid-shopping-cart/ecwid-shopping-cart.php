@@ -5,7 +5,7 @@ Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
 Text Domain: ecwid-shopping-cart
 Author: Ecwid Team
-Version: 3.0.1
+Version: 3.0.2
 Author URI: http://www.ecwid.com?source=wporg
 */
 
@@ -414,6 +414,9 @@ function ecwid_plugin_add_oauth()
 {
 	add_option('ecwid_oauth_client_id', 'RD4o2KQimiGUrFZc');
 	add_option('ecwid_oauth_client_secret', 'jEPVdcA3KbzKVrG8FZDgNnsY3wKHDTF8');
+
+	update_option('ecwid_oauth_client_id', 'RD4o2KQimiGUrFZc');
+	update_option('ecwid_oauth_client_secret', 'jEPVdcA3KbzKVrG8FZDgNnsY3wKHDTF8');
 }
 
 function ecwid_override_option($name, $new_value = null)
@@ -767,10 +770,10 @@ function ecwid_content_started($content)
 
 function ecwid_wrap_shortcode_content($content, $name)
 {
-    return "<!-- Ecwid shopping cart plugin v 3.0.1 -->"
+    return "<!-- Ecwid shopping cart plugin v 3.0.2 -->"
 		   . ecwid_get_scriptjs_code()
 	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
-		   . "<!-- END Ecwid Shopping Cart v 3.0.1 -->";
+		   . "<!-- END Ecwid Shopping Cart v 3.0.2 -->";
 }
 
 function ecwid_get_scriptjs_code($force_lang = null) {
@@ -1266,8 +1269,6 @@ function ecwid_uninstall() {
     delete_option("ecwid_installation_date");
     delete_option('ecwid_hide_appearance_menu');
     delete_option("ecwid_advanced_theme_layout");
-    delete_option('ecwid_oauth_client_id');
-    delete_option('ecwid_oauth_client_secret');
 }
 
 function ecwid_abs_intval($value) {
