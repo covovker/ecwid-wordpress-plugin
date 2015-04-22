@@ -1518,8 +1518,8 @@ function get_ecwid_store_id() {
 }
 
 function ecwid_dashboard_widget_function() {
-echo "<a href=\"https://my.ecwid.com/\" target=\"_blank\">Go to the Ecwid Control Panel</a><br /><br /><a href=\"http://kb.ecwid.com/\" target=\"_blank\">Ecwid Knowledge Base</a>&nbsp;|&nbsp;<a href=\"http://www.ecwid.com/forums/\" target=\"_blank\">Ecwid Forums</a>";
-} 
+	require_once ECWID_PLUGIN_DIR . 'templates/wp-dashboard-widget.php';
+}
 
 function ecwid_add_dashboard_widgets() {
   if (current_user_can('administrator')) {
