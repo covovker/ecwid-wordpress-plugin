@@ -35,7 +35,7 @@ function ecwid_get_theme_identification()
 
 function ecwid_apply_theme($theme_name = null)
 {
-	$themes = array('bretheon', 'responsive', 'twentyfourteen', 'pagelines', 'envision', 'twentyfifteen');
+	$themes = array('bretheon', 'responsive', 'twentyfourteen', 'pagelines', 'envision', 'twentyfifteen', 'customizr');
 
 	if (empty($theme_name)) {
 		$theme_name = ecwid_get_theme_identification();
