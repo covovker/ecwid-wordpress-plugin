@@ -52,6 +52,11 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 		this._render();
 	},
 
+	render: function() {
+		this._superApply(arguments);
+		jQuery('.show-if-empty', this.el).hide();
+	},
+
 	_getProductsToShow: function() {
 		// copy array using slice
 		var sort = this.sort.slice();

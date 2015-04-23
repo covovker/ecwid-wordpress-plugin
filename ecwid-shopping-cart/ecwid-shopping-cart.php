@@ -2069,6 +2069,10 @@ HTML;
 
 		echo "</div>";
 
+		if (empty($recently_viewed->products)) {
+			echo '<a class="show-if-empty" href="' . ecwid_get_store_page_url() . '">' . __('Store', 'ecwid-shopping-cart') . '</a>';
+		}
+
 		echo $after_widget;
 	}
 
