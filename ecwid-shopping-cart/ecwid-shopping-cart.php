@@ -2280,17 +2280,22 @@ function ecwid_sso() {
     global $current_user;
     get_currentuserinfo();
 
+
+
     if ($current_user->ID) {
+			$meta = get_user_meta($current_user->ID);
+
+
         $user_data = array(
             'appId' => "wp_" . get_ecwid_store_id(),
             'userId' => "{$current_user->ID}",
             'profile' => array(
             'email' => $current_user->user_email,
             'billingPerson' => array(
-                'name' => $current_user->display_name
-            )
-            )
-        );
+                'name' => $meta['first_name'][0] . ' ' . $meta['last_name'][0]
+						)
+        )
+      );
    $user_data = base64_encode(json_encode($user_data));
     $time = time();
     $hmac = ecwid_hmacsha1("$user_data $time", $key);
