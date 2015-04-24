@@ -655,7 +655,7 @@ function ecwid_meta_description() {
 
 	$description = preg_replace('![\p{Z}\s]{1,}!u', ' ', $description);
 	$description = trim($description, " \t\xA0\n\r"); // Space, tab, non-breaking space, newline, carriage return
-	$description = mb_substr($description, 0, 160);
+	$description = mb_substr($description, 0, 160, 'UTF-8');
 	$description = htmlspecialchars($description, ENT_COMPAT, 'UTF-8');
 
     echo <<<HTML
