@@ -1,20 +1,20 @@
 (function() {
 
 if (typeof jQuery == 'undefined') {
-	throw new Error('recently-viewed-common.js requires jquery');
+	console.warn('recently-viewed-common.js requires jquery');
 }
 
 if (typeof Ecwid == 'undefined') {
-	throw new Error('recently-viewed-common.js must be included after Ecwid object initialization');
+	console.warn('recently-viewed-common.js must be included after Ecwid object initialization');
 }
 
 if (typeof wpCookies == 'undefined') {
-	throw new Error('recently-viewed-common.js requires utils');
+	console.warn('recently-viewed-common.js requires utils');
 }
 
 if (wpCookies.get('test_ecwid_shopping_cart_recently_products_cookie') != 'test_ecwid_shopping_cart_cookie_value') {
 	wpCookies.set('test_ecwid_shopping_cart_recently_products_cookie', 'test_ecwid_shopping_cart_cookie_value', '', '/');
-	throw new Error('recently-viewed-common.js requires enabled cookies');
+	console.warn('recently-viewed-common.js requires enabled cookies');
 }
 
 Ecwid.OnPageLoaded.add(function(page) {
