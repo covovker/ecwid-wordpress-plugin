@@ -80,6 +80,7 @@ XML;
 	// A callback for the streaming sitemap builder
 	public function sitemap_callback($url, $priority, $frequency)
 	{
+		$url = htmlspecialchars($url);
 		$this->sitemap .= <<<XML
 	<url>
 		<loc>$url</loc>
