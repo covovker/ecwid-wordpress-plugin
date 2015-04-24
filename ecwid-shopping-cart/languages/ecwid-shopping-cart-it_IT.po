@@ -1,118 +1,11 @@
-msgid ""
-msgstr ""
-"Project-Id-Version: Ecwid Shopping Cart 2.0\n"
-"PO-Revision-Date: 2013-10-28 20:42+0100\n"
-"Last-Translator: Luciano Del Fico <info@myweb2.it>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"Language-Team: Luciano Del Fico <luciano@myweb2.it>\n"
-"X-Generator: Poedit 1.5.7\n"
-"Language: it_IT\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+msgid "Ecwid Shopping Cart"
+msgstr "Ecwid Shopping Cart"
 
-msgid "<strong>Ecwid shopping cart is almost ready</strong>. Please visit <a target=\"_blank\" href=\"%s\">the created page</a> to see your store with demo products. In order to finish the installation, please go to the <a href=\"admin.php?page=ecwid\"><strong>Ecwid settings</strong></a> and configure the plugin."
-msgstr "<strong>Ecwid shopping cart è pronto</strong>. Visita <a target=\"_blank\" href=\"%s\">la pagina creata</a> per vedere il tuo negozio con alcuni prodotti dimostrativi. Per completare l'installazione, vai alle <a href=\"admin.php?page=ecwid\"><strong>impostazioni Ecwid</strong></a> e configura il plugin."
+msgid "Ecwid Team"
+msgstr "Ecwid Team"
 
-msgid "Account status"
-msgstr "Tipo account"
-
-msgid "Advanced"
-msgstr "Avanzate"
-
-msgid "Advanced settings"
-msgstr "Impostazioni avanzate"
-
-msgid "Appearance"
-msgstr "Visualizzazione"
-
-msgid "Appearance settings"
-msgstr "Impostazioni visualizzazione"
-
-msgid "Billing and plans"
-msgstr "Fatturazione e Piani"
-
-msgid "By default, the storefront shows a list of root categories. You can override this behavior and show a different category when customers open your store for the first time. This is useful if you only have one category or want to display a specific set of items (e.g. \"Featured Products\") to new visitors."
-msgstr "Per impostazione predefinita, la vetrina mostra un elenco di categorie principali. È possibile ignorare questo comportamento e mostrare una categoria diversa quando i clienti aprono il negozio per la prima volta. E 'utile se si dispone di una sola categoria o si desidera visualizzare uno specifico insieme di elementi (es. \"Prodotti in evidenza\")  a tutti i nuovi visitatori."
-
-msgid "Category shown by default"
-msgstr "Categoria visualizzata come predefinita"
-
-msgid "Congratulations!"
-msgstr "Congratulazioni!"
-
-msgid "Control panel"
-msgstr "Pannello di Controllo"
-
-msgid "Create a new Ecwid account which you will use to manage your store and inventory. The registration is free."
-msgstr "Crea un nuovo account su Ecwid che verrà utilizzato per gestire il tuo negozio e magazzino. La registrazione è gratuita."
-
-msgid "Create new Ecwid account"
-msgstr "Crea un nuovo account Ecwid"
-
-msgid "Default category ID"
-msgstr "ID categoria predefinita"
-
-msgid "Default view mode on product pages"
-msgstr "Modalità di visualizzazione predefinita sulle pagine prodotti"
-
-msgid "Default view mode on search results"
-msgstr "Modalità di visualizzazione predefinita nei risultati di ricerca"
-
-msgid "Display horizontal categories above products"
-msgstr "Visualizza le categorie orizzontali sopra i prodotti"
-
-msgid "Display search box above products"
-msgstr "Mostra casella di ricerca sopra prodotti"
-
-msgid "Ecwid Search Box"
-msgstr "Casella di ricerca negozio"
-
-msgid "Ecwid Shopping Bag (Mini view)"
-msgstr "Carrello Ecwid Shopping (Mini)"
-
-msgid "Ecwid Shopping Bag (Normal)"
-msgstr "Carrello Ecwid Shopping Bag (Normale)"
-
-msgid "Ecwid Shopping Cart — Advanced settings"
-msgstr "Ecwid Shopping Cart — Impostazioni Avanzate"
-
-msgid "Ecwid Shopping Cart — Appearance settings"
-msgstr "Ecwid Shopping Cart — Impostazioni di visualizzazione"
-
-msgid "Ecwid Shopping Cart — General settings"
-msgstr "Ecwid Shopping Cart — Impostazioni Generali"
-
-msgid "Ecwid Store"
-msgstr "Negozio Ecwid"
-
-msgid "Ecwid Vertical Categories"
-msgstr "Categorie Verticali Ecwid "
-
-msgid "Ecwid shopping cart settings"
-msgstr "Impostazioni Ecwid shopping cart"
-
-msgid "Enable minicart attached to horizontal categories"
-msgstr "Abilita carrello attaccato alle categorie orizzontali"
-
-msgid "Enter your Store ID"
-msgstr "Aggiungi il tuo ID Negozio"
-
-msgid "Enter your Store ID here:"
-msgstr "Aggiungi qui il tuo ID Negozio:"
-
-msgid "Find your Store ID"
-msgstr "Cerca id tuo ID Negozio"
-
-msgid "Free"
-msgstr "Gratuito"
-
-msgid "General"
-msgstr "Generale"
-
-msgid "General settings"
-msgstr "Impostazioni Generali"
+msgid "Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up."
+msgstr "Ecwid è un negozio online, completamente gratuito. E' facilmente integrabile con qualsiasi blog Wordpress e sono necessari meno di 5 minuti per configurarlo."
 
 msgid "Get help"
 msgstr "Chiedi aiuto"
@@ -120,35 +13,8 @@ msgstr "Chiedi aiuto"
 msgid "Go to Ecwid site"
 msgstr "Vai al sito Ecwid"
 
-msgid "Greetings!"
-msgstr "Auguri!"
-
-msgid "Grid"
-msgstr "Griglia"
-
-msgid "Grid view"
-msgstr "Visualizza come griglia"
-
-msgid "Here you can control how many products will be displayed per page. These options define maximum values. If there is not enough space to show all product columns, Ecwid will adapt the number of columns to hold all products."
-msgstr "Qui è possibile controllare il numero di prodotti da visualizzare per pagina. Queste opzioni definiscono valori massimi. Se non c'è abbastanza spazio per mostrare tutte le colonne dei prodotto, Ecwid adatterà il numero di colonne a tutti i prodotti."
-
-msgid "I already have Ecwid account, sign in"
-msgstr "Ho già un account Ecwid"
-
-msgid "If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>."
-msgstr "Se desideri collegare un altro negozio Ecwid, è possibile <a %s>scollegare e modificare il tuo attuale ID</a>."
-
-msgid "In order to enable this feature, opt to use a secret key. You will find this key in your Ecwid control panel, at \"System Settings > API > Single Sign-On API\" page. This feature is available for <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">paid users</a> only."
-msgstr "Per abilitare questa funzione è necessario essere in possesso di una chiave segreta. Troverete questo tasto nel pannello di controllo Ecwid,  in \"Impostazioni di sistema > API > Single Sign-on API\" . Questa funzione è disponibile per tutti gli <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">utenti paganti</a>."
-
-msgid "In order to set this option, <a %s>find an ID of the necessary category</a> and save it here."
-msgstr "Per attivare questa opzione, <a %s> cerca un ID della categoria necessaria</a> e salvalo qui."
-
-msgid "List"
-msgstr "Elenco"
-
-msgid "List view"
-msgstr "Visualizza come elenco"
+msgid "Visit storefront"
+msgstr "Visita la vetrina del negozio"
 
 msgid "Manage my store"
 msgstr "Gestione negozio"
@@ -156,95 +22,438 @@ msgstr "Gestione negozio"
 msgid "Manage plugin settings"
 msgstr "Impostazioni plugin"
 
+msgid "→ Sell on Facebook"
+msgstr "→ Vendi su Facebook"
+
+msgid "<a %s>Online store powered by Ecwid</a>"
+msgstr "<a %s>Negozio online powered by Ecwid</a>"
+
+msgid "Store"
+msgstr "Negozio"
+
+msgid "Ecwid shopping cart settings"
+msgstr "Impostazioni Ecwid shopping cart"
+
+msgid "Ecwid Store"
+msgstr "Negozio Ecwid"
+
+msgid "Setup"
+msgstr "Opzioni"
+
+msgid "Dashboard"
+msgstr "Pannello"
+
+msgid "Appearance settings"
+msgstr "Impostazioni visualizzazione"
+
+msgid "Appearance"
+msgstr "Visualizzazione"
+
+msgid "Advanced settings"
+msgstr "Impostazioni avanzate"
+
+msgid "Advanced"
+msgstr "Avanzate"
+
+msgid "Hidden category"
+msgstr "Categoria nascosta"
+
+msgid "If you like Ecwid and want to help it grow and become the most popular e-commerce solution, you can now add a fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid."
+msgstr "Se ti piace Ecwid e vuoi aiutarlo a crescere in modo da farlo diventare la soluzione e-commerce più popolare, è ora possibile aggiungere un badge 'Powered by Ecwid' sul tuo sito per mostrare ai tuoi visitatori che sei un utente fiero di Ecwid."
+
+msgid "Ecwid Badge"
+msgstr "Ecwid Badge"
+
+msgid "Ecwid shopping cart widget"
+msgstr "Widget Ecwid"
+
+msgid "Ecwid ecommerce solution"
+msgstr "Soluzione ecommerce Ecwid"
+
+msgid "Ecwid free shopping cart"
+msgstr "Ecwid carrello gratuito"
+
+msgid "Ecwid shopping cart"
+msgstr "Ecwid shopping cart"
+
+msgid "Ecwid e-commerce widgets"
+msgstr "Widget Ecwid e-commerce "
+
+msgid "Your store's minicart"
+msgstr "Carrello del tuo negozio"
+
+msgid "Ecwid Shopping Bag (Normal)"
+msgstr "Carrello Ecwid Shopping Bag (Normale)"
+
+msgid "Ecwid Shopping Bag (Mini view)"
+msgstr "Carrello Ecwid Shopping (Mini)"
+
+msgid "Your store's search box"
+msgstr "La casella di ricerca del tuo negozio"
+
+msgid "Ecwid Search Box"
+msgstr "Casella di ricerca negozio"
+
+msgid "Vertical menu of categories"
+msgstr "Menu verticale categorie"
+
+msgid "Ecwid Vertical Categories"
+msgstr "Categorie Verticali Ecwid "
+
+msgid "A link to your store page"
+msgstr "Un link alla tua pagina del negozio"
+
+msgid "Ecwid Store Page Link"
+msgstr "Link alla pagina negozio Ecwid"
+
+msgid "Shop"
+msgstr "Negozio"
+
+msgid "A list of products recently viewed by a customer. Add this widget to the sidebar to let them later return to the products they saw in your shop."
+msgstr "Un elenco di prodotti visualizzate di recente da un cliente. Aggiungi questo widget nella barra laterale per farli tornare successivamente per i prodotti che hanno visto nel tuo negozio."
+
+msgid "Recently Viewed Products"
+msgstr "Prodotti visti recentemente"
+
+msgid "Number of products to show"
+msgstr "Numero di prodotti da mostrare"
+
+msgid "Greetings! Your Ecwid store is now active."
+msgstr "Congratulazioni! Il tuo negozio Ecwid è ora attivo."
+
+msgid "Take a few simple steps to complete store setup"
+msgstr "Ora esegui alcuni semplici step per completare la configurazione del negozio"
+
+msgid "Set up Ecwid Store"
+msgstr "Imposta Negozio Ecwid"
+
+msgid "Good job! Your store is set up and you're ready to sell."
+msgstr "Ottimo lavoro! Il tuo negozio è stato configurato e ora sei pronto a vendere."
+
+msgid "Now you can fine-tune your store's appearance"
+msgstr "Ora è possibile ottimizzare l'aspetto del tuo negozio"
+
+msgid "Visit Storefront"
+msgstr "Visita la vetrina del negozio"
+
+msgid "Configure Appearance"
+msgstr "Configurare l'aspetto"
+
+msgid "Your store is almost ready!"
+msgstr "Il negozio è quasi pronto!"
+
+msgid "Connect your Ecwid account with this site to complete setup and start selling"
+msgstr "Collega il tuo account Ecwid con questo sito per completare l'installazione e iniziare a vendere"
+
+msgid "Connect Your Ecwid Store"
+msgstr "Collega il tuo negozio Ecwid"
+
+msgid "To add extra functions to your store, drag and drop Ecwid store elements on your site. When you're done, you can get back to modifying your settings."
+msgstr "Per aggiungere funzioni extra al tuo negozio, trascina e rilascia gli elementi del negozio Ecwid sul tuo sito. Quando hai finito, è possibile tornare indietro per modificare le impostazioni."
+
+msgid "Back to Store Settings"
+msgstr "Torna alle impostazioni del negozio"
+
+msgid "Do you like your Ecwid online store? We'd appreciate it if you add your review and vote for the plugin on Wordpress site."
+msgstr "Ti piace il tuo negozio online Ecwid? Apprezzeremmo se aggiungi la recensione e il voto per il plugin sul sito Wordpress."
+
+msgid "Rate Ecwid at WordPress.org"
+msgstr "Valuta Ecwid su WordPress.org"
+
+msgid "Add Store"
+msgstr "Aggiungi Negozio"
+
+msgid "Edit Store"
+msgstr "Modifica Negozio"
+
+msgid "Edit Appearance"
+msgstr "Modifica l'aspetto"
+
+msgid "Price"
+msgstr "Prezzo"
+
+msgid "Never show this message again"
+msgstr "Non mostrare più questo messaggio"
+
+msgid "Ecwid Shopping Cart — Advanced settings"
+msgstr "Ecwid Shopping Cart — Impostazioni Avanzate"
+
+msgid "Category shown by default"
+msgstr "Categoria visualizzata come predefinita"
+
+msgid "Store root category"
+msgstr "Categoria principale negozio"
+
+msgid "Default category ID"
+msgstr "ID categoria predefinita"
+
+msgid "By default, the storefront shows a list of root categories. You can override this behavior and show a different category when customers open your store for the first time. This is useful if you only have one category or want to display a specific set of items (e.g. \"Featured Products\") to new visitors."
+msgstr "Per impostazione predefinita, la vetrina mostra un elenco di categorie principali. È possibile ignorare questo comportamento e mostrare una categoria diversa quando i clienti aprono il negozio per la prima volta. E 'utile se si dispone di una sola categoria o si desidera visualizzare uno specifico insieme di elementi (es. \"Prodotti in evidenza\")  a tutti i nuovi visitatori."
+
+msgid "In order to set this option, <a %s>find an ID of the necessary category</a> and save it here."
+msgstr "Per attivare questa opzione, <a %s> cerca un ID della categoria necessaria</a> e salvalo qui."
+
+msgid "Single Sign-On Secret Key"
+msgstr "Registrazione  Sign-On Secret Key"
+
+msgid "Single Sign-On Secret Key is an option that allows your customers access to your WordPress site as well as the Ecwid shopping cart. When customers log in to your site, they will automatically be logged in to your Ecwid store as well. It makes sense to enable this feature if your visitors actually create accounts in your WordPress website."
+msgstr "Questa funzione opzionale consente di abilitare la Sign-on Secret Key, quando i clienti sono registrati al sito, si accede automaticamente al tuo negozio Ecwid, anche se non dispongono di un account del negozio . Ha senso attivare questa funzione, se i visitatori effettivamente hanno creato un account nel tuo sito WordPress."
+
+msgid "In order to enable this feature, opt to use a secret key. You will find this key in your Ecwid control panel, at \"System Settings > Apps > Legacy API Keys > Single Sign-On Secret Key\" page. This feature is available for <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">paid users</a> only."
+msgstr "Per abilitare questa funzione è necessario essere in possesso di una chiave segreta. Troverai questo pulsante nel pannello di controllo Ecwid,  in \"Impostazioni di sistema > Apps > Single Sign-on API secret key\" . Questa funzione è disponibile per tutti gli <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">utenti paganti</a>."
+
+msgid "Save changes"
+msgstr "Salva modifiche"
+
+msgid "Ecwid Shopping Cart — Appearance settings"
+msgstr "Ecwid Shopping Cart — Impostazioni di visualizzazione"
+
+msgid "Display search box above products"
+msgstr "Mostra casella di ricerca sopra prodotti"
+
+msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
+msgstr "Puoi anche aggiungere alla barra degli strumenti la casella di ricerca del tuo sito web utilizzando i <a href=\"%s\">widgets nativi di WordPress</a>"
+
+msgid "Display horizontal categories above products"
+msgstr "Visualizza le categorie orizzontali sopra i prodotti"
+
+msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
+msgstr "Puoi anche aggiungere alla barra degli strumenti le categorie verticali utilizzando i <a href=\"%s\">widgets nativi di WordPress</a>"
+
+msgid "Enable minicart attached to horizontal categories"
+msgstr "Abilita carrello attaccato alle categorie orizzontali"
+
+msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar"
+msgstr "È necessario disattivare questa opzione, se hai aggiunto il carrello al tuo sito web&nbsp;sidebar"
+
 msgid "Number of categories per row"
 msgstr "Numero di categorie per riga"
 
 msgid "Number of products per page"
 msgstr "Numero di prodotti per pagina"
 
-msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
-msgstr "Puoi anche aggiungere alla barra degli strumenti la casella di ricerca del tuo sito web utilizzando i <a href=\"%s\">widgets nativi di WordPress</a>"
+msgid "Grid view"
+msgstr "Visualizza come griglia"
 
-msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
-msgstr "Puoi anche aggiungere alla barra degli strumenti le categorie verticali utilizzando i <a href=\"%s\">widgets nativi di WordPress</a>"
-
-msgid "Paid"
-msgstr "Pagante"
-
-msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>"
-msgstr "Domande? Visita il <a href=\"http://help.ecwid.com/?source=wporg\">Centro di Supporto Ecwid</a>"
-
-msgid "Register at Ecwid"
-msgstr "Registrati a Ecwid"
-
-msgid "Save and connect your Ecwid store to the site"
-msgstr "Salva e collega il tuo negozio Ecwid al sito"
-
-msgid "Save changes"
-msgstr "Salva modifiche"
-
-msgid "Single Sign-On Secret Key"
-msgstr "Registrazione  Sign-On Secret Key"
-
-msgid "Store"
-msgstr "Negozio"
-
-msgid "Store ID"
-msgstr "ID Negozio"
-
-msgid "Store ID is a unique identifier of any Ecwid store, it consists of several digits. You can find it on the \"Dashboard\" page of Ecwid control panel. Also the Store ID will be sent in the Welcome email after the registration."
-msgstr "L'ID è un identificatore univoco di un qualsiasi negozio Ecwid, si compone di più cifre. Lo si può trovare sulla \"Scrivania\" di Ecwid. L'ID del Negozio sarà inviato dopo la registrazione anche nella email di benvenuto."
-
-msgid "Store root category"
-msgstr "Categoria principale negozio"
-
-msgid "Table"
-msgstr "Tabella"
+msgid "List view"
+msgstr "Visualizza come elenco"
 
 msgid "Table view"
 msgstr "Visualizza come tabella"
 
-msgid "Thank you for choosing Ecwid to build your online store"
-msgstr "Grazie per aver scelto Ecwid per costruire il tuo negozio online"
+msgid "Here you can control how many products will be displayed per page. These options define maximum values. If there is not enough space to show all product columns, Ecwid will adapt the number of columns to hold all products."
+msgstr "Qui è possibile controllare il numero di prodotti da visualizzare per pagina. Queste opzioni definiscono valori massimi. Se non c'è abbastanza spazio per mostrare tutte le colonne dei prodotto, Ecwid adatterà il numero di colonne a tutti i prodotti."
 
-msgid "Thank you for supporting Ecwid!"
-msgstr "Grazie per il supporto Ecwid!"
+msgid "Default view mode on product pages"
+msgstr "Modalità di visualizzazione predefinita sulle pagine prodotti"
 
-msgid "The first step towards opening your online business: <br />Let’s get started and add a store to your WordPress website in <strong>3</strong> simple steps."
-msgstr "Il primo passo verso l'apertura tuo business online: <br />Comincia ad aggiungere un negozio al tuo sito WordPress in <strong>3</strong> semplici steps."
+msgid "Grid"
+msgstr "Griglia"
 
-msgid "Single Sign-On Secret Key is an option that allows your customers access to your WordPress site as well as the Ecwid shopping cart. When customers log in to your site, they will automatically be logged in to your Ecwid store as well. It makes sense to enable this feature if your visitors actually create accounts in your WordPress website."
-msgstr "Questa funzione opzionale consente di abilitare la Sign-on Secret Key, quando i clienti sono registrati al sito, si accede automaticamente al tuo negozio Ecwid, anche se non dispongono di un account del negozio . Ha senso attivare questa funzione, se i visitatori effettivamente hanno creato un account nel tuo sito WordPress."
+msgid "List"
+msgstr "Elenco"
 
-msgid "Upgrade"
-msgstr "Aggiorna"
+msgid "Table"
+msgstr "Tabella"
 
-msgid "Upgrade to get access to cool premium features."
-msgstr "Aggiorna per accedere agli strumenti premium."
+msgid "Default view mode on search results"
+msgstr "Modalità di visualizzazione predefinita nei risultati di ricerca"
 
-msgid "Vertical menu of categories"
-msgstr "Menu verticale categorie"
+msgid "Connect your store<br /> to this WordPress site"
+msgstr "Collega il tuo negozio<br /> a questo sito WordPress"
 
-msgid "Visit storefront"
-msgstr "Visita la vetrina del negozio"
+msgid "Connect Ecwid store"
+msgstr "Collega Ecwid store"
 
-msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar"
-msgstr "È necessario disattivare questa opzione, se hai aggiunto il carrello al tuo sito web&nbsp;sidebar"
+msgid "After clicking button you need to login and accept permissions to use our plugin"
+msgstr "Dopo aver cliccato il pulsante devi accedere e accettare le autorizzazioni necessarie per utilizzare il nostro plugin"
 
-msgid "You will be able to sign up through your existing Google, Facebook or PayPal profiles as well."
-msgstr "Sarai in grado di iscriverti tramite il tuo accont esistente di Google, Facebook e PayPal."
+msgid "Connection error - after clicking button you need to login and accept permissions to use our plugin. Please, try again."
+msgstr "Errore di connessione - dopo aver cliccato il pulsante, è necessario accedere e accettare le autorizzazioni necessarie per utilizzare il nostro plugin. Per favore, riprova."
 
-msgid "Your Ecwid store is connected to your WordPress website"
-msgstr "Il tuo Negozio Ecwid è ora connesso al tuo sito web WordPress"
+msgid "Don't have Ecwid account? Create it here"
+msgstr "Non hai un accont Ecwid? Crealo qui"
 
-msgid "Your Ecwid store is now connected to your WordPress website"
-msgstr "Il tuo Negozio Ecwid è ora connesso al tuo sito web WordPress"
+msgid "Questions? Visit <a %s>Ecwid support center</a>"
+msgstr "Hai domande? Visita il <a %s>Centro di supporto Ecwid</a>"
 
-msgid "Your store's minicart"
-msgstr "Carrello del tuo negozio"
+msgid "Store ID"
+msgstr "ID Negozio"
 
-msgid "Your store's search box"
-msgstr "La casella di ricerca del tuo negozio"
+msgid "Disconnect store"
+msgstr "Scollega il negozio"
 
-msgid "→ Sell on Facebook"
-msgstr "→ Vendi su Facebook"
+msgid "Congratulations!"
+msgstr "Congratulazioni!"
+
+msgid "Your Ecwid store is now connected<br /> to your WordPress website"
+msgstr "Il tuo negozio Ecwid è ora collegato<br /> al tuo sito Web WordPress"
+
+msgid "Greetings!"
+msgstr "Auguri!"
+
+msgid "Your Ecwid store is connected<br /> to your WordPress website"
+msgstr "Il tuo negozio Ecwid è collegato<br /> al tuo sito WordPress"
+
+msgid "Open control panel"
+msgstr "Apri pannello di controllo"
+
+msgid "Plugin is installed successfully!"
+msgstr "Plugin installato con successo!"
+
+msgid "There are just a few steps left to start selling<br /> on your WordPress site"
+msgstr "Ci sono pochi step da fare per iniziare a vendere<br /> sul tuo sito WordPress"
+
+msgid "There are few little steps left to start selling<br /> on your WordPress site"
+msgstr "Ci sono alcuni piccoli step da fare per iniziare a vendere<br /> sul tuo sito WordPress"
+
+msgid "Register"
+msgstr "Registra"
+
+msgid "Create a free Ecwid account to manage your store and inventory.<br /> No credit card required"
+msgstr "Crea un account gratuito di Ecwid per gestire il tuo negozio e le tue giacenze.<br /> Nessuna carta di credito necessaria"
+
+msgid "Connect"
+msgstr "Collegati"
+
+msgid "Add your Ecwid store to your site <nobr>in two clicks</nobr>"
+msgstr "Aggiungi il tuo negozio Ecwid per il tuo sito <nobr>in due click</nobr>"
+
+msgid "Connect your Ecwid store to this site <nobr>in two clicks</nobr>"
+msgstr "Collega il tuo negozio di Ecwid a questo sito <nobr>in due click</nobr>"
+
+msgid "Start selling"
+msgstr "Iniziare a vendere"
+
+msgid "Your storefront is ready"
+msgstr "Il tuo negozio virtuale è pronto"
+
+msgid "Create Ecwid store"
+msgstr "Crea un negozio Ecwid"
+
+msgid "Connect your store"
+msgstr "Collega il tuo negozio"
+
+msgid "Free registration, No credit card required"
+msgstr "Registrazione gratuita, nessuna carta di credito necessaria"
+
+msgid "Connection error: please click the button again and give permissions for this plugin<br /> to show your Ecwid store on this site."
+msgstr "Errore di connessione: per mostrare il tuo negozio Ecwid su questo sito<br /> clicca ancora sul pulsante e concedi le autorizzazioni per questo plugin."
+
+msgid "You will be asked to log in to your Ecwid Control Panel<br />and give permissions to show your store on this site"
+msgstr "Verrà chiesto di accedere al tuo pannello di controllo Ecwid<br />quindi devi dare le autorizzazioni per mostrare il tuo negozio su questo sito"
+
+msgid "Already have Ecwid account?"
+msgstr "Hai già un accont Ecwid?"
+
+msgid "Connect your store to Wordpress site"
+msgstr "Collega il tuo negozio al sito Wordpress"
+
+msgid "Don't have an Ecwid account?"
+msgstr "Non disponi di un account Ecwid?"
+
+msgid "Register at Ecwid for free"
+msgstr "Registrati gratuitamente a Ecwid"
+
+msgid "No credit card required"
+msgstr "Nessuna carta di credito necessaria"
+
+msgid "Get ready to sell online"
+msgstr "Preparati a vendere online"
+
+msgid "Sell Everywhere<br>with your Ecwid store"
+msgstr "Vendi ovunque<br>con il tuo negozio Ecwid"
+
+msgid "Start selling on your WordPress site. Then mirror your shop on your Facebook page, blog and marketplaces like Google Shopping, Yahoo and Shopping.com."
+msgstr "Inizia a vendere sul tuo sito WordPress. Puoi ottenere una copia del tuo negozio anche sulla tua pagina Facebook, su un blog o su un Marketplace come Google Shopping, Yahoo e Shopping.com."
+
+msgid "Use Ecwid's mobile-POS to swipe credit cards and sell on the go. Your orders and inventory are always synchronized with your online store."
+msgstr "Usa un POS-Mobile Ecwid per vendere e pagare con carte di credito. I tuoi ordini e l'inventario dei tuoi prodotti sono sempre sincronizzati con il tuo negozio online."
+
+msgid "Features"
+msgstr "Funzionalità"
+
+msgid "Compatible with your theme"
+msgstr "Compatibile con il tuo tema"
+
+msgid "Ecwid is compatible with your<br>“%s” WordPress theme<br>out of the box."
+msgstr "Ecwid i comatibile con il tuo<br>“%s” tema WordPress<br>e altri temi WordPress."
+
+msgid "Free and always up to date"
+msgstr "Gratuito e sempre aggiornato"
+
+msgid "Free plan always available with tons of features<br>at no additional cost. Seamless upgrades occur<br>automatically for free."
+msgstr "Piano gratuito sempre disponibile con tante caratteristiche<br>senza alcun costo aggiuntivo.  Continui aggiornamenti<br>automatici e gratuiti."
+
+msgid "Responsive design"
+msgstr "Design eccezionale"
+
+msgid "Your store looks perfect<br />on all devices"
+msgstr "Il tuo negozio è perfetto<br />su tutti i dispositivi"
+
+msgid "PCI-DSS Certified"
+msgstr "PCI-DSS Certificato"
+
+msgid "Secure checkout with over 40<br />payment options"
+msgstr "Checkout sicuro con oltre 40<br />opzioni di pagamento"
+
+msgid "Global Reach"
+msgstr "Portata globale"
+
+msgid "More than 700,000 merchants in 175 countries"
+msgstr "Più di 700.000 venditori in 175 paesi"
+
+msgid "Start selling <br>on your WordPress <nobr>site for free</nobr>"
+msgstr "Inizia a vendere <br>sul tuo WordPress <nobr>sito gratis</nobr>"
+
+msgid "Get Started, Create Ecwid Account"
+msgstr "Per iniziare, crea un Account Ecwid"
+
+msgid "Connect your store to this site"
+msgstr "Collega il tuo negozio a questo sito"
+
+msgid "Reconnect your store<br /> to this WordPress site"
+msgstr "Reconnect your store<br /> to this WordPress site"
+
+msgid "Reconnect Ecwid store"
+msgstr "Reconnect Ecwid store"
+
+msgid "New features available, reconnect to be in touch with our updates"
+msgstr "New features available, reconnect to be in touch with our updates"
+
+msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>"
+msgstr "Domande? Visita il <a href=\"http://help.ecwid.com/?source=wporg\">Centro di Supporto Ecwid</a>"
+
+msgid "Store settings"
+msgstr "Impostazioni Negozio"
+
+msgid "Choose widgets to show"
+msgstr "Scegli il widget da mostrare"
+
+msgid "Product catalog will be shown automatically"
+msgstr "Il catalogo prodotti verrà mostrato automaticamente"
+
+msgid "Show search"
+msgstr "Mostra ricerca"
+
+msgid "Show minicart"
+msgstr "Mostra carrello"
+
+msgid "Show horizontal categories"
+msgstr "Mostra categorie orizzontali"
+
+msgid "Additionally, you can add store controls to your website's toolbar using <a %s>WordPress native widgets</a>"
+msgstr "Inoltre, è possibile aggiungere altri controlli alla barra degli strumenti del tuo sito Web utilizzando i <a %s>widgets nativi WordPress</a>"
+
+msgid "Demo store"
+msgstr "Negozio demo"
+
+msgid "Ecwid plugin settings"
+msgstr "Impostazioni plugin Ecwid"
+
+msgid "Your store will be shown here!"
+msgstr "Qui verrà mostrato il tuo negozio!"
+
+msgid "Demo Store"
+msgstr "Negozio demo"
+
