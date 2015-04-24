@@ -49,6 +49,10 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 			this._addToSort(product.id);
 		}
 
+		if (this.is_api_available) {
+			this._updateFromServer(product.id);
+		}
+
 		this._render();
 	},
 

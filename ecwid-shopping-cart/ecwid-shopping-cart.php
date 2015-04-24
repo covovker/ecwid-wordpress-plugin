@@ -239,6 +239,10 @@ HTML;
 
 }
 
+add_action('wp_ajax_ecwid_get_product_info', 'ecwid_ajax_get_product_info' );
+add_action('wp_ajax_nopriv_ecwid_get_product_info', 'ecwid_ajax_get_product_info' );
+
+
 function ecwid_add_frontend_styles() {
 	wp_register_script('ecwid-products-list-js', plugins_url('ecwid-shopping-cart/js/products-list.js'), array('jquery-ui-widget'));
 	wp_register_style('ecwid-products-list-css', plugins_url('ecwid-shopping-cart/css/products-list.css'));
@@ -246,6 +250,15 @@ function ecwid_add_frontend_styles() {
 
 	if (is_active_widget(false, false, 'ecwidrecentlyviewed')) {
 		wp_enqueue_script('ecwid-recently-viewed', plugins_url('ecwid-shopping-cart/js/recently-viewed-common.js'), array('jquery', 'utils'), false, true);
+
+		wp_localize_script(
+			'ecwid-products-list-js',
+			'wp_ecwid_products_list_vars',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'is_api_available' => ecwid_is_paid_account()
+			)
+		);
 	}
 }
 
@@ -1142,6 +1155,19 @@ function ecwid_parse_escaped_fragment($escaped_fragment) {
 	return $return;
 }
 
+function ecwid_ajax_get_product_info() {
+	$id = $_GET['id'];
+
+	if (ecwid_is_api_enabled()) {
+		$api = ecwid_new_product_api();
+		$product = $api->get_product($id);
+
+		echo json_encode($product);
+	}
+
+	die();
+}
+
 function ecwid_store_activate() {
 	$my_post = array();
 	$content = <<<EOT
@@ -1990,7 +2016,6 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 		if ($recently_viewed && $recently_viewed->store_id != get_ecwid_store_id()) {
 			setcookie('ecwid-shopping-cart-recently-viewed', null, strftime('-1 day'));
 		}
-
 	}
 
 	function widget($args, $instance) {

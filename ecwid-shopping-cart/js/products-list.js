@@ -28,6 +28,9 @@ jQuery.widget('ecwid.productsList', {
 				}
 			, 200)
 		);
+
+		this.ajax_url = wp_ecwid_products_list_vars.ajax_url;
+		this.is_api_available = wp_ecwid_products_list_vars.is_api_available;
 	},
 
 	_render: function() {
@@ -64,9 +67,10 @@ jQuery.widget('ecwid.productsList', {
 		var existing = this._getProductElement(product.id);
 
 		if (existing.length == 0) {
-			this._renderProduct(product);
+			this._buildProductElement(product);
 		}
 
+		this._fillProductElement(product);
 
 		this._getProductElement(product.id)
 				.addClass('show')
@@ -80,22 +84,36 @@ jQuery.widget('ecwid.productsList', {
 			.removeClass('show');
 	},
 
-	_renderProduct: function(product) {
+	_buildProductElement: function(product) {
 		var container = jQuery('<li class="' + this._getProductClass(product.id) + '">').appendTo(this.container);
 
 		if (product.link != '') {
 			container = jQuery('<a>')
-				.attr('href', product.link)
-				.attr('title', product.name)
-				.appendTo(container);
+					.appendTo(container);
 		}
 		if (product.image) {
-			jQuery('<div class="' + this._prefix + '-image">').append('<img src="' + product.image + '">').appendTo(container);
+			jQuery('<div class="' + this._prefix + '-image">').append('<img>').appendTo(container);
 		} else {
 			jQuery('<div class="' + this._prefix + '-image ecwid-noimage">').appendTo(container);
 		}
-		jQuery('<div class="' + this._prefix + '-name">').append(product.name).appendTo(container);
-		jQuery('<div class="' + this._prefix + '-price ecwid-productBrowser-price">').append(product.price).appendTo(container);
+		jQuery('<div class="' + this._prefix + '-name">').appendTo(container);
+		jQuery('<div class="' + this._prefix + '-price ecwid-productBrowser-price">').appendTo(container);
+	},
+
+	_fillProductElement: function(product) {
+		var container = jQuery('.'+ this._getProductClass(product.id), this.el);
+
+		if (product.link != '') {
+			jQuery('a', container)
+					.attr('href', product.link)
+					.attr('title', product.name);
+		}
+		if (product.image) {
+			jQuery('.' + this._prefix + '-image img', container).attr('src', product.image);
+		}
+
+		jQuery('.' + this._prefix + '-name', container).text(product.name);
+		jQuery('.' + this._prefix + '-price ecwid-productBrowser-price', container).text(product.price);
 
 	},
 
@@ -148,6 +166,30 @@ jQuery.widget('ecwid.productsList', {
 			product.price = jQuery('.ecwid-price', singleProductContainer).html();
 		}
 		this.addProduct(product, true);
+	},
+
+	_updateFromServer: function(id) {
+
+		var that = this;
+		if (!this.products[id]) return false;
+		jQuery.getJSON(
+			wp_ecwid_products_list_vars.ajax_url,
+			{
+				'action': 'ecwid_get_product_info',
+				'id': id
+			},
+			function(data, result) {
+				if (result == 'success') {
+					that.products[id] = jQuery.extend(
+							that.products[id], {
+								image: data.imageUrl
+							}
+					);
+
+					that._render();
+				}
+			}
+		);
 	},
 
 	_getProductsToShow: function() {
