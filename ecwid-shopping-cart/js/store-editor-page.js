@@ -14,6 +14,13 @@ jQuery(document).ready(function() {
 		return false;
 	});
 
+	jQuery(document).keydown(function(e) {
+		if (e.keyCode == 27 && $popup.hasClass('open')) {
+			$popup.removeClass('open');
+			return false;
+		}
+	});
+
 
 	/**
 	 * Builds params object from the wp.shortcode

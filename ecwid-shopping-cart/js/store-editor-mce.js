@@ -481,6 +481,11 @@ tinymce.PluginManager.add( 'ecwid', function( editor ) {
 				keyCode = event.keyCode,
 				dom = editor.dom;
 
+		if ( keyCode == 27 ) {
+			jQuery('#ecwid-store-popup-content').removeClass('open');
+			return false;
+		}
+
 		if ( keyCode === 46 || keyCode === 8 ) {
 			node = selection.getNode();
 
