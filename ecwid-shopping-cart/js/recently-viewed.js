@@ -5,7 +5,6 @@ if (wpCookies.get('test_ecwid_shopping_cart_recently_products_cookie') != 'test_
 }
 
 jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
-	_justAdded: null,
 
 	_create: function() {
 		this._superApply(arguments);
@@ -13,8 +12,6 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 		var self = this;
 		Ecwid.OnPageLoaded.add(
 			function(page) {
-
-				self._justAdded = null;
 
 				if (page.type == 'PRODUCT') {
 					var product = {
@@ -35,6 +32,7 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 	addViewedProduct: function(product) {
 		product.image = jQuery('.ecwid-productBrowser-details-thumbnail .gwt-Image').attr('src');
 		product.link = window.location.href;
+		product.name = jQuery('.ecwid-productBrowser-head').text();
 		if (jQuery('.ecwid-productBrowser-price .ecwid-productBrowser-price-value').length > 0) {
 			product.price = jQuery('.ecwid-productBrowser-price .ecwid-productBrowser-price-value').html();
 		} else {
@@ -42,7 +40,6 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 		}
 
 		if (typeof this.products[product.id] == 'undefined') {
-			this._justAdded = product.id;
 			this.addProduct(product);
 		} else {
 			this.sort.splice(this.sort.indexOf(product.id), 1);
@@ -65,18 +62,15 @@ jQuery.widget('ecwid.recentlyViewedProducts', jQuery.ecwid.productsList, {
 		// copy array using slice
 		var sort = this.sort.slice();
 
-		if (this._justAdded) {
-			sort.splice(sort.indexOf(this._justAdded), 1);
-		}
 
-		if (sort.length > this.options.max && jQuery('.ecwid-productBrowser-ProductPage').length > 0) {
+		if (jQuery('.ecwid-productBrowser-ProductPage').length > 0) {
 			var currentProductId = jQuery('.ecwid-productBrowser-ProductPage').attr('class').match(/ecwid-productBrowser-ProductPage-(\d+)/);
 
-			if (sort.indexOf(currentProductId[1]) != -1) {
+			if (sort.length > 1 && sort.indexOf(currentProductId[1]) != -1) {
 				sort.splice(
-					sort.indexOf(
-						currentProductId[1]
-					), 1
+						sort.indexOf(
+								currentProductId[1]
+						), 1
 				);
 			}
 		}

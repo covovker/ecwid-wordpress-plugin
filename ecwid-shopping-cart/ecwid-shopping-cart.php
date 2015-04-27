@@ -2034,6 +2034,8 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 
 		echo ecwid_get_scriptjs_code();
 
+		$store_link_title = empty($instance['store_link_title']) ? __('View Products', 'ecwid-shopping-cart') : $instance['store_link_title'];
+
 		$recently_viewed = false;
 		if (isset($_COOKIE['ecwid-shopping-cart-recently-viewed'])) {
 			$recently_viewed = json_decode($_COOKIE['ecwid-shopping-cart-recently-viewed']);
@@ -2095,7 +2097,7 @@ HTML;
 		echo "</div>";
 
 		if (empty($recently_viewed->products)) {
-			echo '<a class="show-if-empty" href="' . ecwid_get_store_page_url() . '">' . __('Store', 'ecwid-shopping-cart') . '</a>';
+			echo '<a class="show-if-empty" href="' . ecwid_get_store_page_url() . '">' . $store_link_title . '</a>';
 		}
 
 		echo $after_widget;
@@ -2104,6 +2106,7 @@ HTML;
 	function update($new_instance, $old_instance){
 		$instance = $old_instance;
 		$instance['title'] = strip_tags(stripslashes($new_instance['title']));
+		$instance['store_link_title'] = strip_tags(stripslashes($new_instance['store_link_title']));
 		$num = intval($new_instance['number_of_products']);
 		if ($num > $this->max || $num < $this->min) {
 			$num = $this->default;
@@ -2117,15 +2120,18 @@ HTML;
 		$instance = wp_parse_args( (array) $instance,
 			array(
 				'title' => __('Recently Viewed Products', 'ecwid-shopping-cart'),
+				'store_link_title' => __('View Products', 'ecwid-shopping-cart'),
 				'number_of_products' => 3
 			)
 		);
 
 		$title = htmlspecialchars($instance['title']);
+		$store_link_title = htmlspecialchars($instance['store_link_title']);
 		$number_of_products = $instance['number_of_products'];
 		if ($number_of_products)
 
 		echo '<p><label for="' . $this->get_field_name('title') . '">' . __('Title') . ': <input style="width:100%;" id="' . $this->get_field_id('title') . '" name="' . $this->get_field_name('title') . '" type="text" value="' . $title . '" /></label></p>';
+		echo '<p><label for="' . $this->get_field_name('store_link_title') . '">' . __('Store Link Title') . ': <input style="width:100%;" id="' . $this->get_field_id('store_link_title') . '" name="' . $this->get_field_name('store_link_title') . '" type="text" value="' . $store_link_title . '" /></label></p>';
 		echo '<p><label for="' . $this->get_field_name('number_of_products') . '">' . __( 'Number of products to show', 'ecwid-shopping-cart' ) . ': <input style="width:100%;" id="' . $this->get_field_id('number_of_products') . '" name="' . $this->get_field_name('number_of_products') . '" type="number" min="' . $this->min . '" max="' . $this->max . '" value="' . $number_of_products . '" /></label></p>';
 	}
 
