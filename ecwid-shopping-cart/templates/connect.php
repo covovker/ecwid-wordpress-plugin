@@ -34,7 +34,7 @@
 		<?php endif; ?>
 
 		<div class="create-account-link">
-			<a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register">
+			<a target="_blank" href="https://my.ecwid.com/cp/?source=wporg&partner=ecwidc26#register">
 				<?php _e( "Don't have Ecwid account? Create it here", 'ecwid-shopping-cart' ); ?>
 			</a>
 		</div>
