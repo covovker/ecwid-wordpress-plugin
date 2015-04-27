@@ -1549,7 +1549,7 @@ function ecwid_dashboard_widget_function() {
 
 function ecwid_add_dashboard_widgets() {
   if (current_user_can('administrator')) {
-    wp_add_dashboard_widget('ecwid_dashboard_widget','Ecwid Links', 'ecwid_dashboard_widget_function');	
+    wp_add_dashboard_widget('ecwid_dashboard_widget', __('Recommendations for Your Online Store', 'ecwid-shopping-cart'), 'ecwid_dashboard_widget_function');
   }
 }
 

@@ -84,26 +84,32 @@
 <div class="ecwid-wp-dashboard-fallback">
 	<div class="item" style="border-bottom: 1px dashed #C0C0C0">
 		<div class="title">
-			<a target="_blank" href="?source=wporg-dashboard">Some link</a>
+			<a target="_blank" href="https://itunes.apple.com/bm/app/ecwid/id626731456">
+				<?php _e('Sell On The Go with Ecwid iOS Application', 'ecwid-shopping-cart'); ?>
+			</a>
 		</div>
 		<div class="content">
-			Some content
+			<?php _e('Ecwid iOS app allows you to manage your online store, sell your products on the go, and accept payments with your phone. Just download the Ecwid app, connect it to your Ecwid shop and have your sales at your fingertips!', 'ecwid-shopping-cart'); ?>
 		</div>
 	</div>
 	<div class="item" style="border-bottom: 1px dashed #C0C0C0">
 		<div class="title">
-			<a target="_blank" href="?source=wporg-dashboard">Some link #2</a>
+			<a target="_blank" href="https://wordpress.org/plugins/google-sitemap-generator/">
+				<?php _e('Get Your Products Found on Google using XML Sitemap', 'ecwid-shopping-cart'); ?>
+			</a>
 		</div>
 		<div class="content">
-			Some content #3
+			<?php _e('Free Google XML Sitemaps plugin creates a sitemap that includes your store product links. This makes your product pages more visible to search engines and appear in the search results.', 'ecwid-shopping-cart'); ?>
 		</div>
 	</div>
 	<div class="item">
 		<div class="title">
-			<a target="_blank" href="?source=wporg-dashboard">Some link #3</a>
+			<a target="_blank" href="https://wordpress.org/plugins/ecwid-widgets-avalanche/">
+				<?php _e('Add Product Slider to Your Store', 'ecwid-shopping-cart'); ?>
+			</a>
 		</div>
 		<div class="content">
-			Some content #3
+			<?php _e('Add a fancy product slider to your site using a free WP Widgets Avalanche plugin which works perfectly with Ecwid', 'ecwid-shopping-cart'); ?>
 		</div>
 	</div>
 </div>
