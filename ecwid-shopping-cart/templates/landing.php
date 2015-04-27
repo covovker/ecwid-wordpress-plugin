@@ -104,7 +104,7 @@
                     </div>
                     <div class="ecwid-features-top-item-text">
                         <h3><?php _e('Free and always up to date', 'ecwid-shopping-cart'); ?></h3>
-                        <p><?php _e('Free plan always available with tons of features<br>at no additional cost. Seamless upgrades occur<br>automatically for free.', 'ecwid-shopping-cart'); ?></p>
+                        <p><?php _e('Free plan always available with tons of features<br>at no additional cost. Updates are seamless, automatic<br>and free of charge.', 'ecwid-shopping-cart'); ?></p>
                     </div>
                 </div>
             </div>
