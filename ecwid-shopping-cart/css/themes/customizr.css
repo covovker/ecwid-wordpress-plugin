@@ -3,7 +3,9 @@
 	width: inherit;
 }
 
-.ecwid-shopping-cart-search button.ecwid-SearchPanel-button {
+.ecwid-shopping-cart-search button.ecwid-SearchPanel-button,
+.widget_ecwid_search button.ecwid-SearchPanel-button
+{
 	display: inline-block;
 	padding: 4px 12px;
 	margin-bottom: 0;
@@ -41,6 +43,13 @@
 	background-position: 0px -15px;
 }
 
+.ecwid-shopping-cart-search .ecwid-SearchPanel-field {
+	margin-bottom: 0px;
+}
 #ecwid_product_browser_scroller {
 	position: relative;
+}
+
+.ecwid-productBrowser-sharePanel-header {
+	line-height: normal;
 }
