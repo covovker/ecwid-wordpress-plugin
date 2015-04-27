@@ -32,6 +32,7 @@ add_action('sm_buildmap', 'ecwid_build_google_xml_sitemap');
 
 // Needs to be in both front-end and back-end to allow admin zone recognize the shortcode
 add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
+add_shortcode('ecwid', 'ecwid_shortcode');
 
 add_action( 'plugins_loaded', 'ecwid_init_integrations' );
 
@@ -59,7 +60,6 @@ if ( is_admin() ){
   add_shortcode('ecwid_searchbox', 'ecwid_searchbox_shortcode');
   add_shortcode('ecwid_categories', 'ecwid_categories_shortcode');
   add_shortcode('ecwid_product', 'ecwid_product_shortcode');
-	add_shortcode('ecwid', 'ecwid_shortcode');
   add_action('init', 'ecwid_backward_compatibility');
   add_action('send_headers', 'ecwid_503_on_store_closed');
   add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
