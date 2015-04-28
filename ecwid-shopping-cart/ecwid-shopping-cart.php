@@ -5,7 +5,7 @@ Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
 Text Domain: ecwid-shopping-cart
 Author: Ecwid Team
-Version: 3.0.2
+Version: 3.1
 Author URI: http://www.ecwid.com?source=wporg
 */
 
@@ -783,10 +783,10 @@ function ecwid_content_started($content)
 
 function ecwid_wrap_shortcode_content($content, $name)
 {
-    return "<!-- Ecwid shopping cart plugin v 3.0.2 -->"
+    return "<!-- Ecwid shopping cart plugin v 3.1 -->"
 		   . ecwid_get_scriptjs_code()
 	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
-		   . "<!-- END Ecwid Shopping Cart v 3.0.2 -->";
+		   . "<!-- END Ecwid Shopping Cart v 3.1 -->";
 }
 
 function ecwid_get_scriptjs_code($force_lang = null) {
@@ -2134,7 +2134,7 @@ HTML;
 		if ($number_of_products)
 
 		echo '<p><label for="' . $this->get_field_name('title') . '">' . __('Title') . ': <input style="width:100%;" id="' . $this->get_field_id('title') . '" name="' . $this->get_field_name('title') . '" type="text" value="' . $title . '" /></label></p>';
-		echo '<p><label for="' . $this->get_field_name('store_link_title') . '">' . __('Store Link Title') . ': <input style="width:100%;" id="' . $this->get_field_id('store_link_title') . '" name="' . $this->get_field_name('store_link_title') . '" type="text" value="' . $store_link_title . '" /></label></p>';
+		echo '<p><label for="' . $this->get_field_name('store_link_title') . '">' . __('Store Link Title', 'ecwid-shopping-cart') . ': <input style="width:100%;" id="' . $this->get_field_id('store_link_title') . '" name="' . $this->get_field_name('store_link_title') . '" type="text" value="' . $store_link_title . '" /></label></p>';
 		echo '<p><label for="' . $this->get_field_name('number_of_products') . '">' . __( 'Number of products to show', 'ecwid-shopping-cart' ) . ': <input style="width:100%;" id="' . $this->get_field_id('number_of_products') . '" name="' . $this->get_field_name('number_of_products') . '" type="number" min="' . $this->min . '" max="' . $this->max . '" value="' . $number_of_products . '" /></label></p>';
 	}
 
