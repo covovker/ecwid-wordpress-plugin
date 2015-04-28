@@ -58,6 +58,9 @@ msgstr ""
 msgid "Hidden category"
 msgstr ""
 
+msgid "Recommendations for Your Online Store"
+msgstr ""
+
 msgid "If you like Ecwid and want to help it grow and become the most popular e-commerce solution, you can now add a fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid."
 msgstr ""
 
@@ -113,6 +116,12 @@ msgid "A list of products recently viewed by a customer. Add this widget to the 
 msgstr ""
 
 msgid "Recently Viewed Products"
+msgstr ""
+
+msgid "View Products"
+msgstr ""
+
+msgid "Store Link Title"
 msgstr ""
 
 msgid "Number of products to show"
@@ -382,7 +391,7 @@ msgstr ""
 msgid "Free and always up to date"
 msgstr ""
 
-msgid "Free plan always available with tons of features<br>at no additional cost. Seamless upgrades occur<br>automatically for free."
+msgid "Free plan always available with tons of features<br>at no additional cost. Updates are seamless, automatic<br>and free of charge."
 msgstr ""
 
 msgid "Responsive design"
@@ -455,5 +464,23 @@ msgid "Your store will be shown here!"
 msgstr ""
 
 msgid "Demo Store"
+msgstr ""
+
+msgid "Sell On The Go with Ecwid iOS Application"
+msgstr ""
+
+msgid "Ecwid iOS app allows you to manage your online store, sell your products on the go, and accept payments with your phone. Just download the Ecwid app, connect it to your Ecwid shop and have your sales at your fingertips!"
+msgstr ""
+
+msgid "Get Your Products Found on Google using XML Sitemap"
+msgstr ""
+
+msgid "Free Google XML Sitemaps plugin creates a sitemap that includes your store product links. This makes your product pages more visible to search engines and appear in the search results."
+msgstr ""
+
+msgid "Add Product Slider to Your Store"
+msgstr ""
+
+msgid "Add a fancy product slider to your site using a free WP Widgets Avalanche plugin which works perfectly with Ecwid"
 msgstr ""
 
