@@ -115,7 +115,6 @@ jQuery(document).ready(function() {
 		} else {
 			jQuery('.wp-media-buttons').removeClass('has-ecwid');
 		}
-
 		if (tinymce.activeEditor && !tinymce.activeEditor.isHidden()) {
 			var body = tinymce.activeEditor.dom.doc.body;
 			var button = tinymce.activeEditor.dom.select('#ecwid-edit-store-button');
@@ -132,16 +131,21 @@ jQuery(document).ready(function() {
 			if (hasEcwid) {
 				var store = jQuery(body).find('.ecwid-store-editor');
 				var button = jQuery('#ecwid-edit-store-button', body);
+
+				var width = this.buttonWidth;
+				if (!width) {
+					width = button.outerWidth();
+					this.buttonWidth = width;
+				}
 				button.css({
 					'position': 'absolute',
 					'top': '' + (store.offset().top + 168) + 'px',
-					'left': '' + (store.offset().left + store.outerWidth() / 2 - button.outerWidth() / 2 - 2) + 'px'
+					'left': '' + (store.offset().left + store.outerWidth() / 2 - width / 2 - 2) + 'px'
 				});
 			}
 
 			jQuery('#wp_editbtns').css('display', 'none !important');
 		}
-
 
 		if (window.location.search.indexOf('show-ecwid=true') != -1 && typeof this.show_ecwid_processed == 'undefined') {
 			ecwid_open_store_popup();
