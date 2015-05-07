@@ -342,6 +342,15 @@ function ecwid_build_sitemap($callback)
 	}
 }
 
+function ecwid_get_links()
+{
+	$links = array(
+		'control_panel' => '//my.ecwid.com/cp?source=wporg'
+	);
+
+	return apply_filters('ecwid_get_links', $links);
+}
+
 function ecwid_build_google_xml_sitemap()
 {
 	return ecwid_build_sitemap('ecwid_google_xml_sitemap_build_sitemap_callback');
@@ -1313,7 +1322,7 @@ function ecwid_options_add_page() {
 		__('Ecwid Store', 'ecwid-shopping-cart'),
 		'manage_options',
 		'ecwid',
-		'ecwid_general_settings_do_page'
+		apply_filters('ecwid_get_dashboard_handler', 'ecwid_general_settings_do_page')
 	);
 
 
@@ -1328,7 +1337,7 @@ function ecwid_options_add_page() {
 		$title,
 		'manage_options',
 		'ecwid',
-		'ecwid_general_settings_do_page'
+		apply_filters('ecwid_get_dashboard_handler', 'ecwid_general_settings_do_page')
 	);
 
 	if (get_option('ecwid_hide_appearance_menu') != 'Y') {

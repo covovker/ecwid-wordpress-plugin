@@ -44,7 +44,7 @@
 					<a target="_blank" href="<?php echo ecwid_get_store_page_url(); ?>"><?php _e('Visit storefront', 'ecwid-shopping-cart'); ?></a>
 				</li>
 				<li>
-					<a target="_blank" href="//my.ecwid.com/cp?source=wporg"><?php _e('Open control panel', 'ecwid-shopping-cart'); ?></a>
+					<a target="_blank" href="<?php echo ecwid_get_links()['control_panel']; ?>"><?php _e('Open control panel', 'ecwid-shopping-cart'); ?></a>
 				</li>
 			</ul>
 
