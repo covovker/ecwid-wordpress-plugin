@@ -251,6 +251,9 @@ function ecwid_add_frontend_styles() {
 	if (is_active_widget(false, false, 'ecwidrecentlyviewed')) {
 		wp_enqueue_script('ecwid-recently-viewed', plugins_url('ecwid-shopping-cart/js/recently-viewed-common.js'), array('jquery', 'utils'), false, true);
 
+		if ((bool)get_option('ecwid_use_chameleon')) {
+			wp_enqueue_script('ecwid-chameleon-js', plugins_url('ecwid-shopping-cart/js/ecwid-chameleon.js'), array(), false, true);
+		}
 		wp_localize_script(
 			'ecwid-products-list-js',
 			'wp_ecwid_products_list_vars',
@@ -389,6 +392,8 @@ function ecwid_check_version()
 		ecwid_plugin_add_oauth();
 		do_action('ecwid_plugin_installed', $current_version);
 		add_option('ecwid_plugin_version', $current_version);
+
+
 
 	} elseif ($upgrade) {
 
@@ -1426,6 +1431,7 @@ function ecwid_settings_api_init() {
 			register_setting('ecwid_options_page', 'ecwid_default_category_id', 'ecwid_abs_intval');
 			register_setting('ecwid_options_page', 'ecwid_sso_secret_key');
 			register_setting('ecwid_options_page', 'ecwid_enable_advanced_theme_layout');
+			register_setting('ecwid_options_page', 'ecwid_use_chameleon');
 			break;
 	}
 
@@ -1684,7 +1690,7 @@ function ecwid_get_product_browser_url_script()
 
 class EcwidBadgeWidget extends WP_Widget {
 
-	var $url_template = "http://static.ecwid.com/badges/%s.png";
+	var $url_template = "//static.ecwid.com/badges/%s.png";
 	var $available_badges;
 	
 	function EcwidBadgeWidget() {
@@ -2229,7 +2235,8 @@ function ecwid_gather_stats()
 		'ecwid_store_shortcode_used',
 		'store_link_widget',
 		'recently_viewed_widget',
-		'avalanche_used'
+		'avalanche_used',
+		'chameleon_used'
 	);
 
 	$usage_stats = ecwid_gather_usage_stats();
@@ -2265,7 +2272,8 @@ function ecwid_gather_usage_stats()
 		'ecwid_store_shortcode_used',
 		'store_link_widget',
 		'recently_viewed_widget',
-		'avalanche_used'
+		'avalanche_used',
+		'chameleon_used'
 	);
 
 	$usage_stats = array();
@@ -2287,6 +2295,7 @@ function ecwid_gather_usage_stats()
 	$usage_stats['store_link_widget'] = (bool) is_active_widget(false, false, 'ecwidstorelink');
 	$usage_stats['recently_viewed_widget'] = (bool) is_active_widget(false, false, 'ecwidrecentlyviewed');
 	$usage_stats['avalanche_used'] = (bool) is_plugin_active('ecwid-widgets-avalanche/ecwid_widgets_avalanche.php');
+	$usage_stats['chameleon_used'] = (bool)get_option('ecwid_use_chameleon');
 
 	return $usage_stats;
 }

@@ -83,10 +83,34 @@
 			</div>
 		</div>
 
+		<hr />
+
+		<div class="pure-control-group checkbox">
+			<div class="label">
+				<label for="ecwid_use_chameleon">
+					<?php _e('Chameleon skin (beta)', 'ecwid-shopping-cart'); ?>
+				</label>
+					<input
+						id="ecwid_use_chameleon"
+						name="ecwid_use_chameleon"
+						type="checkbox"
+						<?php if (get_option('ecwid_use_chameleon')): ?>
+							checked="checked"
+						<?php endif; ?>
+						<?php echo $disabled_str; ?>
+						/>
+
+				<div class="note">
+					<?php _e('Automatic adjustment of your store design to your Wordpress theme. Whatever Wordpress theme you use, Ecwid will detect predominant colors and font and use them in your product catalog.', 'ecwid-shopping-cart'); ?>
+				</div>
+				<div class="note grayed-links">
+<?php echo sprintf(__('Please note this functionality is in beta. So if you run into difficulties or find problems with Chameleon, please <a %s>let us know</a>.', 'ecwid-shopping-cart'), ' target="_blank" href="http://help.ecwid.com/customer/portal/emails/new"'); ?>
+				</div>
+		</div>
+
 	</fieldset>
 
 	<fieldset>
-		<hr />
 
 		<div class="pure-control-group">
 			<button type="submit" class="<?php echo ECWID_MAIN_BUTTON_CLASS; ?>">
