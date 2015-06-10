@@ -1441,6 +1441,29 @@ function ecwid_common_admin_scripts() {
 	wp_enqueue_script('ecwid-modernizr-js', plugins_url('ecwid-shopping-cart/js/modernizr.js'));
 }
 
+function ecwid_get_register_link()
+{
+	$link = 'https://my.ecwid.com/cp/?source=wporg%s#register';
+
+	global $current_user;
+	get_currentuserinfo();
+
+	$user_data = '';
+	if ($current_user->ID) {
+		$meta = get_user_meta($current_user->ID);
+
+		$user_data = '&' . build_query(array(
+			'name' => get_user_meta($current_user->ID, 'first_name', true) . ' ' . get_user_meta($current_user->ID, 'last_name', true),
+			'nickname' => get_user_meta($current_user->ID, 'nickname', true),
+			'email' => $current_user->user_email
+		));
+	}
+
+	$link = sprintf($link, $user_data);
+
+	return $link;
+}
+
 function ecwid_general_settings_do_page() {
 
 	if (get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID) {
