@@ -1,3 +1,6 @@
+<?php if ($connection_error): ?>
+	<script src="//app.ecwid.com/script.js?wporg_error=<?php echo urlencode($last_error); ?>&url=<?php echo urlencode(get_bloginfo('url')); ?>"></script>
+<?php endif; ?>
 <div class="wrap ecwid-admin ecwid-connect">
 	<div class="box">
 		<div class="head"><?php ecwid_embed_svg('ecwid_logo_symbol_RGB');?>

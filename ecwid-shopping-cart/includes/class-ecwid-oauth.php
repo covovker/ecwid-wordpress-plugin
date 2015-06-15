@@ -57,7 +57,7 @@ class Ecwid_OAuth {
 			|| !isset( $result->access_token )
 			|| ( $result->token_type != 'Bearer' )
 		) {
-			ecwid_log_error(json_encode($return));
+			ecwid_log_error(var_export($return, true));
 			return $this->trigger_auth_error();
 		}
 
