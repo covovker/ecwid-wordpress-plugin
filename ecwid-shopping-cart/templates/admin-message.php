@@ -40,7 +40,7 @@
 		<?php endif; ?>
 
 		<?php if ($do_not_show_again): ?>
-		<div>
+		<div class="hide-wrapper">
 			<a class="ecwid-message-hide" name="<?php echo $name; ?>" href="javascript: void(0);">
 				<?php _e('Never show this message again', 'ecwid-shopping-cart'); ?>
 			</a>

@@ -134,11 +134,15 @@ div.ecwid-message {
 	top: 6px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
 	.ecwid-message .ecwid-message-buttons > div:last-child {
 		position: inherit;
 	}
 
+	div.ecwid-message,
+	div.ecwid-message.updated{
+		padding: 27px 29px 20px 30px;
+	}
 
 	.ecwid-message .ecwid-message-buttons > div:not(:first-child) {
 		padding-left: 0px;
@@ -152,6 +156,15 @@ div.ecwid-message {
 		text-align: center;
 		white-space: normal;
 		width: 100%;
+	}
+
+	.ecwid-message .ecwid-message-hide:before {
+		font-size: 21px;
+		top: 5px;
+	}
+
+	.ecwid-message-buttons .hide-wrapper {
+		margin-top: 10px;
 	}
 }
 
