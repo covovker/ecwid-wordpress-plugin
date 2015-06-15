@@ -1427,7 +1427,7 @@ function ecwid_settings_api_init() {
 
 		case 'general':
 			register_setting('ecwid_options_page', 'ecwid_store_id','ecwid_abs_intval' );
-			if (isset($POST['ecwid_store_id']) && intval($_POST['ecwid_store_id']) == 0) {
+			if (isset($_POST['ecwid_store_id']) && intval($_POST['ecwid_store_id']) == 0) {
 				Ecwid_Message_Manager::reset_hidden_messages();
 			}
 			break;
@@ -2403,11 +2403,12 @@ function ecwid_is_api_enabled()
     $ecwid_api_check_time = get_option('ecwid_api_check_time');
     $now = time() + 60*60*24;
 
-    if ($now > ($ecwid_api_check_time + 60 * 60 * 3)) {
+    if ( $now > ($ecwid_api_check_time + 60 * 60 * 3) && get_ecwid_store_id() != ECWID_DEMO_STORE_ID ) {
         // check whether API is available once in 3 hours
         $ecwid = ecwid_new_product_api();
 
         $ecwid_is_api_enabled = ($ecwid->is_api_enabled() ? 'on' : 'off');
+
         update_option('ecwid_is_api_enabled', $ecwid_is_api_enabled);
         update_option('ecwid_api_check_time', $now);
     }

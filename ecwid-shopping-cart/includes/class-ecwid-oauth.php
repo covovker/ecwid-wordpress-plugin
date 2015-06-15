@@ -73,6 +73,9 @@ class Ecwid_OAuth {
 	{
 		update_option( 'ecwid_store_id', '' );
 		update_option( 'ecwid_oauth_token', '' );
+		update_option('ecwid_is_api_enabled', 'off');
+		update_option('ecwid_api_check_time', 0);
+
 		wp_redirect('admin.php?page=ecwid');
 	}
 
