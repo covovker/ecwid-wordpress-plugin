@@ -181,12 +181,16 @@ if (version_compare($version, '3.6') < 0) {
 	if (!function_exists('shortcode_exists')) {
 		function shortcode_exists( $tag ) {
 			global $shortcode_tags;
-				return array_key_exists( $tag, $shortcode_tags );
+			return array_key_exists( $tag, $shortcode_tags );
 		}
 	}
 
 	if (!function_exists('has_shortcode')) {
 		function has_shortcode( $content, $tag ) {
+			if ( false === strpos( $content, '[' ) ) {
+				return false;
+			}
+
 			if ( shortcode_exists( $tag ) ) {
 				preg_match_all( '/' . get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER );
 				if ( empty( $matches ) )
@@ -194,6 +198,8 @@ if (version_compare($version, '3.6') < 0) {
 
 				foreach ( $matches as $shortcode ) {
 					if ( $tag === $shortcode[2] ) {
+						return true;
+					} elseif ( ! empty( $shortcode[5] ) && has_shortcode( $shortcode[5], $tag ) ) {
 						return true;
 					}
 				}
@@ -2432,8 +2438,12 @@ function ecwid_embed_svg($name) {
  */
 function ecwid_find_shortcodes( $content, $tag ) {
 
+	if ( false === strpos( $content, '[' ) ) {
+		return false;
+	}
+
 	if ( shortcode_exists( $tag ) ) {
-		preg_match_all( '/' . get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER );
+		preg_match_all( '/' . ecwid_get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER );
 		if ( empty( $matches ) )
 			return false;
 
@@ -2441,6 +2451,8 @@ function ecwid_find_shortcodes( $content, $tag ) {
 		foreach ( $matches as $shortcode ) {
 			if ( $tag === $shortcode[2] ) {
 				$result[] = $shortcode;
+			} elseif ( !empty($shortcode[5]) && $found = ecwid_find_shortcodes( $shortcode[5], $tag ) ) {
+				$result[] = $found;
 			}
 		}
 
@@ -2451,4 +2463,44 @@ function ecwid_find_shortcodes( $content, $tag ) {
 	}
 	return false;
 }
+
+// Since we use shortcode regex in our own functions, we need it to be persistent
+function ecwid_get_shortcode_regex() {
+	global $shortcode_tags;
+	$tagnames = array_keys($shortcode_tags);
+	$tagregexp = join( '|', array_map('preg_quote', $tagnames) );
+
+	// WARNING! Do not change this regex without changing do_shortcode_tag() and strip_shortcode_tag()
+	// Also, see shortcode_unautop() and shortcode.js.
+	return
+		'\\['                              // Opening bracket
+		. '(\\[?)'                           // 1: Optional second opening bracket for escaping shortcodes: [[tag]]
+		. "($tagregexp)"                     // 2: Shortcode name
+		. '(?![\\w-])'                       // Not followed by word character or hyphen
+		. '('                                // 3: Unroll the loop: Inside the opening shortcode tag
+		.     '[^\\]\\/]*'                   // Not a closing bracket or forward slash
+		.     '(?:'
+		.         '\\/(?!\\])'               // A forward slash not followed by a closing bracket
+		.         '[^\\]\\/]*'               // Not a closing bracket or forward slash
+		.     ')*?'
+		. ')'
+		. '(?:'
+		.     '(\\/)'                        // 4: Self closing tag ...
+		.     '\\]'                          // ... and closing bracket
+		. '|'
+		.     '\\]'                          // Closing bracket
+		.     '(?:'
+		.         '('                        // 5: Unroll the loop: Optionally, anything between the opening and closing shortcode tags
+		.             '[^\\[]*+'             // Not an opening bracket
+		.             '(?:'
+		.                 '\\[(?!\\/\\2\\])' // An opening bracket not followed by the closing shortcode tag
+		.                 '[^\\[]*+'         // Not an opening bracket
+		.             ')*+'
+		.         ')'
+		.         '\\[\\/\\2\\]'             // Closing shortcode tag
+		.     ')?'
+		. ')'
+		. '(\\]?)';                          // 6: Optional second closing brocket for escaping shortcodes: [[tag]]
+}
+
 ?>
