@@ -806,7 +806,7 @@ function ecwid_get_scriptjs_code($force_lang = null) {
     if (!$ecwid_script_rendered) {
 		$store_id = get_ecwid_store_id();
 		$force_lang_str = !is_null($force_lang) ? "&lang=$force_lang" : '';
-		$s =  '<script data-cfasync="false" type="text/javascript" src="//' . APP_ECWID_COM . '/script.js?' . $store_id . '&data_platform=wporg' . $force_lang_str . '"></script>';
+		$s =  '<script data-cfasync="false" type="text/javascript" src="https://' . APP_ECWID_COM . '/script.js?' . $store_id . '&data_platform=wporg' . $force_lang_str . '"></script>';
 		$s = $s . ecwid_sso();
 		$ecwid_script_rendered = true;
 
