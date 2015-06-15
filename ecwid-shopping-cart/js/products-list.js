@@ -36,7 +36,7 @@ jQuery.widget('ecwid.productsList', {
 	_render: function() {
 		var toShow = this._getProductsToShow();
 
-		for (var i in toShow) {
+		for (var i = 0; i < toShow.length; i++) {
 			this._showProduct(this.products[toShow[i]]);
 		}
 
