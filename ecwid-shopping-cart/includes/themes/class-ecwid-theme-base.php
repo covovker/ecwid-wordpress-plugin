@@ -12,7 +12,8 @@ class Ecwid_Theme_Base {
 			wp_enqueue_script(
 				'ecwid-scroller',
 				plugins_url( 'ecwid-shopping-cart/js/create_scroller.js' ),
-				array( 'jquery' )
+				array( 'jquery' ),
+				get_option('ecwid_plugin_version')
 			);
 		}
 	}
