@@ -107,6 +107,12 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 3.2 =
+- **New "Chameleon skin" tool (beta).** You can use it to adjust your store styles to fit your Wordpress theme. Whatever Wordpress theme you use, Ecwid will detect predominant colors and font and use them in your product catalog. The feature is by default disabled on the existing accounts to make sure the update will not affect your storefront. To enable it on your site, open the "Advanced" page in the Ecwid plugin settings and tick the "Chameleon skin" checkbox. The feature is in beta so if you find any troubles with it, please let us know. 
+- **Pre-populate Ecwid registration form fields with user Wordpress profile data.** When a new user installs the plugin and registers an account at Ecwid, the registration form will contain the name and email prefilled to make it easy for the merchant to create a new store and install it on their site. 
+- **Improvements of the plugin settings pages to make them look good on mobile devices.** If you manage your Wordpress site from a phone or tablet, feel free to check the store settings there – Ecwid plugin settings pages now work better on mobile. 
+- Fixed an intermittent issue with the default category option in the store appearance settings.
+
 = 3.1 =
 - **New recommendations block in Wordpress Dashboard.** Every Ecwid user has access to a lot of built-in features and third party applications that can be used to extend the store functionality and attract more sales. To make those features more visible and inform you of the new and existing tools you can use in your store, we added a new "Recommendations for your store" widget to the dashboard page in your Wordpress backend. We will update the content of this widget from time to time to provide more actual advice and inform of the new applications and features, so stay tuned.
 - **Storefront layout improvements for the "Customizr" WordPress theme.** Ecwid plugin is by design compatible with any theme and looks good on any device and screen size your customers use. In this update, we adjusted our plugin to better integrate with one of the most popular free Wordpress themes – Customizr. Ecwid stores now look a way better on WordPress sites with Customizr themes to provide better customer experience on any device and to generate more sales in your store. 
