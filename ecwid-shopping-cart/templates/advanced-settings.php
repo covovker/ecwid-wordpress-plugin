@@ -88,8 +88,7 @@
 		<div class="pure-control-group checkbox">
 			<div class="label">
 				<label for="ecwid_use_chameleon">
-					<?php _e('Chameleon skin (beta)', 'ecwid-shopping-cart'); ?>
-				</label>
+
 					<input
 						id="ecwid_use_chameleon"
 						name="ecwid_use_chameleon"
@@ -99,6 +98,8 @@
 						<?php endif; ?>
 						<?php echo $disabled_str; ?>
 						/>
+					<?php _e('Chameleon skin <sup>beta</sup>', 'ecwid-shopping-cart'); ?>
+				</label>
 
 				<div class="note">
 					<?php _e('Automatic adjustment of your store design to your Wordpress theme. Whatever Wordpress theme you use, Ecwid will detect predominant colors and font and use them in your product catalog.', 'ecwid-shopping-cart'); ?>

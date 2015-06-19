@@ -296,6 +296,10 @@ display: none;
 	margin-top: 15px;
 }
 
+.ecwid-settings.advanced-settings sup {
+	color: #298CBA;
+}
+
 .ecwid-settings .note.inline-note {
 	max-width: 300px;
 	margin-left: 15px;
