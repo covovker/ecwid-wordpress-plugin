@@ -6,7 +6,7 @@ if (typeof(Ecwid) == 'object') {
 		var css_prefix = 'html#'+html_id+' body#'+body_id+'.chameleon';
 
 		var css = '';
-		var parent = document.querySelector('.ecwid-productBrowser').parentNode;
+        var parent = document.querySelector('.ecwid').parentNode;
 		var computedStyle = getComputedStyle(parent, null);
 
 		var primary_color = tinycolor( (typeof ecwidChameleon !== 'undefined' && typeof ecwidChameleon.primary_color !== 'undefined') ? ecwidChameleon.primary_color : computedStyle.color );
@@ -64,7 +64,7 @@ if (!tinycolor.isReadable(button_color, primary_link)) {
 }
 
 // Font family
-css+= css_prefix + ' * { font-family: inherit !important; }\n';
+css+= css_prefix + ' .ecwid, ' + css_prefix + ' .ecwid * { font-family: inherit !important; }\n';
 
 // Primary colors
 css+= css_prefix + ' div.ecwid-productBrowser-head{ color: '+ primary_color.toString() +'; }\n';
