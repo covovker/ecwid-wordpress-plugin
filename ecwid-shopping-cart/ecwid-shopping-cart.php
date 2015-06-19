@@ -1327,6 +1327,9 @@ function ecwid_uninstall() {
     delete_option("ecwid_installation_date");
     delete_option('ecwid_hide_appearance_menu');
     delete_option("ecwid_advanced_theme_layout");
+
+		delete_option("ecwid_plugin_version");
+	  delete_option("ecwid_use_chameleon");
 }
 
 function ecwid_abs_intval($value) {
@@ -2425,7 +2428,7 @@ function ecwid_is_api_enabled()
 {
     $ecwid_is_api_enabled = get_option('ecwid_is_api_enabled');
     $ecwid_api_check_time = get_option('ecwid_api_check_time');
-    $now = time() + 60*60*24;
+    $now = time();
 
     if ( $now > ($ecwid_api_check_time + 60 * 60 * 3) && get_ecwid_store_id() != ECWID_DEMO_STORE_ID ) {
         // check whether API is available once in 3 hours
