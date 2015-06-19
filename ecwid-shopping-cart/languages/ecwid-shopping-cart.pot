@@ -211,6 +211,15 @@ msgstr ""
 msgid "In order to enable this feature, opt to use a secret key. You will find this key in your Ecwid control panel, at \"System Settings > Apps > Legacy API Keys > Single Sign-On Secret Key\" page. This feature is available for <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">paid users</a> only."
 msgstr ""
 
+msgid "Chameleon skin <sup>beta</sup>"
+msgstr ""
+
+msgid "Automatic adjustment of your store design to your Wordpress theme. Whatever Wordpress theme you use, Ecwid will detect predominant colors and font and use them in your product catalog."
+msgstr ""
+
+msgid "Please note this functionality is in beta. So if you run into difficulties or find problems with Chameleon, please <a %s>let us know</a>."
+msgstr ""
+
 msgid "Save changes"
 msgstr ""
 
