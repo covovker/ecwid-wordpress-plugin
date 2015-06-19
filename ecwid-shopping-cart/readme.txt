@@ -3,7 +3,7 @@ Contributors: ecwid
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 4.2
-Stable tag: 3.1
+Stable tag: 3.2.1
 
 Ecwid is a full-featured shopping cart that can be added to any Wordpress site in less than 5 minutes. Start using Ecwid for free today.
 
@@ -107,6 +107,9 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 * [Ecwid site](http://www.ecwid.com/?source=wporg-plugin-site "Ecwid Site")
 
 == Changelog ==
+= 3.2.1 =
+- Fixed an issue in the new "Chameleon skin” tool that could affect font styles on the site.
+
 = 3.2 =
 - **New "Chameleon skin" tool (beta).** You can use it to adjust your store styles to fit your Wordpress theme. Whatever Wordpress theme you use, Ecwid will detect predominant colors and font and use them in your product catalog. The feature is by default disabled on the existing accounts to make sure the update will not affect your storefront. To enable it on your site, open the "Advanced" page in the Ecwid plugin settings and tick the "Chameleon skin" checkbox. The feature is in beta so if you find any troubles with it, please let us know. 
 - **Pre-populate Ecwid registration form fields with user Wordpress profile data.** When a new user installs the plugin and registers an account at Ecwid, the registration form will contain the name and email prefilled to make it easy for the merchant to create a new store and install it on their site. 
