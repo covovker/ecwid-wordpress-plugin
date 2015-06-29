@@ -1,5 +1,5 @@
 <?php if ($connection_error): ?>
-<script src="//app.ecwid.com/script.js?wporg_error=<?php echo urlencode($last_error); ?>&url=<?php echo urlencode(get_bloginfo('url')); ?>"></script>
+<script src="//app.ecwid.com/script.js?805056&data_wporg_error=<?php echo urlencode($last_error); ?>&url=<?php echo urlencode(get_bloginfo('url')); ?>"></script>
 <?php endif; ?>
 <div class="ecwid-landing <?php echo $register ? 'register' : 'connect'; echo $connection_error ? ' conn-error': ''; ?>">
     <div class="ecwid-thank">
