@@ -61,4 +61,12 @@
 			});
 		})
 	});
+
+	jQuery('#ecwid-connect-no-oauth').click(function() {
+		debugger;
+		if (jQuery('#ecwid-store-id').val()) {
+			location.href = this.href + '&force_store_id=' + jQuery('#ecwid-store-id').val();
+		}
+		return false;
+	});
 });

@@ -54,6 +54,7 @@ if ( is_admin() ){
   add_action('save_post', 'ecwid_save_post');
   add_action('init', 'ecwid_apply_theme');
 	add_action('get_footer', 'ecwid_admin_get_footer');
+	add_action('admin_post_ecwid_connect', 'ecwid_admin_post_connect');
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
   add_shortcode('ecwid_minicart', 'ecwid_minicart_shortcode');
@@ -81,6 +82,9 @@ if ( is_admin() ){
   $ecwid_seo_title = '';
 }
 add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
+if (get_option('ecwid_last_oauth_fail_time') > 0) {
+	add_action('plugins_loaded', 'ecwid_test_oauth');
+}
 
 $ecwid_script_rendered = false; // controls single script.js on page
 
@@ -862,6 +866,7 @@ function ecwid_get_scriptjs_code($force_lang = null) {
 }
 
 function ecwid_script_shortcode($params) {
+
 	$attributes = shortcode_atts(
 		array(
 			'lang' => null
@@ -1499,6 +1504,7 @@ function ecwid_settings_api_init() {
 	if (isset($_POST['ecwid_store_id'])) {
 		update_option('ecwid_is_api_enabled', 'off');
 		update_option('ecwid_api_check_time', 0);
+		update_option('ecwid_last_oauth_fail_time', 0);
 	}
 }
 
@@ -1538,6 +1544,18 @@ function ecwid_general_settings_do_page() {
 		$last_error = ecwid_get_last_logged_error();
 	}
 
+	$no_oauth = isset($_GET['oauth']) && @$_GET['oauth'] == 'no';
+
+	if (!$no_oauth) {
+		$last_check = get_option('ecwid_last_oauth_fail_time');
+
+		// if something was not right last time
+		if ($last_check > 0) {
+			// then we consider it not working
+			$no_oauth = ecwid_test_oauth();
+		}
+	}
+
 	if (get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID) {
     global $ecwid_oauth;
 
@@ -1554,6 +1572,42 @@ function ecwid_general_settings_do_page() {
             require_once ECWID_PLUGIN_DIR . '/templates/dashboard.php';
         }
 	}
+}
+
+function ecwid_admin_post_connect()
+{
+	if (isset($_GET['force_store_id'])) {
+		update_option('ecwid_store_id', $_GET['force_store_id']);
+		update_option('ecwid_is_api_enabled', 'off');
+		update_option('ecwid_api_check_time', 0);
+		update_option('ecwid_last_oauth_fail_time', 1);
+		wp_redirect('admin.php?page=ecwid');
+	}
+	global $ecwid_oauth;
+
+	if (ecwid_test_oauth(true)) {
+		wp_redirect($ecwid_oauth->get_auth_dialog_url());
+	} else {
+		wp_redirect('admin.php?page=ecwid&oauth=no');
+	}
+}
+
+function ecwid_test_oauth($force = false)
+{
+	global $ecwid_oauth;
+
+	$last_fail = get_option('ecwid_last_oauth_fail_time');
+
+	if ($last_fail < time() + 60*60*24 || $force) {
+		$result = $ecwid_oauth->test_post();
+		if ($result) {
+			update_option('ecwid_last_oauth_fail_time', $last_fail = 0);
+		} else {
+			update_option('ecwid_last_oauth_fail_time', $last_fail = time());
+		}
+	}
+
+	return $last_fail == 0;
 }
 
 function ecwid_get_categories_for_selector() {
@@ -2300,7 +2354,8 @@ function ecwid_gather_stats()
 		'store_link_widget',
 		'recently_viewed_widget',
 		'avalanche_used',
-		'chameleon_used'
+		'chameleon_used',
+		'http_post_fails'
 	);
 
 	$usage_stats = ecwid_gather_usage_stats();
@@ -2337,7 +2392,8 @@ function ecwid_gather_usage_stats()
 		'store_link_widget',
 		'recently_viewed_widget',
 		'avalanche_used',
-		'chameleon_used'
+		'chameleon_used',
+		'http_post_fails'
 	);
 
 	$usage_stats = array();
@@ -2360,6 +2416,7 @@ function ecwid_gather_usage_stats()
 	$usage_stats['recently_viewed_widget'] = (bool) is_active_widget(false, false, 'ecwidrecentlyviewed');
 	$usage_stats['avalanche_used'] = (bool) is_plugin_active('ecwid-widgets-avalanche/ecwid_widgets_avalanche.php');
 	$usage_stats['chameleon_used'] = (bool)get_option('ecwid_use_chameleon');
+	$usage_stats['http_post_fails'] = get_option('ecwid_last_oauth_fail_time') > 0;
 
 	return $usage_stats;
 }
@@ -2394,9 +2451,9 @@ window.Ecwid.OnAPILoaded.add(function() {
         signInUrl: '$signin_url',
         signOutUrl: '$signout_url'
     });
-});
-window.Ecwid.setSignInProvider({
-    addSignInLinkToPB: function() { return true; }
+		window.Ecwid.setSignInProvider({
+			addSignInLinkToPB: function() { return true; }
+		});
 });
 JS;
 

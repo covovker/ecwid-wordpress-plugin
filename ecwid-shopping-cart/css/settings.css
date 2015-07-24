@@ -386,10 +386,11 @@ display: none;
 .ecwid-connect .box .greeting-message {
 	margin-top: 11px;
 	line-height: 1.3em;
+	margin-bottom: 38px;
 }
 
 .ecwid-connect .box .connect-button {
-	margin-top: 38px;
+	margin-top: 8px;
 }
 
 .ecwid-connect .box .note {
@@ -438,6 +439,26 @@ display: none;
 .ecwid-connect .box .note.auth-error {
 	max-width: 350px;
 	color: red;
+}
+
+/* wpcontent to stress the rule without using !mportant */
+#wpcontent .ecwid-connect.no-oauth .with-oauth,
+#wpcontent .ecwid-connect.with-oauth .no-oauth
+{
+	display: none;
+}
+
+.ecwid-connect .connect-store-id {
+
+}
+
+.ecwid-connect #ecwid-store-id {
+	line-height: 38px;
+	width: 224px;
+	border-radius: 4px;
+	font-size: 16px;
+	font-weight: lighter;
+	padding-left: 10px;
 }
 
 .ecwid-connect .box .create-account-link a {

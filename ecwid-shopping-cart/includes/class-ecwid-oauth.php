@@ -15,6 +15,13 @@ class Ecwid_OAuth {
 		require_once(ECWID_PLUGIN_DIR . '/templates/reconnect.php');
 	}
 
+	public function test_post()
+	{
+		$return = wp_remote_post('https://my.ecwid.com/api/oauth/token');
+
+		return is_array($return);
+	}
+
 	public function get_auth_dialog_url( $scopes = array( 'read_store_profile', 'read_catalog' ) )
 	{
 		if ( !is_array( $scopes ) ) {
@@ -81,6 +88,7 @@ class Ecwid_OAuth {
 
 	protected function trigger_auth_error()
 	{
+		update_option('ecwid_last_oauth_fail_time', time());
 		wp_redirect('admin.php?page=ecwid&connection_error=true');
 
 	}

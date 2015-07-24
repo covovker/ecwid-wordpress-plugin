@@ -1,7 +1,7 @@
 <?php if ($connection_error): ?>
 	<script src="//app.ecwid.com/script.js?805056&data_wporg_error=<?php echo urlencode($last_error); ?>&url=<?php echo urlencode(get_bloginfo('url')); ?>"></script>
 <?php endif; ?>
-<div class="wrap ecwid-admin ecwid-connect">
+<div class="wrap ecwid-admin ecwid-connect<?php if ($no_oauth): ?> no-oauth<?php else: ?> with-oauth<?php endif; ?>">
 	<div class="box">
 		<div class="head"><?php ecwid_embed_svg('ecwid_logo_symbol_RGB');?>
 			<h3>
@@ -16,13 +16,17 @@
 			<?php _e( 'Connect your store<br /> to this WordPress site', 'ecwid-shopping-cart' ); ?>
 		</div>
 
+		<div class="connect-store-id no-oauth">
+			<input type="text" id="ecwid-store-id" placeholder="<?php _e('Enter your Store ID', 'ecwid-shopping-cart'); ?>" />
+		</div>
 		<div class="connect-button">
-			<a href="<?php echo esc_attr($ecwid_oauth->get_auth_dialog_url()); ?>"><?php _e( 'Connect Ecwid store', 'ecwid-shopping-cart' ); ?></a>
+			<a href="admin-post.php?action=ecwid_connect" class="with-oauth"><?php _e( 'Connect Ecwid store', 'ecwid-shopping-cart' ); ?></a>
+			<a id="ecwid-connect-no-oauth" href="admin-post.php?action=ecwid_connect" class="no-oauth"><?php _e( 'Save and connect', 'ecwid-shopping-cart' ); ?></a>
 		</div>
 
 		<?php if (!$connection_error): ?>
 
-		<div class="note initial">
+		<div class="note initial with-oauth">
 			<?php _e( 'After clicking button you need to login and accept permissions to use our plugin', 'ecwid-shopping-cart' ); ?>
 		</div>
 
@@ -35,6 +39,14 @@
 		</div>
 
 		<?php endif; ?>
+
+		<h4 class="no-oauth" style="text-align: center"><?php _e('Where to find your Store ID:', 'ecwid-shopping-cart'); ?></h4>
+		<div class="note no-oauth">
+			<?php _e('You will see the "Store ID: NNNNNN" text, where NNNNNN is your Store ID. <br /> For example if the text is Store ID: 1003, your Store ID is 1003'); ?>
+		</div>
+		<div class="note no-oauth">
+			<?php _e('You will also get your Store ID by email.', 'ecwid-shopping-cart'); ?>
+		</div>
 
 		<div class="create-account-link">
 			<a target="_blank" href="<?php echo esc_attr(ecwid_get_register_link()); ?>">
