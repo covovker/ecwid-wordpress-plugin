@@ -837,10 +837,10 @@ function ecwid_content_started($content)
 	return $content;
 }
 
-function ecwid_wrap_shortcode_content($content, $name)
+function ecwid_wrap_shortcode_content($content, $name, $attrs)
 {
     return "<!-- Ecwid shopping cart plugin v 3.2.1 -->"
-		   . ecwid_get_scriptjs_code()
+		   . ecwid_get_scriptjs_code(@$attrs['lang'])
 	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
 		   . "<!-- END Ecwid Shopping Cart v 3.2.1 -->";
 }
@@ -873,7 +873,7 @@ function ecwid_script_shortcode($params) {
 		$content = ecwid_get_scriptjs_code($attributes['lang']);
 	}
 
-    return ecwid_wrap_shortcode_content($content, 'script');
+    return ecwid_wrap_shortcode_content($content, 'script', $params);
 }
 
 function ecwid_minicart_shortcode($attributes) {
@@ -881,7 +881,8 @@ function ecwid_minicart_shortcode($attributes) {
 	$params = shortcode_atts(
 		array(
 			'layout' => null,
-			'is_ecwid_shortcode' => false
+			'is_ecwid_shortcode' => false,
+			'lang' => null
 		), $attributes
 	);
 
@@ -910,7 +911,7 @@ EOT;
 	$result = apply_filters('ecwid_minicart_shortcode_content', $result);
 
 	if (!empty($result)) {
-		$result = ecwid_wrap_shortcode_content($result, 'minicart');
+		$result = ecwid_wrap_shortcode_content($result, 'minicart', $params);
 	}
 
 	return $result;
@@ -920,7 +921,8 @@ function ecwid_searchbox_shortcode($attributes) {
 
 	$params = shortcode_atts(
 		array(
-			'is_ecwid_shortcode' => false
+			'is_ecwid_shortcode' => false,
+			'lang' => null
 		), $attributes
 	);
 
@@ -936,7 +938,7 @@ EOT;
 	$result = apply_filters('ecwid_search_shortcode_content', $result);
 
 	if (!empty($result)) {
-		$result = ecwid_wrap_shortcode_content($result, 'search');
+		$result = ecwid_wrap_shortcode_content($result, 'search', $params);
 	}
 
 	return $result;
@@ -946,7 +948,8 @@ function ecwid_categories_shortcode($attributes) {
 
 	$params = shortcode_atts(
 		array(
-			'is_ecwid_shortcode' => false
+			'is_ecwid_shortcode' => false,
+			'lang' => null
 		), $attributes
 	);
 
@@ -962,7 +965,7 @@ EOT;
 	$result = apply_filters('ecwid_categories_shortcode_content', $result);
 
 	if (!empty($result)) {
-		$result = ecwid_wrap_shortcode_content($result, 'categories');
+		$result = ecwid_wrap_shortcode_content($result, 'categories', $params);
 	}
 
 	return $result;
@@ -975,7 +978,7 @@ function ecwid_product_shortcode($shortcode_attributes) {
 			'id' => null,
 			'display' => 'picture title price options addtobag',
 			'link' => 'yes'
-		),
+			),
 		$shortcode_attributes
 	);
 
@@ -1040,7 +1043,8 @@ function ecwid_shortcode($attributes)
 			'list' 							  => '10',
 			'table' 						  => '20',
 			'minicart_layout' 	  => 'attachToCategories',
-			'default_category_id' => 0
+			'default_category_id' => 0,
+			'lang' => ''
 		)
 		, $attributes
 	);
@@ -1188,7 +1192,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 	</div>
 	<script data-cfasync="false" type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str, "id=ecwid-store-$store_id");</script>
 EOT;
-    return ecwid_wrap_shortcode_content($s, 'product-browser');
+    return ecwid_wrap_shortcode_content($s, 'product-browser', $params);
 }
 
 
@@ -2422,9 +2426,8 @@ JS;
 <script data-cfasync='false' type='text/javascript'>
 var ecwid_sso_profile='$ecwid_sso_profile';
 $sign_in_out_urls
-</script>";
+</script>
 HTML;
-
 }
 
 // from: http://www.php.net/manual/en/function.sha1.php#39492
