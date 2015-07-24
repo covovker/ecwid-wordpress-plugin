@@ -2382,31 +2382,49 @@ function ecwid_sso() {
     get_currentuserinfo();
 
 
+	$signin_url = wp_login_url(ecwid_get_store_page_url());
+	$signout_url = wp_logout_url(ecwid_get_store_page_url());
+	$sign_in_out_urls = <<<JS
+window.Ecwid.OnAPILoaded.add(function() {
+    window.Ecwid.setSignInUrls({
+        signInUrl: '$signin_url',
+        signOutUrl: '$signout_url'
+    });
+});
+window.Ecwid.setSignInProvider({
+    addSignInLinkToPB: function() { return true; }
+});
+JS;
 
+	$ecwid_sso_profile = '';
     if ($current_user->ID) {
 			$meta = get_user_meta($current_user->ID);
 
 
-        $user_data = array(
+      $user_data = array(
             'appId' => "wp_" . get_ecwid_store_id(),
             'userId' => "{$current_user->ID}",
             'profile' => array(
             'email' => $current_user->user_email,
             'billingPerson' => array(
-                'name' => $meta['first_name'][0] . ' ' . $meta['last_name'][0]
-						)
+        	  'name' => $meta['first_name'][0] . ' ' . $meta['last_name'][0]
+					)
         )
       );
-   $user_data = base64_encode(json_encode($user_data));
-    $time = time();
-    $hmac = ecwid_hmacsha1("$user_data $time", $key);
-    return "<script data-cfasync='false' type='text/javascript'> var ecwid_sso_profile='$user_data $hmac $time' </script>";
-    }
-    else {
-        return "<script data-cfasync='false' type='text/javascript'> var ecwid_sso_profile='' </script>";
+			$user_data = base64_encode(json_encode($user_data));
+			$time = time();
+			$hmac = ecwid_hmacsha1("$user_data $time", $key);
+
+			$ecwid_sso_profile ="$user_data $hmac $time";
     }
 
- 
+	return <<<HTML
+<script data-cfasync='false' type='text/javascript'>
+var ecwid_sso_profile='$ecwid_sso_profile';
+$sign_in_out_urls
+</script>";
+HTML;
+
 }
 
 // from: http://www.php.net/manual/en/function.sha1.php#39492
