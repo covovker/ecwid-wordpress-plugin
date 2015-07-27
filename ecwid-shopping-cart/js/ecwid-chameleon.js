@@ -6,7 +6,7 @@ if (typeof(Ecwid) == 'object') {
 		var css_prefix = 'html#'+html_id+' body#'+body_id+'.chameleon';
 
 		var css = '';
-        var parent = document.querySelector('.ecwid').parentNode;
+        var parent = document.querySelector('.ecwid-shopping-cart-product-browser').parentNode;
 		var computedStyle = getComputedStyle(parent, null);
 
 		var primary_color = tinycolor( (typeof ecwidChameleon !== 'undefined' && typeof ecwidChameleon.primary_color !== 'undefined') ? ecwidChameleon.primary_color : computedStyle.color );
@@ -64,7 +64,8 @@ if (!tinycolor.isReadable(button_color, primary_link)) {
 }
 
 // Font family
-css+= css_prefix + ' .ecwid, ' + css_prefix + ' .ecwid * { font-family: inherit !important; }\n';
+css+= css_prefix + ' .ecwid, ' + css_prefix + ' .ecwid * '+ css_prefix + ' .ecwid-minicart *, ' + css_prefix + ' .ecwid-SearchPanel *  { font-family: inherit !important; }\n';
+
 
 // Primary colors
 css+= css_prefix + ' div.ecwid-productBrowser-head{ color: '+ primary_color.toString() +'; }\n';
@@ -76,6 +77,7 @@ css+= css_prefix + ' div.ecwid-productBrowser-cart-subtotalAmount, ' + css_prefi
 css+= css_prefix + ' div.ecwid-productBrowser-cart-totalLabel{ color: '+ primary_color.toString() +'; }\n';
 css+= css_prefix + ' table.ecwid-productBrowser-productsTable-v2 div.ecwid-productBrowser-productNameLink:hover a, ' + css_prefix + ' table.ecwid-productBrowser-productsList-v2 div.ecwid-productBrowser-productNameLink:hover a, ' + css_prefix + ' table.ecwid-productBrowser-productsGrid-v2 div.ecwid-productBrowser-productNameLink:hover a { color: '+ primary_color.toString() +'; }\n';
 css+= css_prefix + ' table.ecwid-Invoice-itemsTable .ecwid-productBrowser-price, ' + css_prefix + ' table.ecwid-Invoice-itemsTable .ecwid-Invoice-qtyLabel{ color: '+ primary_color.toString() +'; }\n';
+css+= css_prefix + ' .ecwid-minicart-mini-count{ color: '+ primary_link.toString() +'; }\n';
 
 // Muted colors
 css+= css_prefix + ' .ecwid{ color: '+ muted_color.toString() +'; }\n';
@@ -156,7 +158,7 @@ css+= css_prefix + ' div.ecwid-form{ background-color: '+ muted_background.toStr
 css+= css_prefix + ' .ecwid input.ecwid-productBrowser-details-qtyTextField{ color: '+ primary_color.toString() +'; }\n';
 css+= css_prefix + ' td.ecwid-productBrowser-productsTable-cell{ background-color: '+ primary_background.toString() +'; }\n';
 css+= css_prefix + ' td.ecwid-productBrowser-productsTable-cellOdd{ background-color: '+ muted_background.toString() +'; }\n';
-
+css+= css_prefix + ' input.gwt-TextBox, ' + css_prefix + ' input.gwt-PasswordTextBox, ' + css_prefix + ' textarea.gwt-TextArea, ' + css_prefix + ' input.gwt-DateBox, ' + css_prefix + ' .ecwid-SearchPanel-field{ background-color: '+ primary_background.toString() +'; }\n';
 css+= css_prefix + ' div.ecwid-Invoice-cell-title{ color: '+ muted_color +';background-color: '+ muted_background.toString() +'; }\n';
 css+= css_prefix + ' div.ecwid-Invoice-blockTitle{ color: '+ muted_color +';background-color: '+ muted_background.toString() +'; }\n';
 css+= css_prefix + ' td.ecwid-Invoice-cell{ background-color: '+ muted_background.toString() +'; }\n';

@@ -46,6 +46,9 @@ jQuery.widget('ecwid.productsList', {
 			}
 		}
 
+		if (toShow.length > 0) {
+			jQuery('.show-if-empty', this.el).hide();
+		}
 	},
 
 	_setOption: function(key, value) {
@@ -154,9 +157,11 @@ jQuery.widget('ecwid.productsList', {
 	},
 
 	_readSingleProduct: function(singleProductContainer) {
+
+		var forced_image = jQuery('div[itemprop=image]', singleProductContainer).data('force-image');
 		var product = {
 			name: jQuery('.ecwid-title', singleProductContainer).text(),
-			image: jQuery('.ecwid-SingleProduct-picture img', singleProductContainer).attr('src'),
+			image: forced_image ? forced_image : jQuery('.ecwid-SingleProduct-picture img', singleProductContainer).attr('src'),
 			id: jQuery(singleProductContainer).data('single-product-id'),
 			link: jQuery(singleProductContainer).data('single-product-link'),
 		}

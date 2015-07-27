@@ -53,7 +53,7 @@ HTML;
 	</a>
 HTML;
 
-		return $button;
+		return $context . $button;
 	}
 
 	public function add_scripts() {

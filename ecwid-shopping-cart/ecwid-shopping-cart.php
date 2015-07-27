@@ -76,6 +76,7 @@ if ( is_admin() ){
   add_action('wp_head', 'ecwid_meta');
   add_action('wp_head', 'ecwid_canonical');
   add_action('wp_head', 'ecwid_seo_compatibility_restore', 1000);
+	add_action('wp_head', 'ecwid_send_stats');
   add_filter( 'widget_meta_poweredby', 'ecwid_add_credits');
   add_filter('the_content', 'ecwid_content_started', 0);
   add_filter('body_class', 'ecwid_body_class');
@@ -843,10 +844,10 @@ function ecwid_content_started($content)
 
 function ecwid_wrap_shortcode_content($content, $name, $attrs)
 {
-    return "<!-- Ecwid shopping cart plugin v 3.2.1 -->"
+    return "<!-- Ecwid shopping cart plugin v 3.2.1 --><!-- noptimize -->"
 		   . ecwid_get_scriptjs_code(@$attrs['lang'])
 	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
-		   . "<!-- END Ecwid Shopping Cart v 3.2.1 -->";
+		   . "<!-- /noptimize --><!-- END Ecwid Shopping Cart v 3.2.1 -->";
 }
 
 function ecwid_get_scriptjs_code($force_lang = null) {
@@ -1225,12 +1226,18 @@ function ecwid_ajax_get_product_info() {
 
 	if (ecwid_is_api_enabled()) {
 		$api = ecwid_new_product_api();
-		$product = $api->get_product($id);
+		$product = $api->get_product_https($id);
 
 		echo json_encode($product);
 	}
 
 	die();
+}
+
+add_filter('autoptimize_filter_js_exclude','ecwid_override_jsexclude',10,1);
+function ecwid_override_jsexclude($exclude)
+{
+	return $exclude . ', xSearchPanel("style=")';
 }
 
 function ecwid_store_activate() {
@@ -2198,19 +2205,31 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 
 		echo '<div class="ecwid-recently-viewed-products" data-ecwid-max="' . $instance['number_of_products'] . '">';
 
+
+		$api = false;
+		if (ecwid_is_api_enabled()) {
+			$api = ecwid_new_product_api();
+		}
+
 		$ids = array();
 		if ($recently_viewed && isset($recently_viewed->products)) {
 
 			for ($i = count($recently_viewed->products) - 1; $i >= 0; $i--) {
 				$product = $recently_viewed->products[$i];
+
 				$counter++;
 				if (isset($product->id) && isset($product->link)) {
 					$ids[] = $product->id;
 					$hide = $counter > $instance['number_of_products'] ? ' hidden' : '';
+
+					if ($api) {
+						$product_https = $api->get_product_https($product->id);
+					}
+
 					echo <<<HTML
 	<a class="product$hide" href="$product->link" alt="$product->name" title="$product->name">
 		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-$product->id" data-single-product-link="$product->link" itemscope itemtype="http://schema.org/Product" data-single-product-id="$product->id">
-			<div itemprop="image"></div>
+			<div itemprop="image" data-force-image="$product_https[imageUrl]"></div>
 			<div class="ecwid-title" itemprop="name"></div>
 			<div itemtype="http://schema.org/Offer" itemscope itemprop="offers"><div class="ecwid-productBrowser-price ecwid-price" itemprop="price"></div></div>
 		</div>
