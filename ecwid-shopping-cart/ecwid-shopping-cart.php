@@ -2461,19 +2461,48 @@ function ecwid_sso() {
     global $current_user;
     get_currentuserinfo();
 
-
-	$signin_url = wp_login_url(ecwid_get_store_page_url());
-	$signout_url = wp_logout_url(ecwid_get_store_page_url());
-	$sign_in_out_urls = <<<JS
+		$signin_url = wp_login_url(ecwid_get_store_page_url());
+		$signout_url = wp_logout_url(ecwid_get_store_page_url());
+		$sign_in_out_urls = <<<JS
+window.EcwidSignInUrl = '$signin_url';
+window.EcwidSignOutUrl = '$signout_url';
 window.Ecwid.OnAPILoaded.add(function() {
+
     window.Ecwid.setSignInUrls({
         signInUrl: '$signin_url',
         signOutUrl: '$signout_url'
     });
-		window.Ecwid.setSignInProvider({
-			addSignInLinkToPB: function() { return true; }
-		});
 });
+JS;
+	
+	$signin_url = wp_login_url("URL_TO_REDIRECT");
+	$signout_url = wp_logout_url('URL_TO_REDIRECT');
+	$sign_in_out_urls = <<<JS
+window.EcwidSignInUrl = '$signin_url';
+window.EcwidSignOutUrl = '$signout_url';
+window.Ecwid.OnAPILoaded.add(function() {
+
+    window.Ecwid.setSignInUrls({
+        signInUrl: '$signin_url',
+        signOutUrl: '$signout_url'
+    });
+
+
+		window.Ecwid.setSignInProvider({
+			addSignInLinkToPB: function() { return true; },
+			signIn: function() {
+				location.href = window.EcwidSignInUrl.replace('URL_TO_REDIRECT', encodeURIComponent(location.href));
+			},
+			signOut: function() {
+				location.href = window.EcwidSignOutUrl.replace('URL_TO_REDIRECT', encodeURIComponent(location.href));
+			},
+			canSignOut: true,
+			canSignIn: true
+		});
+
+});
+
+
 JS;
 
 	$ecwid_sso_profile = '';
@@ -2499,7 +2528,8 @@ JS;
     }
 
 	return <<<HTML
-<script data-cfasync='false' type='text/javascript'>
+<script data-cfasync="false" type="text/javascript">
+
 var ecwid_sso_profile='$ecwid_sso_profile';
 $sign_in_out_urls
 </script>
