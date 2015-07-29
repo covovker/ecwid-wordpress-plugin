@@ -855,7 +855,7 @@ function ecwid_get_scriptjs_code($force_lang = null) {
 
     if (!$ecwid_script_rendered) {
 		$store_id = get_ecwid_store_id();
-		$force_lang_str = !is_null($force_lang) ? "&lang=$force_lang" : '';
+		$force_lang_str = !empty($force_lang) ? "&lang=$force_lang" : '';
 		$s =  '<script data-cfasync="false" type="text/javascript" src="https://' . APP_ECWID_COM . '/script.js?' . $store_id . '&data_platform=wporg' . $force_lang_str . '"></script>';
 		$s = $s . ecwid_sso();
 		$ecwid_script_rendered = true;
@@ -2474,7 +2474,7 @@ window.Ecwid.OnAPILoaded.add(function() {
     });
 });
 JS;
-	
+
 	$signin_url = wp_login_url("URL_TO_REDIRECT");
 	$signout_url = wp_logout_url('URL_TO_REDIRECT');
 	$sign_in_out_urls = <<<JS
