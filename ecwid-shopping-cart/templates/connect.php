@@ -1,6 +1,3 @@
-<?php if ($connection_error): ?>
-	<script src="//app.ecwid.com/script.js?805056&data_wporg_error=<?php echo urlencode($last_error); ?>&url=<?php echo urlencode(get_bloginfo('url')); ?>"></script>
-<?php endif; ?>
 <div class="wrap ecwid-admin ecwid-connect<?php if ($no_oauth): ?> no-oauth<?php else: ?> with-oauth<?php endif; ?>">
 	<div class="box">
 		<div class="head"><?php ecwid_embed_svg('ecwid_logo_symbol_RGB');?>

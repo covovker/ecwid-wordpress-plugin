@@ -34,7 +34,7 @@ class Ecwid_OAuth {
 		$params['client_id'] 		 = get_option( 'ecwid_oauth_client_id' );
 		$params['redirect_uri']  = admin_url( 'admin-post.php?action=ecwid_oauth' );
 		$params['response_type'] = 'code';
-		$params['scope']         = implode( ' ', $scopes );
+		$params['scope']         = implode( ',', $scopes );
 
 		return $url . '?' . build_query( $params );
 	}
@@ -89,8 +89,28 @@ class Ecwid_OAuth {
 	protected function trigger_auth_error()
 	{
 		update_option('ecwid_last_oauth_fail_time', time());
-		wp_redirect('admin.php?page=ecwid&connection_error=true');
 
+		$logs = get_option('ecwid_error_log');
+
+		if ($logs) {
+			$logs = json_decode($logs);
+		}
+
+		if (count($logs) > 0) {
+			$entry = $logs[count($logs) - 1];
+			if (isset($entry->message)) {
+				$last_error = $entry->message;
+			}
+		}
+		if (!$last_error) {
+			return;
+		}
+
+		$url = 'http://' . APP_ECWID_COM . '/script.js?805056&data_platform=wporg&data_wporg_error=' . urlencode($last_error) . '&url=' . urlencode(get_bloginfo('url'));
+
+		wp_remote_get($url);
+
+		wp_redirect('admin.php?page=ecwid&connection_error=true');
 	}
 }
 

@@ -468,18 +468,7 @@ function ecwid_log_error($message)
 
 function ecwid_get_last_logged_error()
 {
-	$logs = get_option('ecwid_error_log');
 
-	if ($logs) {
-		$logs = json_decode($logs);
-	}
-
-	if (count($logs) > 0) {
-		$entry = $logs[count($logs) - 1];
-		if (isset($entry->message)) {
-			return $entry->message;
-		}
-	}
 
 	return '';
 }
@@ -1547,9 +1536,6 @@ function ecwid_get_register_link()
 function ecwid_general_settings_do_page() {
 
 	$connection_error = isset($_GET['connection_error']);
-	if ($connection_error) {
-		$last_error = ecwid_get_last_logged_error();
-	}
 
 	$no_oauth = isset($_GET['oauth']) && @$_GET['oauth'] == 'no';
 
