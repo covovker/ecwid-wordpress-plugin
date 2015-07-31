@@ -400,8 +400,8 @@ msgstr "Эквид сертифицирован по стандарту Level 1 
 msgid "Global Reach"
 msgstr "Глобальное решение"
 
-msgid "More than 700,000 merchants in 175 countries"
-msgstr "Эквид уже используют 700,000 продавцов из 175 стран"
+msgid "More than 800,000 merchants in 175 countries"
+msgstr "Эквид уже используют 800,000 продавцов из 175 стран"
 
 msgid "Start selling <br>on your WordPress <nobr>site for free</nobr>"
 msgstr "Начните продавать<br>на своём Wordpress <nobr>сайте бесплатно</nobr>"

@@ -10,7 +10,7 @@ Ecwid is a full-featured shopping cart that can be added to any Wordpress site i
 == Description ==
 **Wordpress.com officially recommends Ecwid as an e-commerce solution to millions of its users!**
 
-[Ecwid](http://www.ecwid.com?source=wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that allows you to sell on your WordPress website. Join over *700,000* sellers in *175* countries and sell globally with over *40* international payment options, real-time shipping integrations and support of *45* languages.
+[Ecwid](http://www.ecwid.com?source=wporg-plugin-site "Ecwid site") is a powerful and easy-to-use shopping cart solution that allows you to sell on your WordPress website. Join over *800,000* sellers in *175* countries and sell globally with over *40* international payment options, real-time shipping integrations and support of *45* languages.
 
 = Full-featured Shopping Cart =
 
