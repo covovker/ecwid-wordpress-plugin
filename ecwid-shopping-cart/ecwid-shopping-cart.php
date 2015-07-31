@@ -1549,7 +1549,7 @@ function ecwid_general_settings_do_page() {
 		}
 	}
 
-	if (get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID) {
+	if (get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID && !$no_oauth) {
     global $ecwid_oauth;
 
 		$register = !$connection_error && !isset($_GET['connect']) && !@$_COOKIE['ecwid_create_store_clicked'];
@@ -2461,6 +2461,7 @@ window.Ecwid.OnAPILoaded.add(function() {
 });
 JS;
 
+	/*
 	$signin_url = wp_login_url("URL_TO_REDIRECT");
 	$signout_url = wp_logout_url('URL_TO_REDIRECT');
 	$sign_in_out_urls = <<<JS
@@ -2490,7 +2491,7 @@ window.Ecwid.OnAPILoaded.add(function() {
 
 
 JS;
-
+*/
 	$ecwid_sso_profile = '';
     if ($current_user->ID) {
 			$meta = get_user_meta($current_user->ID);
