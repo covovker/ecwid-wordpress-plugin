@@ -1526,7 +1526,7 @@ function ecwid_get_register_link()
 			'nickname' => $current_user->display_name,
 			'email' => $current_user->user_email
 		);
-		
+
 		foreach ($data as $key => $value) {
 			if (trim($value) == '') {
 				unset($data[$key]);
@@ -2184,8 +2184,6 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 
 		echo ecwid_get_scriptjs_code();
 
-		$store_link_title = empty($instance['store_link_title']) ? __('View Products', 'ecwid-shopping-cart') : $instance['store_link_title'];
-
 		$recently_viewed = false;
 		if (isset($_COOKIE['ecwid-shopping-cart-recently-viewed'])) {
 			$recently_viewed = json_decode($_COOKIE['ecwid-shopping-cart-recently-viewed']);
@@ -2258,8 +2256,17 @@ HTML;
 
 		echo "</div>";
 
+		$store_link_message = empty($instance['store_link_title']) ? __('View Products', 'ecwid-shopping-cart') : $instance['store_link_title'];
+
+		$store_link_message = __('You have not viewed any product yet.', 'ecwid-shopping-cart');
+
+		$page_id = ecwid_get_current_store_page_id();
+		$post = get_post($page_id);
+
+		$store_link_title = str_replace("{{store page title}}", $post->post_title,  __('Open {{store page title}}', 'ecwid-shopping-cart'));
+
 		if (empty($recently_viewed->products)) {
-			echo '<a class="show-if-empty" href="' . ecwid_get_store_page_url() . '">' . $store_link_title . '</a>';
+			echo $store_link_message . ' <br /><a class="show-if-empty" href="' . ecwid_get_store_page_url() . '">' . $store_link_title . '</a>';
 		}
 
 		echo $after_widget;

@@ -39,7 +39,7 @@
 
 		<h4 class="no-oauth" style="text-align: center"><?php _e('Where to find your Store ID:', 'ecwid-shopping-cart'); ?></h4>
 		<div class="note no-oauth">
-			<?php _e('You will see the "Store ID: NNNNNN" text, where NNNNNN is your Store ID. <br /> For example if the text is Store ID: 1003, your Store ID is 1003'); ?>
+			<?php echo sprintf( __('Store ID is a unique identifier of your Ecwid account. You can find it in your Ecwid control panel:<br />open the <a %s>Dashboard page</a> and find the "<b>Store ID: NNNNNNN</b>" text, where <b>NNNNNNN</b> is your Store ID.', 'ecwid-shopping-cart'), 'href="https://my.ecwid.com/cp/CP.html?source=wporg#dashboard" target="_blank"'); ?>
 		</div>
 		<div class="note no-oauth">
 			<?php _e('You will also get your Store ID by email.', 'ecwid-shopping-cart'); ?>
