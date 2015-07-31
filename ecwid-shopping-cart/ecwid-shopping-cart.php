@@ -1521,11 +1521,18 @@ function ecwid_get_register_link()
 	if ($current_user->ID && function_exists('get_user_meta')) {
 		$meta = get_user_meta($current_user->ID);
 
-		$user_data = '&' . build_query(array(
+		$data = array(
 			'name' => get_user_meta($current_user->ID, 'first_name', true) . ' ' . get_user_meta($current_user->ID, 'last_name', true),
 			'nickname' => $current_user->display_name,
 			'email' => $current_user->user_email
-		));
+		);
+		
+		foreach ($data as $key => $value) {
+			if (trim($value) == '') {
+				unset($data[$key]);
+			}
+		}
+		$user_data = '&' . build_query($data);
 	}
 
 	$link = sprintf($link, $user_data);
