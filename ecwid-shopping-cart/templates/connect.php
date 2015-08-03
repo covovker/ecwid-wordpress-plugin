@@ -41,9 +41,6 @@
 		<div class="note no-oauth">
 			<?php echo sprintf( __('Store ID is a unique identifier of your Ecwid account. You can find it in your Ecwid control panel:<br />open the <a %s>Dashboard page</a> and find the "<b>Store ID: NNNNNNN</b>" text, where <b>NNNNNNN</b> is your Store ID.', 'ecwid-shopping-cart'), 'href="https://my.ecwid.com/cp/CP.html?source=wporg#dashboard" target="_blank"'); ?>
 		</div>
-		<div class="note no-oauth">
-			<?php _e('You will also get your Store ID by email.', 'ecwid-shopping-cart'); ?>
-		</div>
 
 		<div class="create-account-link">
 			<a target="_blank" href="<?php echo esc_attr(ecwid_get_register_link()); ?>">

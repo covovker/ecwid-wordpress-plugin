@@ -395,6 +395,7 @@ display: none;
 
 .ecwid-connect .box .note {
 	margin-top: 15px;
+	max-width: 760px;
 }
 
 .ecwid-connect .box .create-account-link {
