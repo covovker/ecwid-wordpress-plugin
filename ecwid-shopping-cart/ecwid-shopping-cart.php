@@ -35,6 +35,7 @@ add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
 add_shortcode('ecwid', 'ecwid_shortcode');
 
 add_action( 'plugins_loaded', 'ecwid_init_integrations' );
+add_filter('plugins_loaded', 'ecwid_load_textdomain');
 
 if ( is_admin() ){ 
   add_action('admin_init', 'ecwid_settings_api_init');
@@ -47,7 +48,6 @@ if ( is_admin() ){
   add_action('admin_enqueue_scripts', 'ecwid_register_settings_styles');
   add_action('wp_ajax_ecwid_hide_vote_message', 'ecwid_hide_vote_message');
   add_action('wp_ajax_ecwid_hide_message', 'ecwid_ajax_hide_message');
-  add_filter('plugins_loaded', 'ecwid_load_textdomain');
   add_filter('plugin_action_links_ecwid-shopping-cart/ecwid-shopping-cart.php', 'ecwid_plugin_actions');
   add_action('admin_head', 'ecwid_ie8_fonts_inclusion');
   add_action('admin_head', 'ecwid_send_stats');
@@ -2256,9 +2256,7 @@ HTML;
 
 		echo "</div>";
 
-		$store_link_message = empty($instance['store_link_title']) ? __('View Products', 'ecwid-shopping-cart') : $instance['store_link_title'];
-
-		$store_link_message = __('You have not viewed any product yet.', 'ecwid-shopping-cart');
+		$store_link_message = empty($instance['store_link_title']) ? __('You have not viewed any product yet.', 'ecwid-shopping-cart') : $instance['store_link_title'];
 
 		$page_id = ecwid_get_current_store_page_id();
 		$post = get_post($page_id);
@@ -2286,10 +2284,11 @@ HTML;
 	}
 
 	function form($instance){
+
 		$instance = wp_parse_args( (array) $instance,
 			array(
 				'title' => __('Recently Viewed Products', 'ecwid-shopping-cart'),
-				'store_link_title' => __('View Products', 'ecwid-shopping-cart'),
+				'store_link_title' => __('You have not viewed any product yet.', 'ecwid-shopping-cart'),
 				'number_of_products' => 3
 			)
 		);
