@@ -37,9 +37,9 @@
 
 		<?php endif; ?>
 
-		<h4 class="no-oauth" style="text-align: center"><?php _e('Where to find your Store ID:', 'ecwid-shopping-cart'); ?></h4>
+		<h4 class="no-oauth where-to-find-store-id" style="text-align: center"><?php _e('Where to find your Store ID:', 'ecwid-shopping-cart'); ?></h4>
 		<div class="note no-oauth">
-			<?php echo sprintf( __('Store ID is a unique identifier of your Ecwid account. You can find it in your Ecwid control panel:<br />open the <a %s>Dashboard page</a> and find the "<b>Store ID: NNNNNNN</b>" text, where <b>NNNNNNN</b> is your Store ID.', 'ecwid-shopping-cart'), 'href="https://my.ecwid.com/cp/CP.html?source=wporg#dashboard" target="_blank"'); ?>
+			<?php echo sprintf( __('Store ID is a unique identifier of your Ecwid account. You can find it in your Ecwid control panel: open the <a %s>Dashboard page</a> and find the "<b>Store ID: NNNNNNN</b>" text, where <b>NNNNNNN</b> is your Store&nbsp;ID.', 'ecwid-shopping-cart'), 'href="https://my.ecwid.com/cp/CP.html?source=wporg#dashboard" target="_blank"'); ?>
 		</div>
 
 		<div class="create-account-link">

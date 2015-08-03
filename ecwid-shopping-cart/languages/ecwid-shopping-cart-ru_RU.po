@@ -481,5 +481,5 @@ msgstr "Вы пока что не просмотрели ни одного то�
 msgid "Open {{store page title}}"
 msgstr "Открыть {{store page title}}"
 
-msgid "Store ID is a unique identifier of your Ecwid account. You can find it in your Ecwid control panel:<br />open the <a %s>Dashboard page</a> and find the \"<b>Store ID: NNNNNNN</b>\" text, where <b>NNNNNNN</b> is your Store ID."
-msgstr "ID магазина – это уникальный номер аккаунта в Эквиде. Вы можете его найти в панели управления Эквид-магазина:<br /> откройте страницу \"Консоль\" и найдите текст \"<b>ID Магазина NNNNNNN</b>\". "
+msgid "Store ID is a unique identifier of your Ecwid account. You can find it in your Ecwid control panel: open the <a %s>Dashboard page</a> and find the \"<b>Store ID: NNNNNNN</b>\" text, where <b>NNNNNNN</b> is your Store&nbsp;ID."
+msgstr "ID магазина – это уникальный номер аккаунта в Эквиде. Вы можете его найти в панели управления Эквид-магазина: откройте страницу \"<a %s>Консоль</a>\" и найдите текст \"<b>ID&nbsp;Магазина&nbsp;NNNNNNN</b>\". "
