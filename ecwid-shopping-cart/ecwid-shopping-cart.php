@@ -1361,7 +1361,6 @@ function ecwid_store_deactivate() {
 }
 
 function ecwid_uninstall() {
-    delete_option("ecwid_store_page_id");
     delete_option("ecwid_store_page_id_auto");
     delete_option("ecwid_store_id");
     delete_option("ecwid_enable_minicart");
