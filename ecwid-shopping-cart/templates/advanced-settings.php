@@ -96,7 +96,6 @@
 						<?php if (get_option('ecwid_use_chameleon')): ?>
 							checked="checked"
 						<?php endif; ?>
-						<?php echo $disabled_str; ?>
 						/>
 					<?php _e('Chameleon skin <sup>beta</sup>', 'ecwid-shopping-cart'); ?>
 				</label>
