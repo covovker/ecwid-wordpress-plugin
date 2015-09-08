@@ -260,7 +260,7 @@ function ecwid_add_frontend_styles() {
 	wp_enqueue_style('ecwid-css', plugins_url('ecwid-shopping-cart/css/frontend.css'),array(), get_option('ecwid_plugin_version'));
 
 	if ((bool)get_option('ecwid_use_chameleon')) {
-		wp_enqueue_script('ecwid-chameleon-js', plugins_url('ecwid-shopping-cart/js/ecwid-chameleon.js'), array(), get_option('ecwid_plugin_version'), true);
+		wp_enqueue_script('ecwid-chameleon-js', 'https://dj925myfyz5v.cloudfront.net/widgets/chameleon/v1/ecwid-chameleon.js', array(), get_option('ecwid_plugin_version'), true);
 
 		$primary = get_option('ecwid_chameleon_primary');
 		$background = get_option('ecwid_chameleon_background');
@@ -432,9 +432,7 @@ function ecwid_check_version()
 		do_action('ecwid_plugin_installed', $current_version);
 		add_option('ecwid_plugin_version', $current_version);
 
-		if (get_option('ecwid_installation_date') % 4 == 0) {
-			update_option('ecwid_use_chameleon', true);
-		}
+		update_option('ecwid_use_chameleon', true);
 
 		add_option('ecwid_use_new_horizontal_categories', 'Y');
 	} elseif ($upgrade) {
