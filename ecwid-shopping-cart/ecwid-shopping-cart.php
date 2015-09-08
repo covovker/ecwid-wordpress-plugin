@@ -792,7 +792,7 @@ function ecwid_seo_title($content) {
             } elseif (empty($params['category'])) {
                 $ecwid_product = $api->get_product($params['id']);
                 $ecwid_seo_title = $ecwid_product['name'];
-                if(is_array($ecwid_product['categories'])){
+                if(isset($ecwid_product['categories']) && is_array($ecwid_product['categories'])){
                     foreach ($ecwid_product['categories'] as $ecwid_category){
                         if ( $ecwid_category['defaultCategory'] == true ) {
                         $ecwid_seo_title .= ' ' . $separator . ' ';
