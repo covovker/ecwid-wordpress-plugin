@@ -417,6 +417,12 @@ function ecwid_check_version()
 	$current_version = $plugin_data['Version'];
 	$stored_version = get_option('ecwid_plugin_version', null);
 
+
+	$migration_since_version = get_option('ecwid_plugin_migration_since_version', null);
+	if (is_null($migration_since_version)) {
+		update_option('ecwid_plugin_migration_since_version', $current_version);
+	}
+
 	$fresh_install = !$stored_version;
 	$upgrade = $stored_version && version_compare($current_version, $stored_version) > 0;
 
@@ -430,6 +436,7 @@ function ecwid_check_version()
 			update_option('ecwid_use_chameleon', true);
 		}
 
+		add_option('ecwid_use_new_horizontal_categories', 'Y');
 	} elseif ($upgrade) {
 
 		ecwid_plugin_add_oauth();
@@ -439,7 +446,15 @@ function ecwid_check_version()
 		add_option('ecwid_chameleon_primary', '');
 		add_option('ecwid_chameleon_background', '');
 		add_option('ecwid_chameleon_links', '');
+
+		add_option('ecwid_use_new_horizontal_categories', '');
 	}
+}
+
+function ecwid_migrations_is_original_plugin_version_older_than($version)
+{
+	$migration_since_version = get_option('ecwid_plugin_migration_since_version', null);
+	return version_compare($migration_since_version, $version) < 0;
 }
 
 function ecwid_log_error($message)
@@ -952,9 +967,17 @@ function ecwid_categories_shortcode($attributes) {
 
 	$result = '';
   if (!empty($ecwid_show_categories)) {
-  	$result = <<<EOT
+	  if (get_option('ecwid_use_new_horizontal_categories')) {
+		  $store_id = get_ecwid_store_id();
+		  $result = <<<HTML
+<div id="horizontal-menu" data-storeid="$store_id"></div>
+<script src="https://djqizrxa6f10j.cloudfront.net/horizontal-category-widget/v1/horizontal-widget.js"></script>
+HTML;
+	  } else {
+		  $result = <<<EOT
 <script data-cfasync="false" type="text/javascript"> xCategories("style="); </script>
 EOT;
+	  }
   }
 
 	$result = apply_filters('ecwid_categories_shortcode_content', $result);
@@ -1187,7 +1210,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 	</div>
 	<script data-cfasync="false" type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str, "id=ecwid-store-$store_id");</script>
 EOT;
-    return ecwid_wrap_shortcode_content($s, 'product-browser', $params);
+    return ecwid_wrap_shortcode_content($s, 'product-browser', $shortcode_params);
 }
 
 
@@ -1494,6 +1517,7 @@ function ecwid_settings_api_init() {
 			register_setting('ecwid_options_page', 'ecwid_sso_secret_key');
 			register_setting('ecwid_options_page', 'ecwid_enable_advanced_theme_layout');
 			register_setting('ecwid_options_page', 'ecwid_use_chameleon');
+			register_setting('ecwid_options_page', 'ecwid_use_new_horizontal_categories');
 			break;
 	}
 
