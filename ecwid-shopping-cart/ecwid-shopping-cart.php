@@ -1812,7 +1812,7 @@ class EcwidBadgeWidget extends WP_Widget {
 	var $available_badges;
 
 	function __construct() {
-		$widget_ops = array('classname' => 'widget_ecwid_badge', 'description' => __("If you like Ecwid and want to help it grow and become the most popular e-commerce solution, you can now add a fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid.", 'ecwid-shopping-cart') );
+		$widget_ops = array('classname' => 'widget_ecwid_badge', 'description' => __("Do you like Ecwid and want to help it grow? You can add this fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid.", 'ecwid-shopping-cart') );
 		parent::__construct('ecwidbadge', __('Ecwid Badge', 'ecwid-shopping-cart'), $widget_ops);
 
 		$this->available_badges = array(
@@ -1941,8 +1941,8 @@ HTML;
 class EcwidMinicartWidget extends WP_Widget {
 
     function __construct() {
-		$widget_ops = array('classname' => 'widget_ecwid_minicart', 'description' => __("Your store's minicart", 'ecwid-shopping-cart') );
-    	parent::__construct('ecwidminicart', __('Ecwid Shopping Bag (Normal)', 'ecwid-shopping-cart'), $widget_ops);
+		$widget_ops = array('classname' => 'widget_ecwid_minicart', 'description' => __("Adds a cart widget for customer to see the products they added to the cart.", 'ecwid-shopping-cart') );
+    	parent::__construct('ecwidminicart', __('Shopping Cart', 'ecwid-shopping-cart'), $widget_ops);
 
 	}
 
@@ -1986,8 +1986,8 @@ class EcwidMinicartWidget extends WP_Widget {
 class EcwidMinicartMiniViewWidget extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_ecwid_minicart_miniview', 'description' => __("Your store's minicart", 'ecwid-shopping-cart') );
-	    parent::__construct('ecwidminicart_miniview', __('Ecwid Shopping Bag (Mini view)', 'ecwid-shopping-cart'), $widget_ops);
+        $widget_ops = array('classname' => 'widget_ecwid_minicart_miniview', 'description' => __("Adds a compact cart widget for customer to see the products they added to the cart.", 'ecwid-shopping-cart') );
+	    parent::__construct('ecwidminicart_miniview', __('Shopping Cart (Mini)', 'ecwid-shopping-cart'), $widget_ops);
     }
 
     function widget($args, $instance) {
@@ -2032,8 +2032,8 @@ class EcwidMinicartMiniViewWidget extends WP_Widget {
 class EcwidSearchWidget extends WP_Widget {
 
     function __construct() {
-    $widget_ops = array('classname' => 'widget_ecwid_search', 'description' => __("Your store's search box", 'ecwid-shopping-cart'));
-    parent::__construct('ecwidsearch', __('Ecwid Search Box', 'ecwid-shopping-cart'), $widget_ops);
+    $widget_ops = array('classname' => 'widget_ecwid_search', 'description' => __("Displays a simple search box for your customers to find a product in your storex", 'ecwid-shopping-cart'));
+    parent::__construct('ecwidsearch', __('Product Search', 'ecwid-shopping-cart'), $widget_ops);
     }
 
     function widget($args, $instance) {
@@ -2076,8 +2076,8 @@ class EcwidSearchWidget extends WP_Widget {
 class EcwidVCategoriesWidget extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_ecwid_vcategories', 'description' => __('Vertical menu of categories', 'ecwid-shopping-cart'));
-	    parent::__construct('ecwidvcategories', __('Ecwid Vertical Categories', 'ecwid-shopping-cart'), $widget_ops);
+        $widget_ops = array('classname' => 'widget_ecwid_vcategories', 'description' => __('Adds vertical categories block to let the customer navigate your store.', 'ecwid-shopping-cart'));
+	    parent::__construct('ecwidvcategories', __('Store Categories', 'ecwid-shopping-cart'), $widget_ops);
     }
 
     function widget($args, $instance) {
@@ -2120,8 +2120,8 @@ class EcwidVCategoriesWidget extends WP_Widget {
 class EcwidStoreLinkWidget extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array('classname' => 'widget_ecwid_store_link', 'description' => __('A link to your store page', 'ecwid-shopping-cart'));
-		parent::__construct('ecwidstorelink', __('Ecwid Store Page Link', 'ecwid-shopping-cart'), $widget_ops);
+		$widget_ops = array('classname' => 'widget_ecwid_store_link', 'description' => __('Displays a link to the store page in sidebar for customer to quickly access your store from any page on the site.', 'ecwid-shopping-cart'));
+		parent::__construct('ecwidstorelink', __('Store Page Link', 'ecwid-shopping-cart'), $widget_ops);
 	}
 
 	function widget($args, $instance) {
@@ -2159,7 +2159,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 	var $min = 1;
 	var $default = 3;
 	function __construct() {
-		$widget_ops = array('classname' => 'widget_ecwid_recently_viewed', 'description' => __('A list of products recently viewed by a customer. Add this widget to the sidebar to let them later return to the products they saw in your shop.', 'ecwid-shopping-cart'));
+		$widget_ops = array('classname' => 'widget_ecwid_recently_viewed', 'description' => __('Displays a list of products recently viewed by the customer to easily return to the products they saw in your shop.', 'ecwid-shopping-cart'));
 		parent::__construct('ecwidrecentlyviewed', __('Recently Viewed Products', 'ecwid-shopping-cart'), $widget_ops);
 		$recently_viewed = json_decode(stripslashes(@$_COOKIE['ecwid-shopping-cart-recently-viewed']));
 

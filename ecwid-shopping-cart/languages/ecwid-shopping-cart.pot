@@ -61,7 +61,7 @@ msgstr ""
 msgid "Recommendations for Your Online Store"
 msgstr ""
 
-msgid "If you like Ecwid and want to help it grow and become the most popular e-commerce solution, you can now add a fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid."
+msgid "Do you like Ecwid and want to help it grow? You can add this fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid."
 msgstr ""
 
 msgid "Ecwid Badge"

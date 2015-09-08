@@ -58,8 +58,8 @@ msgstr "Дополнительные"
 msgid "Hidden category"
 msgstr "Скрытая категория"
 
-msgid "If you like Ecwid and want to help it grow and become the most popular e-commerce solution, you can now add a fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid."
-msgstr "Если вам нравится Эквид и вы хотите помочь ему расти и стать самым популярным конструктором интернет-магазинов, вы можете добавить значок Эквида на ваш сайт, чтобы показать посетителям, что вы пользуетесь Эквидом."
+msgid "Do you like Ecwid and want to help it grow? You can add this fancy 'Powered by Ecwid' badge on your site to show your visitors that you're a proud user of Ecwid."
+msgstr "Если вам нравится Эквид и вы хотите помочь ему стать самым популярным конструктором интернет-магазинов, вы можете добавить значок на сайт, чтобы показать посетителям, что вы пользуетесь Эквидом."
 
 msgid "Ecwid Badge"
 msgstr "Значок Эквида"
@@ -82,35 +82,41 @@ msgstr "Виджеты для электронной коммерции Экви
 msgid "Your store's minicart"
 msgstr "Корзина вашего магазина"
 
-msgid "Ecwid Shopping Bag (Normal)"
-msgstr "Корзина Эквида (Основной режим)"
+msgid "Shopping Cart"
+msgstr "Корзина"
 
-msgid "Ecwid Shopping Bag (Mini view)"
-msgstr "Корзина Эквида (Компактная)"
+msgid "Adds a cart widget for customer to see the products they added to the cart."
+msgstr "Добавляет виджет корзины покупателя для быстрого доступа к добавленным товарам."
 
-msgid "Your store's search box"
-msgstr "Форма поиска по вашему магазину"
+msgid "Shopping Cart (Mini)"
+msgstr "Корзина (Мини)"
 
-msgid "Ecwid Search Box"
-msgstr "Поиск по Эквид-магазину"
+msgid "Adds a compact cart widget for customer to see the products they added to the cart."
+msgstr "Добавляет компактный виджет корзины покупателя для быстрого доступа к добавленным товарам."
 
-msgid "Vertical menu of categories"
-msgstr "Вертикальное меню категорий"
+msgid "Displays a simple search box for your customers to find a product in your store"
+msgstr "Показывает покупателю поле поиска товаров в магазине"
 
-msgid "Ecwid Vertical Categories"
-msgstr "Вертикальное меню категорий Эквида"
+msgid "Product Search"
+msgstr "Поиск товаров"
 
-msgid "A link to your store page"
-msgstr "Ссылка на страницу с вашим Эквид-магазином"
+msgid "Adds vertical categories block to let the customer navigate your store."
+msgstr "Показывает вертикальный список категорий для удобной навигации по магазину."
 
-msgid "Ecwid Store Page Link"
-msgstr "Ссылка на Эквид-магазин"
+msgid "Store Categories"
+msgstr "Категории магазина"
+
+msgid "Displays a link to the store page in sidebar for customer to quickly access your store from any page on the site."
+msgstr "Показывает ссылку на страницу магазина, позволяющую покупателю быстро открыть магазин из любого страницы на сайте."
+
+msgid "Store Page Link"
+msgstr "Ссылка на магазин"
 
 msgid "Shop"
 msgstr "Магазин"
 
-msgid "A list of products recently viewed by a customer. Add this widget to the sidebar to let them later return to the products they saw in your shop."
-msgstr "Список товаров, просмотренных посетителями. Добавьте этот виджет в сайдбар, чтобы позволить клиентам быстро перейти к товарам, которые они просматривали ранее."
+msgid "Displays a list of products recently viewed by the customer to easily return to the products they saw in your shop."
+msgstr "Показывает список товаров, просмотренных покупателем. Позволяет покупателю быстро перейти к товарам, которые их заинтересовали раньше."
 
 msgid "Recently Viewed Products"
 msgstr "Просмотренные товары"
