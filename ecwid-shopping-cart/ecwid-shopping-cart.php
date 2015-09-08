@@ -1832,7 +1832,7 @@ function ecwid_get_product_browser_url_script()
 
 class EcwidBadgeWidget extends WP_Widget {
 
-	var $url_template = "//static.ecwid.com/badges/%s.png";
+	var $url_template = "https://dj925myfyz5v.cloudfront.net/badges/%s.png";
 	var $available_badges;
 
 	function __construct() {
