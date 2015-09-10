@@ -107,7 +107,7 @@ msgid "Store Categories"
 msgstr "Категории магазина"
 
 msgid "Displays a link to the store page in sidebar for customer to quickly access your store from any page on the site."
-msgstr "Показывает ссылку на страницу магазина, позволяющую покупателю быстро открыть магазин из любого страницы на сайте."
+msgstr "Показывает ссылку на страницу магазина, позволяющую покупателю быстро открыть магазин из любой страницы на сайте."
 
 msgid "Store Page Link"
 msgstr "Ссылка на магазин"
