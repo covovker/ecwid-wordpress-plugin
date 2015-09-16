@@ -15,7 +15,7 @@
 
 		<?php foreach ($translations as $locale => $items): ?>
 		<td class="translation">
-			<textarea name="labels[<?= htmlentities($label) ?>][<?= $domain ?>]"><?php if ($items[$label]) echo htmlentities($items[$label]); ?></textarea>
+			<textarea name="labels[<?= htmlentities($label) ?>][<?= $domain ?>]"><?php if (@$items[$label]) echo htmlentities($items[$label]); ?></textarea>
 		</td>
 		<?php endforeach; ?>
 	</tr>

@@ -116,7 +116,7 @@ function edev_download_pot()
 
 	foreach ($labels as $key => $label) {
 		echo 'msgid "' . str_replace('"', '\"', $key) .  "\"\n";
-		echo 'msgstr "' . ($_GET['mode'] == 'filler' ? preg_replace('![^ ]!', 'x', $key) : '') . '"' . "\n\n";
+		echo 'msgstr "' . (@$_GET['mode'] == 'filler' ? preg_replace('![^ ]!', 'x', $key) : '') . '"' . "\n\n";
 	}
 
 	die();
@@ -175,7 +175,7 @@ function get_translation_labels($php_code)
 {
 	$expect = array(
 		array(
-			'token' => 307,
+			'token' => 310,
 			'value' => array(
 				'_e',
 				'__',
@@ -187,14 +187,14 @@ function get_translation_labels($php_code)
 			'token' => '('
 		),
 		array(
-			'token' => 315,
+			'token' => 318,
 			'save_as' => 'label'
 		),
 		array(
 			'token' => ','
 		),
 		array(
-			'token' => 315,
+			'token' => 318,
 			'save_as' => 'domain'
 		),
 		array(
@@ -224,12 +224,12 @@ function get_translation_labels($php_code)
 	);
 
 	foreach ($tokens as $token) {
-		if (is_array($token) && $token[0] == 375) continue;
+		if (is_array($token) && $token[0] == 379) continue;
 
 		$current_expect = $expect[$expect_ind];
 
-		$string_match = (is_string($current_expect['token']) && $current_expect['token'] == $token)
-		  || (is_array($current_expect['value']) && in_array($token[1], $current_expect['value']));
+		$string_match = (is_string($current_expect['token']) && $current_expect['token'] == $token[0])
+		  || (is_array(@$current_expect['value']) && isset($token[1]) && in_array(@$token[1], @$current_expect['value']));
 
 
 		$type_match = is_int($current_expect['token']) && @$token[0] == $current_expect['token'];
@@ -240,7 +240,7 @@ function get_translation_labels($php_code)
 		} elseif ($type_match) {
 
 			$found = false;
-			if ($current_expect['save_as']) {
+			if (@$current_expect['save_as']) {
 				$result[$current_expect['save_as']] = $token[1];
 				$found = true;
 			}
