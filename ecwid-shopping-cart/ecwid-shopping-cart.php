@@ -1533,7 +1533,7 @@ function ecwid_common_admin_scripts() {
 
 function ecwid_get_register_link()
 {
-	$link = 'https://my.ecwid.com/cp/?source=wporg%s#register';
+	$link = 'https://my.ecwid.com/cp/?source=wporg&partner=wporg%s#register';
 
 	global $current_user;
 	get_currentuserinfo();
