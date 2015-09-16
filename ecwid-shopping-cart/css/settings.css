@@ -402,6 +402,7 @@ display: none;
 .ecwid-connect .box .note {
 	margin-top: 6px;
 	max-width: 760px;
+	font-size: 13px;
 }
 
 .ecwid-connect .box .create-account-link {

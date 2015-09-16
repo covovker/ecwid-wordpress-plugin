@@ -4,7 +4,7 @@ require_once ECWID_THEMES_DIR . '/class-ecwid-theme-base.php';
 
 class Ecwid_Theme_2012 extends Ecwid_Theme_Base
 {
-	protected $name = 'Twenty Fourteen';
+	protected $name = 'Twenty Twelve';
 
 	protected $adjust_pb_scroll = true;
 

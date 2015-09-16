@@ -196,7 +196,7 @@ body[class*="_page_ecwid"] .ecwid-message {
 	font-weight: normal;
 }
 
-.widgets-php #available-widgets .ecwid-widget .widget-top .widget-title {
+.widgets-php #available-widgets .ecwid-widget .widget-top .widget-title h4 {
 	padding-left: 42px;
 }
 
@@ -230,8 +230,10 @@ body[class*="_page_ecwid"] .ecwid-message {
 
 .wp-customizer #available-widgets .ecwid-widget .widget-top .widget-title:before {
 	left: -40px;
-	top: -4px;
+	top: -1px;
+	font-size: 18px;
 	opacity: 1;
+	color: #32373c;
 }
 
 #available-widgets .ecwid-widget .widget-top:hover .widget-title:before {

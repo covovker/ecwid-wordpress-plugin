@@ -5,7 +5,7 @@ Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
 Text Domain: ecwid-shopping-cart
 Author: Ecwid Team
-Version: 3.2.1
+Version: 3.4
 Author URI: http://www.ecwid.com?source=wporg
 */
 
@@ -846,10 +846,10 @@ function ecwid_content_started($content)
 
 function ecwid_wrap_shortcode_content($content, $name, $attrs)
 {
-    return "<!-- Ecwid shopping cart plugin v 3.2.1 --><!-- noptimize -->"
+    return "<!-- Ecwid shopping cart plugin v 3.4 --><!-- noptimize -->"
 		   . ecwid_get_scriptjs_code(@$attrs['lang'])
 	       . "<div class=\"ecwid-shopping-cart-$name\">$content</div>"
-		   . "<!-- /noptimize --><!-- END Ecwid Shopping Cart v 3.2.1 -->";
+		   . "<!-- /noptimize --><!-- END Ecwid Shopping Cart v 3.4 -->";
 }
 
 function ecwid_get_scriptjs_code($force_lang = null) {
@@ -1044,7 +1044,7 @@ function ecwid_product_shortcode($shortcode_attributes) {
 
 	update_option('ecwid_single_product_used', time());
 
-	return ecwid_wrap_shortcode_content($result, 'product');
+	return ecwid_wrap_shortcode_content($result, 'product', $shortcode_attributes);
 }
 
 function ecwid_shortcode($attributes)
@@ -1286,9 +1286,9 @@ EOT;
 
 	add_option("ecwid_installation_date", time());
 
-	add_option('ecwid_hide_appearance_menu', get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', 'yes');
+	add_option('ecwid_hide_appearance_menu', get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', '', 'yes');
 	// Does not affect updates, automatically turned on for new users only
-	add_option("ecwid_advanced_theme_layout", get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', 'yes');
+	add_option("ecwid_advanced_theme_layout", get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID ? 'Y' : 'N', '', 'yes');
 
 	add_option('ecwid_chameleon_primary', '');
 	add_option('ecwid_chameleon_background', '');
@@ -2185,7 +2185,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 		$recently_viewed = json_decode(stripslashes(@$_COOKIE['ecwid-shopping-cart-recently-viewed']));
 
 		if ($recently_viewed && $recently_viewed->store_id != get_ecwid_store_id()) {
-			setcookie('ecwid-shopping-cart-recently-viewed', null, strftime('-1 day'));
+			setcookie('ecwid-shopping-cart-recently-viewed', null, strtotime('-1 day'));
 		}
 	}
 
@@ -2277,15 +2277,13 @@ HTML;
 
 		echo "</div>";
 
-		$store_link_message = empty($instance['store_link_title']) ? __('You have not viewed any product yet.', 'ecwid-shopping-cart') : $instance['store_link_title'];
+		$store_link_message = empty($instance['store_link_title']) ? __('You have not viewed any product yet. Open store.', 'ecwid-shopping-cart') : $instance['store_link_title'];
 
 		$page_id = ecwid_get_current_store_page_id();
 		$post = get_post($page_id);
 
-		$store_link_title = str_replace("{{store page title}}", $post->post_title,  __('Open {{store page title}}', 'ecwid-shopping-cart'));
-
 		if (empty($recently_viewed->products)) {
-			echo $store_link_message . ' <br /><a class="show-if-empty" href="' . ecwid_get_store_page_url() . '">' . $store_link_title . '</a>';
+			echo '<a class="show-if-empty" href="' . ecwid_get_store_page_url() . '">' . $store_link_message . '</a>';
 		}
 
 		echo $after_widget;
@@ -2309,7 +2307,7 @@ HTML;
 		$instance = wp_parse_args( (array) $instance,
 			array(
 				'title' => __('Recently Viewed Products', 'ecwid-shopping-cart'),
-				'store_link_title' => __('You have not viewed any product yet.', 'ecwid-shopping-cart'),
+				'store_link_title' => __('You have not viewed any product yet. Open store.', 'ecwid-shopping-cart'),
 				'number_of_products' => 3
 			)
 		);
