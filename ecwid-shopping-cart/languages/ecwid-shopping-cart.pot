@@ -82,43 +82,46 @@ msgstr ""
 msgid "Ecwid e-commerce widgets"
 msgstr ""
 
-msgid "Your store's minicart"
+msgid "Adds a cart widget for customer to see the products they added to the cart."
 msgstr ""
 
-msgid "Ecwid Shopping Bag (Normal)"
+msgid "Shopping Cart"
 msgstr ""
 
-msgid "Ecwid Shopping Bag (Mini view)"
+msgid "Adds a compact cart widget for customer to see the products they added to the cart."
 msgstr ""
 
-msgid "Your store's search box"
+msgid "Shopping Cart (Mini)"
 msgstr ""
 
-msgid "Ecwid Search Box"
+msgid "Displays a simple search box for your customers to find a product in your storex"
 msgstr ""
 
-msgid "Vertical menu of categories"
+msgid "Product Search"
 msgstr ""
 
-msgid "Ecwid Vertical Categories"
+msgid "Adds vertical categories block to let the customer navigate your store."
 msgstr ""
 
-msgid "A link to your store page"
+msgid "Store Categories"
 msgstr ""
 
-msgid "Ecwid Store Page Link"
+msgid "Displays a link to the store page in sidebar for customer to quickly access your store from any page on the site."
+msgstr ""
+
+msgid "Store Page Link"
 msgstr ""
 
 msgid "Shop"
 msgstr ""
 
-msgid "A list of products recently viewed by a customer. Add this widget to the sidebar to let them later return to the products they saw in your shop."
+msgid "Displays a list of products recently viewed by the customer to easily return to the products they saw in your shop."
 msgstr ""
 
 msgid "Recently Viewed Products"
 msgstr ""
 
-msgid "View Products"
+msgid "You have not viewed any product yet. Open store."
 msgstr ""
 
 msgid "Store Link Title"
@@ -220,6 +223,12 @@ msgstr ""
 msgid "Please note this functionality is in beta. So if you run into difficulties or find problems with Chameleon, please <a %s>let us know</a>."
 msgstr ""
 
+msgid "Enable the new category menu"
+msgstr ""
+
+msgid "The new category menu looks better and is more mobile-friendly. If you haven't yet added category menu to your store page, you can do that in the <a %s>store page editor</a> (enable the \"Show categories\" option)"
+msgstr ""
+
 msgid "Save changes"
 msgstr ""
 
@@ -232,13 +241,13 @@ msgstr ""
 msgid "Or you can add search box to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
 msgstr ""
 
-msgid "Display horizontal categories above products"
+msgid "Display categories above products"
 msgstr ""
 
 msgid "Or you can add vertical categories to your website's toolbar using <a href=\"%s\">WordPress native widgets</a>"
 msgstr ""
 
-msgid "Enable minicart attached to horizontal categories"
+msgid "Enable minicart attached to categories"
 msgstr ""
 
 msgid "You should disable this option, if you added minicart to your website's&nbsp;sidebar"
@@ -280,13 +289,25 @@ msgstr ""
 msgid "Connect your store<br /> to this WordPress site"
 msgstr ""
 
+msgid "Enter your Store ID"
+msgstr ""
+
 msgid "Connect Ecwid store"
+msgstr ""
+
+msgid "Save and connect"
 msgstr ""
 
 msgid "After clicking button you need to login and accept permissions to use our plugin"
 msgstr ""
 
 msgid "Connection error - after clicking button you need to login and accept permissions to use our plugin. Please, try again."
+msgstr ""
+
+msgid "Where to find your Store ID:"
+msgstr ""
+
+msgid "Store ID is a unique identifier of your Ecwid account. You can find it in your Ecwid control panel: open the <a %s>Dashboard page</a> and find the \"<b>Store ID: NNNNNNN</b>\" text, where <b>NNNNNNN</b> is your Store&nbsp;ID."
 msgstr ""
 
 msgid "Don't have Ecwid account? Create it here"
@@ -418,7 +439,7 @@ msgstr ""
 msgid "Global Reach"
 msgstr ""
 
-msgid "More than 700,000 merchants in 175 countries"
+msgid "More than 800,000 merchants in 175 countries"
 msgstr ""
 
 msgid "Start selling <br>on your WordPress <nobr>site for free</nobr>"
@@ -457,7 +478,7 @@ msgstr ""
 msgid "Show minicart"
 msgstr ""
 
-msgid "Show horizontal categories"
+msgid "Show categories"
 msgstr ""
 
 msgid "Additionally, you can add store controls to your website's toolbar using <a %s>WordPress native widgets</a>"
