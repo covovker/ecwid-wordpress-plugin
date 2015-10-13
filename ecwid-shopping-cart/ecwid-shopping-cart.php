@@ -542,8 +542,20 @@ function ecwid_seo_compatibility_init($title)
   // Title
   ecwid_override_option('aiosp_rewrite_titles', false);
 
+	add_action('amt_basic_metadata_head', 'ecwid_amt_remove_description');
 	return $title;
 
+}
+
+function ecwid_amt_remove_description($params)
+{
+	foreach ($params as $key => $value) {
+		if (preg_match('/meta name="description"/', $value)) {
+			unset ($params[$key]);
+		}
+	}
+
+	return $params;
 }
 
 function ecwid_seo_compatibility_restore()
