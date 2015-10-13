@@ -2404,7 +2404,8 @@ function ecwid_gather_stats()
 		'recently_viewed_widget',
 		'avalanche_used',
 		'chameleon_used',
-		'http_post_fails'
+		'http_post_fails',
+		'ecwid_use_new_horizontal_categories'
 	);
 
 	$usage_stats = ecwid_gather_usage_stats();
@@ -2442,7 +2443,8 @@ function ecwid_gather_usage_stats()
 		'recently_viewed_widget',
 		'avalanche_used',
 		'chameleon_used',
-		'http_post_fails'
+		'http_post_fails',
+		'ecwid_use_new_horizontal_categories'
 	);
 
 	$usage_stats = array();
@@ -2466,6 +2468,8 @@ function ecwid_gather_usage_stats()
 	$usage_stats['avalanche_used'] = (bool) is_plugin_active('ecwid-widgets-avalanche/ecwid_widgets_avalanche.php');
 	$usage_stats['chameleon_used'] = (bool)get_option('ecwid_use_chameleon');
 	$usage_stats['http_post_fails'] = get_option('ecwid_last_oauth_fail_time') > 0;
+	$usage_stats['ecwid_use_new_horizontal_categories'] = (bool) get_option('ecwid_use_new_horizontal_categories');
+
 
 	return $usage_stats;
 }
