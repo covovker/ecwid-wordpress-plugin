@@ -26,7 +26,6 @@ if ( ! defined( 'ECWID_PLUGIN_URL' ) ) {
 	define( 'ECWID_PLUGIN_URL', plugin_dir_url( realpath(__FILE__) ) );
 }
 
-
 // Older versions of Google XML Sitemaps plugin generate it in admin, newer in site area, so the hook should be assigned in both of them
 add_action('sm_buildmap', 'ecwid_build_google_xml_sitemap');
 
@@ -1589,21 +1588,35 @@ function ecwid_general_settings_do_page() {
 		}
 	}
 
+	global $ecwid_oauth;
+
 	if (get_option('ecwid_store_id') == ECWID_DEMO_STORE_ID && !$no_oauth) {
-    global $ecwid_oauth;
 
 		$register = !$connection_error && !isset($_GET['connect']) && !@$_COOKIE['ecwid_create_store_clicked'];
 
 		require_once(ECWID_PLUGIN_DIR . '/templates/landing.php');
-	} else {
+	} else if (isset($_GET['reconnect'])) {
+		if (isset($_GET['reason'])) switch ($_GET['reason']) {
+			case '1': $reconnect_message = "Message 1"; break;
+			case '2': $reconnect_message = "Message 2"; break;
+		}
 
-        if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID) {
-            global $ecwid_oauth;
+        $scopes = '';
 
-            require_once ECWID_PLUGIN_DIR . '/templates/connect.php';
-        } else {
-            require_once ECWID_PLUGIN_DIR . '/templates/dashboard.php';
+        if (isset($_GET['scopes'])) {
+            $scopes = implode(' ', $ecwid_oauth->get_safe_scopes_array($_GET['scopes']));
         }
+
+		if (isset($_GET['returnUrl'])) {
+			$returnUrl = $_GET['returnUrl'];
+		}
+
+		require_once ECWID_PLUGIN_DIR . '/templates/reconnect.php';
+	} else if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID) {
+
+	   require_once ECWID_PLUGIN_DIR . '/templates/connect.php';
+	} else {
+		require_once ECWID_PLUGIN_DIR . '/templates/dashboard.php';
 	}
 }
 
@@ -1619,9 +1632,22 @@ function ecwid_admin_post_connect()
 	global $ecwid_oauth;
 
 	if (ecwid_test_oauth(true)) {
-		wp_redirect($ecwid_oauth->get_auth_dialog_url());
-	} else {
+        $scopes = isset($_GET['scopes']) ? $_GET['scopes'] : '';
+
+        $params = array();
+
+		if ($scopes) {
+			$params['scopes'] = $ecwid_oauth->get_safe_scopes_array($scopes);
+		}
+
+		if (@$_GET['returnUrl']) {
+			$params['returnUrl'] = $_GET['returnUrl'];
+		}
+		wp_redirect($ecwid_oauth->get_auth_dialog_url($params));
+	} else if (!isset($_GET['reconnect'])) {
 		wp_redirect('admin.php?page=ecwid&oauth=no');
+	} else {
+		wp_redirect('admin.php?page=ecwid&reconnect&connection_error');
 	}
 }
 
