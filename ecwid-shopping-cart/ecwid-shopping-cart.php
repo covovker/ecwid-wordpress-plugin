@@ -2241,7 +2241,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 		if ( $title )
 			echo $before_title . $title . $after_title;
 
-		echo ecwid_get_scriptjs_code();
+		echo '<!-- noptimize -->' . ecwid_get_scriptjs_code() . '<!-- /noptimize -->';
 
 		$recently_viewed = false;
 		if (isset($_COOKIE['ecwid-shopping-cart-recently-viewed'])) {
@@ -2261,6 +2261,7 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 			$api = ecwid_new_product_api();
 		}
 
+		$counter = 0;
 		$ids = array();
 		if ($recently_viewed && isset($recently_viewed->products)) {
 
@@ -2276,14 +2277,17 @@ class EcwidRecentlyViewedWidget extends WP_Widget {
 						$product_https = $api->get_product_https($product->id);
 					}
 
+					$name = isset($product_https) ? $product_https['name']: '';
+
 					echo <<<HTML
-	<a class="product$hide" href="$product->link" alt="$product->name" title="$product->name">
+	<a class="product$hide" href="$product->link" alt="$name" title="$name">
 		<div class="ecwid ecwid-SingleProduct ecwid-Product ecwid-Product-$product->id" data-single-product-link="$product->link" itemscope itemtype="http://schema.org/Product" data-single-product-id="$product->id">
 			<div itemprop="image" data-force-image="$product_https[imageUrl]"></div>
 			<div class="ecwid-title" itemprop="name"></div>
 			<div itemtype="http://schema.org/Offer" itemscope itemprop="offers"><div class="ecwid-productBrowser-price ecwid-price" itemprop="price"></div></div>
 		</div>
-		<script type="text/javascript">xSingleProduct();</script>
+
+		<!-- noptimize --><script type="text/javascript">xSingleProduct();</script><!-- /noptimize -->
 	</a>
 HTML;
 				}
