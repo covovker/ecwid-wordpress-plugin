@@ -1,4 +1,4 @@
-<div class="wrap ecwid-admin ecwid-connect<?php if ($no_oauth): ?> no-oauth<?php else: ?> with-oauth<?php endif; ?>">
+<div class="wrap ecwid-admin ecwid-connect ecwid-reconnect">
 	<div class="box">
 		<div class="head"><?php ecwid_embed_svg('ecwid_logo_symbol_RGB');?>
 			<h3>
@@ -13,21 +13,21 @@
 			<?php _e( 'Connect your store<br /> to this WordPress site', 'ecwid-shopping-cart' ); ?>
 		</div>
 
-		<div class="connect-store-id no-oauth">
-			<input type="text" id="ecwid-store-id" placeholder="<?php _e('Enter your Store ID', 'ecwid-shopping-cart'); ?>" />
-		</div>
+		<?php if (isset($reconnect_message)): ?>
+			<div class="note reconnect-message">
+				<?php echo $reconnect_message; ?>
+			</div>
+		<?php endif; ?>
+
 		<div class="connect-button">
-			<a href="admin-post.php?action=ecwid_connect&reconnect<?php if($scopes): ?>&scopes=<?php echo urlencode($scopes); ?><?php endif; ?><?php if($returnUrl): ?>&returnUrl=<?php echo urlencode($returnUrl); ?><?php endif; ?>" class="with-oauth"><?php _e( 'Connect Ecwid store', 'ecwid-shopping-cart' ); ?></a>
-			<a id="ecwid-connect-no-oauth" href="admin-post.php?action=ecwid_connect" class="no-oauth"><?php _e( 'Save and connect', 'ecwid-shopping-cart' ); ?></a>
+			<a href="admin-post.php?action=ecwid_connect&reconnect<?php if(@$scopes): ?>&scopes=<?php echo urlencode($scopes); ?><?php endif; ?><?php if(@$returnUrl): ?>&returnUrl=<?php echo urlencode($returnUrl); ?><?php endif; ?>"><?php _e( 'Connect Ecwid store', 'ecwid-shopping-cart' ); ?></a>
 		</div>
 
 		<?php if (!$connection_error): ?>
 
-			<?php if (isset($reconnect_message)): ?>
-			<div class="note initial with-oauth">
-				<?php echo $reconnect_message; ?>
+			<div class="note">
+				<?php _e( 'After clicking button you need to login and accept permissions to use our plugin', 'ecwid-shopping-cart' ); ?>
 			</div>
-			<?php endif; ?>
 
 		<?php else: ?>
 

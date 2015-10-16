@@ -60,8 +60,7 @@ class Ecwid_OAuth {
 		}
 
 		if (isset($params['returnUrl'])) {
-			$params['redirect_uri'] = admin_url( 'admin.php?action=ecwid_oauth' );
-//			$params['redirect_uri'] = admin_url( 'admin.php?action=ecwid_oauth&return_url=' . urlencode($params['returnUrl'] ) );
+			$params['redirect_uri'] = admin_url( 'admin-post.php?action=ecwid_oauth&return_url=' . urlencode(urlencode($params['returnUrl']) ) );
 		}
 
 		$url = 'https://my.ecwid.com/api/oauth/authorize';
@@ -77,6 +76,7 @@ class Ecwid_OAuth {
 			$query[$key] = urlencode($value);
 		}
 
+
 		return $url . '?' . build_query( $query );
 	}
 
@@ -90,9 +90,13 @@ class Ecwid_OAuth {
 		$params['client_id'] = self::OAUTH_CLIENT_ID;
 		$params['client_secret'] = self::OAUTH_CLIENT_SECRET;
 		$params['redirect_uri'] = admin_url( 'admin-post.php?action=ecwid_oauth' );
+		if (isset($_REQUEST['return_url'])) {
+			$params['redirect_uri'] = admin_url( 'admin-post.php?action=ecwid_oauth&return_url=' . urlencode(urlencode($_REQUEST['return_url']) ) );
+		}
 		$params['grant_type'] = 'authorization_code';
 
 		$return = wp_remote_post('https://my.ecwid.com/api/oauth/token', array('body' => $params));
+
 
 		if (is_array($return) && isset($return['body'])) {
 			$result = json_decode($return['body']);
@@ -137,7 +141,6 @@ class Ecwid_OAuth {
             return array();
         }
 
-        $scopes = '';
         if (!empty($scopes)) {
             $scopes_array = explode(' ', $scopes);
 

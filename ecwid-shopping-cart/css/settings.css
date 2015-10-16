@@ -391,6 +391,11 @@ display: none;
 	margin-bottom: 38px;
 }
 
+
+.ecwid-connect.ecwid-reconnect .box .greeting-message {
+	margin-bottom: inherit;
+}
+
 .ecwid-connect .box .connect-button {
 	margin-top: 8px;
 }
@@ -405,6 +410,10 @@ display: none;
 	font-size: 13px;
 }
 
+.ecwid-connect .box .note.reconnect-message {
+	margin-bottom: 38px;
+	color: #707070;
+}
 .ecwid-connect .box .create-account-link {
 	margin-top: 35px;
 }
