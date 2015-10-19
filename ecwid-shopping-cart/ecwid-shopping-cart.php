@@ -1603,8 +1603,8 @@ function ecwid_general_settings_do_page() {
 
         $scopes = '';
 
-        if (isset($_GET['scopes'])) {
-            $scopes = implode(' ', $ecwid_oauth->get_safe_scopes_array($_GET['scopes']));
+        if (isset($_GET['scope'])) {
+            $scopes = implode(' ', $ecwid_oauth->get_safe_scopes_array($_GET['scope']));
         }
 
 		if (isset($_GET['returnUrl'])) {
