@@ -19,8 +19,7 @@ class Ecwid_OAuth {
 		add_action('admin_post_ecwid_show_reconnect', array($this, 'show_reconnect'));
 
         $this->crypt = new Crypt_AES();
-        $this->crypt->setIV(substr(md5(SECURE_AUTH_SALT . get_ecwid_store_id()), 0, 16));
-        $this->crypt->setKey(SECURE_AUTH_KEY);
+		$this->_init_crypt();
 	}
 
 	public function show_reconnect()
@@ -113,6 +112,8 @@ class Ecwid_OAuth {
 		}
 
 		update_option( 'ecwid_store_id', $result->store_id );
+		$this->_init_crypt();
+		update_option('ecwid_vault_token', $result->access_token);
 		$this->_save_token($result->access_token);
 
 		setcookie('ecwid_create_store_clicked', null, strtotime('-1 day'), ADMIN_COOKIE_PATH, COOKIE_DOMAIN);
@@ -206,7 +207,7 @@ class Ecwid_OAuth {
 		$db_value = get_option(self::TOKEN_OPTION_NAME);
         if (empty($db_value)) return false;
 
-		if (strlen($db_value == 64)) {
+		if (strlen($db_value) == 64) {
 			$encrypted = base64_decode($db_value);
 			if (empty($encrypted)) return false;
 
@@ -214,8 +215,13 @@ class Ecwid_OAuth {
 		} else {
 			$token = $db_value;
 		}
-
+		
 		return $token;
+	}
+
+	public function _init_crypt() {
+		$this->crypt->setIV( substr( md5( SECURE_AUTH_SALT . get_option('ecwid_store_id') ), 0, 16 ) );
+		$this->crypt->setKey( SECURE_AUTH_KEY );
 	}
 }
 
