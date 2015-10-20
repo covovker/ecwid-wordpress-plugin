@@ -1611,8 +1611,10 @@ function ecwid_general_settings_do_page() {
 			$returnUrl = $_GET['returnUrl'];
 		}
 
+		$connection_error = @$_GET['connection_error'];
+
 		require_once ECWID_PLUGIN_DIR . '/templates/reconnect.php';
-	} else if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID) {
+	} else if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID || isset($_GET['connection_error'])) {
 
 	   require_once ECWID_PLUGIN_DIR . '/templates/connect.php';
 	} else {
@@ -1642,6 +1644,10 @@ function ecwid_admin_post_connect()
 
 		if (@$_GET['returnUrl']) {
 			$params['returnUrl'] = $_GET['returnUrl'];
+		}
+
+		if (isset($_GET['reconnect'])) {
+			$params['reconnect'] = true;
 		}
 		wp_redirect($ecwid_oauth->get_auth_dialog_url($params));
 	} else if (!isset($_GET['reconnect'])) {

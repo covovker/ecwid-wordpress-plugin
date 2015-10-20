@@ -23,13 +23,16 @@
 			<a href="admin-post.php?action=ecwid_connect&reconnect<?php if(@$scopes): ?>&scopes=<?php echo urlencode($scopes); ?><?php endif; ?><?php if(@$returnUrl): ?>&returnUrl=<?php echo urlencode($returnUrl); ?><?php endif; ?>"><?php _e( 'Connect Ecwid store', 'ecwid-shopping-cart' ); ?></a>
 		</div>
 
-		<?php if (!$connection_error): ?>
+		<?php if ($connection_error == 'cancelled'): ?>
 
-			<div class="note">
-				<?php _e( 'After clicking button you need to login and accept permissions to use our plugin', 'ecwid-shopping-cart' ); ?>
+
+			<div class="note auth-error">
+			<span>
+				<?php _e( 'Connection error - after clicking button you need to login and accept permissions to use our plugin. Please, try again.', 'ecwid-shopping-cart' ); ?>
+			</span>
 			</div>
 
-		<?php else: ?>
+		<?php elseif ($connection_error == 'other'): ?>
 
 			<div class="note auth-error">
 				<span>
@@ -37,6 +40,11 @@
 				</span>
 			</div>
 
+		<?php else: ?>
+
+			<div class="note">
+				<?php _e( 'After clicking button you need to login and accept permissions to use our plugin', 'ecwid-shopping-cart' ); ?>
+			</div>
 		<?php endif; ?>
 	</div>
 	<p><?php echo sprintf(__('Questions? Visit <a %s>Ecwid support center</a>', 'ecwid-shopping-cart'), 'target="_blank" href="http://help.ecwid.com/?source=wporg"'); ?></p>
