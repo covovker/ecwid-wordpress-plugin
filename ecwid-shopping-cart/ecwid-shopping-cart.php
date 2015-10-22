@@ -39,6 +39,7 @@ add_filter('plugins_loaded', 'ecwid_load_textdomain');
 if ( is_admin() ){ 
   add_action('admin_init', 'ecwid_settings_api_init');
 	add_action('admin_init', 'ecwid_check_version');
+	add_action('admin_init', 'ecwid_process_oauth_params');
   add_action('admin_notices', 'ecwid_show_admin_messages');
   add_action('admin_menu', 'ecwid_options_add_page');
   add_action('wp_dashboard_setup', 'ecwid_add_dashboard_widgets' );
@@ -1603,15 +1604,7 @@ function ecwid_general_settings_do_page() {
 
         $scopes = '';
 
-        if (isset($_GET['scope'])) {
-            $scopes = implode(' ', $ecwid_oauth->get_safe_scopes_array($_GET['scope']));
-        }
-
-		if (isset($_GET['returnUrl'])) {
-			$returnUrl = $_GET['returnUrl'];
-		}
-
-		$connection_error = @$_GET['connection_error'];
+		$connection_error = isset($_GET['connection_error']);
 
 		require_once ECWID_PLUGIN_DIR . '/templates/reconnect.php';
 	} else if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID || isset($_GET['connection_error'])) {
@@ -1619,6 +1612,38 @@ function ecwid_general_settings_do_page() {
 	   require_once ECWID_PLUGIN_DIR . '/templates/connect.php';
 	} else {
 		require_once ECWID_PLUGIN_DIR . '/templates/dashboard.php';
+	}
+}
+
+function ecwid_process_oauth_params() {
+
+	if (strtoupper($_SERVER['REQUEST_METHOD']) != 'GET' || !isset($_GET['page'])) {
+		return;
+	}
+
+	$is_dashboard = $_GET['page'] == 'ecwid';
+
+	if (!$is_dashboard) {
+		return;
+	}
+
+	global $ecwid_oauth;
+	$is_connect = get_ecwid_store_id() != ECWID_DEMO_STORE_ID && !isset($_GET['connection_error']);
+
+	$is_reconnect = isset($_GET['reconnect']) && !isset($_GET['connection_error']);
+
+	if ($is_connect) {
+		$ecwid_oauth->update_state( array( 'mode' => 'connect' ) );
+	}
+
+	if ($is_reconnect) {
+		$ecwid_oauth->update_state( array(
+			'mode' => 'reconnect',
+			// explicitly set to empty array if not available to reset current state
+			'scope' => isset($_GET['scope']) ? $_GET['scope'] : array(),
+			// explicitly set to empty string if not available to reset current state
+			'return_url' => isset($_GET['return-url']) ? $_GET['return-url'] : ''
+		));
 	}
 }
 
@@ -1634,22 +1659,8 @@ function ecwid_admin_post_connect()
 	global $ecwid_oauth;
 
 	if (ecwid_test_oauth(true)) {
-        $scopes = isset($_GET['scopes']) ? $_GET['scopes'] : '';
 
-        $params = array();
-
-		if ($scopes) {
-			$params['scopes'] = $ecwid_oauth->get_safe_scopes_array($scopes);
-		}
-
-		if (@$_GET['returnUrl']) {
-			$params['returnUrl'] = $_GET['returnUrl'];
-		}
-
-		if (isset($_GET['reconnect'])) {
-			$params['reconnect'] = true;
-		}
-		wp_redirect($ecwid_oauth->get_auth_dialog_url($params));
+		wp_redirect($ecwid_oauth->get_auth_dialog_url());
 	} else if (!isset($_GET['reconnect'])) {
 		wp_redirect('admin.php?page=ecwid&oauth=no');
 	} else {

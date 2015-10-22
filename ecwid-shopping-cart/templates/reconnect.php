@@ -20,10 +20,10 @@
 		<?php endif; ?>
 
 		<div class="connect-button">
-			<a href="admin-post.php?action=ecwid_connect&reconnect<?php if(@$scopes): ?>&scopes=<?php echo urlencode($scopes); ?><?php endif; ?><?php if(@$returnUrl): ?>&returnUrl=<?php echo urlencode($returnUrl); ?><?php endif; ?>"><?php _e( 'Connect Ecwid store', 'ecwid-shopping-cart' ); ?></a>
+			<a href="admin-post.php?action=ecwid_connect&reconnect"><?php _e( 'Connect Ecwid store', 'ecwid-shopping-cart' ); ?></a>
 		</div>
 
-		<?php if ($connection_error == 'cancelled'): ?>
+		<?php if ($connection_error && $ecwid_oauth->get_error() == 'cancelled'): ?>
 
 
 			<div class="note auth-error">
@@ -32,7 +32,7 @@
 			</span>
 			</div>
 
-		<?php elseif ($connection_error == 'other'): ?>
+		<?php elseif ($connection_error && $ecwid_oauth->get_error()  == 'other'): ?>
 
 			<div class="note auth-error">
 				<span>
@@ -47,5 +47,5 @@
 			</div>
 		<?php endif; ?>
 	</div>
-	<p><?php echo sprintf(__('Questions? Visit <a %s>Ecwid support center</a>', 'ecwid-shopping-cart'), 'target="_blank" href="http://help.ecwid.com/?source=wporg"'); ?></p>
+	<p><?php echo sprintf(__('Questions? <a %s>Read FAQ</a> or contact support at <a %s>wordpress@ecwid.com</a>', 'ecwid-shopping-cart'), 'target="_blank" href="https://help.ecwid.com/customer/portal/articles/1085017-wordpress-downloadable#FAQ"', 'href="mailto:wordpress@ecwid.com"'); ?></p>
 </div>
