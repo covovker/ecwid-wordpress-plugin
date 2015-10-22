@@ -264,6 +264,7 @@ class Ecwid_OAuth {
 			$this->state->reconnect_scopes = array();
 			$this->state->reconnect_error = '';
 			$this->state->return_url = '';
+			$this->state->reason = '';
 		}
 
 		$this->state->create_store_clicked = @$_COOKIE['ecwid_create_store_clicked'];
@@ -302,6 +303,10 @@ class Ecwid_OAuth {
 			if ( isset( $params['error'] ) ) {
 				$this->state->reconnect_error = $params['error'];
 			}
+
+			if ( isset( $params['reason'] ) ) {
+				$this->state->reason = $params['reason'];
+			}
 		}
 
 		$this->_save_state();
@@ -314,6 +319,17 @@ class Ecwid_OAuth {
 		} else {
 			return $this->state->error;
 		}
+	}
+
+	public function get_reconnect_message() {
+		$reconnect_message = '';
+		
+		switch ($this->state->reason) {
+			case '1': $reconnect_message = "Message 1"; break;
+			case '2': $reconnect_message = "Message 2"; break;
+		}
+
+		return $reconnect_message;
 	}
 
 	protected function _is_reconnect() {

@@ -13,9 +13,9 @@
 			<?php _e( 'Connect your store<br /> to this WordPress site', 'ecwid-shopping-cart' ); ?>
 		</div>
 
-		<?php if (isset($reconnect_message)): ?>
+		<?php if ($ecwid_oauth->get_reconnect_message()): ?>
 			<div class="note reconnect-message">
-				<?php echo $reconnect_message; ?>
+				<?php echo $ecwid_oauth->get_reconnect_message(); ?>
 			</div>
 		<?php endif; ?>
 

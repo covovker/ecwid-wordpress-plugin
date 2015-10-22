@@ -1642,7 +1642,8 @@ function ecwid_process_oauth_params() {
 			// explicitly set to empty array if not available to reset current state
 			'scope' => isset($_GET['scope']) ? $_GET['scope'] : array(),
 			// explicitly set to empty string if not available to reset current state
-			'return_url' => isset($_GET['return-url']) ? $_GET['return-url'] : ''
+			'return_url' => isset($_GET['return-url']) ? $_GET['return-url'] : '',
+			'reason' => isset($_GET['reason']) ? $_GET['reason'] : ''
 		));
 	}
 }
