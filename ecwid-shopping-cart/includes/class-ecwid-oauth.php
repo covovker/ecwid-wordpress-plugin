@@ -91,7 +91,7 @@ class Ecwid_OAuth {
 			}
 
 			wp_redirect('admin.php?page=ecwid&connection_error' . ($reconnect ? '&reconnect' : ''));
-			return;
+			exit;
 		}
 
 		$base_admin_url = 'admin-post.php?action=ecwid_oauth' . ($reconnect ? '_reconnect' : '');
@@ -133,6 +133,7 @@ class Ecwid_OAuth {
 		} else {
 			wp_redirect( 'admin.php?page=ecwid&settings-updated=true' );
 		}
+		exit;
 	}
 
 	public function disconnect_store()
@@ -143,6 +144,7 @@ class Ecwid_OAuth {
 		update_option( 'ecwid_api_check_time', 0 );
 
 		wp_redirect('admin.php?page=ecwid');
+		exit;
 	}
 
     public function get_safe_scopes_array($scopes)
@@ -195,6 +197,7 @@ class Ecwid_OAuth {
 		}
 
 		wp_redirect('admin.php?page=ecwid&connection_error' . ($mode == self::MODE_RECONNECT ? '&reconnect' : ''));
+		exit;
 	}
 
 	public function get_oauth_token()
@@ -323,10 +326,16 @@ class Ecwid_OAuth {
 
 	public function get_reconnect_message() {
 		$reconnect_message = '';
-		
-		switch ($this->state->reason) {
-			case '1': $reconnect_message = "Message 1"; break;
-			case '2': $reconnect_message = "Message 2"; break;
+
+		if (isset($this->state->reason)) {
+			switch ( $this->state->reason ) {
+				case '1':
+					$reconnect_message = "Message 1";
+					break;
+				case '2':
+					$reconnect_message = "Message 2";
+					break;
+			}
 		}
 
 		return $reconnect_message;
